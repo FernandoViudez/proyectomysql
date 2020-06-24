@@ -1,0 +1,248 @@
+<div class="notPrint">
+    <div class="p-4 bg-light br-5">
+        <div class="row">
+            <div class="col-6">
+                <h2>Recepción de Materia Prima</h2>
+                <hr>
+            </div>
+            <div class="col-6">
+                <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3"
+                    class="float-right bi bi-search mr-5" width="3em" height="3em" viewBox="0 0 16 16" fill="black"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                        clip-rule="evenodd" />
+                    <path fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <label>Ingrese el Codigo de Materia Prima</label>
+                <input (change)="traerDatosMp()" class="form-control boldText" type="number" [(ngModel)]="id">
+            </div>
+            <div class="col-6">
+                <label>Descripción</label>
+                <input class="form-control boldText" disabled type="text" [(ngModel)]="descripcion">
+            </div>
+            <div class="col-3">
+                <label>Stock</label>
+                <div class="col-16 input-group">
+                    <input class="form-control boldText" disabled type="number" [(ngModel)]="stock">
+                    <div class="input-group-append">
+                                <span class="input-group-text boldText" id="basic-addon2">{{unidadRecibo}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <label>Ubicación</label>
+                <input class="form-control boldText" disabled type="text" [(ngModel)]="ubicacion">
+            </div>
+            <div class="col-3">
+                <label>Orden de compra</label>
+                <input class="form-control boldText" type="text" [(ngModel)]="ordenCompra">
+            </div>
+            <div class="col-3">
+                <label>Número de Remito</label>
+                <input class="form-control boldText" type="number" [(ngModel)]="nroRemito">
+            </div>
+            <div class="col-3">
+                <label>Proveedor</label>
+                <input class="form-control boldText" type="text" [(ngModel)]="proveedor">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label>Partida de Proovedor</label>
+                <input class="form-control boldText" type="text" [(ngModel)]="nroPart">
+            </div>
+            <div class="col-4">
+                <label>Cantidad recibida en {{unidadRecibo}}</label>
+                <input class="form-control boldText" type="number" [(ngModel)]="cantidad">
+            </div>
+            <div class="col-4">
+                <label>Cantidad de etiquetas a generar</label>
+                <input class="form-control boldText" type="number" [(ngModel)]="cantEtiquetas">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button class="float-right btn btn-success mt-5" (click)="finalizar()">Cargar Recepción</button>
+                <button class="float-right btn btn-primary mt-5 mr-3" (click)="cancelar()">Cancelar Recepción</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="width: 90%;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE MATERIAS PRIMAS</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="recipient-name9" class="col-form-label">CODIGO DE LA MATERIA PRIMA:</label>
+                                <input (keyup)="buscarMp()" [(ngModel)]="termino1" type="number" class="form-control"
+                                    id="recipient-name40">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
+                                <input (keyup)="buscarMp()" [(ngModel)]="termino2" type="text" class="form-control"
+                                    id="recipient-name40">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="overflow: scroll; height: 200px; width: 100%;">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>COD</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>TIPO</th>
+                                <th>UNIDAD DE MEDIDA</th>
+                            </tr>
+                            <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
+                                (click)="seleccionarId(item2.id)" style="cursor: pointer;">
+                                <td>{{item2.id}}</td>
+                                <td>{{item2.descripcion}}</td>
+                                <td>{{item2.tipo}}</td>
+                                <td>{{item2.unidadmedidacompra}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" (click)="resetear()">Resetear</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="yesPrint">
+
+	<style>
+	.no-gutters {
+	  margin-right: 0;
+	  margin-left: 1;
+	}
+	</style>
+
+    <h3>
+        <b style="text-align:center">
+            INFORME DE RECEPCIÓN NUMERO {{lotePrint}}
+        </b>
+    </h3>
+    <hr>
+
+    <h4>
+        <div class="row mb-5 no-gutters">
+            <div class="column left" style="background-color:#aaa;">
+                <p>Producto : {{descripcion}}</p>
+                <p>Proveedor : {{proveedor}}</p>
+                <p>O/C Nro. : {{ordenCompra}}</p>
+                <p>Remito Nro. : {{nroRemito}}</p>
+                <p></p>
+            </div>
+            <div class="column right" style="background-color:#bbb;">
+                <p>Codigo : {{id}}</p>
+                <p>Nro. Part.Prov. : {{nroPart}}</p>
+                <p>Nro. Lote : {{lotePrint}}</p>
+                <p>Cantidad recibida {{unidadRecibo}}: {{cantidad}}</p>
+                <p>Fecha recepcion : {{fecha}}</p>
+            </div>
+        </div>
+    </h4>
+    <br>
+
+    <table style="font-size: 20px;" class="mt-3">
+        <tr>
+            <th>COMPROBACIONES</th>
+            <th>INDICAR SI - NO - N/A</th>
+        </tr>
+        <tr>
+            <td>1. El material recibido es el correspondiente a la O/C ?</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2. El peso real coincide con el indicado en el Remito ? SI NO COINCIDE, anotar la diferencia y avisar a
+                COMPRAS</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>3. Se aprobo en Control de Calidad de REVESTA S.A.I.C. ?</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>4. La cantidad recibida coincide con la cantidad de la O/C ? SI NO COINCIDE, anotar la diferencia y
+                avisar a COMPRAS.</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>5. El material tiene numero de lote o partida ? </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>6. Estan dañados los envases ? SI ES ASI, obtener la aprobacion de Control de Calidad antes de proceder.
+                SI NO ES ACEPTADO, avisar a COMPRAS.</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>7. Se recibio certificado de analisis del proveedor ?</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>8. Se colocaron las tarjetas de identificacion ?</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="mt-4">
+        <h4>
+            <b>Borrador de datos de Aprobacion (CC) {{lotePrint}} ( {{descripcion}} )</b>
+        </h4>
+        <hr>
+        <div class="row mb-5 no-gutters" style="font-size: 20px">
+            <div class="column left" style="background-color:#aaa;">
+                <p>PESO ESPECIFICO : _______________________</p>
+                <p>CONT. SOLIDOS : _________________________</p>
+                <p>COLOR : _________________________________</p>
+                <p>DELTA E : _______________________________</p>
+                <p>HUMEDAD : _______________________________</p>
+                <p>PH : ____________________________________</p>
+                <p>AGUA : __________________________________</p>
+                <p>ACIDEZ : ________________________________</p>
+                <p>OLOR : __________________________________</p>
+
+            </div>
+            <div class="column right">
+                <p>VISCOSIDAD : _______________ sp. ________</p>
+                <p>CURADO : ________________________________</p>
+                <p>DENSIDAD APARENTE : _____________________</p>
+                <p>. </p>
+                <p>ABSORCION ACEITE : ______________________</p>
+                <p>GRANULOMETRIA : _________________________</p>
+                <p>CURVA DESTILACION : _____________________</p>
+                <p>ALCALINIDAD : ___________________________</p>
+                <p>INDICE REFRACCION : _____________________</p>
+            </div>
+        </div>
+    </div>
+
+</div>

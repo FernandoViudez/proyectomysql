@@ -1,0 +1,363 @@
+import { Component, OnInit } from '@angular/core';
+import { FormService } from 'src/app/services/form.service';
+import { HttpClient } from '@angular/common/http';
+import { EnvService } from 'src/app/services/env.service';
+import Swal from 'sweetalert2';
+declare let alertify: any;
+
+@Component({
+  selector: 'app-planifi',
+  templateUrl: './planifi.component.html',
+  styles: []
+})
+
+export class PlanifiComponent implements OnInit {
+
+  //DATA ENTRY
+  codpt: number;
+  descripcion: string;
+  cantidad: number;
+  formaenv: string;
+  cliente: string;
+  fechacompr: Date;
+  motivo: string;
+
+  //VALIDADOR DE EDICION
+  editar: boolean;
+  borrar: boolean = false;
+
+  //DATOS A PARTE
+  id: number;
+  lote: any;
+  fechacomienzo: any;
+  proceso: any;
+  fechafin: any;
+  operario: any;
+  dispersora: any;
+  molino: any;
+  unidadmedida: string;
+
+  //BUSQUEDA DE PLANIFICACION
+  codptB: number;
+  descripcionB: string;
+  clienteB: string;
+  pendientes = false;
+  arrayB = [];
+
+  //BUSQUEDA DE PRODUCTO
+  idBus: number;
+  termino1: string
+  termino2: string;
+  termino3: string;
+  arraypt = [];
+
+  constructor(private service: FormService,
+    private http: HttpClient,
+    private service1: EnvService) { }
+
+  ngOnInit(): void {
+    this.deshabilitar();
+  }
+  //BUSQUEDA DE PLANIFICACION
+  buscarPlan() {
+    this.pendientes = false;
+    let data = { codpt: this.codptB, descripcion: this.descripcionB, cliente: this.clienteB }
+    this.http.post("http://localhost:8080/api/getPlani", data).
+      subscribe((data: any) => {
+        this.arrayB = data.response;
+      }, (err) => {
+        console.log(err);
+      })
+  }
+  //BUSQUEDA DE PRODUCTO TERMINADO 
+  buscarP() {
+    this.service1.buscarpt(this.idBus, this.termino1, this.termino2, this.termino3).subscribe((data: any) => {
+      this.arraypt = data.response;
+    }, (err) => {
+      return;
+    })
+  }
+  //TRAE DATOS DE CODPT
+  validarId() {
+
+    function enviarMessage() {
+      alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !")
+    }
+
+    this.service.validarIdProd(this.codpt).
+      subscribe((data: any) => {
+        let dato = data.response[0];
+        enviarMessage();
+        this.descripcion = `${dato.descripcion} - ${data.componente} - ${data.color}`;
+        this.unidadmedida = dato.unidadmedida;
+      }, (err) => {
+        if (err.error.response) {
+          let dato = err.error.response;
+          enviarMessage();
+          alertify.error(" ATENCIÓN!! PRODUCTO SIN FORMULA ")
+          this.descripcion = `${dato.descripcion} - ${dato.componente} - ${dato.color}`;
+          this.unidadmedida = dato.unidadmedida;
+        } else {
+          alertify.error(" ESTE PRODUCTO TERMINADO NO EXISTE ")
+          return this.resetear();
+        }
+
+      })
+  }
+  //CUANDO LE DAS A CLICK EN LA TABLA DE LUPA EN PLANIFICACION
+  traerDatos(id) {
+    this.id = id;
+    this.editar = true;
+    this.borrar = true;
+
+
+    this.http.get(`http://localhost:8080/api/getPlani/${id}`).subscribe((dato: any) => {
+      let data = dato.response;
+      let fechacompr: Date;
+      let fechacomienzo: Date;
+      let fechafin: Date;
+
+      fechacompr = data.fechacompr ? data.fechacompr.split("T")[0] : data.fechacompr;
+      fechacomienzo = data.fechacomienzo ? data.fechacomienzo.split("T")[0] : data.fechacomienzo;
+      fechafin = data.fechafin ? data.fechafin.split("T")[0] : data.fechafin;
+
+      if (fechafin) {
+        this.resetear();
+        return Swal.fire({
+          title: "ALERTA",
+          text: "Producto finalizado, no se puede editar",
+          icon: "warning"
+        })
+      }
+
+      this.codpt = data.codpt;
+      this.validarId();
+      this.lote = data.lote
+      this.proceso = data.proceso
+      this.operario = data.operario
+      this.dispersora = data.dispersora
+      this.molino = data.molino
+      this.cantidad = data.cantidad;
+      this.formaenv = data.formaenv;
+      this.cliente = data.cliente;
+      this.motivo = data.motivo;
+
+      this.fechafin = fechafin;
+      this.fechacomienzo = fechacomienzo;
+      this.fechacompr = fechacompr;
+
+      if (this.lote) {
+        this.habilitar();
+      } else {
+        this.deshabilitar();
+      }
+    }, (err) => {
+      console.log(err);
+    })
+
+  }
+  //CUANDO LE DAS A CLICK EN PRODTERM
+  seleccionarIdPt(id) {
+    this.codpt = id;
+    this.validarId();
+  }
+  //POSTEAMOS TODO
+  finalizar() {
+
+    function calcularFecha(fechaComparar) {
+
+      fechaComparar = fechaComparar.toString().split("-");
+      let Hoy = new Date();
+
+      var AnyoFecha = Number(fechaComparar[0]);
+      var MesFecha = Number(fechaComparar[1]);
+      var DiaFecha = Number(fechaComparar[2]);
+
+      var AnyoHoy = Hoy.getFullYear();
+      var MesHoy = Hoy.getMonth() + 1;
+      var DiaHoy = Hoy.getDate();
+
+      if (AnyoFecha < AnyoHoy) {
+        return false;
+      } else if (MesFecha < MesHoy) {
+        return false;
+      } else if (MesFecha === MesHoy && DiaFecha < DiaHoy) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    if (!this.codpt) {
+      return alertify.error("Código del producto incorrecto");
+    }
+    if (!this.cantidad) {
+      return alertify.error("La cantidad es incorrecta");
+    }
+    if (!this.formaenv) {
+      return alertify.error("La forma de envasado es incorrecta");
+    }
+    if (!this.cliente) {
+      return alertify.error("El cliente es obligatorio!!");
+    }
+    if (!this.motivo) {
+      return alertify.error("El motivo es obligatorio!!")
+    }
+
+    if (!calcularFecha(this.fechacompr) || this.fechacomienzo && !calcularFecha(this.fechacomienzo) || this.fechafin && !calcularFecha(this.fechafin)) {
+      return alertify.error("ALGUNA DE LAS FECHAS INGRESADAS ES INCORRECTA !");
+    }
+
+    let data = {
+      codpt: this.codpt,
+      cantidad: this.cantidad,
+      formaenv: this.formaenv.toUpperCase(),
+      cliente: this.cliente.toUpperCase(),
+      fechacompr: this.fechacompr,
+      lote: this.lote,
+      fechacomienzo: this.fechacomienzo,
+      proceso: this.proceso,
+      fechafin: this.fechafin,
+      operario: this.operario,
+      dispersora: this.dispersora,
+      molino: this.molino,
+      motivo: this.motivo,
+      descripcion: this.descripcion,
+    }
+
+    if (!this.editar) {
+      this.http.post("http://localhost:8080/api/postPlani", data).
+        subscribe((data: any) => {
+          alertify.success(data.message);
+          this.resetear();
+        }, (err) => {
+          console.log(err);
+        })
+    } else {
+      this.http.put(`http://localhost:8080/api/putPlani/${this.id}`, data).
+        subscribe((data: any) => {
+          alertify.success("HAS MODIFICADO UNA PLANIFICACION !");
+          this.resetear()
+        }, (err) => {
+          console.log(err);
+        })
+    }
+
+  }
+  //BORRAR FILA
+  borrarFila() {
+    Swal.fire({
+      title: "¿Borrar?",
+      text: "¿ Seguro que quiere eliminar esta planificacion ?",
+      showCancelButton: true,
+      cancelButtonColor: "red",
+      cancelButtonText: "NO",
+      confirmButtonColor: "green",
+      confirmButtonText: "SI",
+      icon: "question"
+    }).then(res => {
+      if (res.value) {
+        this.http.delete(`http://localhost:8080/api/deletePlani/${this.id}`).
+          subscribe((data: any) => {
+            alertify.success(data.message);
+            this.resetear();
+          }, (err) => {
+            console.log(err);
+          })
+      } else {
+        return;
+      }
+    })
+  }
+  //CANCELAR OPERACION
+  cancelar() {
+    Swal.fire({
+      title: "¿Cancelar?",
+      text: "¿ Seguro de que quiere cancelar esta operacion ?",
+      showCancelButton: true,
+      cancelButtonColor: "red",
+      cancelButtonText: "NO",
+      confirmButtonColor: "green",
+      confirmButtonText: "SI",
+      icon: "question"
+    }).then(res => {
+      if (res.value) {
+        this.resetear();
+      } else {
+        return;
+      }
+
+    })
+  }
+  //LIMPIAMOS INPUTS
+  resetear() {
+    this.borrar = false;
+    this.editar = null;
+    this.codpt = null;
+    this.descripcion = null;
+    this.cantidad = null;
+    this.formaenv = null;
+    this.cliente = null;
+    this.fechacompr = null;
+    this.lote = null;
+    this.fechacomienzo = null;
+    this.proceso = null;
+    this.fechafin = null;
+    this.operario = null;
+    this.dispersora = null;
+    this.molino = null;
+    this.id = null;
+    this.motivo = null;
+    this.codptB = null;
+    this.descripcionB = null;
+    this.clienteB = null;
+    this.arrayB = [];
+    this.pendientes = false;
+    this.unidadmedida = null;
+    this.deshabilitar()
+  }
+  //RESETEAR SOLO LA BUSQUEDA DE PLANIFICACION
+  resetear1() {
+    this.codptB = null;
+    this.descripcionB = null;
+    this.clienteB = null;
+    this.arrayB = [];
+    this.pendientes = false;
+  }
+  //HABILITAR INPUTS PARA ESCRITURA
+  habilitar() {
+    document.getElementById("fechacomienzo").removeAttribute("disabled");
+    document.getElementById("proceso").removeAttribute("disabled");
+    document.getElementById("fechafin").removeAttribute("disabled");
+    document.getElementById("operario").removeAttribute("disabled");
+    document.getElementById("dispersora").removeAttribute("disabled");
+    document.getElementById("molino").removeAttribute("disabled");
+    document.getElementById("cantidad").setAttribute("disabled", "");
+  }
+  //DESABILITAR INPUTS
+  deshabilitar() {
+
+    document.getElementById("fechacomienzo").setAttribute("disabled", "");
+    document.getElementById("proceso").setAttribute("disabled", "");
+    document.getElementById("fechafin").setAttribute("disabled", "");
+    document.getElementById("operario").setAttribute("disabled", "");
+    document.getElementById("dispersora").setAttribute("disabled", "");
+    document.getElementById("molino").setAttribute("disabled", "");
+    document.getElementById("cantidad").removeAttribute("disabled");
+  }
+  //IMPRIMIR LOS PRODUCTOS DEL ARRAYB
+  imprimir() {
+    window.print();
+  }
+
+  listarPendientes() {
+    this.pendientes = true;
+    this.http.get("http://localhost:8080/api/traerPendientes").
+      subscribe((data: any) => {
+        this.arrayB = data.response;
+      }, (err) => {
+        console.log(err);
+      })
+  }
+
+}

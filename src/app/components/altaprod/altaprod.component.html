@@ -1,0 +1,266 @@
+<div class="zoom">
+
+    <!-- DATOS GENERALES -->
+    <div>
+        <h6 class="bg-info text-white text-center">DATOS GENERALES</h6>
+        <div class="row">
+            <div class="col-3">
+                <label>Id del producto</label>
+                <input (change)="validarPt()" id="id" type="number" [(ngModel)]="id" class="form-control">
+            </div>
+            <div class="col-1">
+                <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3" class="mt-4 bi bi-search"
+                    width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                        clip-rule="evenodd" />
+                    <path fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="col-4">
+                <label>Descripcion</label>
+                <input type="text" [(ngModel)]="descripcion" class="form-control">
+            </div>
+            <div class="col-4">
+                <span>Componente</span>
+                <div class="input-group">
+                    <select class="mt-2 custom-select" [(ngModel)]="componente" id="inputGroupSelect01">
+                        <option value="AGENTE CURADO">AGENTE CURADO</option>
+                        <option value="DILUYENTE">DILUYENTE</option>
+                        <option value="ENDURECEDOR">ENDURECEDOR</option>
+                        <option value="INERTE">INERTE</option>
+                        <option value="LÍQUIDO">LÍQUIDO</option>
+                        <option value="MONOCOMPONENTE">MONOCOMPONENTE</option>
+                        <option value="POLVO">POLVO</option>
+                        <option value="RESINA">RESINA</option>
+                        <option value="SEMIELABORADO">SEMI-ELABORADO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Color</label>
+                <input type="text" [(ngModel)]="color" class="form-control">
+            </div>
+            <div class="col-4">
+                <label>Color Igual</label>
+                <input type="text" [(ngModel)]="colorigual" class="form-control">
+            </div>
+            <div class="col-4">
+                <label>Stock</label>
+                <input id="stock" disabled [(ngModel)]="stock" type="number" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label>Forma Conjunto con...</label>
+                <input (change)="validarForma()" type="number" [(ngModel)]="formaconjunto" class="form-control">
+            </div>
+            <div class="col-2">
+                <h6 class="mt-4 ">
+                    {{descripForma}}
+                </h6>
+            </div>
+            <div class="col-4">
+                <label>Relacion de Mezcla</label>
+                <input type="text" [(ngModel)]="relaciondemezcla" class="form-control">
+            </div>
+            <div class="col-4">
+                <label>Tipo Generico</label>
+                <input type="text" [(ngModel)]="tipogenerico" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <!-- DATOS FISICOS -->
+    <div class="mt-5">
+        <h6 align="center" class="bg-info text-white">DATOS FISICOS</h6>
+        <div class="row">
+            <div class="col-2">
+                <label>Viscosidad Spindle</label>
+                <input type="text" [(ngModel)]="viscosidadspindle" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>Spindle Numero</label>
+                <input type="text" [(ngModel)]="spindlenumero" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>Viscosidad UK</label>
+                <input type="text" [(ngModel)]="viscosidaduk" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>Molienda</label>
+                <input type="text" [(ngModel)]="molienda" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>Brillo</label>
+                <input type="text" [(ngModel)]="brillo" class="form-control">
+            </div> 
+            <div class="col-2">
+                <span>Unidad de Medida</span>
+                <div class="input-group">
+                    <select class="mt-2 custom-select" [(ngModel)]="unidadmedida" id="inputGroupSelect01">
+                        <option value="LT">Litro</option>
+                        <option value="KG">Kilogramo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label>Peso Específico</label>
+                <input type="text" disabled [(ngModel)]="pesoespecifico" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>Solidos P.P.P.</label>
+                <input type="text" disabled [(ngModel)]="solidosppp" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>Solidos P.P.V.</label>
+                <input type="text" disabled [(ngModel)]="solidosppv" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>% Resina</label>
+                <input type="text" disabled [(ngModel)]="resina" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>% Pigmento</label>
+                <input type="text" disabled [(ngModel)]="pigmento" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>% Solvente</label>
+                <input type="text" disabled [(ngModel)]="solvente" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <!-- OTROS DATOS, LE TENGO QUE CAMBIAR EL NOMBRE JAJAAJ -->
+    <div class="mt-5">
+        <h6 align="center" class="text-white bg-info">OTROS DATOS</h6>
+        <div class="row">
+            <div class="col-2">
+                <label class="text-center">Última Elaboración</label>
+                <div class="bg-light">
+                    <div class="w-100 badge badge-pill text-center"
+                        style="font-size: 15px; background-color: rgb(204, 204, 204);">
+                        {{fechaultimaelaboracion | datePipe}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <label>Última Modificación de Fórmula</label>
+                <div class="bg-light">
+                    <div class=" w-100 badge badge-pill text-center"
+                        style=" font-size: 15px; background-color: rgb(204, 204, 204);">
+                        {{ultimamodificacion | datePipe}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <label>Información 1</label>
+                <input type="text" [(ngModel)]="info1" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>Información 2</label>
+                <input type="text" [(ngModel)]="info2" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>Información 3</label>
+                <input type="text" [(ngModel)]="info3" class="form-control">
+            </div>
+            <div class="col-2">
+                <label>Precio</label>
+                <input type="text" [(ngModel)]="precio" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTONES -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="float-right mr-5">
+                <button class="btn btn-primary mr-5" (click)="cancelar()">Cancelar</button>
+                <button class="btn btn-success" (click)="finalizar()">Cargar Producto</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PRODUCTOS TERMINADOS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="recipient-name9" class="col-form-label">ID:</label>
+                            <input (keyup)="buscarP()" [(ngModel)]="idbus" type="number" class="form-control"
+                                id="recipient-name40">
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
+                            <input (keyup)="buscarP()" [(ngModel)]="termino1" type="text" class="form-control"
+                                id="recipient-name40">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="recipient-name010" class="col-form-label">COLOR:</label>
+                            <input (keyup)="buscarP()" [(ngModel)]="termino2" type="text" class="form-control"
+                                id="recipient-name01">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="recipient-name012" class="col-form-label">COMPONENTE:</label>
+                            <input (keyup)="buscarP()" type="text" [(ngModel)]="termino3" class="form-control"
+                                id="recipient-name02">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="overflow: scroll; height: 200px; width: 100%;">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>COD</th>
+                            <th>DESCRIPCIÓN</th>
+                            <th>COLOR</th>
+                            <th>COMPONENTE</th>
+                        </tr>
+                        <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arraypt"
+                            (click)="seleccionarIdPt(item2.id)" style="cursor: pointer;">
+                            <td>{{item2.id}}</td>
+                            <td>{{item2.descripcion}}</td>
+                            <td>{{item2.color}}</td>
+                            <td>{{item2.componente}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

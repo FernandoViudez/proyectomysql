@@ -1,0 +1,546 @@
+<div id="carouselExampleControls" class="carousel slide notPrint" data-interval="9000000">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div style="height: 500px;">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="m-auto w-50">
+                            <label>Código del producto</label>
+                            <input type="number" disabled class="form-control" [(ngModel)]="id">
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        {{descripcion}}-{{componente}}-{{color}}
+                    </div>
+
+                    <div class="col-4">
+                        <div class="m-auto w-50">
+                            <h5>Busqueda de producto para fabricar*:</h5>
+                            <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal2"
+                                class="mt-4 bi bi-search" width="2em" height="2em" viewBox="0 0 16 16"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                                    clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                    d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <label>Proximo Batch:</label>
+                        <input type="number" disabled [(ngModel)]="proximoBatch" class="form-control">
+                    </div>
+
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">
+                        <label>Cantidad a elaborar</label>
+                    </div>
+                    <div class="col-2 input-group">
+
+                        <input (change)="calcularFaltantes()" type="number" class="form-control"
+                            [(ngModel)]="cantidadPlani" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">{{unidadmedida}}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">
+                        <label>Fecha Comprometida</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="date" class="form-control w-50" [(ngModel)]="fechacompr">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">
+                        <label>Nombre del producto para etiqueta</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" class="form-control w-50" [(ngModel)]="descripcionEtiquetas">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">
+                        <label>Color del producto para etiqueta</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" class="form-control w-50" [(ngModel)]="colorEtiquetas">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="m-auto" style="width:80%">
+                            <h3 class="alert text-white text-center" style="background-color: darkblue;"
+                                *ngIf="tfa=='F'">
+                                FORMULA </h3>
+                            <h3 class="alert text-white text-center" style="background-color: orange;" *ngIf="tfa=='T'">
+                                TINTURADO</h3>
+                            <h3 class="alert text-center" style="background-color: yellow;" *ngIf="tfa=='A'">FORMULA
+                                ALTERNATIVA</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div style="height: 500px;">
+                <div class="row">
+                    <div class="col-4">
+                        <div>
+                            <label>Codigo del producto</label>
+                            <input class="form-control" type="number" disabled [(ngModel)]="id">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div align="center"
+                            style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
+                            class="mt-4">
+                            {{descripcion}} - {{componente}} - {{color}}
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label>A elaborar</label>
+                        <input class="form-control" disabled type="number" [(ngModel)]="cantidadPlani">
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div style="overflow: scroll; height: 340px; width: 90%;" class="m-auto">
+                            <table class="table table-hover text-center">
+                                <tr>
+                                    <th>Codigo de envasado</th>
+                                    <th>Descripcion</th>
+                                    <th>Tot. Envasar</th>
+                                    <th>Envases</th>
+                                </tr>
+                                <tr *ngFor="let item of arrayConj; let i = index">
+                                    <td>{{item.codmp}}</td>
+                                    <td>{{item.envasado}}{{unidadmedida}} - {{item.descripcion}}</td>
+                                    <td><input type="number" class="form-control" #in
+                                            (keyup)="in.value=in.value; calcular(in.value, i)"
+                                            (change)="guardarEnvases(in.value, item.codmp)">
+                                    </td>
+                                    <td>{{in.value/item.envasado}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12 text-center">
+                        <span style="font-size: 20px;" *ngIf="totCantidadEnvasar <= cantidadPlani"
+                            class="badge badge-pill badge-success">
+                            Falta envasar: {{cantidadPlani - totCantidadEnvasar}}{{unidadmedida}}
+                        </span>
+                        <span style="font-size: 20px;" *ngIf="totCantidadEnvasar > cantidadPlani"
+                            class="badge badge-pill badge-primary">
+                            Falta envasar: {{cantidadPlani - totCantidadEnvasar}}{{unidadmedida}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div style="height: 500px;">
+                <div class="row">
+                    <div class="col-2 text-center">
+                        <h5 align="center" class="mt-4">FALTANTES</h5>
+                    </div>
+                    <div class="col-5">
+                        <h3 align="center" class="mt-4">
+                            <span class="badge badge-pill badge-info">
+                                {{descripcion}} - {{componente}} - {{color}}
+                            </span>
+                        </h3>
+
+                    </div>
+                    <div class="col-1">
+                        <label>A elaborar</label>
+                        <input type="number" disabled class="form-control" [(ngModel)]="cantidadPlani">
+                    </div>
+                    <div class="col-1">
+                        <label>U.Medida</label>
+                        <input type="text" disabled class="form-control" [(ngModel)]="unidadmedida">
+                    </div>
+                    <div class="col-1">
+                        <label>Proximo Batch</label>
+                        <input type="number" disabled class="form-control" [(ngModel)]="proximoBatch">
+                    </div>
+                    <div class="col-2">
+                        <button
+                            *ngIf="id && cantidadPlani && !totCantidadEnvasar || totCantidadEnvasar  <= cantidadPlani"
+                            class="btn btn-success btn-block mt-4" (click)="finalizar()">Emitir Ticket</button>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="text-center col-12">
+                        <div style="overflow: scroll; height: 400px; width: 90;" class="m-auto">
+                            <table class="table table-hover">
+                                <tr class="bg-info text-white">
+                                    <th>ORDEN</th>
+                                    <th>CODMP</th>
+                                    <th>CODPT</th>
+                                    <th>DESCRIPCION</th>
+                                    <th>FALTANTE</th>
+
+                                </tr>
+                                <tr *ngFor="let item of arrayAsoc">
+                                    <td>{{item.orden}}</td>
+                                    <td>{{item.codmp}}</td>
+                                    <td>{{item.codpt}}</td>
+                                    <td>{{item.descripcion}}</td>
+                                    <td class="text-primary" style="font-size: 15px;" *ngIf="item.ind[0] < 0">
+                                        {{item.ind[0]}}
+                                        KG </td>
+                                    <td class="text-success" *ngIf="item.ind[0] >= 0">HAY STOCK</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-10">
+            <div>
+                <button (click)="cancelar()" class="btn btn-primary">
+                    Cancelar todo
+                </button>
+            </div>
+        </div>
+        <div class="col-2">
+            <svg *ngIf="id && cantidadPlani && !totCantidadEnvasar || totCantidadEnvasar  <= cantidadPlani"
+                href="#carouselExampleControls" role="button" data-slide="prev" class="bi bi-caret-left-fill"
+                style="cursor: pointer" width="4em" height="4em" viewBox="0 0 16 16" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+            </svg>
+            <svg href="#carouselExampleControls" role="button" data-slide="next"
+                *ngIf="id && cantidadPlani && !totCantidadEnvasar || totCantidadEnvasar  <= cantidadPlani"
+                style="cursor: pointer" class="bi bi-caret-right-fill" width="4em" height="4em" viewBox="0 0 16 16"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+            </svg>
+        </div>
+    </div>
+</div>
+
+<div class="yesPrint">
+    <style>
+        .tab1 {
+            display: inline-block;
+            margin-left: 40px;
+        }
+
+        .tab2 {
+            display: inline-block;
+            margin-left: 80px;
+        }
+
+	table {
+	    font-family: arial,helvetica,sans-serif;
+	    border-collapse: collapse;
+	    width: 100%;	    
+	    padding: 0.1px;
+	}
+
+	th {
+	    border: 0.5px solid #dddddd;
+	    text-align: center;
+	    padding: 2.5px;
+	    font-size:13px;
+	}
+	
+	td {
+	    border: 0.5px solid #dddddd;
+	    text-align: left;
+	    padding: 2.5px;
+	    font-size:13px;
+	}
+	tr:nth-child(even) {
+	   background-color: #dddddd;
+	}
+	
+	pre {
+	   //border: 0.5px solid #dddddd;
+	   padding: 0.5px;
+	   font-size:13px;
+	   font-family: arial,helvetica,sans-serif;
+	   line-height: 20pt;
+	}
+
+   </style>
+
+    <div>
+        <h5>
+            <b>
+                REVESTA S.A.I.C. <span class="tab2"></span><span class="tab1">
+                </span>BATCH TICKET {{proximoBatch}}
+                <span class="tab2"></span><span class="tab2"></span>PRIORIDAD PARA FABRICAR:
+            </b>
+        </h5>
+        <h6>
+            <pre>
+            CUBA Nro _____ CODIGO: {{id}} <span class="tab1"></span> PRODUCTO: {{descripcion}} {{componente}} {{color}}
+            CANTIDAD: {{cantidadPlani}} {{unidadmedida}} <span class="tab1"></span> F.EMISION {{fechaDelDia}} INI.PRO. ___/___/ ___ HORA____
+            OPERADOR _____________ <span class="tab1"></span> CUBA _____ <span class="tab1"></span> PESO CUBA ______ 
+            <span class="tab1"></span>DISPERSORA _____ <span class="tab1"></span>DISCO ____ <span class="tab1"></span>MOLINO ______
+            PESO FINAL ________ CONTROLO _________ ENVASADO ___/___/___ POR FILTRO # _______
+            </pre>
+
+            <td *ngIf="tfa=='T'"> :   
+            <pre>
+       	**** S I S T E M A   D E   T I N T U R A C I O N ****                                  
+		BASE DE DATOS              BASE CLIENTES                                    
+		<span class="tab2"></span>AGREGAR PASTAS EN ___ ml       ___ onzas y fracciones
+ 		<span class="tab2"></span>* * * * TINTURAR SOLAMENTE EL PRIMER ENVASE * * * * *
+  		<span class="tab2"></span>*****************  F O R M U L A  *******************    
+            </pre>
+                
+            <table>
+                <tr>
+                    <th></th>
+                    <th>LOTE Nro.</th>
+                    <th>DESCRIPCION</th>
+                    <th>AGREGADO</th>
+                </tr>
+                <tr *ngFor="let item of arrayAsoc">
+                    <td>{{item.orden}}</td>
+                    <td></td>
+                    <td>{{item.descripcion}}</td>
+                    <td></td>  
+                </tr>
+            </table>
+            <pre>
+		<span class="tab2"></span>COLOCAR EN EL SHAKER DURANTE TRES MINUTOS !!!
+		<span class="tab2"></span>LLEVAR A C.C. --> APROBACION DE COLOR
+		<span class="tab2"></span>BASE DE DATOS --> IRAM
+		<span class="tab2"></span>RESULTADO:
+		<span class="tab2"></span>NO SE GUARDA MUESTRA DE RETENCION !!!!!! 
+		<span class="tab2"></span>UNA VEZ APROBADO COMPLETAR PEDIDO TOTAL 
+		<span class="tab2"></span>COMPLETAR CON NEUTRAL SEGUN INDICACION C.C.   
+            </pre>
+            </td>
+
+            
+            <td *ngIf="tfa != 'T'">   
+            <table>
+                <tr>
+                    <th></th>
+                    <th>MP</th>
+                    <th>PT</th>
+                    <th>DESCRIPCION</th>
+                    <th>CANTIDAD</th>
+                    <th>LOTE Nro.</th>
+                    <th>PREPESAO</th>
+                    <th>AGREGADO</th>
+                    <th>RGO/PROT</th>
+                </tr>
+                <tr *ngFor="let item of arrayAsoc">
+                    <td>{{item.orden}}</td>
+                    <td>{{item.codmp}}</td>
+                    <td>{{item.codpt}}</td>
+                    <td>{{item.descripcion}}</td>
+                    <td>{{item.cantidad}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{item.ind[1]}}</td>
+                </tr>
+            </table>
+            __. _________  ________________________________   _______+_______+_______ _____ ______ __________<br>
+            __. _________  ________________________________   _______+_______+_______ _____ ______ __________
+            __. _________  ________________________________   _______+_______+_______ _____ ______ __________
+            </td>
+
+            <br><b> DATOS DE APROBACION FINAL <span class="tab2"></span>ENTREGA ____ HORAS ___ C ___ HRA</b>
+
+
+	    
+        <table>
+               <tr>
+                    <td>Peso Especifico : {{pesoespecifico }} g/cm3</td>
+                    <td>____________</td>
+                    <td>____________</td>
+                    <td>____________</td>
+               </tr>
+		<tr>
+                    <td>Viscosidad CPS : {{viscosidadspindle}} </td>
+                    <td>_________ {{spindlenumero}}</td>
+                    <td>____________</td>
+                    <td>____________</td>
+                </tr>
+		<tr>
+                    <td>Viscosidad UK : {{viscosidaduk}}</td>
+                    <td>____________</td>
+                    <td>____________</td>
+                    <td>____________</td>
+                </tr>
+                <tr>
+                    <td>Molienda : {{molienda}}</td>
+                    <td>____________</td>
+                    <td>____________</td>
+                    <td>____________</td>
+                </tr>
+                <tr>
+                    <td>Solidos P.P.P. : {{solidosppp }}</td>
+                    <td>____________</td>
+                    <td>____________</td>
+                    <td>____________</td>
+                </tr>
+                <tr>
+                    <td>Brillo : {{brillo}}</td>
+                    <td>Color : __________</td>
+                    <td>Delta E ______</td>
+                    <td>____________</td>
+                </tr>
+                <tr>
+                    <td>Aplicabilidad : </td>
+                    <td>Curado : __________</td>
+                    <td>horas _______</td>
+                    <td>____________</td>
+                </tr>
+                <tr>
+                    <td>Relacion mezcla: {{relaciondemezcla}}</td>
+                    <td>con COMP. {{formaconjunto}}</td>
+                    <td>____________</td>
+                    <td>____________</td>
+                </tr>
+                <tr>
+                    <td>Observaciones: </td>
+                    <td>____________</td>
+                    <td>____________</td>
+                    <td>____________</td>
+                </tr>
+                </table><br>
+            =============== {{id}} {{descripcion}} {{componente}} {{color}} {{proximoBatch}} ========== 
+            FECHA DE APROBACION FINAL ___/ ___ /___ <span class="tab2"></span>HORA _____<br>
+        </h6>
+        <div>
+            <table>
+                <tr>
+                    <th>CODMP</th>
+                    <th>FRACCIONAMIENTO SOLICITADO</th>
+                    <th>ENVASADO</th>
+                    <th>CANTIDAD</th>
+                    <th></th>
+                    <th>Ttl.KG x ENV.</th>
+                    <th>Ttl.{{unidadmedida}}</th>
+                </tr>
+                <tr *ngFor="let item of arrayConj">
+                    <td>{{item.codmp}}</td>
+                    <td>{{item.descripcion}}</td>
+                    <td>{{item.envasado}}</td>
+                    <td *ngIf="item.indice != 0 && item.indice != ''">{{item.indice}}</td>
+                    <td *ngIf="item.indice == 0 || item.indice == ''">0</td>
+                    <td>_______</td>
+                    <td *ngIf="unidadmedida=='LT'">{{item.envasado * pesoespecifico}}</td>
+                    <td *ngIf="unidadmedida=='KG'">{{item.envasado}}</td>
+                    <td>{{item.envasado * item.indice}}</td>
+                </tr>
+            </table>
+            <hr>
+            <h6> Correcc. - STOCK M.P. __/__/__ STOCK ENVASES __/__/__ STOCK P.T. __/__/__</h6>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PLANIFICACIÓN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="recipient-name9" class="col-form-label">CODPT:</label>
+                            <input (keyup)="buscarPlan()" [(ngModel)]="codptB" type="number" class="form-control"
+                                id="recipient-name000">
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
+                            <input (keyup)="buscarPlan()" [(ngModel)]="descripcionB" type="text" class="form-control"
+                                id="recipient-name40987">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="recipient-name010" class="col-form-label">CLIENTE:</label>
+                            <input (keyup)="buscarPlan()" [(ngModel)]="clienteB" type="text" class="form-control"
+                                id="recipient-name01908">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label>Seleccione T.F.A. (POR DEFECTO F)</label>
+                        <div class="input-group">
+                            <select class="mt-2 custom-select" [(ngModel)]="tfa" id="inputGroupSelect01">
+                                <option value="T">T</option>
+                                <option value="F">F</option>
+                                <option value="A">A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="overflow: scroll; height: 200px; width: 100%;">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>CODPT</th>
+                            <th>DESCRIPCION</th>
+                            <th>CANTIDAD</th>
+                            <th>FORMA DE ENVASADO</th>
+                            <th>CLIENTE</th>
+                            <th>LOTE</th>
+                            <th>FECHA PROM.</th>
+                            <th>OPERARIO</th>
+                            <th>PROCESO</th>
+                            <th>DISPERSORA</th>
+                            <th>MOLINO</th>
+                        </tr>
+                        <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayB"
+                            (click)="traerDatos(item2.id, item2.codpt)" style="cursor: pointer;">
+                            <td>{{item2.codpt}}</td>
+                            <td>{{item2.descripcion}}</td>
+                            <td>{{item2.cantidad}}</td>
+                            <td>{{item2.formaenv}}</td>
+                            <td>{{item2.cliente}}</td>
+                            <td>{{item2.lote}}</td>
+                            <td>{{item2.fechacompr | datePipe}}</td>
+                            <td>{{item2.operario}}</td>
+                            <td>{{item2.proceso}}</td>
+                            <td>{{item2.dispersora}}</td>
+                            <td>{{item2.molino}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="resetear1()">Resetear</button>
+                <button type="button" class="btn btn-info" (click)="listarPendientes()">Listar Pendientes</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
