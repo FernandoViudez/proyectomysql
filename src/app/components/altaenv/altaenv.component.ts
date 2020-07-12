@@ -76,7 +76,17 @@ export class AltaenvComponent implements OnInit, OnDestroy {
       this.descripcion1 = `${data.desc} ${data.color} ${data.componente}`;
       this.detectarId()
     }, (err) => {
-      return;
+      if (err.error.response) {
+        document.getElementById("idp").setAttribute("disabled", "");
+        let data=err.error.response;
+        this.idprod = id
+        this.descripcion1 = `${data.descripcion} ${data.color} ${data.componente}`;
+        this.detectarId()
+      }else{
+        this.resetear();
+        this.resetear1();
+        return alertify.error("No existe ese envasado!!");
+      }
     })
   }
 
@@ -98,29 +108,30 @@ export class AltaenvComponent implements OnInit, OnDestroy {
 
   validarmp() {
     this.servicioMp.validarMp(this.codmp).subscribe((data: any) => {
-      if (data.message) {
-        return alertify.error("NO EXISTE ESA MATERIA PRIMA")
-      } else {
-        this.descripcion = data.response.descripcion;
-      }
+      this.descripcion = data.response.descripcion;
     }, (err) => {
-      console.log(err);
+      if (err.error.response) {
+        this.descripcion = err.error.response.descripcion;
+      } else {
+        this.codmp = null;
+        return alertify.error("No exite esa materia prima");
+      }
     })
 
   }
 
   cargar() {
     if (this.idprod == null) {
-      return alertify.error("¡INGRESE UN ID DEL PRODUCTO!")
+      return alertify.error("¡ INGRESE UN CODIGO DE ENVASE !")
     }
     if (this.codmp < 39000) {
-      return alertify.error("¡INGRESE UN CODMP VALIDO!")
+      return alertify.error("¡ INGRESE UN CODIGO VALIDO !")
     }
     if (this.descripcion == null) {
-      return alertify.error("¡INGRESE UNA DESCRIPCION VALIDA!")
+      return alertify.error("¡ INGRESE UNA DESCRIPCION VALIDA !")
     }
     if (this.envasado == null) {
-      return alertify.error("¡INGRESE UN ENVASADO VALIDO!")
+      return alertify.error("¡ INGRESE UN ENVASAMIENTO VALIDO !")
     }
     this.service.cargar(this.idprod, this.descripcion, this.codmp, this.envasado)
       .subscribe((data: any) => {
@@ -142,7 +153,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
       })
     }
     Swal.fire({
-      title: "¿DESEA BORRAR TODO LO CARGADO?",
+      title: "¿ DESEA BORRAR TODO LO CARGADO ?",
       icon: "question",
       showCancelButton: true,
       cancelButtonText: "CANCELAR",
@@ -167,13 +178,13 @@ export class AltaenvComponent implements OnInit, OnDestroy {
 
   finalizar() {
     if (this.idprod == null) {
-      return alertify.error("¡INGRESE UN ID DEL PRODUCTO!")
+      return alertify.error("¡ INGRESE UN CODIGO DE ENVASE !")
     }
     Swal.showLoading();
     this.service.finalizar(this.idprod).
       subscribe((data: any) => {
         Swal.close();
-        alertify.success("ENVASES CARGADOS!");
+        alertify.success("ENVASES CARGADOS !");
         this.array = data.response;
         this.resetear()
         this.resetear1()
@@ -198,7 +209,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
       }
       Swal.fire({
         title: "¿EDITAR?",
-        text: "¿Desea editar el envase?",
+        text: "¿ Desea editar el envase ?",
         cancelButtonColor: "red",
         showCancelButton: true,
         cancelButtonText: "CANCELAR",
@@ -220,7 +231,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
 
     Swal.fire({
       title: "¿SEGURO?",
-      text: "¿Esta seguro que desea eliminar una fila?",
+      text: "¿ Esta seguro que desea eliminar una fila ?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "ACEPTAR",
@@ -232,7 +243,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
         this.service.eliminarFila(indice).
           subscribe((data: any) => {
             this.array = data.response;
-            alertify.success("¡Has eliminado una fila!");
+            alertify.success("¡ Has eliminado una fila !");
           }, (err) => {
             console.log(err);
           })
@@ -261,7 +272,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
 
   editar() {
     if (this.codmp < 39000) {
-      return alertify.error("ARREGLA EL CODMP!!")
+      return alertify.error("ARREGLA EL CODIGO ENVASE !")
     }
 
     this.service.editar(this.descripcion, this.codmp, this.cobarras, this.indice, this.envasado)

@@ -3,6 +3,7 @@ import { FormService } from 'src/app/services/form.service';
 import { HttpClient } from '@angular/common/http';
 import { EnvService } from 'src/app/services/env.service';
 import Swal from 'sweetalert2';
+import { PlanifiService } from '../../services/planifi.service';
 declare let alertify: any;
 
 @Component({
@@ -53,7 +54,8 @@ export class PlanifiComponent implements OnInit {
 
   constructor(private service: FormService,
     private http: HttpClient,
-    private service1: EnvService) { }
+    private service1: EnvService,
+    private planifiService: PlanifiService) { }
 
   ngOnInit(): void {
     this.deshabilitar();
@@ -164,7 +166,7 @@ export class PlanifiComponent implements OnInit {
   //POSTEAMOS TODO
   finalizar() {
 
-    function calcularFecha(fechaComparar) {
+    function calcularFecha(fechaComparar, compararPosterior?: boolean) {
 
       fechaComparar = fechaComparar.toString().split("-");
       let Hoy = new Date();
@@ -176,6 +178,16 @@ export class PlanifiComponent implements OnInit {
       var AnyoHoy = Hoy.getFullYear();
       var MesHoy = Hoy.getMonth() + 1;
       var DiaHoy = Hoy.getDate();
+
+      if (compararPosterior) {
+        if (AnyoFecha > AnyoHoy) {
+          return false;
+        } else if (MesFecha > MesHoy) {
+          return false;
+        } else if (MesFecha === MesHoy && DiaFecha > DiaHoy) {
+          return false;
+        }
+      }
 
       if (AnyoFecha < AnyoHoy) {
         return false;
@@ -204,44 +216,90 @@ export class PlanifiComponent implements OnInit {
       return alertify.error("El motivo es obligatorio!!")
     }
 
-    if (!calcularFecha(this.fechacompr) || this.fechacomienzo && !calcularFecha(this.fechacomienzo) || this.fechafin && !calcularFecha(this.fechafin)) {
+    if (!calcularFecha(this.fechacompr) || this.fechafin && !calcularFecha(this.fechafin, true)) {
       return alertify.error("ALGUNA DE LAS FECHAS INGRESADAS ES INCORRECTA !");
     }
 
-    let data = {
-      codpt: this.codpt,
-      cantidad: this.cantidad,
-      formaenv: this.formaenv.toUpperCase(),
-      cliente: this.cliente.toUpperCase(),
-      fechacompr: this.fechacompr,
-      lote: this.lote,
-      fechacomienzo: this.fechacomienzo,
-      proceso: this.proceso,
-      fechafin: this.fechafin,
-      operario: this.operario,
-      dispersora: this.dispersora,
-      molino: this.molino,
-      motivo: this.motivo,
-      descripcion: this.descripcion,
+    if (this.fechacomienzo && !calcularFecha(this.fechacomienzo) && !this.proceso) {
+      return alertify.error("ALGUNA DE LAS FECHAS INGRESADAS ES INCORRECTA !");
+    } else if (!this.fechacomienzo && this.proceso) {
+      return alertify.error("CARGAR FECHA DE COMIENZO !");
     }
 
-    if (!this.editar) {
-      this.http.post("http://localhost:8080/api/postPlani", data).
-        subscribe((data: any) => {
-          alertify.success(data.message);
-          this.resetear();
-        }, (err) => {
-          console.log(err);
-        })
-    } else {
-      this.http.put(`http://localhost:8080/api/putPlani/${this.id}`, data).
-        subscribe((data: any) => {
-          alertify.success("HAS MODIFICADO UNA PLANIFICACION !");
-          this.resetear()
-        }, (err) => {
-          console.log(err);
-        })
+
+
+    function cargar(codpt: number, cantidad: number, formaenv: string,
+      cliente: string, motivo: string, fechacompr: Date, fechafin: Date, fechacomienzo: Date,
+      proceso: string, lote: number, operario: string, dispersora: string, molino: string,
+      descripcion: string, editar: boolean, planifiService, id: number) {
+        console.log(cantidad);
+      let data = {
+        codpt,
+        cantidad,
+        formaenv: formaenv.toUpperCase(),
+        cliente: cliente.toUpperCase(),
+        fechacompr,
+        lote,
+        fechacomienzo,
+        proceso,
+        fechafin,
+        operario,
+        dispersora,
+        molino,
+        motivo,
+        descripcion,
+      }
+
+      if (!editar) {
+        planifiService.postearPlanifi(data).
+          subscribe((data: any) => {
+            alertify.success(data.message);
+  
+          }, (err) => {
+            console.log(err);
+          })
+      } else {
+        planifiService.updatePlanifi(data, id).
+          subscribe((data: any) => {
+            alertify.success("HAS MODIFICADO UNA PLANIFICACION !");
+
+          }, (err) => {
+            console.log(err);
+          })
+      }
     }
+
+    if (this.fechafin) {
+      Swal.fire({
+        title: "Atención!!",
+        icon: "info",
+        text: "Si completa FECHA FIN, no podrá realizar más cambios.",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Aceptar",
+        cancelButtonColor: "red",
+        confirmButtonColor: "green",
+        showCancelButton: true
+      }).then(res => {
+        if (res.value) {
+          cargar(this.codpt, this.cantidad, this.formaenv,
+            this.cliente, this.motivo, this.fechacompr, this.fechafin, this.fechacomienzo,
+            this.proceso, this.lote, this.operario, this.dispersora, this.molino,
+            this.descripcion, this.editar, this.planifiService,  this.id)
+            this.resetear();
+        } else {
+          return;
+        }
+      })
+    } else {
+      cargar(this.codpt, this.cantidad, this.formaenv,
+        this.cliente, this.motivo, this.fechacompr, this.fechafin, this.fechacomienzo,
+        this.proceso, this.lote, this.operario, this.dispersora, this.molino,
+        this.descripcion, this.editar, this.planifiService,this.id)
+        this.resetear()
+    }
+
+
+
 
   }
   //BORRAR FILA
@@ -359,5 +417,4 @@ export class PlanifiComponent implements OnInit {
         console.log(err);
       })
   }
-
 }

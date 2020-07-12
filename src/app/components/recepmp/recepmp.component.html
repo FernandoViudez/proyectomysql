@@ -1,13 +1,13 @@
 <div class="notPrint">
-    <div class="p-4 bg-light br-5">
+    <div class="bg rounded p-3 mt-1 text-white" style="background-color:rgb(137,145,21)">
         <div class="row">
             <div class="col-6">
                 <h2>Recepción de Materia Prima</h2>
                 <hr>
             </div>
             <div class="col-6">
-                <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3"
-                    class="float-right bi bi-search mr-5" width="3em" height="3em" viewBox="0 0 16 16" fill="black"
+                <svg data-toggle="modal" style="cursor: pointer; " data-target="#exampleModal3"
+                    class="float-right bi bi-search mr-5" width="3em" height="3em" viewBox="0 0 16 16" fill="white"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
                         d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
@@ -21,17 +21,32 @@
     </div>
 
     <div class="container">
-        <div class="row">
+        <div class="row mt-2" >
             <div class="col-3">
-                <label>Ingrese el Codigo de Materia Prima</label>
+                <label>Ingrese el Código de Materia Prima</label>
                 <input (change)="traerDatosMp()" class="form-control boldText" type="number" [(ngModel)]="id">
             </div>
             <div class="col-6">
                 <label>Descripción</label>
                 <input class="form-control boldText" disabled type="text" [(ngModel)]="descripcion">
             </div>
+        </div>
+        <div class="row mt-2">
             <div class="col-3">
-                <label>Stock</label>
+                <label>MP obsoleta ?</label>
+                <input class="form-control boldText" disabled type="text" [(ngModel)]="ubicacion">
+            </div>
+            <div class="col-3">
+                <label class="text-center">Última recepción</label>
+                <div class="bg-light">
+                    <div class="w-100 badge badge-pill text-center"
+                        style="font-size: 25px; background-color: rgb(204, 204, 204);">
+                        {{fechaultimarecepcion | datePipe}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <label>Stock actual</label>
                 <div class="col-16 input-group">
                     <input class="form-control boldText" disabled type="number" [(ngModel)]="stock">
                     <div class="input-group-append">
@@ -40,39 +55,35 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-3">
-                <label>Ubicación</label>
-                <input class="form-control boldText" disabled type="text" [(ngModel)]="ubicacion">
-            </div>
+        <div class="row mt-2">               
             <div class="col-3">
                 <label>Orden de compra</label>
                 <input class="form-control boldText" type="text" [(ngModel)]="ordenCompra">
             </div>
             <div class="col-3">
                 <label>Número de Remito</label>
-                <input class="form-control boldText" type="number" [(ngModel)]="nroRemito">
+                <input class="form-control boldText" type="number" (keypress)="omit_number($event)" [(ngModel)]="nroRemito">
             </div>
             <div class="col-3">
                 <label>Proveedor</label>
                 <input class="form-control boldText" type="text" [(ngModel)]="proveedor">
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-4">
-                <label>Partida de Proovedor</label>
+                <label>Partida de Proveedor</label>
                 <input class="form-control boldText" type="text" [(ngModel)]="nroPart">
             </div>
             <div class="col-4">
                 <label>Cantidad recibida en {{unidadRecibo}}</label>
-                <input class="form-control boldText" type="number" [(ngModel)]="cantidad">
+                <input class="form-control boldText" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantidad">
             </div>
             <div class="col-4">
                 <label>Cantidad de etiquetas a generar</label>
-                <input class="form-control boldText" type="number" [(ngModel)]="cantEtiquetas">
+                <input class="form-control boldText" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantEtiquetas">
             </div>
         </div>
-        <div class="row">
+        <div class="row" mt-2>
             <div class="col-12">
                 <button class="float-right btn btn-success mt-5" (click)="finalizar()">Cargar Recepción</button>
                 <button class="float-right btn btn-primary mt-5 mr-3" (click)="cancelar()">Cancelar Recepción</button>
@@ -95,14 +106,14 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="recipient-name9" class="col-form-label">CODIGO DE LA MATERIA PRIMA:</label>
+                                <label for="recipient-name9" class="col-form-label">Código</label>
                                 <input (keyup)="buscarMp()" [(ngModel)]="termino1" type="number" class="form-control"
                                     id="recipient-name40">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
+                                <label for="recipient-name9" class="col-form-label">Descripción</label>
                                 <input (keyup)="buscarMp()" [(ngModel)]="termino2" type="text" class="form-control"
                                     id="recipient-name40">
                             </div>
@@ -111,7 +122,7 @@
                     <div style="overflow: scroll; height: 200px; width: 100%;">
                         <table class="table table-hover">
                             <tr>
-                                <th>COD</th>
+                                <th>CODIGO</th>
                                 <th>DESCRIPCIÓN</th>
                                 <th>TIPO</th>
                                 <th>UNIDAD DE MEDIDA</th>
@@ -164,7 +175,8 @@
                 <p>Codigo : {{id}}</p>
                 <p>Nro. Part.Prov. : {{nroPart}}</p>
                 <p>Nro. Lote : {{lotePrint}}</p>
-                <p>Cantidad recibida {{unidadRecibo}}: {{cantidad}}</p>
+                <p *ngIf="unidadRecibo=='Kg'">Cantidad recibida {{unidadRecibo}}: {{cantidad}}</p>
+                <p *ngIf="unidadRecibo=='Lt'">Cantidad recibida {{unidadRecibo}}: {{(cantidad / pesoespecifico)}} = {{cantidad}} Kg</p>                
                 <p>Fecha recepcion : {{fecha}}</p>
             </div>
         </div>

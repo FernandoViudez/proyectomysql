@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   public user_role : string;
 
   constructor(private router: Router) { 
-    this.user_role = localStorage.getItem("user_role")
+    this.user_role = localStorage.getItem("user_role");
   }
 
   ngOnInit(): void {

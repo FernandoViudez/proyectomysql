@@ -34,4 +34,9 @@ export class ControlService {
     return this.httpClient.post(`${this.url}buscarControlPt`, data);
   }
 
+  traerporLote(lote:number, db:string, fila:string){
+    let data = { lote, db, fila };
+    return this.httpClient.post(`${this.url}getControlByLote`, data);
+  }
+
 }

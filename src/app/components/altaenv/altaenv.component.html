@@ -1,37 +1,40 @@
-<svg *ngIf="idprod" data-toggle="modal" data-target="#exampleModal" class="material-icons"
-  class=" float-right bi bi-plus-circle-fill" width="3em" height="3em" style="cursor: pointer;" viewBox="0 0 16 16"
-  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd"
-    d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
-    clip-rule="evenodd" />
-</svg>
 
-<div class="row">
-  <div class="col-3">
-    <div class="m-auto" style="width: 100%;">
-      <label for="idp"><b> INGRESE CODIGO P.T. PARA EL ENVASADO</b></label>
-    </div>
-  </div>
-  <div class="col-3">
-    <input (change)="detectarId()" id="idp" [(ngModel)]="idprod" type="number" class="ml-1 form-control"
-      style="width: 30%;">
-  </div>
-  <div class="col-4">
-    <div class="m-auto">
-      <span class="badge badge-primary" style="font-size: 16px;">{{descripcion1}}</span>
-    </div>
-  </div>
-  <div class="col-2">
-    <svg (click)="resetear1()" *ngIf="array.length==0" data-toggle="modal" style="cursor: pointer;"
-      data-target="#exampleModal3" class="float-right bi bi-search" width="2em" height="2em" viewBox="0 0 16 16"
-      fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd"
-        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-        clip-rule="evenodd" />
-      <path fill-rule="evenodd"
-        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd" />
-    </svg>
-  </div>
+
+    <div class= "p-1 mt-2">
+        <h6 class="bg-info text-white text-center">ENVASADO</h6>
+        <div class="row">
+            <div class="col-1">
+            </div>        
+            <div class="col-2">
+                <label>Código del producto</label>
+                <input (change)="seleccionarIdPt(idprod)" id="idp" type="number" [(ngModel)]="idprod" class="ml-1 form-control boldText">
+            </div>
+	    <div class="col-1">
+	      <svg (click)="resetear1()" *ngIf="array.length==0" data-toggle="modal" style="cursor: pointer;"
+		data-target="#exampleModal3" class="mt-4 bi bi-search" width="2em" height="2em" viewBox="0 0 16 16"
+		fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		<path fill-rule="evenodd"
+		  d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+		  clip-rule="evenodd" />
+		<path fill-rule="evenodd"
+		  d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd" />
+	      </svg>
+	    </div>         
+	    <div class="col-4">
+	      <div class="mt-4">
+		<span class="badge badge-primary" style="font-size: 25px;">{{descripcion1}}</span>
+	      </div>
+	    </div>
+	    <div class="col-2">
+		<svg *ngIf="idprod" data-toggle="modal" data-target="#exampleModal" class="material-icons"
+	 	  class="float-right bi bi-plus-circle-fill" width="5em" height="5em" style="cursor: pointer;" viewBox="0 0 18 18"
+		  fill="blue" xmlns="http://www.w3.org/2000/svg">
+		  <path fill-rule="evenodd"
+		    d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
+		    clip-rule="evenodd" />
+		</svg>
+    </div>    
+
 
 </div>
 <hr>
@@ -39,14 +42,14 @@
   <table class="table table-fixed w-100">
     <tr class="bg-dark text-white text-center">
       <th>ENVASADO</th>
-      <th>CODMP</th>
+      <th>CODIGO ENVASE</th>
       <th>DESCRIPCION</th>
-      <th>COD.BARRAS</th>
+      <th>CODIGO DE BARRAS</th>
       <th></th>
       <th></th>
     </tr>
     <tr *ngFor="let item of array" style="border-bottom: 0.5px solid rgb(224, 224, 224);">
-      <td class=" text-center">{{item.envasado }}</td>
+      <td class=" text-center">{{item.envasado | numeralPipe}}</td>
       <td class=" text-center">{{item.codmp}}</td>
       <td class="">{{item.descripcion}}</td>
       <td class=" text-center">{{item.cobarras}}</td>
@@ -84,26 +87,26 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">NUEVA FILA</h5>
+        <h5 class="modal-title" id="exampleModalLabel">NUEVO ENVASAMIENTO</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="recipient-name1" class="col-form-label">ENVASADO:</label>
+          <label for="recipient-name1" class="col-form-label">Cantidad a envasar</label>
           <input [(ngModel)]="envasado" type="number" class="form-control" id="recipient-name1">
         </div>
         <div class="row">
           <div class="col-6">
             <div class="form-group">
-              <label for="recipient-name1" class="col-form-label">CODMP:</label>
+              <label for="recipient-name1" class="col-form-label">Código envase</label>
               <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name1">
             </div>
           </div>
           <div class="col-6">
             <div class="form-group">
-              <label for="recipient-name3" class="col-form-label">DESCRIPCION:</label>
+              <label for="recipient-name3" class="col-form-label">Descripción</label>
               <input type="text" disabled [(ngModel)]="descripcion" class="form-control" id="recipient-name3">
             </div>
           </div>
@@ -133,13 +136,13 @@
         <div class="row">
           <div class="col-6">
             <div class="form-group">
-              <label for="recipient-name0" class="col-form-label">ENVASADO:</label>
+              <label for="recipient-name0" class="col-form-label">Envasado</label>
               <input [(ngModel)]="envasado" type="number" class="form-control" id="recipient-name0">
             </div>
           </div>
           <div class="col-6">
             <div class="form-group">
-              <label for="recipient-name0" class="col-form-label">CO.BARRAS:</label>
+              <label for="recipient-name0" class="col-form-label">Código de barras</label>
               <input [(ngModel)]="cobarras" type="text" class="form-control" id="recipient-name0">
             </div>
           </div>
@@ -149,7 +152,7 @@
         <div class="row">
           <div class="col">
             <div class="form-group">
-              <label for="recipient-name01" class="col-form-label">CODMP:</label>
+              <label for="recipient-name01" class="col-form-label">Código Envase</label>
               <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control"
                 id="recipient-name01">
             </div>
@@ -157,7 +160,7 @@
         </div>
 
         <div class="form-group">
-          <label for="recipient-name03" class="col-form-label">DESCRIPCION:</label>
+          <label for="recipient-name03" class="col-form-label">Descripci</label>
           <input type="text" disabled [(ngModel)]="descripcion" class="form-control" id="recipient-name03">
         </div>
       </div>
@@ -184,13 +187,13 @@
         <div class="row">
           <div class="col-4">
             <div class="form-group">
-              <label for="recipient-name9" class="col-form-label">ID:</label>
+              <label for="recipient-name9" class="col-form-label">Código</label>
               <input (keyup)="buscarP()" [(ngModel)]="idbus" type="number" class="form-control" id="recipient-name40">
             </div>
           </div>
           <div class="col-8">
             <div class="form-group">
-              <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
+              <label for="recipient-name9" class="col-form-label">Descripción</label>
               <input (keyup)="buscarP()" [(ngModel)]="termino1" type="text" class="form-control" id="recipient-name40">
             </div>
           </div>
@@ -199,13 +202,13 @@
         <div class="row">
           <div class="col">
             <div class="form-group">
-              <label for="recipient-name010" class="col-form-label">COLOR:</label>
+              <label for="recipient-name010" class="col-form-label">Color</label>
               <input (keyup)="buscarP()" [(ngModel)]="termino2" type="text" class="form-control" id="recipient-name01">
             </div>
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="recipient-name012" class="col-form-label">COMPONENTE:</label>
+              <label for="recipient-name012" class="col-form-label">Componente</label>
               <input (keyup)="buscarP()" type="text" [(ngModel)]="termino3" class="form-control" id="recipient-name02">
             </div>
           </div>
@@ -214,7 +217,7 @@
         <div style="overflow: scroll; height: 200px; width: 100%;">
           <table class="table table-hover">
             <tr>
-              <th>COD</th>
+              <th>CODIGO</th>
               <th>DESCRIPCIÓN</th>
               <th>COLOR</th>
               <th>COMPONENTE</th>

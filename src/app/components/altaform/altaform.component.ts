@@ -44,6 +44,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
   arrayBusqueda = [];
   ind: number;
   idImport: number;
+  componente: string;
 
 
   constructor(private service: FormService,
@@ -69,24 +70,24 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.service.cargarFilas().
-    subscribe((data:any)=>{
-      if (data.response.length !== 0) {
-        Swal.fire({
-          title: "Base de datos en uso!!",
-          text: "La base de datos está siendo usada, vaya a tomar un mate y vuelva...",
-          icon: "warning",
-          allowEnterKey: false,
-          allowEscapeKey: false,
-          allowOutsideClick: false,
-          confirmButtonColor: "green",
-          confirmButtonText: "Presione aquí para Continuar"
-        }).then(res => {
-          if (res.value) {
-            this.router.navigateByUrl("/app");
-          }
-        })
-      }
-    })
+      subscribe((data: any) => {
+        if (data.response.length !== 0) {
+          Swal.fire({
+            title: "Base de datos en uso!!",
+            text: "La base de datos está siendo usada, vaya a tomar un mate y vuelva...",
+            icon: "warning",
+            allowEnterKey: false,
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            confirmButtonColor: "green",
+            confirmButtonText: "Presione aquí para Continuar"
+          }).then(res => {
+            if (res.value) {
+              this.router.navigateByUrl("/app");
+            }
+          })
+        }
+      })
   }
 
   ngOnDestroy() {
@@ -120,42 +121,42 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
   cargar() {
     if (this.idprod == this.codpt) {
-      return alertify.error("NO SE PUEDE CARGAR ESTE PRODUCTO TERMINADO")
+      return alertify.error(" NO SE PUEDE CARGAR ESTE PRODUCTO TERMINADO !")
     }
     if (this.existemp == "noexiste") {
-      return alertify.error("COREGIR CODIGO DE MATERIA PRIMA")
+      return alertify.error("NO EXISTE CODIGO DE MATERIA PRIMA !")
     }
     if (this.existept == "noexiste") {
-      return alertify.error("COREGIR CODIGO DE PRODUCTO TERMINADO")
+      return alertify.error("CORREGIR CODIGO DE PRODUCTO TERMINADO !")
     }
     if (!this.idprod || !this.tintoformoalt) {
-      return alertify.error("ES NECESARIO INGRESAR UN IDPROD O TINTOFORMOALT")
+      return alertify.error("ES NECESARIO INGRESAR UN CODIGO PRODUCTO Y TIPO 'F' o 'T' o 'A'")
     }
     if (!this.mpi) {
-      return alertify.error("MPI INCORRECTO")
+      return alertify.error("MPI INCORRECTO !")
     }
 
     this.mpi = this.mpi.toUpperCase()
     if (this.mpi == "M" || this.mpi == "P" || this.mpi == "I") {
       if (this.mpi == "M" && !this.codmp || this.mpi == "M" && this.codpt || this.mpi == "P" && !this.codpt || this.mpi == "P" && this.codmp) {
-        return alertify.error("NO PUEDES ASIGNAR M PONINEDO UN PT O P PONIENDO UN MP")
+        return alertify.error("NO PUEDES ASIGNAR 'M' SELECCIONANDO UN PT O 'P' SELECCIONANDO UNA MP")
       }
       if (this.mpi == "M" && !this.descripcion || this.mpi == "P" && !this.descripcion) {
         return alertify.error("NO PUEDES ASIGNAR UNA DESCRIPCION NULA")
       }
       if (!this.cantidad && this.mpi == "M" || !this.cantidad && this.mpi == "P") {
-        return alertify.error("ES NECESARIO INGRESAR UNA CANTIDAD!!")
+        return alertify.error("ES NECESARIO INGRESAR UNA CANTIDAD !")
       }
       if (this.mpi == "I" && !this.descripcion) {
-        return alertify.error("ES NECESARIO INGRESAR UNA DESCRIPCION PARA LA INSTRUCCIÓN")
+        return alertify.error("ES NECESARIO INGRESAR UNA DESCRIPCION PARA LA INSTRUCCIÓN !")
       }
       if (this.mpi == "I" && this.cantidad) {
-        return alertify.error("NO PUEDES INGRESAR UNA CANTIDAD EN UNA INSTRUCCIÓN")
+        return alertify.error("NO PUEDES INGRESAR UNA CANTIDAD EN UNA INSTRUCCIÓN !")
       }
 
       this.service.cargar(this.idprod, this.tintoformoalt.toUpperCase(), this.mpi, this.codmp, this.codpt, this.descripcion, this.cantidad)
         .subscribe((data: any) => {
-          alertify.success("¡RENGLON AGREGADO!")
+          alertify.success("¡ RENGLON AGREGADO !")
           this.resetear()
           this.sumarTotal(data.response);
           this.array = data.response;
@@ -163,7 +164,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
         })
 
     } else {
-      return alertify.error("MPI INCORRECTO")
+      return alertify.error("¡ MPI INCORRECTO !")
     }
   }
 
@@ -171,7 +172,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
     if (this.idprod) {
       if (destroy) {
         return this.service.eliminarTodo(this.idprod).subscribe((data) => {
-          alertify.success("¡OPERACIÓN CANCELADA!")
+          alertify.success("¡ OPERACIÓN CANCELADA !")
           this.sumaTot = null;
           this.resetear()
           this.resetear1()
@@ -180,7 +181,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       }
       Swal.fire({
         title: "CANCELAR",
-        text: "¿ESTAS SEGURO QUE QUIERE CANCELAR LA OPERACIÓN?",
+        text: "¿ ESTAS SEGURO QUE QUIERE CANCELAR LA OPERACIÓN ?",
         cancelButtonColor: "red",
         confirmButtonColor: "green",
         showCancelButton: true,
@@ -200,20 +201,20 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
 
     } else {
-      return alertify.error("¡INGRESE UN ID DEL PRODUCTO!")
+      return alertify.error("¡ INGRESE UN CODIGO DE PRODUCTO !")
     }
   }
 
   finalizar() {
 
     if (!this.tintoformoalt || !this.idprod) {
-      return alertify.error("PARAMETROS INCORRECTOS")
+      return alertify.error("¡ PARAMETROS INCORRECTOS !")
     }
 
     this.tintoformoalt = this.tintoformoalt.toUpperCase()
 
     if (this.tintoformoalt != "F" && this.tintoformoalt != "T" && this.tintoformoalt != "A") {
-      return alertify.error("EL TFA ES INCORRECTO")
+      return alertify.error("¡ EL DATO EN TFA ES INCORRECTO !")
     }
 
     function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr) {
@@ -230,7 +231,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
         }).then(res => {
           if (res.value) {
             Swal.fire({
-              title: "Espera un momento...",
+              title: "Espere un momento...",
               icon: "info",
             })
             Swal.showLoading()
@@ -239,7 +240,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
                 Swal.close()
                 Swal.fire({
                   title: "GENIAL",
-                  text: "HAS GUARDADO LA FORMULA CORRECTAMENTE!!",
+                  text: "¡ SE HA GUARDADO LA FORMULA CORRECTAMENTE !",
                   icon: "success"
                 })
                 resolve("SI")
@@ -273,7 +274,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
         return;
       })
     } else {
-      return alertify.error("INGRESE BIEN LOS DATOS");
+      return alertify.error("INGRESE BIEN LOS DATOS !");
     }
 
 
@@ -283,8 +284,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
     this.service.calcular(this.sumaTot, data).subscribe((data: any) => {
       this.pe = data.pe;
       this.pig = data.tpig,
-        this.ppp = data.tppp;
-      this.ppv = data.tppv;
+      this.ppp = data.tppp;
+      this.ppv = data.ttppv;
       this.pr = data.tpr;
       this.resi = data.tres;
       this.solv = data.solvente;
@@ -295,7 +296,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
   borraFila(orden) {
     Swal.fire({
       title: "ELIMINACIÓN DE FILA",
-      text: "¿ESTAS SEGURO QUE QUIERE ELIMINAR ESA FILA?",
+      text: "¿ ESTA SEGURO QUE DESEA ELIMINAR ESTA FILA ?",
       cancelButtonColor: "red",
       confirmButtonColor: "green",
       showCancelButton: true,
@@ -310,7 +311,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
           this.sumarTotal(data.response);
           this.array = data.response;
           this.calcular(data.response)
-          alertify.success("¡FILA BORRADA CORRECTAMENTE!")
+          alertify.success("¡ FILA BORRADA CORRECTAMENTE !")
 
         })
     })
@@ -365,6 +366,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
     this.termino1 = "";
     this.termino2 = "";
     this.termino3 = "";
+    this.arrayBusqueda = [];
+    this.idBus = null;
   }
 
   resetear1() {
@@ -384,7 +387,16 @@ export class AltaformComponent implements OnInit, OnDestroy {
   }
 
   validar() {
+    // ACA VA LA TAREA DE MARC, ES UNA VALIDACION CON IF SOBRE this.tintoformoalt
     this.tintoformoalt = this.tintoformoalt.toUpperCase()
+    
+    if (this.tintoformoalt != "F" && this.tintoformoalt != "T" && this.tintoformoalt != "A") {
+      this.resetear();
+      this.resetear1();
+      return alertify.error("¡ EL DATO EN TFA ES INCORRECTO !");
+    }
+    
+    
     let data = { idprod: this.idprod, tintoformoalt: this.tintoformoalt };
     fetch(`http://localhost:8080/api/detect`, {
       method: "POST",
@@ -396,7 +408,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       .then((data1) => {
         document.getElementById("TFA").setAttribute("disabled", "");
         if (data1.message == "genial") {
-          alertify.success("¡NO EXISTE, SIGUE ADELANTE!");
+          alertify.success("¡ NO EXISTE, SIGUE ADELANTE !");
 
 
 
@@ -414,7 +426,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
             if (idImport) {
               if (this.idprod == idImport) {
-                return alertify.error("CODIGO DE PRODUCTO INCORRECTO")
+                return alertify.error("¡ CODIGO DE PRODUCTO INCORRECTO !")
               }
               this.importarForm(idImport)
             }
@@ -464,7 +476,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       subscribe((data: any) => {
 
         this.existept = "existe";
-        this.descripcion = `${data.desc}  ${data.color}  ${data.componente}`;
+        this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
       }, (err) => {
         this.existept = "noexiste";
         return alertify.error(err.error.message);
@@ -478,17 +490,22 @@ export class AltaformComponent implements OnInit, OnDestroy {
     this.service.validarIdProd(this.idprod).
       subscribe((data: any) => {
 
-        alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE!!");
+        alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !");
         this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
+        this.componente = data.componente;
 
       }, (err) => {
 
         if (err.error.response) {
-          alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE!!");
+          let data = err.error.response;
+          alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !");
+          this.descripcion1 = `${data.descripcion}  ${data.color}  ${data.componente}`;
+          this.componente = data.componente;
+          alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !");
         } else {
           this.resetear();
           this.resetear1();
-          alertify.error("ESTE PRODUCTO TERMINADO NO EXISTE");
+          alertify.error("¡ ESTE PRODUCTO TERMINADO NO EXISTE !");
         }
 
       })
@@ -498,14 +515,21 @@ export class AltaformComponent implements OnInit, OnDestroy {
   }
 
   importarForm(id) {
-    this.service.importarForm(id, this.idprod, this.tintoformoalt).subscribe((data: any) => {
-      this.sumarTotal(data.response);
-      this.calcular(this.array)
-      if (this.array.length == 0) {
-        return alertify.error("NO HEMOS ENCONTRADO FORMULAS CON ESE CODPT")
+    this.service.importarForm(id, this.idprod, this.tintoformoalt, this.componente).subscribe((data: any) => {
+
+      if (data.response.length == 0) {
+        return alertify.error("¡ NO HAY FORMULAS CARGADAS CON ESE CODIGO DE PRODUCTO !")
       }
+
+      this.array=data.response;
+
+      this.sumarTotal(data.response);
+      this.calcular(data.response)
+
     }, (err) => {
-      console.log(err);
+      this.resetear();
+      this.resetear1();
+      alertify.error(err.error.message);
     })
   }
 

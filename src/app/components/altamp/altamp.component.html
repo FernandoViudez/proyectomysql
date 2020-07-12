@@ -5,34 +5,33 @@
         <div class="row">
             <div class="col-3">
                 <span for="">Codigo de la Materia Prima</span>
-                <input type="number" class="form-control" [(ngModel)]="id" (change)="validarMp()" id="id">
+                <input type="number" class="form-control boldText" [(ngModel)]="id" (change)="validarMp()" id="id">
             </div>
             <div class="col-1">
-                <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3"
-                class="mt-3" width="2em" height="2em" viewBox="0 0 16 16" fill="black"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-                    clip-rule="evenodd" />
-                <path fill-rule="evenodd"
-                    d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
-                    clip-rule="evenodd" />
+                <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3" class="mt-3" width="2em"
+                    height="2em" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                        clip-rule="evenodd" />
+                    <path fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                        clip-rule="evenodd" />
                 </svg>
             </div>
             <div class="col-5">
                 <span for="">Descripción</span>
-                <input type="text" class="form-control" [(ngModel)]="descripcion">
+                <input type="text" class="form-control boldText" [(ngModel)]="descripcion">
             </div>
             <div class="col-3">
                 <span>Tipo de producto</span>
                 <div class="input-group">
-                    <select class="custom-select" [(ngModel)]="tipo" id="inputGroupSelect01">
+                    <select class="custom-select boldText" [(ngModel)]="tipo" id="inputGroupSelect01">
                         <option value="CARGA">Carga</option>
                         <option value="ENVASE">Envase</option>
-                        <option value="MATERIAL">Material Auxiliar</option>
+                        <option value="MAT. AUXILIAR">Material Auxiliar</option>
                         <option value="PIGMENTO">Pigmento</option>
                         <option value="RESINA">Resina</option>
-                        <option value="SOLVENTE">Solvente</option> 
+                        <option value="SOLVENTE">Solvente</option>
                         <option value="OTRO">Otro</option>
                     </select>
                 </div>
@@ -42,34 +41,39 @@
         <div class="row mt-2 mb-3">
             <div class="col-2">
                 <span>Riesgo</span>
-                <input type="string" class="form-control mt-1" [(ngModel)]="riesgo">
+                <input type="string" class="form-control mt-1 boldText" [(ngModel)]="riesgo">
             </div>
             <div class="col-2">
                 <span>Protección</span>
-                <input type="string" class="mt-1 form-control" [(ngModel)]="proteccion">
+                <input type="string" class="mt-1 form-control boldText" [(ngModel)]="proteccion">
             </div>
             <div class="col-2">
                 <span>Stock</span>
-                <input type="number" class="mt-1 form-control" readonly [(ngModel)]="stock">
-            </div>
-            <div class="col-2">
-                <span>Stock Mínimo</span>
-                <input type="number" class="form-control mt-1" [(ngModel)]="stockminimo">
+                <input type="number" class="mt-1 form-control boldText" readonly [(ngModel)]="stock">
             </div>
             <div class="col-2">
                 <span>Unidad de Medida</span>
                 <div class="input-group mt-1">
-                    <select class="custom-select" [(ngModel)]="unidadmedidacompra" id="inputGroupSelect02">
+                    <select class="custom-select boldText" [(ngModel)]="unidadmedidacompra" id="inputGroupSelect02">
                         <option value="Kg">Kg</option>
                         <option value="Lt">Lt</option>
-                        <option value="Metro">Mt</option>
+                        <option value="Mt">Mt</option>
                         <option value="Un">Un</option>
                     </select>
                 </div>
             </div>
             <div class="col-2">
-                <span>Ubicación</span>
-                <input type="string" class="form-control mt-1" [(ngModel)]="ubicacion">
+                <span>Stock Mínimo</span>
+                <input type="number" class="form-control mt-1 boldText" [(ngModel)]="stockminimo">
+            </div>
+            <div class="col-2">
+                <span>Obsoleto</span>
+                <div class="input-group mt-1">
+                    <select class="custom-select boldText" [(ngModel)]="ubicacion" id="inputGroupSelect02">
+                        <option value="SI">SI</option>
+                        <option value=NULL>NO</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
@@ -91,15 +95,18 @@
             </div>
             <div class="col-2">
                 <span>% Resina</span>
-                <input (change)="calcular()" type="number" class="form-control boldText" (change)="validarSolidos()" [(ngModel)]="resina">
+                <input (change)="calcular()" type="number" class="form-control boldText" (change)="validarSolidos()"
+                    [(ngModel)]="resina">
             </div>
             <div class="col-2">
                 <span>% Pigmento</span>
-                <input (change)="calcular()" type="number" class="form-control boldText" (change)="validarSolidos()" [(ngModel)]="pigmento">
+                <input (change)="calcular()" type="number" class="form-control boldText" (change)="validarSolidos()"
+                    [(ngModel)]="pigmento">
             </div>
             <div class="col-2">
                 <span>% Solvente</span>
-                <input disabled type="number" class="form-control boldText" (change)="validarSolidos()" [(ngModel)]="solvente">
+                <input disabled type="number" class="form-control boldText" (change)="validarSolidos()"
+                    [(ngModel)]="solvente">
             </div>
         </div>
     </div>
@@ -109,54 +116,62 @@
         <div class="row mt-3 mb-3">
             <div class="col-6">
                 <span>Condicion de aprobación 1</span>
-                <input type="string" class="form-control mt-1" [(ngModel)]="condaprob1">
+                <input type="string" class="form-control mt-1 boldText" [(ngModel)]="condaprob1">
                 <span>Condicion de aprobación 2</span>
-                <input type="string" class="form-control mt-1" [(ngModel)]="condaprob2">
+                <input type="string" class="form-control mt-1 boldText" [(ngModel)]="condaprob2">
             </div>
             <div class="col-6">
                 <span>Condicion de aprobación 3</span>
-                <input type="string" class="form-control mt-1" [(ngModel)]="condaprob3">
+                <input type="string" class="form-control mt-1 boldText" [(ngModel)]="condaprob3">
 
                 <span>Condicion de aprobación 4</span>
-                <input type="string" class="form-control mt-1" [(ngModel)]="condaprob4">
+                <input type="string" class="form-control mt-1 boldText" [(ngModel)]="condaprob4">
             </div>
         </div>
     </div>
 
-    <div>
+    <div class="p-1 mt-2">
         <h6 align="center" class="bg-info text-white">OTROS</h6>
         <div class="row">
             <div class="col-2">
                 <span>Código Semi-elaborado</span>
-                <input type="number" class="mt-1 form-control" [(ngModel)]="codpt" (change)="validarIdProd()">
+                <input type="number" class="mt-1 form-control boldText" [(ngModel)]="codpt" (change)="validarIdProd()">
             </div>
             <div class="col-2">
                 <span style="font-size: 15px;" class="mt-2 badge badge-success">{{descripcion1}}</span>
             </div>
             <div class="col-4">
                 <span>Código de Barras</span>
-                <input type="text" class="mt-1 form-control"
-                    [(ngModel)]="cobarras">
+                <input type="text" class="mt-1 form-control boldText" [(ngModel)]="cobarras">
             </div>
             <div class="col-4">
                 <span>Precio</span>
-                <input type="number" class="mt-1 form-control" [(ngModel)]="precio">
+                <input type="number" class="mt-1 form-control boldText" [(ngModel)]="precio">
             </div>
         </div>
     </div>
 
-    <div class="row mt-1">
-        <div class="col-4">
+    <div class="row p-1 mt-2">
+        <div class="col-3">
+            <span> Última Recepción</span>
+            <div class="bg-light">
+                <div class=" w-100 badge badge-pill text-center"
+                    style=" font-size: 25px; background-color: rgb(204, 204, 204);">
+                    {{fechaultimarecepcion | datePipe}}
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
             <span>Informacion 1</span>
-            <input type="string" class="form-control" [(ngModel)]="info1">
+            <input type="string" class="form-control boldText" [(ngModel)]="info1">
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <span>Informacion 2</span>
-            <input type="string" class="form-control" [(ngModel)]="info2">
+            <input type="string" class="form-control boldText" [(ngModel)]="info2">
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <span>Informacion 3</span>
-            <input type="string" class="form-control" [(ngModel)]="info3">
+            <input type="string" class="form-control boldText" [(ngModel)]="info3">
         </div>
     </div>
 
@@ -173,55 +188,55 @@
 
 
 <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content" style="width: 90%;">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE MATERIAS PRIMAS</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="width: 90%;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE MATERIAS PRIMAS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="recipient-name9" class="col-form-label">CODIGO DE LA MATERIA PRIMA:</label>
-                        <input (keyup)="buscarMp()" [(ngModel)]="termino1" type="number" class="form-control"
-                            id="recipient-name40">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="recipient-name9" class="col-form-label">CODIGO DE LA MATERIA PRIMA:</label>
+                            <input (keyup)="buscarMp()" [(ngModel)]="termino1" type="number" class="form-control"
+                                id="recipient-name40">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
+                            <input (keyup)="buscarMp()" [(ngModel)]="termino2" type="text" class="form-control"
+                                id="recipient-name40">
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
-                        <input (keyup)="buscarMp()" [(ngModel)]="termino2" type="text" class="form-control"
-                            id="recipient-name40">
-                    </div>
+                <div style="overflow: scroll; height: 200px; width: 100%;">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>COD</th>
+                            <th>DESCRIPCIÓN</th>
+                            <th>TIPO</th>
+                            <th>UNIDAD DE MEDIDA</th>
+                        </tr>
+                        <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
+                            (click)="seleccionarId(item2.id)" style="cursor: pointer;">
+                            <td>{{item2.id}}</td>
+                            <td>{{item2.descripcion}}</td>
+                            <td>{{item2.tipo}}</td>
+                            <td>{{item2.unidadmedidacompra}}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-            <div style="overflow: scroll; height: 200px; width: 100%;">
-                <table class="table table-hover">
-                    <tr>
-                        <th>COD</th>
-                        <th>DESCRIPCIÓN</th>
-                        <th>TIPO</th>
-                        <th>UNIDAD DE MEDIDA</th>
-                    </tr>
-                    <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
-                        (click)="seleccionarId(item2.id)" style="cursor: pointer;">
-                        <td>{{item2.id}}</td>
-                        <td>{{item2.descripcion}}</td>
-                        <td>{{item2.tipo}}</td>
-                        <td>{{item2.unidadmedidacompra}}</td>
-                    </tr>
-                </table>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" (click)="resetearBusqueda()">Resetear</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-info" (click)="resetear()">Resetear</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         </div>
     </div>
-</div>
 </div>

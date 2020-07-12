@@ -71,7 +71,7 @@ export class AltaprodComponent implements OnInit {
       subscribe((data: any) => {
         Swal.fire({
           title: "P.T. existente",
-          text: "¿Desea editar el Producto Terminado?",
+          text: "¿ Desea editar el Producto Terminado ?",
           cancelButtonColor: "red",
           confirmButtonColor: "green",
           confirmButtonText: "SI",
@@ -124,7 +124,7 @@ export class AltaprodComponent implements OnInit {
         if (err.error.response) {
           Swal.fire({
             title: "P.T. existente",
-            text: "¿Desea editar el Producto Terminado?",
+            text: "¿ Desea editar el Producto Terminado ?",
             cancelButtonColor: "red",
             confirmButtonColor: "green",
             confirmButtonText: "SI",
@@ -182,38 +182,67 @@ export class AltaprodComponent implements OnInit {
   validarForma() {
     this.service.validarIdProd(this.formaconjunto).
       subscribe((data: any) => {
-        this.descripForma = `${data.desc} - ${data.componente}`;
-        return alertify.success("LA FORMA CONJUNTO EXISTE!");
-      }, (err) => {
-        if (err.error.response) {
-          
-          return alertify.error("¡ATENCION!, LA FORMA CONJUNTO TIENE UN PESO ESPECIFICO EN 0");
-        }else{
+
+        if (this.componente == "RESINA" && data.componente != "ENDURECEDOR") {
           this.formaconjunto = null;
           this.descripForma = null;
-          return alertify.error("LA FORMA CONJUNTO NO EXISTE");
+          return alertify.error("RESINA SOLO CON ENDURECEDOR!!");
+        }
+        if (this.componente == "LIQUIDO" && data.componente != "POLVO") {
+          this.formaconjunto = null;
+          this.descripForma = null;
+          return alertify.error("LIQUIDO SOLO CON POLVO!!");
+        }
+        if (this.componente == "ENDURECEDOR" && data.componente != "INERTE" && data.componente != "POLVO") {
+          this.formaconjunto = null;
+          this.descripForma = null;
+          return alertify.error("ENDURECEDOR SOLO CON INERTE O POLVO!!");
+        }
+        if (
+          this.componente == "DILUYENTE"
+          || this.componente == "SEMIELABORADO"
+          || this.componente == "MONOCOMPONENTE"
+          || this.componente == "AGENTE CURADO"
+          || this.componente == "POLVO" &&
+          data.componente) {
+          this.formaconjunto = null;
+          this.descripForma = null;
+          return alertify.error("NO SE PUEDE FORMAR CONJUNTO!!");
+        }
+
+        this.descripForma = `${data.desc} - ${data.componente}`;
+        return alertify.success("EL CODIGO DE CONJUNTO EXISTE!");
+
+      }, (err) => {
+        if (err.error.response) {
+
+          return alertify.error("¡ ATENCION !, EL CONJUNTO SOLICITADO TIENE PESO ESPECIFICO = 0");
+        } else {
+          this.formaconjunto = null;
+          this.descripForma = null;
+          return alertify.error(" NO EXISTE CONJUNTO !");
         }
       })
   }
 
   finalizar() {
     if (!this.id) {
-      return alertify.error("Ingrese un id valido!");
+      return alertify.error("Ingrese un id valido !");
     }
     if (!this.descripcion) {
-      return alertify.error("Ingrese una descripción valida!");
+      return alertify.error("Ingrese una descripción valida !");
     }
     if (!this.componente) {
-      return alertify.error("Ingrese un componente valido!");
+      return alertify.error("Ingrese un componente valido !");
     }
     if (!this.unidadmedida) {
-      return alertify.error("Ingrese una Unidad de Medida valida!");
+      return alertify.error("Ingrese una Unidad de Medida valida !");
     }
     if (this.descripcion.trim() == "") {
-      return alertify.error("LA DESCRIPCION ES INVÁLIDA")
+      return alertify.error("LA DESCRIPCION ES INVÁLIDA !")
     }
     if (this.formaconjunto == this.id) {
-      return alertify.error("LA FORMA CONJUNTO ES IDÉNTICA A L ID DEL PRODUCTO")
+      return alertify.error("¡ ATENCION !, CODIGO DEL CONJUNTO ES IDÉNTICO AL CODIGO DEL PRODUCTO")
     }
     this.descripcion = this.descripcion ? this.descripcion.toUpperCase() : this.descripcion;
     this.color = this.color ? this.color.toUpperCase() : this.color;
@@ -243,7 +272,7 @@ export class AltaprodComponent implements OnInit {
           Swal.close();
           this.resetear();
           this.editar = false;
-          return alertify.success("El producto ha sido cargado existosamente!");
+          return alertify.success("¡ El producto ha sido cargado correctamente !");
         }, (err) => {
           console.log(err);
         })
@@ -253,7 +282,7 @@ export class AltaprodComponent implements OnInit {
           Swal.close();
           this.resetear();
           this.editar = false;
-          return alertify.success("El producto ha sido modificado correctamente");
+          return alertify.success("¡ El producto ha sido modificado correctamente !");
         }, (err) => {
           console.log(err);
         })
@@ -263,7 +292,7 @@ export class AltaprodComponent implements OnInit {
   cancelar() {
     Swal.fire({
       title: "Cancelar Operación",
-      text: "¿Está seguro que desea cancelar la operación?",
+      text: "¿ Está seguro que desea cancelar la operación ?",
       cancelButtonColor: "red",
       confirmButtonColor: "green",
       confirmButtonText: "SI",
@@ -310,10 +339,10 @@ export class AltaprodComponent implements OnInit {
     this.stock = datos;
     this.editar = false;
     this.arraypt = [];
-    this.idbus=null;
-    this.termino1=null;
-    this.termino2=null;
-    this.termino3=null;
+    this.idbus = null;
+    this.termino1 = null;
+    this.termino2 = null;
+    this.termino3 = null;
     this.descripForma = null;
     document.getElementById("id").removeAttribute("disabled");
     document.getElementById("stock").setAttribute("disabled", "");

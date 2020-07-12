@@ -28,16 +28,21 @@ export class ListenvComponent implements OnInit {
   validarId(){
     this.service.validarIdProd(this.idprod).
     subscribe((data:any)=>{
-      if (data.desc) {
-        alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE!!")
+
+        alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !")
         this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
         this.traerEnv();
-      } else {
-        alertify.error("NO EXISTE ESE PRODUCTO TERMINADO!!")
+      
+    },(err)=>{
+      if(err.error.response){
+        let data=err.error.response;
+        alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !")
+        this.descripcion1 = `${data.descripcion}  ${data.color}  ${data.componente}`;
+        this.traerEnv();
+      }else{
+        alertify.error("NO EXISTE ESTE PRODUCTO TERMINADO !")
         return this.resetear1();
       }
-    },(err)=>{
-      console.log(err);
     })
   }
 
@@ -80,6 +85,10 @@ export class ListenvComponent implements OnInit {
     },(err)=>{
       console.log(err);
     })
+  }
+
+  imprimirBusqueda(){
+    window.print();
   }
 
 }

@@ -26,6 +26,8 @@ export class RecepmpComponent implements OnInit {
   usuario = "MARCOS";
   fecha: string;
   lotePrint: number;
+  fechaultimarecepcion: Date;
+  pesoespecifico: number;
 
   arrayBusqueda = [];
   termino1: number;
@@ -62,21 +64,33 @@ export class RecepmpComponent implements OnInit {
         this.descripcion = item.descripcion;
         this.stock = item.stock;
         this.ubicacion = item.ubicacion;
+        this.pesoespecifico = item.pesoespecifico;
         this.unidadRecibo = item.unidadmedidacompra;
+        this.fechaultimarecepcion = item.fechaultimarecepcion;
         this.calcularLote();
+        if (this.ubicacion == "SI") { // uso campo ubicacion para poner si esta obsoleto o no la MP
+          setTimeout(() => {
+            this.resetear();
+            return alertify.error("MATERIA PRIMA OBSOLETA !");
+          }, 2000)
+        }
       }, (err) => {
         if (err.error.response) {
           let item = err.error.response;
           this.descripcion = item.descripcion;
           this.stock = item.stock;
           this.ubicacion = item.ubicacion;
+          this.pesoespecifico = item.pesoespecifico;
           this.unidadRecibo = item.unidadmedidacompra;
+          this.fechaultimarecepcion = item.fechaultimarecepcion;
           this.calcularLote();
         } else {
           this.id = null;
-          return alertify.error("NO EXISTE ESE CODIGO DE MATERIA PRIMA !")
+          this.resetear(); // puse esto por si borra el codigo de MP
+          return alertify.error("NO EXISTE ESE CODIGO DE MATERIA PRIMA !");
         }
       })
+
   }
 
   calcularLote() {
@@ -86,17 +100,23 @@ export class RecepmpComponent implements OnInit {
       })
   }
 
+
   finalizar() {
     if (!this.id) {
-      return alertify.error("EL CODGIO DE MATERIA PRIMA ES INCORRECTO !");
+      return alertify.error("EL CODIGO DE MATERIA PRIMA ES INCORRECTO !");
+    }
+    if (!this.ordenCompra) {
+      return alertify.error("FALTA INGRESAR NUMERO DE O/C !");
+    }
+    if (!this.nroRemito) {
+      return alertify.error("EL NUMERO DE REMITO ES OBLIGATORIO !");
+    }
+    if (!this.proveedor) {
+      return alertify.error("FALTA INGRESAR EL PROVEEDOR !");
     }
     if (!this.cantidad) {
       return alertify.error("LA CANTIDAD RECIBIDA ES OBLIGATORIA !");
     }
-    if (this.unidadRecibo == "Lt") {
-      //PASAR A KG el this.cantidad
-    }
-
     let anio = new Date().getFullYear();
     let mes = new Date().getMonth();
     let dia = new Date().getDate();
@@ -106,7 +126,9 @@ export class RecepmpComponent implements OnInit {
     this.proveedor = this.proveedor ? this.proveedor.toUpperCase() : this.proveedor;
     this.ordenCompra = this.ordenCompra ? this.ordenCompra.toUpperCase() : this.ordenCompra;
     this.nroPart = this.nroPart ? this.nroPart.toUpperCase() : this.nroPart;
-
+    if (this.unidadRecibo == "Lt") {
+      this.cantidad = (this.cantidad * this.pesoespecifico) //PASAR A KG el this.cantidad
+    }
     let data = {
       id: this.id, cantidad: this.cantidad, numeroComprobante: this.nroRemito, numeroLoteInt: this.numeroLoteInt,
       proveedor: this.proveedor, ordenCompra: this.ordenCompra, nroPart: this.nroPart, usuario: this.usuario,
@@ -141,6 +163,8 @@ export class RecepmpComponent implements OnInit {
     this.arrayBusqueda = [];
     this.termino1 = null;
     this.termino2 = null;
+    this.fechaultimarecepcion = null;
+    this.pesoespecifico = null;
   }
 
   cancelar() {
@@ -170,5 +194,10 @@ export class RecepmpComponent implements OnInit {
       })
   }
 
+  omit_number(event) {
+    let key;
+    key = event.keyCode;  //         key = event.charCode;  (Both can be used)   key == 45  // allows minus(-)
+    return ((key > 47 && key < 58) || key == 46);
+  }
 
 }

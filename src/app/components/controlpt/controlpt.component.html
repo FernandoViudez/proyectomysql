@@ -1,0 +1,410 @@
+<div class="notPrint">
+    <div class="bg rounded p-3 mt-1 text-white" style="background-color:rgb(86,169,97)">
+        <div class="row">
+            <div class="col-6">
+                <h2>Control de Calidad de Productos Terminados</h2>
+                <hr>
+            </div>
+            <div class="col-4 text-center">
+                <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal1" class="mt-2 bi bi-search"
+                    width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                        clip-rule="evenodd" />
+                    <path fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row mt-2">
+            <div class="col-2">
+                <span>Código</span>
+                <input disabled class="form-control boldText" type="number" [(ngModel)]="codpt">
+            </div>
+            <div class="col-6">
+                <span>Descripción</span>
+                <input disabled class="form-control boldText" type="text" [(ngModel)]="descripcion">
+            </div>
+            <div class="col-2">
+                <span>Nro. Partida (Lote)</span>
+                <input (change)="onLoteChange()" class="form-control boldText" type="number"
+                    [(ngModel)]="numeroPartida">
+            </div>
+            <div class="col-2">
+                <span>Fecha de aprobación</span>
+                <input class="form-control boldText" type="date" [(ngModel)]="fecha">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3">
+                <span>Peso específico</span>
+                <input class="form-control boldText" type="number" [(ngModel)]="pesoespecifico">
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-3">
+                <span>Viscosidad Brookfield</span>
+                <div class="input-group">
+                    <input class="form-control boldText" type="text" [(ngModel)]="viscosidadcps">
+                    <div class="input-group-append">
+                        <span class="input-group-text boldText" id="basic-addon2"> Cps </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <span>Spindle</span>
+                <div class="input-group">
+                    <input class="form-control boldText" type="text" [(ngModel)]="spindle">
+                    <div class="input-group-append">
+                        <span class="input-group-text boldText" id="basic-addon2"> RPM </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <span>Viscosidad Stormer</span>
+                <div class="input-group">
+                    <input class="form-control boldText" type="text" [(ngModel)]="viscosidaduk">
+                    <div class="input-group-append">
+                        <span class="input-group-text boldText" id="basic-addon2"> UK </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <span>Viscosidad Copa Ford Nro. 4</span>
+                <div class="input-group">
+                    <input class="form-control boldText" type="text" [(ngModel)]="viscosidadcopa">
+                    <div class="input-group-append">
+                        <span class="input-group-text boldText" id="basic-addon2"> Segundos </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-3">
+                <span>Molienda</span>
+                <input class="form-control boldText" type="text" [(ngModel)]="molienda">
+            </div>
+            <div class="col-3">
+                <span>Solidos p.p.P.</span>
+                <div class="input-group">
+                    <input class="form-control boldText" type="number" [(ngModel)]="solidosppp">
+                    <div class="input-group-append">
+                        <span class="input-group-number boldText" id="basic-addon2"> % </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <span>Brillo</span>
+                <input class="form-control boldText" type="text" [(ngModel)]="brillo">
+            </div>
+            <div class="col-3">
+                <span>Color</span>
+                <input class="form-control boldText" type="text" [(ngModel)]="color">
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-3">
+                <span>Aplicabilidad</span>
+                <input class="form-control boldText" type="text" [(ngModel)]="aplicabilidad">
+            </div>
+            <div class="col-3">
+                <span>curado</span>
+                <input class="form-control boldText" type="text" [(ngModel)]="curado">
+            </div>
+            <div class="col-6">
+                <span>Observaciones</span>
+                <input class="form-control boldText" type="text" [(ngModel)]="observaciones">
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="float-right">
+                    <span>Resultado</span>
+                    <select class="custom-select boldText" [(ngModel)]="aprobado" id="inputGroupSelect02">
+                        <option value="Aprobado" class="bg-success">APROBADO</option>
+                        <option value="RECHAZADO" class="bg-primary">RECHAZADO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="float-right">
+                    <button class="btn btn-primary mr-2" (click)="cancelar()">
+                        Cancelar
+                    </button>
+                    <button class="btn btn-success" (click)="actualizarControl()">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PRODUCTO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="recipient-name9" class="col-form-label">Numero de partida (Lote)</label>
+                            <input (keyup)="buscarP()" [(ngModel)]="idBus" type="number" class="form-control"
+                                id="recipient-name40">
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="recipient-name9" class="col-form-label">Descripción</label>
+                            <input (keyup)="buscarP()" [(ngModel)]="termino1" type="text" class="form-control"
+                                id="recipient-name40">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="overflow: scroll; height: 200px; width: 100%;">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>CODPT</th>
+                            <th>DESCRIPCIÓN</th>
+                            <th>COLOR</th>
+                            <th>PARTIDA</th>
+                        </tr>
+                        <tr class="hoverFila" data-dismiss="modal" *ngFor="let item of arrayCtp"
+                            (click)="seleccionarLote(item)" style="cursor: pointer;">
+                            <td>{{item.codpt}}</td>
+                            <td>{{item.descripcion}}</td>
+                            <td>{{item.color}}</td>
+                            <td>{{item.numeroPartida}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="yesPrint">
+    <style>
+        .tab1 {
+            display: inline-block;
+            margin-left: 40px;
+        }
+
+        .tab2 {
+            display: inline-block;
+            margin-left: 120px;
+        }
+
+        table {
+            font-family: arial, helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            padding: 0.1px;
+        }
+
+        th {
+            border: 0.5px solid #dddddd;
+            text-align: center;
+            padding: 2.5px;
+            font-size: 16px;
+        }
+
+        td {
+            border: 0.5px solid #dddddd;
+            text-align: left;
+            padding: 2.5px;
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        pre {
+            border: 0.5px solid #dddddd;
+            padding: 0.5px;
+            font-size: 13px;
+            font-family: arial, helvetica, sans-serif;
+            line-height: 20pt;
+        }
+
+        hr.new3 {
+            border-top: 1px dotted blue;
+        }
+    </style>
+    <a class="navbar-brand">
+        <img src="./assets/Logo_Revesta.jpg" width="100" height="50" alt="" loading="lazy">
+    </a>
+    <div>
+        <h5>
+            <b>
+                <div>
+                    REVESTA S.A.I.C.
+                </div>
+                <hr class="new3">
+                <div class="text-center">
+                    CERTIFICADO DE IDENTIDAD DEL PRODUCTO
+                </div>
+                <div class="text-right">
+                    FECHA DE EMISION: {{fecha}}
+                </div>
+                <hr class="new3">
+                <div>
+                    <span class="tab2"></span> Producto : {{descripcionPt}}<br>
+                    <span class="tab2"></span> Color : {{colorPt}}<br>
+                    <span class="tab2"></span> Componente : {{componente}}<br>
+                    <span class="tab2"></span> Tipo generico : {{tipo}}<br>
+                </div>
+            <hr class="new3">
+            <div>
+                <span class="tab2"></span> Numero de Partida: {{numeroPartida}}
+                <span class="tab2"></span> Fecha de Elaboracion: {{fecha}}
+            </div>
+            </b>
+            <hr class="new3">
+            <b>
+                <div class="text-center">
+                    DATOS FISICOS
+                </div>
+            </b> <br>
+            <table>
+                <tr>
+                    <td class="text-center ">ENSAYO</td>
+                    <td class="text-center">VALOR OBTENIDO</td>
+                    <td class="text-center">VALORES DE APROBACION</td>
+                </tr><br>
+                <tr>
+                    <td>PESO ESPECIFICO</td>
+                    <td>{{pesoespecifico}} </td>
+                    <!--| numeralPipe}} </td> -->
+                    <td>{{pePt}} </td>
+                </tr>
+                <tr>
+                    <td>VISCOSIDAD INICIAL</td>
+                    <td>{{viscosidadcps}} Cps</td>
+                    <td>{{viscosidadPt}} Cps</td>
+                </tr>
+                <tr>
+                    <td>MOLIENDA</td>
+                    <td>{{molienda}}</td>
+                    <td>{{moliendaPt}}</td>
+                </tr>
+                <tr>
+                    <td>APLICABILIDAD</td>
+                    <td>{{aplicabilidad}}</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>COLOR</td>
+                    <td>{{color}} </td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>CURADO</td>
+                    <td>{{curado}} </td>
+                    <td> </td>
+                </tr>
+            </table><br>
+            <div>
+                Las mediciones se tomaron a 25 grados C de acuerdo al metodo F/S 141a #4287
+            </div><br>
+            <hr class="new3">
+            <b>
+                <div class="text-center">
+                    DATOS DEL PRODUCTO (mezcla si es un producto de mas de un componente)
+                    <hr>
+                </div>
+            </b>
+            <div>
+                RELACION DE LA MEZCLA : {{relacionmezcla}}<br>
+                SOLIDOS POR VOLUMEN : {{solidos}}<br>
+                ESPESOR RECOMENDADO POR MANO : {{espesormano}}<br>
+            </div><br>
+            <table>
+                <tr>
+                    <td> </td>
+                    <td class="text-center">Horas</td>
+                    <td class="text-center">Temperatura</td>
+                    <td class="text-center">H.R.A.</td>
+                </tr>
+                <tr>
+                    <td>VIDA UTIL DE LA MEZCLA</td>
+                    <td class="text-center">{{vidamezcla}} </td>
+                    <td class="text-center">{{temp1}} </td>
+                    <td class="text-center">{{hra1}} </td>
+                </tr>
+                <tr>
+                    <td>SECO AL TACTO</td>
+                    <td class="text-center">{{secotacto}}</td>
+                    <td class="text-center">{{temp2}}</td>
+                    <td class="text-center">{{hra2}} </td>
+                </tr>
+                <tr>
+                    <td>SECADO DURO</td>
+                    <td class="text-center">{{secoduro}}</td>
+                    <td class="text-center">{{temp3}}</td>
+                    <td class="text-center">{{hra3}} </td>
+                </tr>
+                <tr>
+                    <td>TIEMPO PARA RECUBRIR</td>
+                    <td class="text-center">{{pararecubrir}}</td>
+                    <td class="text-center">{{temp4}} </td>
+                    <td class="text-center">{{hra4}} </td>
+                </tr>
+                <tr>
+                    <td>CURADO COMPLETO</td>
+                    <td class="text-center">{{curado2}} </td>
+                    <td class="text-center">{{temp5}} </td>
+                    <td class="text-center">{{hra5}} </td>
+                </tr>
+            </table><br>
+            <hr class="new3">
+            <div>
+                SOLVENTE DE DILUCION : {{dilucion}}<br>
+                SOLVENTE DE LIMPIEZA : {{limpeza}}<br>
+            </div>
+            <hr class="new3">
+            <div>
+                VIDA UTIL EN CORRECTAS CONDICIONES DE ALMACENAMIENTO: {{vidaalmacen}}<br>
+                CON TEMPERATURAS ENTRE 5 Y 38 C DESDE FECHA DE ENTREGA (REFERIRSE AL REMITO)<br>
+            </div>
+            <hr class="new3">
+            <div>
+                Certificamos que esta partida fue elaborada bajo nuestro programa de Garantia de Calidad de acuerdo
+                a las normas de Control de Calidad <br>y Procesos aplicables a este producto.<br>
+                Este documento forma parte, junto con el remito de envio, de la informacion necesaria y suficiente
+                para la trazabilidad del producto.<br>
+            </div>
+            <hr class="new3"><br>
+            <div>
+                REVESTA S.A.I.C.<br>Osvaldo de Vicenzo<br>Gerente de Laboratorio<br><br>VALIDADO ELECTRONICAMENTE<br>
+            </div>
+        </h5>
+
+
+    </div>
+
+</div>

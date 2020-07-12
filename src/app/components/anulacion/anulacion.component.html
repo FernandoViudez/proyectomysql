@@ -1,0 +1,13 @@
+<div class= "p-2 mt-1 text-white boldText" style="background-color:rgb(137,145,21); ">
+    <h3 class="text-center">ANULACIÓN DE BATCH TICKET</h3>
+</div>
+
+<div>
+    <input class="form-control w-50 m-auto" style="margin-top: 5% !important;" placeholder="Ingrese el batch para anular*" type="number" [(ngModel)]="batch">
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <button (click)="onBatchChange()" class="btn btn-success float-right mr-3">ANULAR BT</button>
+    </div>
+</div>

@@ -1,12 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import numeral from 'numeral';
 
 @Pipe({
-  name: 'numeral'
+  name: 'numeralPipe'
 })
 export class NumeralPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: unknown, ...args: unknown[]): any {
+    let numero=Number(value);
+    let numeroNuevo = numeral(numero).format('0.000');
+    return numeroNuevo;
   }
 
 }

@@ -1,12 +1,13 @@
-<div class="jumbotron">
-    <div class="row">
-        <div class="col-6">
-            <h3>Bienvenido a la correción de stocks</h3>
-            <hr>
-        </div>
-        <div class="col-6">
+<div class="notPrint">
+    <div class="bg rounded p-3 mt-1 text-white" style="background-color:rgb(137,145,21)">
+        <div class="row">
+            <div class="col-6">
+                <h2>Corrección de Stock de Materia Prima</h2>
+                <hr>
+            </div>
+	<div class="col-6">
             <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3"
-                class="mt-3" width="2em" height="2em" viewBox="0 0 16 16" fill="black"
+                class="float-right bi bi-search mr-5" width="3em" height="3em" viewBox="0 0 16 16" fill="black"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
                     d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
@@ -19,51 +20,51 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container mt-4">
     <div class="row">
         <div class="col-3">
             <label for="">Ingrese el código de la Materia Prima</label>
-            <input (change)="validarMp()" type="number" [(ngModel)]="id" class="form-control">
+            <input (change)="validarMp()" type="number" [(ngModel)]="id" class="form-control boldText">
         </div>
-        <div class="col-3">
+        <div class="col-6">
             <label for="">Descripcion</label>
-            <input type="string" disabled [(ngModel)]="descripcion" class="form-control">
+            <input type="string" disabled [(ngModel)]="descripcion" class="form-control boldText">
         </div>
-        <div class="col-3">
+        <div class="col-2">
             <label for="">Stock actual</label>
-            <input *ngIf="stock>0 || stock==null || stock==0" type="number" disabled [(ngModel)]="stock" class="form-control text-success">
-            <input *ngIf="stock<0" type="number" disabled [(ngModel)]="stock" class="form-control text-primary">
+            <input *ngIf="stock>0 || stock==null || stock==0" type="number" disabled [(ngModel)]="stock" class="form-control text-success boldText">
+            <input *ngIf="stock<0" type="number" disabled [(ngModel)]="stock" class="form-control text-primary boldText">
         </div>
-        <div class="col-3">
-            <label for="">Ubicación</label>
-            <input type="string" disabled [(ngModel)]="ubicacion" class="form-control">
+        <div class="col-1">
+            <label for="">Obsoleta ?</label>
+            <input type="string" disabled [(ngModel)]="ubicacion" class="form-control boldText">
         </div>
     </div>
     <hr>
     <div class="row">
         <div class="col-4">
             <label for="">Nueva cantidad a sumar o restar</label>
-            <input type="number" [(ngModel)]="cantidad" class="form-control">
+            <input type="number" [(ngModel)]="cantidad" class="form-control boldText">
         </div>
         <div class="col-8">
-            <label for="">Ingrese el motivo de su correción</label>
-            <input type="stirng" [(ngModel)]="motivo" class="form-control">
+            <label for="">Ingrese el motivo de la correción</label>
+            <input type="stirng" [(ngModel)]="motivo" class="form-control boldText">
         </div>
     </div>
 
-    <div>
+    <div class="mt-4">
         <button class="float-right btn btn-success mt-1" (click)="finalizar()">Corregir Stock</button>
         <button class="float-right btn btn-primary mt-1 mr-2" (click)="resetear()">Cancelar operación</button>
     </div>
 
-    <div *ngIf="cantidad>0" class="mt-5 alert alert-success">
-        <h5>Recuerda</h5>
-        <p>ESTÁS SUMANDO {{cantidad}} unidades a la Materia Prima {{descripcion}}</p>
+    <div *ngIf="cantidad>0" class="mt-5 alert alert-success boldText">
+        <h1>Recuerda</h1>
+        <p>ESTÁS SUMANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
         <p>Nuevo stock: {{stock + cantidad}}</p>
     </div>
-    <div *ngIf="cantidad<0" class="mt-5 alert alert-danger">
-        <h5>Recuerda</h5>
-        <p>ESTÁS RESTANDO {{cantidad}} unidades a la Materia Prima {{descripcion}}</p>
+    <div *ngIf="cantidad<0" class="mt-5 alert alert-danger boldText">
+        <h1>Atencion !! </h1>
+        <p>ESTÁS RESTANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
         <p>Nuevo stock: {{stock + cantidad}}</p>
     </div>
 

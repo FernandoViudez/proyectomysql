@@ -31,7 +31,6 @@ export class ListprodComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.buscar()
   }
 
   resetear() {
@@ -55,8 +54,12 @@ export class ListprodComponent implements OnInit {
     this.descripcion = "";
     this.color = "";
     this.componente = "";
-    this.ngOnInit()
+    this.array=[];
     this.resetear();
+  }
+
+  imprimirBusqueda(){
+    window.print();
   }
 
   buscar() {

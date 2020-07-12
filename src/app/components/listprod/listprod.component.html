@@ -1,138 +1,196 @@
-<div class="jumbotron p-1 mt-0" style="background-color:rgb(80, 71, 212); font-size: 11px;">
-    <div class="row text-white">
-
-        <div class="col-3">
-            <div class="m-auto" style="width: 100%;">
-                <label><b>ID</b></label>
-                <input (keyup)="buscar()" [(ngModel)]="id" type="number" class="ml-1">
-            </div>
-        </div>
-
-        <div class="col-3">
-            <div class="m-auto" style="width: 100%;">
-                <label><b>DESCRIPCIÓN</b></label>
-                <input (keyup)="buscar()" [(ngModel)]="descripcion" type="text" class="ml-1">
-            </div>
-        </div>
-
-        <div class="col-3">
-            <div class="m-auto" style="width: 70%;">
-                <label><b>COLOR</b></label>
-                <input (keyup)="buscar()" [(ngModel)]="color" type="text" class="ml-1">
-                <span class="badge badge-primary ml-5" style="font-size: 15px;">{{color}}</span>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="m-auto" style="width: 70%;">
-                <label><b>COMPONENTE</b></label>
-                <input (keyup)="buscar()" [(ngModel)]="componente" type="text" class="ml-1">
-                <span class="badge badge-primary ml-5" style="font-size: 15px;">{{componente}}</span>
-            </div>
-        </div>
+<div class="notPrint">
+    <div class="p-0 mt-1" style="background-color:rgb(190, 171, 131)">
+        <h6 class="text-center">VISUALIZACION DE PRODUCTOS TERMINADOS</h6>
     </div>
-    <hr class="bg-light">
-    <div class="row m-auto text-white">
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="pe"><b>P.ESPECÍFICO: </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{pesoespecifico}}</span></h6>
+
+    <div class="jumbotron p-1 mt-1" style="background-color:rgb(180, 71, 21); font-size: 15px; ">
+        <div class="row text-white">
+
+            <div class="col-3">
+                <div class="m-auto">
+                    <label><b>CODIGO</b></label>
+                    <input (keyup)="buscar()" [(ngModel)]="id" type="number" class="ml-1">
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="m-auto">
+                    <label><b>DESCRIPCIÓN</b></label>
+                    <input (keyup)="buscar()" [(ngModel)]="descripcion" type="text" class="ml-1">
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="m-auto">
+                    <label><b>COLOR</b></label>
+                    <input (keyup)="buscar()" [(ngModel)]="color" type="text" class="ml-1">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="m-auto">
+                    <label><b>COMPONENTE</b></label>
+                    <input (keyup)="buscar()" [(ngModel)]="componente" type="text" class="ml-1">
+                </div>
             </div>
         </div>
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="ppp"><b>SOLIDOS PPP: </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{solidosppp}}</span></h6>
+        <hr class="bg-light">
+        <div class="row m-auto text-white" style="margin-top: 1% !important; ">
+            <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="pe"><b>Peso Especifico: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pesoespecifico | numeralPipe}}</span>
+                    </h6>
+                </div>
             </div>
-        </div>
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="ppv"><b>SOLIDOS PPV: </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{solidosppv}}</span></h6>
+            <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="ppp"><b>Sólidos PPP: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solidosppp | numeralPipe}}</span>
+                    </h6>
+                </div>
             </div>
+            <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="ppv"><b>Sólidos PPV: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solidosppv | numeralPipe}}</span>
+                    </h6>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="resi"><b>% Resina: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{resina | numeralPipe}}</span>
+                    </h6>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="pig"><b>% Pigmento: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pigmento | numeralPipe}}</span>
+                    </h6>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="pr"><b>% Solvente: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solvente | numeralPipe}}</span>
+                    </h6>
+                </div>
+            </div>
+
         </div>
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="resi"><b>% RESINA : </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{resina}}</span>
+        <div class="row m-auto text-white">
+            <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="pe"><b>Viscosidad: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{viscosidadspindle}}</span>
+                    </h6>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="ppv"><b>Spindle Nr.: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{spindlenumero}}</span></h6>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="ppp"><b>Viscosidad UK: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{viscosidaduk}}</span></h6>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="resi"><b>Molienda: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{molienda}}</span></h6>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="pig"><b>Brillo: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{brillo}}</span></h6>
+                </div>
+            </div>
+            <div class="col-2">
+            </div>
+
+        </div>
+        <hr class="bg-light">
+    </div>
+
+    <div style="overflow: scroll; height:370px; width: 95%;" class="m-auto">
+        <table class="w-100">
+            <tr class="text-center" *ngIf="array.length==0">
+                <th></th>
+            </tr>
+            <tr class="bg-dark text-white text-center" *ngIf="array.length > 0">
+                <th>CODIGO</th>
+                <th>DESCRIPCION</th>
+                <th>COLOR</th>
+                <th>COLOR IGUAL</th>
+                <th>COMPONENTE</th>
+                <th>FORMA CONJUNTO</th>
+                <th>RELACION DE MEZCLADO</th>
+                <th>FECHA ULTIMA ELABORACIÓN</th>
+                <th>FECHA ULTIMA MODIFICACIÓN</th>
+                <th>UNIDAD DE MEDIDA</th>
+                <th>STOCK</th>
+                <th>PRECIO</th>
+            </tr>
+            <tr *ngFor="let item of array" (click)="traerDf(item.id)" style="cursor: pointer;"
+                class="hoverFila text-center">
+                <td>{{item.id}}</td>
+                <td>{{item.descripcion}}</td>
+                <td>{{item.color}}</td>
+                <td>{{item.colorigual}}</td>
+                <td>{{item.componente}}</td>
+                <td>{{item.formaconjunto}}</td>
+                <td>{{item.relaciondemezcla}}</td>
+                <td>{{item.fechaultimaelaboracion | datePipe}}</td>
+                <td>{{item.ultimamodificacion | datePipe}}</td>
+                <td>{{item.unidadmedida}}</td>
+                <td>{{item.stock | numeralPipe}}</td>
+                <td>{{item.precio | numeralPipe}}</td>
+            </tr>
+
+            <tr class="bg-primary">
+                <h6 class="text-white p-3" *ngIf="array.length==0"> NO HEMOS ENCONTRADO PRODUCTOS CON ESOS PARAMETROS :(
                 </h6>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="pig"><b>% PIGMENTO : </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{pigmento}}</span>
-                </h6>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="pr"><b>SOLVENTE: </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{solvente}}</span></h6>
-            </div>
-        </div>
-
+            </tr>
+        </table>
     </div>
-    <div class="row m-auto text-white">
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="pe"><b>V. SPINDLE: </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{viscosidadspindle}}</span></h6>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="ppp"><b>V. UK: </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{viscosidaduk}}</span></h6>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="ppv"><b>S. NUMERO: </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{spindlenumero}}</span></h6>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="resi"><b>MOLIENDA: </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{molienda}}</span></h6>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="pig"><b>BRILLO: </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{brillo}}</span></h6>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="m-auto ml-2">
-                <h6 style="font-size: 11px;" id="pr"><b>PRECIO: </b><span style="font-size: 13px;" class="badge"
-                        style="font-size: 12px; background-color: rgb(0, 0, 126);">{{precio}}</span></h6>
-            </div>
-        </div>
 
+    <div class="row mt-3">
+        <div class="col-12">
+            <button class="btn float-right" style="margin-right: 6%; background-color: rgb(190, 171, 131);"
+                (click)="resetearBusqueda()">RESETEAR BUSQUEDA</button>
+                <button class="btn btn-info float-right" style="margin-right: 7%;"
+                (click)="imprimirBusqueda()">IMPRIMIR BUSQUEDA</button>
+        </div>
     </div>
-    <hr class="bg-light">
+
 </div>
 
-<div style="overflow: scroll; height:320px; width: 90%;" class="m-auto">
+<div class="yesPrint">
     <table class="w-100">
         <tr class="text-center" *ngIf="array.length==0">
             <th></th>
         </tr>
         <tr class="bg-dark text-white text-center" *ngIf="array.length > 0">
-            <th>IDPT</th>
+            <th>CODIGO</th>
             <th>DESCRIPCION</th>
             <th>COLOR</th>
             <th>COLOR IGUAL</th>
             <th>COMPONENTE</th>
             <th>FORMA CONJUNTO</th>
-            <th>R. MEZCLA</th>
+            <th>RELACION DE MEZCLADO</th>
             <th>FECHA ULTIMA ELABORACIÓN</th>
             <th>FECHA ULTIMA MODIFICACIÓN</th>
-            <th>U.MEDIDA</th>
+            <th>UNIDAD DE MEDIDA</th>
             <th>STOCK</th>
+            <th>PRECIO</th>
         </tr>
-        <tr *ngFor="let item of array" (click)="traerDf(item.id)" style="cursor: pointer;" class="hoverFila text-center">
+        <tr *ngFor="let item of array" class="text-center">
             <td>{{item.id}}</td>
             <td>{{item.descripcion}}</td>
             <td>{{item.color}}</td>
@@ -143,19 +201,8 @@
             <td>{{item.fechaultimaelaboracion | datePipe}}</td>
             <td>{{item.ultimamodificacion | datePipe}}</td>
             <td>{{item.unidadmedida}}</td>
-            <td>{{item.stock}}</td>
-        </tr>
-
-        <tr class="bg-primary">
-            <h6 class="text-white p-3" *ngIf="array.length==0"> NO HEMOS ENCONTRADO FILAS CON ESOS PARAMETROS :(
-            </h6>
+            <td>{{item.stock | numeralPipe}}</td>
+            <td>{{item.precio | numeralPipe}}</td>
         </tr>
     </table>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <button class="btn btn-info float-right" style="margin-right: 6%;" (click)="resetearBusqueda()">RESETEAR
-            BUSQUEDA</button>
-    </div>
 </div>

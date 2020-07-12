@@ -14,8 +14,8 @@ export class FormService {
     return this.http.post("http://localhost:8080/api/logOrd", data).pipe(map(data => data))
   }
 
-  importarForm(idprod, idprod1, tintoformoalt1) {
-    let data = { idprod, idprod1, tintoformoalt1 };
+  importarForm(idprod, idprod1, tintoformoalt1, componente) {
+    let data = { idprod, idprod1, tintoformoalt1, componente };
     return this.http.post("http://localhost:8080/api/importarForm", data).pipe(map(data => data))
   }
 

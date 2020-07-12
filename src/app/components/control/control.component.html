@@ -1,265 +1,363 @@
-<div class="container">
-
-    <div class="row mt-2">
-        <div class="col-3">
-            <span>Código de la materia prima</span>
-            <input disabled class="form-control" type="number" [(ngModel)]="id">
-        </div>
-        <div class="col-5">
-            <span>Descripcion</span>
-            <input disabled class="form-control" type="text" [(ngModel)]="descripcion">
-        </div>
-        <div class="col-4 text-center">
-            <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal1" class="mt-4 bi bi-search"
-                width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-                    clip-rule="evenodd" />
-                <path fill-rule="evenodd"
-                    d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
-                    clip-rule="evenodd" />
-            </svg>
+<div class="notPrint">
+    <div class="bg rounded p-3 mt-1 text-white" style="background-color:rgb(86,169,97)">
+        <div class="row">
+            <div class="col-6">
+                <h2>Control de Calidad de Materias Primas</h2>
+                <hr>
+            </div>
+	    <div class="col-4 text-center">
+		<svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal1" class="mt-2 bi bi-search"
+		    width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		    <path fill-rule="evenodd"
+		        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+		        clip-rule="evenodd" />
+		    <path fill-rule="evenodd"
+		        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+		        clip-rule="evenodd" />
+		</svg>
+	    </div>
         </div>
     </div>
 
-    <div *ngIf="tipo" class="mt-4">
+<div class="container">
+
+    <div class="row mt-2">
+        <div class="col-2">
+            <span>Código de la materia prima</span>
+            <input disabled class="form-control boldText" type="number" [(ngModel)]="id">
+        </div>
+        <div class="col-5">
+            <span>Descripción</span>
+            <input disabled class="form-control boldText" type="text" [(ngModel)]="descripcion">
+        </div>
+        <div class="col-2">
+            <span>Informe Nro.</span>
+            <input (change)="onLoteChange()" class="form-control boldText" disabled type="number" [(ngModel)]="numeroLote">
+        </div>
+        <div class="col-3">
+            <span>Fecha aprobación</span>
+            <input class="form-control boldText" type="date" [(ngModel)]="fecha">
+        </div>
+    </div>
+
+    <div *ngIf="tipo" class="mt-2">
 
         <div class="row">
-            <div class="col-3">
-                <label>Numero de lote</label>
-                <input disabled class="form-control" disabled type="number" [(ngModel)]="numeroLote">
-            </div>
-            <div class="col-3">
-                <label>Fecha</label>
-                <input class="form-control" type="date" [(ngModel)]="fecha">
-            </div>
-            <div class="col-3">
-                <label>Tipo de producto</label>
-                <input disabled class="form-control" type="text" [(ngModel)]="tipo">
-            </div>
-            <div class="col-3">
-                <label>Peso específico</label>
-                <input class="form-control" type="number" [(ngModel)]="pesoespecifico">
+
+            <! <div class="col-3">
+            <!    <label><!Tipo de producto<!</label>
+            <!   <input disabled class="form-control" type="text" [(ngModel)]="tipo">
+            <! </div>
+            <div class="col-4">
+                <span *ngIf="tipo!='ENVASE'">Peso especifico</span> 
+                <span *ngIf="tipo=='ENVASE'">Peso del envase 1</span>
+                    <div class="input-group" *ngIf="tipo!='ENVASE'">
+                           <input class="form-control boldText" type="number" [(ngModel)]="pesoespecifico">
+                           <div class="input-group-append">
+		                        <span class="input-group-text boldText" id="basic-addon2"> Kg/Lt </span>
+		            </div>
+		    </div>
+		    <div class="input-group" *ngIf="tipo=='ENVASE'">
+                           <input class="form-control boldText" type="number" [(ngModel)]="pesoespecifico">
+                           <div class="input-group-append">
+                         		<span class="input-group-text boldText" id="basic-addon2"> Kg </span>
+		            </div>
+		    </div>
             </div>
         </div>
 
         <div *ngIf="tipo=='CARGA'">
-            <div class="row">
-                <div class="col-6">
-                    <label>Densidad aparente</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo8">
+            <div class="row mt-2">
+                <div class="col-4">
+                    <span>Densidad aparente</span>
+                    <input class="form-control boldText" type="number" [(ngModel)]="ensayo8">
                 </div>
-                <div class="col-6">
-                    <label>Humedad</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo2">
+                <div class="col-4">
+                    <span>Humedad</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo2">
                 </div>
             </div>
-            <div class="row mt-3">
+            <div class="row mt-2">
                 <div class="col-4">
-                    <label>Absorcion de aceite</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo9">
+                    <span>Absorción de aceite</span>
+                    <div class="input-group">
+                            <input class="form-control boldText" type="number" [(ngModel)]="ensayo9">
+		            <div class="input-group-append">
+		                        <span class="input-group-text boldText" id="basic-addon2"> % </span>
+		            </div>
+		     </div>
                 </div>
                 <div class="col-4">
-                    <label>Medición de PH</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo1">
+                    <span>Medición de PH</span>
+                    <input class="form-control boldText" type="number" [(ngModel)]="ensayo3">
                 </div>
                 <div class="col-4">
-                    <label>Color</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo5">
+                    <span>Color</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo5">
                 </div>
             </div>
-            <div class="row mt-3">
+            <div class="row mt-2">
                 <div class="col-4">
-                    <label>Granulometría a)</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo7">
+                    <span>Granulometría 1</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo7">
                 </div>
                 <div class="col-4">
-                    <label>Granulometría b)</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo6">
+                    <span>Granulometría 2</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo6">
                 </div>
                 <div class="col-4">
-                    <label>Granulometría c)</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo4">
+                    <span>Granulometría 3</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo4">
                 </div>
             </div>
         </div>
 
         <div *ngIf="tipo=='ENVASE'">
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-4">
-                    <label>Peso del envase</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo1">
+                    <span>Peso del envase 2</span>
+                    <div class=" input-group">
+                    <input class="form-control boldText" type="number" [(ngModel)]="ensayo1">
+                           <div class="input-group-append">
+		                        <span class="input-group-text boldText" id="basic-addon2"> Kg </span>
+		            </div>
+		     </div>
                 </div>
                 <div class="col-4">
-                    <label>Cierre y hermeticidad</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo2">
+                    <span>Cierre y hermeticidad</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo2">
                 </div>
                 <div class="col-4">
-                    <label>Impresion</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo6">
+                    <span>Impresión</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo6">
                 </div>
             </div>
-            <div class="row mt-3">
+            <div class="row mt-2">
                 <div class="col-4">
-                    <label>Resistencia del material</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo3">
+                    <span>Resistencia del material</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo3">
                 </div>
                 <div class="col-4">
-                    <label>Estado del material</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo4">
+                    <span>Estado del material</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo4">
                 </div>
                 <div class="col-4">
-                    <label>Costura</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo5">
+                    <span>Costura</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo5">
                 </div>
             </div>
         </div>
 
-        <div *ngIf="tipo=='MATERIAL'">
-            <div class="row">
+        <div *ngIf="tipo=='MAT. AUXILIAR'">
+            <div class="row mt-2">
                 <div class="col-4">
-                    <label>Viscosidad</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo1">
+                    <span>Viscosidad</span>
+                    <input class="form-control boldText" type="number" [(ngModel)]="ensayo1">
                 </div>
                 <div class="col-4">
-                    <label>Color</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo5">
+                    <span>Spindle</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo7">
+                </div>
+            </div>
+            <div class="row mt-2">                
+                <div class="col-4">
+                    <span>Contenido de sólidos</span>
+                    <div class=" input-group">
+                            <input class="form-control boldText" type="number" [(ngModel)]="ensayo9">
+                            <div class="input-group-append">
+		                        <span class="input-group-text boldText" id="basic-addon2"> % </span>
+		            </div>
+		    </div>
                 </div>
                 <div class="col-4">
-                    <label>Spindle</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo7">
+                    <span>Color</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo5">
+                </div>
+	    </div>
+            <div class="row mt-2">
+                <div class="col-4">
+                    <span>Otros 1</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo3">
+                </div>
+                <div class="col-4">
+                    <span>Otros 2</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo4">
+                </div>
+                <div class="col-4">
+                    <span>Otros 3</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo6">
                 </div>
             </div>
         </div>
 
         <div *ngIf="tipo=='PIGMENTO'">
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-4">
-                    <label>Humedad</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo2">
+                    <span>Densidad aparente</span>
+                    <input class="form-control boldText" type="number" [(ngModel)]="ensayo8">
                 </div>
-                <div class="col-4">
-                    <label>Medicion de PH</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo3">
-                </div>
-                <div class="col-4">
-                    <label>Color</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo5">
+                <div class="col-4">              
+                    <span>Humedad</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo2">
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-6">
-                    <label>Absorcion de aceite</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo9">
+            <div class="row mt-2">
+                <div class="col-4">
+                    <span>Absorción de aceite</span>
+                    <div class=" input-group">
+                    <input class="form-control boldText" type="number" [(ngModel)]="ensayo9">
+                    	    <div class="input-group-append">
+		                        <span class="input-group-text boldText" id="basic-addon2">Cps</span>
+		            </div>
+		    </div>
                 </div>
-                <div class="col-6">
-                    <label>Densidad aparente</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo8">
+                <div class="col-4">
+                    <span>Medición de PH</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo3">
+                </div>
+                <div class="col-4">
+                    <span>Color</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo5">
                 </div>
             </div>
-            <div class="row mt-3">
+            <div class="row mt-2">
                 <div class="col-4">
-                    <label>Granulometría a)</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo7">
+                    <span>Granulometría a)</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo7">
                 </div>
                 <div class="col-4">
-                    <label>Granulometría b)</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo6">
+                    <span>Granulometría b)</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo6">
                 </div>
                 <div class="col-4">
-                    <label>Granulometría c)</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo4">
+                    <span>Granulometría c)</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo4">
                 </div>
             </div>
         </div>
 
         <div *ngIf="tipo=='RESINA'">
-            <div class="row">
-                <div class="col-3">
-                    <label>Cont. Solidos</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo9">
+        <div class="row mt-2">
+                <div class="col-4">
+                    <span>Viscosidad</span>
+                    <div class=" input-group">
+		            <input class="form-control boldText" type="number" [(ngModel)]="ensayo1">
+		            <div class="input-group-append">
+		                        <span class="input-group-text boldText" id="basic-addon2">Cps</span>
+		            </div>
+		     </div>
                 </div>
-                <div class="col-3">
-                    <label>Curado</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo3">
+                <div class="col-4">
+                    <span>Spindle</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo7">
                 </div>
-                <div class="col-3">
-                    <label>Color</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo5">
+                
+            </div>
+            <div class="row mt-2">
+                <div class="col-4">
+                    <span>Viscosidad 2</span>
+                    <div class=" input-group">
+                    <input class="form-control boldText" type="number" [(ngModel)]="ensayo8">
+		            <div class="input-group-append">
+		                        <span class="input-group-text boldText" id="basic-addon2">Cps</span>
+		            </div>
+		     </div>                        
                 </div>
-                <div class="col-3">
-                    <label>Otros</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo2">
+                <div class="col-4">
+                    <span>SP de viscosidad 2</span>
+                    	     <input class="form-control boldText" type="text" [(ngModel)]="ensayo6">
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-6">
-                    <label>Viscosidad</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo1">
+            <div class="row mt-2">
+                <div class="col-3">
+                    <span>Contenido de Sólidos</span>
+                    <div class=" input-group">
+                    	     <input class="form-control boldText" type="number" [(ngModel)]="ensayo9">
+                            <div class="input-group-append">
+		                        <span class="input-group-text boldText" id="basic-addon2"> % </span>
+		            </div>
+		    </div>
                 </div>
-                <div class="col-6">
-                    <label>Viscosidad 2</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo8">
+                <div class="col-3">
+                    <span>Curado</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo3">
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-6">
-                    <label>S.P. de viscosidad 1</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo7">
+                <div class="col-3">
+                    <span>Color</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo5">
                 </div>
-                <div class="col-6">
-                    <label>SP de viscosidad 2</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo6">
+                <div class="col-3">
+                    <span>IR</span>
+                    <input class="form-control boldText" type="number" [(ngModel)]="ensayo2">
                 </div>
-            </div>
+            </div>            
         </div>
 
+
+
         <div *ngIf="tipo=='SOLVENTE'">
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-4">
-                    <label>Contenido de agua</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo2">
+                    <span>Viscosidad</span>
+                    <input class="form-control boldText" type="number" [(ngModel)]="ensayo1">
                 </div>
                 <div class="col-4">
-                    <label>Curva de destilación</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo3">
+                    <span>Contenido de agua</span>
+                    <div class=" input-group">
+                            <input class="form-control boldText" type="text" [(ngModel)]="ensayo2">
+                            <div class="input-group-append">
+		                        <span class="input-group-text boldText" id="basic-addon2"> % </span>
+		            </div>
+		     </div>
                 </div>
                 <div class="col-4">
-                    <label>Viscosidad</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo1">
+                    <span>Color</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo5">
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-4">
-                    <label>Color</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo5">
+            <div class="row mt-2">
+                <div class="col-3">
+                    <span>Curva de destilación</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo3">
                 </div>
-                <div class="col-4">
-                    <label>Alcalinidad</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo6">
+                 <div class="col-3">
+                    <span>Acidez</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo4">
                 </div>
-                <div class="col-4">
-                    <label>Olor</label>
-                    <input class="form-control" type="text" [(ngModel)]="ensayo7">
+                <div class="col-3">
+                    <span>Alcalinidad</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo6">
+                </div>
+                <div class="col-3">
+                    <span>Olor</span>
+                    <input class="form-control boldText" type="text" [(ngModel)]="ensayo7">
                 </div>
             </div>
         </div>
 
         <div class="row mt-3">
-            <div class="col-2">
-                <label>aprobado</label>
-                <input class="form-control" type="text" [(ngModel)]="aprobado">
+            <div class="col-12">
+                <div class="float-right">
+                    <span>Resultado</span>
+                    <select class="custom-select boldText" [(ngModel)]="aprobado" id="inputGroupSelect02">
+                        <option value="Aprobado" class="bg-success">APROBADO</option>
+                        <option value="RECHAZADO" class="bg-primary">RECHAZADO</option>
+                    </select>
+                </div>
             </div>
+        </div>
+        <div class="row mt-4">
             <div class="col-10">
                 <div class="float-right">
                     <button class="btn btn-primary mr-2" (click)="cancelar()">
-                        Cancelar operación
+                        Cancelar
                     </button>
                     <button class="btn btn-success" (click)="finalizar()">
-                        Postear todo
+                        Aceptar
                     </button>
                 </div>
             </div>
+        </div>
         </div>
 
     </div>
@@ -281,14 +379,14 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="form-group">
-                            <label for="recipient-name9" class="col-form-label">LOTE:</label>
+                            <label for="recipient-name9" class="col-form-label">Lote Nro.</label>
                             <input (keyup)="buscarP()" [(ngModel)]="idBus" type="number" class="form-control"
                                 id="recipient-name40">
                         </div>
                     </div>
                     <div class="col-8">
                         <div class="form-group">
-                            <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
+                            <label for="recipient-name9" class="col-form-label">Descripción</label>
                             <input (keyup)="buscarP()" [(ngModel)]="termino1" type="text" class="form-control"
                                 id="recipient-name40">
                         </div>
@@ -298,7 +396,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label for="recipient-name010" class="col-form-label">TIPO:</label>
+                            <label for="recipient-name010" class="col-form-label">Tipo de producto</label>
                             <input (keyup)="buscarP()" [(ngModel)]="termino2" type="text" class="form-control"
                                 id="recipient-name01">
                         </div>
@@ -308,7 +406,7 @@
                 <div style="overflow: scroll; height: 200px; width: 100%;">
                     <table class="table table-hover">
                         <tr>
-                            <th>CODMP</th>
+                            <th>CODIGO</th>
                             <th>DESCRIPCIÓN</th>
                             <th>TIPO</th>
                             <th>LOTE</th>

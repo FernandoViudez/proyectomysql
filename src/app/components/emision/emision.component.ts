@@ -26,7 +26,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
   idPlani: number;
   arrayCantidadesRestadas = [];
   arrayCodMp = [];
-  fechaDelDia: Date = new Date();
+  fechaDelDia: string;
 
   //PRODTERM
 
@@ -80,7 +80,14 @@ export class EmisionComponent implements OnInit, OnDestroy {
   pendientes = false;
   arrayB = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    let anio=new Date().getFullYear();
+    let mes=new Date().getMonth()+1;
+    let dia=new Date().getDate();
+
+    this.fechaDelDia=`${dia}/${mes}/${anio}`;
+
+  }
 
   ngOnInit(): void {
     this.generarProximoBatch();
@@ -174,6 +181,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
       //RESETEAMOS LOS INDICES DE PROCONJ
       for (let item of this.arrayConj) {
         item.indice = 0;
+        item.indice1 = 0;
       }
       for (let item of this.arrayAsoc) {
         item.ind = 0;
@@ -242,10 +250,12 @@ export class EmisionComponent implements OnInit, OnDestroy {
   calcular(cantidad, index) {
     this.totCantidadEnvasar = 0;
 
-    this.arrayConj[index].indice = cantidad;
+    this.arrayConj[index].indice1 = cantidad;
     for (let item of this.arrayConj) {
-      this.totCantidadEnvasar += Number(item.indice);
+      
+      this.totCantidadEnvasar += Number(item.indice1);
     }
+    console.log("totcantenv", this.totCantidadEnvasar);
   }
 
   calcularFaltantes() {
@@ -288,7 +298,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
   finalizar() {
     Swal.fire({
       title: "¿ Seguro ?",
-      text: "¿ Está seguro que quiere conecretar su emisión del producto ?",
+      text: "¿ Está seguro que quiere emitir el Batch Ticket ?",
       showCancelButton: true,
       cancelButtonColor: "red",
       cancelButtonText: "NO",
@@ -326,7 +336,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
           this.imprimir();
           Swal.fire({
             title: "¡ Genial !",
-            text: "¡ Has generado la emisión correctamente !",
+            text: "¡ Se ha emitido el ticket correctamente !",
             icon: "success"
           })
           window.location.reload();
@@ -346,39 +356,26 @@ export class EmisionComponent implements OnInit, OnDestroy {
     window.print();
   }
 
-  guardarEnvases(input, codmp) {
+  guardarEnvases(input, codmp, envasado) {
 
-    // ########### ALTERNATIVA 1 ###########
-    // let envases = input / envasado; //CALCULAR ENVASES
+    if(!Number.isInteger(input / envasado )){
+      return Swal.fire({
+        title:"Error!",
+        text:"CORREGIR CANTIDAD A ENVASAR!!!",
+        icon:"error",
+        confirmButtonColor:"green",
+        confirmButtonText:"Aceptar",
+        allowEnterKey:false,
+        allowEscapeKey:false,
+        allowOutsideClick: false
+        
+      })
+    }
 
-
-    // for (let item of this.arrayCodMp) { //RECORRER ARREGLO QUE LLEGA Y VALIDAR SI ESTAS MODIFICANDO ENVASES
-    //   if (item.codmp) { //PREGUNTO DOS VECES POR SI NO HAY NADA EN EL ARREGLO Y ASI EVITAR ERROR
-    //     if (item.codmp == codmp) {
-    //       item.envases = envases;
-    //       return;
-    //     }
-    //   }
-    // }
-
-    // let item = {
-    //   codmp,
-    //   descripcion,
-    //   envases,
-    //   cobarras,
-    //   envasado: Number(envasado)
-    // }
-
-    // this.arrayCodMp.push(item);
-
-    //##########ALTERNATIVA 2##############
-    //RECORRO ARRAYCONJ
     for (let item of this.arrayConj) { //RECORRER ARREGLO QUE LLEGA Y VALIDAR SI ESTAS MODIFICANDO ENVASES
       if (item.codmp == codmp) {
-        console.log(item);
         let envases = input / item.envasado;
           item.indice = envases;
-          console.log(this.arrayConj);
           return;
         }
     }

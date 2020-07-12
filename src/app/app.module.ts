@@ -6,10 +6,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-//MODULES
-import { ControlModule } from './components/control/control.module';
-import { ControlptModule } from './components/controlpt/controlpt.module';
-
 //COMPONENTS
 import { AltampComponent } from './components/altamp/altamp.component';
 import { ListformComponent } from './components/listform/listform.component';
@@ -28,6 +24,10 @@ import { EmisionComponent } from './components/emision/emision.component';
 import { LoggedComponent } from './components/logged/logged.component';
 import { ListmpComponent } from './components/listmp/listmp.component';
 import { AltaformComponent } from './components/altaform/altaform.component';
+import { NumeralPipe } from './pipes/numeral.pipe';
+import { AnulacionComponent } from './components/anulacion/anulacion.component';
+import { ControlptComponent } from './components/controlpt/controlpt.component';
+import { ControlComponent } from './components/control/control.component';
 
 
 
@@ -50,20 +50,19 @@ import { AltaformComponent } from './components/altaform/altaform.component';
     CorrecComponent,
     PlanifiComponent,
     EmisionComponent,
+    ControlptComponent,
+    ControlComponent,
     
     LoggedComponent,
     DatePipe,
+    NumeralPipe,
+    AnulacionComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     DragDropModule,
-    //MODULOS ESPECÍFICOS
-
-    ControlModule,
-    ControlptModule,
-
     //CARGAMOS TODAS LAS RUTAS
     AppRoutingModule,
 

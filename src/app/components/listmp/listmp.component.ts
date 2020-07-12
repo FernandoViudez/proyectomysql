@@ -47,10 +47,10 @@ export class ListmpComponent implements OnInit {
   constructor(private servicioMp: MatprimService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.servicioMp.traer().
-      subscribe((data: any) => {
-        this.array = data.response;
-      })
+  }
+
+  imprimirBusqueda(){
+    window.print();
   }
 
   resetear() {

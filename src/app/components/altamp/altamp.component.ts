@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { FormService } from 'src/app/services/form.service';
 import { MatprimService } from 'src/app/services/matprim.service';
 import { AltaMp } from './altamp.interface';
+import { AltampService } from '../../services/altamp.service';
+import { Subscription } from 'rxjs';
 declare let alertify: any;
 
 @Component({
@@ -11,7 +13,9 @@ declare let alertify: any;
   templateUrl: './altamp.component.html',
   styles: []
 })
-export class AltampComponent implements OnInit {
+export class AltampComponent implements OnInit, OnDestroy {
+
+  mp: Subscription;
 
   id: number;
   descripcion: string;
@@ -43,10 +47,12 @@ export class AltampComponent implements OnInit {
   termino1: number;
   termino2: string;
   arrayBusqueda = [];
+  fechaultimarecepcion: string;
 
   constructor(private http: HttpClient,
             private service: FormService,
-            private servicioMp: MatprimService) { }
+            private servicioMp: MatprimService,
+            private altampService: AltampService) { }
 
   ngOnInit(): void {
   }
@@ -73,7 +79,7 @@ export class AltampComponent implements OnInit {
         let dato : AltaMp = data.response;
         Swal.fire({
           title: "M.P. existente",
-          text: "¿Desea editar la materia prima?",
+          text: "¿ Desea editar la materia prima ?",
           cancelButtonColor: "red",
           confirmButtonColor: "green",
           confirmButtonText: "SI",
@@ -82,6 +88,7 @@ export class AltampComponent implements OnInit {
           icon: "question",
         }).then((res) => {
           if (res.value) {
+            this.fechaultimarecepcion = dato.fechaultimarecepcion;
             this.descripcion = dato.descripcion;
             this.tipo = dato.tipo;
             this.ubicacion = dato.ubicacion;
@@ -121,7 +128,7 @@ export class AltampComponent implements OnInit {
           let dato : AltaMp = err.error.response;
           Swal.fire({
             title: "M.P. existente",
-            text: "¿Desea editar la materia prima?",
+            text: "¿ Desea editar la materia prima ?",
             cancelButtonColor: "red",
             confirmButtonColor: "green",
             confirmButtonText: "SI",
@@ -130,7 +137,9 @@ export class AltampComponent implements OnInit {
             icon: "question",
           }).then((res) => {
             if (res.value) {
+              this.fechaultimarecepcion = dato.fechaultimarecepcion;
               this.descripcion = dato.descripcion;
+
               this.tipo = dato.tipo;
               this.ubicacion = dato.ubicacion;
               this.riesgo = dato.riesgo;
@@ -169,20 +178,20 @@ export class AltampComponent implements OnInit {
 
   validarIdProd() {
     if (this.codpt == 0) {
-      return alertify.success("¡CODIGO DE SEMIELABORADO CORRECTO!")
+      return alertify.success("¡ CODIGO DE SEMIELABORADO CORRECTO !")
     }
     if (this.codpt < 70000 || this.codpt > 90000) {
       this.codpt = null
-      return alertify.error("EL CODIGO DE SEMIELABORADO ES MENOR A 70000 O MAYOR A 90000")
+      return alertify.error("EL CODIGO DE SEMIELABORADO DEBE SER ENTRE 70000 Y 90000")
     }
     this.service.validarIdProd(this.codpt).
       subscribe((data: any) => {
         if (data.desc) {
           this.descripcion1 = data.desc;
-          return alertify.success("¡CODIGO DE SEMIELABORADO CORRECTO!")
+          return alertify.success("¡ CODIGO DE SEMIELABORADO CORRECTO !")
         } else {
           this.codpt = null
-          return alertify.error("¡CODIGO DE SEMIELABORADO NO EXISTE!!")
+          return alertify.error("¡ NO EXISTE ESE CODIGO DE SEMIELABORADO !")
         }
       })
   }
@@ -192,26 +201,26 @@ export class AltampComponent implements OnInit {
       this.resina = 0;
       this.pigmento = 0;
       this.solvente = 100;
-      return alertify.error("NO SE PUEDE CARGAR RESINA Y PIGMENTO AL MISMO TIEMPO!!")
+      return alertify.error("¡ NO SE PUEDE CARGAR RESINA Y PIGMENTO AL MISMO TIEMPO !")
     }
     this.solvente = 100 - this.resina - this.pigmento;
   }
 
   finalizar() {
     if (this.id % 2 != 0 || this.id % 5 != 0 || this.id == null) {
-      return alertify.error("EL CODIGO DE MATERIA PRIMA ES INVÁLIDO!!")
+      return alertify.error("¡ EL CODIGO DE MATERIA PRIMA ES INVÁLIDO !")
     }
     if (this.descripcion == null) {
-      return alertify.error("LA DESCRIPCIÓN ES INVÁLIDA!!")
+      return alertify.error("¡ LA DESCRIPCIÓN ES INVÁLIDA !")
     }
     if (this.tipo == null) {
-      return alertify.error("LA TIPO DE PRODUCTO ES INVÁLIDO!!")
+      return alertify.error("¡ LA TIPO DE PRODUCTO ES INVÁLIDO !")
     }
     if (this.unidadmedidacompra == null) {
-      return alertify.error("INGRESE UNA MEDIDA CORRECTA!!")
+      return alertify.error("¡ INGRESE UNIDAD DE MEDIDA CORRECTA !")
     }
     if (this.resina != 0 && this.pigmento != 0) {
-      return alertify.error("NO SE PUEDE CARGAR RESINA Y PIGMENTO AL MISMO TIEMPO!!")
+      return alertify.error("¡ NO SE PUEDE CARGAR RESINA Y PIGMENTO AL MISMO TIEMPO !")
     }
     if (!this.stockminimo) {
       this.stockminimo = 0;
@@ -232,7 +241,7 @@ export class AltampComponent implements OnInit {
       this.pigmento = 0;
     }
     if (this.descripcion.trim() == "") {
-      return alertify.error("LA DESCRIPCION ES INVÁLIDA")
+      return alertify.error("¡ LA DESCRIPCION ES INVÁLIDA !")
     }
 
     this.condaprob1 = this.condaprob1 ? this.condaprob1.toUpperCase() : this.condaprob1;
@@ -243,7 +252,6 @@ export class AltampComponent implements OnInit {
     this.info2 = this.info2 ? this.info2.toUpperCase() : this.info2;
     this.info3 = this.info3 ? this.info3.toUpperCase() : this.info3;
     this.proteccion = this.proteccion ? this.proteccion.toUpperCase() : this.proteccion;
-
     let data = {
       id: this.id, descripcion: this.descripcion.toUpperCase(), tipo: this.tipo, riesgo: this.riesgo, proteccion: this.proteccion, precio: this.precio, pesoespecifico: this.pesoespecifico, ubicacion: this.ubicacion,
       solidosppp: this.ppp, solidosppv: this.ppv, resina: this.resina, pigmento: this.pigmento, solvente: this.solvente, stock: this.stock, stockminimo: this.stockminimo,
@@ -252,22 +260,21 @@ export class AltampComponent implements OnInit {
     }
     Swal.showLoading();
     if (!this.editar) {
-      this.http.post("http://localhost:8080/api/postMp", data).
-        subscribe((data: any) => {
+      this.mp = this.altampService.postMp(data).subscribe((data: any) => {
           Swal.close();
           this.resetear();
           this.editar = false;
-          return alertify.success("Materia Prima cargada correctamente!");
+          return alertify.success("¡ Materia Prima cargada correctamente !");
         }, (err) => {
           console.log(err);
         })
     } else {
-      this.http.put("http://localhost:8080/api/putMp", data).
+      this.mp = this.altampService.putMp(data).
         subscribe((data: any) => {
           Swal.close();
           this.resetear();
           this.editar = false;
-          return alertify.success("MATERIA PRIMA CARGADA CORRECTAMENTE");
+          return alertify.success("¡ Materia Prima cargada correctamente !");
         }, (err) => {
           console.log(err);
         })
@@ -277,7 +284,7 @@ export class AltampComponent implements OnInit {
   cancelar() {
     Swal.fire({
       title: "Cancelar Operación",
-      text: "¿Está seguro que desea cancelar la operación?",
+      text: "¿ Está seguro que desea cancelar la operación ?",
       cancelButtonColor: "red",
       confirmButtonColor: "green",
       confirmButtonText: "SI",
@@ -301,27 +308,39 @@ export class AltampComponent implements OnInit {
     this.pesoespecifico = 0; this.ppp = 0; this.ppv = 0; this.resina = 0; this.pigmento = 0; this.solvente = 0;
     this.stock = 0; this.stockminimo = datos; this.unidadmedidacompra = datos; this.codpt = datos; this.condaprob1 = datos; this.condaprob2 = datos;
     this.condaprob3 = datos; this.condaprob4 = datos; this.info1 = datos; this.info2 = datos; this.info3 = datos; this.cobarras = datos;
+    this.termino1=null;
+    this.termino2=null;
+    this.arrayBusqueda = [];
     let id = document.getElementById("id");
     id.removeAttribute("disabled");
+  }
+
+  resetearBusqueda(){
+    this.termino1=null;
+    this.termino2=null;
+    this.arrayBusqueda = [];
   }
 
   validarSolidos() {
     if (this.ppp > 100) {
       this.ppp = 0;
-      return alertify.error("SOLIDOS PPP NO PUEDE SER MAYOR A 100");
+      return alertify.error("¡ SOLIDOS PPP NO PUEDE SER MAYOR A 100 !");
     }
     if (this.ppv > 100) {
       this.ppv = 0;
-      return alertify.error("SOLIDOS PPV NO PUEDE SER MAYOR A 100");
+      return alertify.error("¡ SOLIDOS PPV NO PUEDE SER MAYOR A 100 !");
     }
     if (this.resina > 100) {
       this.resina = 0;
-      return alertify.error("% RESINA NO PUEDE SER MAYOR A 100");
+      return alertify.error("¡ % RESINA NO PUEDE SER MAYOR A 100 !");
     }
     if (this.pigmento > 100) {
       this.pigmento = 0;
-      return alertify.error("% PIGMENTO PPV NO PUEDE SER MAYOR A 100");
+      return alertify.error("¡ % PIGMENTO PPV NO PUEDE SER MAYOR A 100 !");
     }
+  }
+
+  ngOnDestroy(){
   }
 
 }

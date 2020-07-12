@@ -10,7 +10,7 @@ declare let alertify: any;
 export class ListformComponent implements OnInit {
 
   idprod: string;
-  descripcion1:string;
+  descripcion1: string;
   tintoformoalt: string;
   array = [];
   sumaTot: number;
@@ -21,16 +21,15 @@ export class ListformComponent implements OnInit {
   pigmento = 0;
   solvente = 0;
   precio = 0;
-  idbus:number;
-  termino1:string;
-  termino2:string;
-  termino3:string;
-  arrayBusqueda=[];
+  idbus: number;
+  termino1: string;
+  termino2: string;
+  termino3: string;
+  arrayBusqueda = [];
 
   constructor(private service: FormService) { }
 
   ngOnInit(): void {
-    this.buscar();
   }
 
 
@@ -49,7 +48,7 @@ export class ListformComponent implements OnInit {
         return;
       }
 
-      if(this.idprod && this.tintoformoalt){
+      if (this.idprod && this.tintoformoalt) {
         for (let item of data.response) {
           this.sumaTot += item.cantidad;
         }
@@ -68,25 +67,27 @@ export class ListformComponent implements OnInit {
     })
   }
 
-  validarId(){
+  validarId() {
     this.service.validarIdProd(this.idprod).
-    subscribe((data:any)=>{
-      if (data.desc) {
-        alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE!!")
+      subscribe((data: any) => {
+        alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !")
         this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
-      } else {
-        alertify.error("NO EXISTE ESE PRODUCTO TERMINADO!!")
-        return this.resetear1();
-      }
-    },(err)=>{
-      console.log(err);
-    })
+      }, (err) => {
+        if (err.error.response) {
+          let data=err.error.response;
+          alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !")
+          this.descripcion1 = `${data.descripcion}  ${data.color}  ${data.componente}`;
+        } else {
+          alertify.error("NO EXISTE ESTE PRODUCTO TERMINADO !")
+          return this.resetear1();
+        }
+      })
   }
 
   resetear() {
-    this.termino1=null;
-    this.termino2=null;
-    this.termino3=null;
+    this.termino1 = null;
+    this.termino2 = null;
+    this.termino3 = null;
     this.ngOnInit()
   }
 
@@ -98,29 +99,36 @@ export class ListformComponent implements OnInit {
     this.solidosppv = null;
     this.resina = null;
     this.pigmento = null;
+    this.solvente = null;
     this.precio = null;
     this.descripcion1 = null;
+
   }
 
-  buscarP(){
-    this.service.buscarP(this.idbus, this.termino1,this.termino2,this.termino3).
-    subscribe((data:any)=>{
-      this.arrayBusqueda=data;
-    },(err)=>{
-      console.log(err);
-    })
+  buscarP() {
+    this.service.buscarP(this.idbus, this.termino1, this.termino2, this.termino3).
+      subscribe((data: any) => {
+        this.arrayBusqueda = data;
+      }, (err) => {
+        console.log(err);
+      })
   }
 
-  seleccionarIdPt(id){
-    this.idprod=id;
+  seleccionarIdPt(id) {
+    this.idprod = id;
     this.validarId()
   }
 
-  resetearBusqueda(){
-    this.arrayBusqueda=[];
+  resetearBusqueda() {
+    this.arrayBusqueda = [];
+    this.array=[];
     this.resetear1();
     this.resetear();
     this.ngOnInit()
+  }
+
+  imprimirBusqueda(){
+    window.print();
   }
 
 }

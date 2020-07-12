@@ -9,11 +9,11 @@
         <div class="alert alert-info">
             <div class="row">
                 <div class="col-6">
-                    <input class="form-control" type="text" placeholder="Ingrese su nombre de usuario" [(ngModel)]="username">
+                    <input (keyup.enter)="login()" class="form-control" type="text" placeholder="Ingrese su nombre de usuario" [(ngModel)]="username">
                 </div>
                 <div class="col-6">
                     <div class="input-group mb-3">
-                        <input class="form-control" [type]="inputType" [(ngModel)]="password"
+                        <input (keyup.enter)="login()" class="form-control" [type]="inputType" [(ngModel)]="password"
                         placeholder="Ingrese su contraseña" aria-label="Recipient's password" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <span class="input-group-text" id="basic-addon2">
@@ -44,7 +44,11 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-outline-success" (click)="login()">Entrar al sistema</button>
+            <div class="row">
+                <div class="col-12">
+                    <button style="float: right;" class="btn btn-success" (click)="login()">Entrar al sistema</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

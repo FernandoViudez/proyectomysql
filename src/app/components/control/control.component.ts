@@ -45,7 +45,7 @@ export class ControlComponent implements OnInit {
       this.arrayCt = data.response;
     }, (err) => {
       console.log(err);
-      alertify.error("NO EXISTEN FILAS CON ESOS PARÁMETROS");
+      alertify.error("NO EXISTE ESE NUMERO DE LOTE !");
     })
   }
 
@@ -59,12 +59,10 @@ export class ControlComponent implements OnInit {
       subscribe((data: any) => {
         let dato=data.response;
 
-        let fecha= dato.fecha ? dato.fecha.split("T")[0] : dato.fecha;
-
         this.id=dato.codigoMp;
         this.descripcion = dato.descripcion;
         this.pesoespecifico = dato.peso;
-        this.fecha = fecha;
+        this.fecha = dato.fecha ? dato.fecha.split("T")[0] : dato.fecha;
         this.aprobado = dato.aprobado;
         this.ensayo1 = dato.ensayo1;
         this.ensayo2 = dato.ensayo2;
@@ -104,12 +102,20 @@ export class ControlComponent implements OnInit {
     //VALIDACIONES
     //.....
     //UNA VEZ PASADAS LAS VALIDACIONES
-
+    if (!this.aprobado) {
+      return alertify.error("SE DEBE COMPLETAR EL RESULTADO !");
+    } 
+    
+    if (!this.fecha) {
+      return alertify.error("HAY QUE CARGAR FECHA DE APROBACION !");
+    }
+    	 
     let data = {
       id: this.id,
       numeroLote: this.numeroLote,
       descripcion: this.descripcion,
       pesoespecifico: this.pesoespecifico,
+      fecha: this.fecha,
       ensayo1: this.ensayo1,
       ensayo2: this.ensayo2,
       ensayo3: this.ensayo3,
@@ -125,7 +131,7 @@ export class ControlComponent implements OnInit {
     this.servicioControl.postearData(data).subscribe
         ((data: any) => {
           this.resetearInputs();
-          alertify.success("HAS EDITADO EL CONTROL DE CALIDAD CORRECTAMENTE!")
+          alertify.success(" SE ACTUALIZARON LOS RESULTADOS CORRECTAMENTE !")
         }, (err) => {
           console.log(err);
           alertify.error("HA OCURRIDO UN ERROR EN EL SERVIDOR")
@@ -136,7 +142,7 @@ export class ControlComponent implements OnInit {
   cancelar() {
     Swal.fire({
       title: "¿Seguro?",
-      text: "¿Está seguro que desea cancelar la operacón?",
+      text: "¿ Está seguro que desea cancelar la operación ?",
       showCancelButton: true,
       cancelButtonColor: "red",
       confirmButtonColor: "green",
@@ -148,6 +154,30 @@ export class ControlComponent implements OnInit {
       } else {
         return;
       }
+    })
+  }
+
+  onLoteChange(){
+    this.servicioControl.traerporLote(this.numeroLote, "calidadmp", "numeroLote")
+    .subscribe((item:any)=>{
+      this.id=item.codigoMp;
+      this.descripcion = item.descripcion;
+      this.pesoespecifico = item.peso;
+      this.fecha = item.fecha ? item.fecha.split("T")[0] : item.fecha;
+      this.aprobado = item.aprobado;
+      this.ensayo1 = item.ensayo1;
+      this.ensayo2 = item.ensayo2;
+      this.ensayo3 = item.ensayo3;
+      this.ensayo4 = item.ensayo4;
+      this.ensayo5 = item.ensayo5;
+      this.ensayo6 = item.ensayo6;
+      this.ensayo7 = item.ensayo7;
+      this.ensayo8 = item.ensayo8;
+      this.ensayo9 = item.ensayo9;
+      this.tipo = item.tipoProd;
+    }, (err)=>{
+      this.resetearInputs();
+      alertify.error(err.error.message)
     })
   }
 

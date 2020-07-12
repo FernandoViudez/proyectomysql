@@ -14,11 +14,14 @@ import { EmisionComponent } from './components/emision/emision.component';
 import { LoggedComponent } from './components/logged/logged.component';
 import { ListmpComponent } from './components/listmp/listmp.component';
 import { AltaformComponent } from './components/altaform/altaform.component';
+import { AnulacionComponent } from './components/anulacion/anulacion.component';
+import { ControlptComponent } from './components/controlpt/controlpt.component';
+import { ControlComponent } from './components/control/control.component';
 
 
 
 const routes: Routes = [
-  
+
   {
     path: "inicio", loadChildren: () => import("./components/inicio/inicio.module").then(m => m.InicioModule)
   },
@@ -42,8 +45,9 @@ const routes: Routes = [
   { path: "correc", canActivate: [UserGuard], component: CorrecComponent },
   { path: "planifi", canActivate: [UserGuard], component: PlanifiComponent },
   { path: "ordenp", canActivate: [UserGuard], component: EmisionComponent },
-  { path: "control", canActivate: [UserGuard], loadChildren: () => import('./components/control/control.module').then(m => m.ControlModule) },
-  { path: "controlpt", canActivate: [UserGuard], loadChildren: () => import('./components/controlpt/controlpt.module').then(m => m.ControlptModule) },
+  { path: "anulacion", canActivate: [UserGuard], component: AnulacionComponent },
+  { path: "controlpt", canActivate: [UserGuard], component: ControlptComponent },
+  { path: "control", canActivate: [UserGuard], component: ControlComponent },
 
 
   { path: "", redirectTo: "inicio", pathMatch: "full" },

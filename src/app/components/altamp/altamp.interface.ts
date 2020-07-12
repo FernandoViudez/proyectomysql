@@ -23,4 +23,5 @@ export interface AltaMp {
     info2 : string,
     info3 : string,
     cobarras :number,
+    fechaultimarecepcion: string;
 }

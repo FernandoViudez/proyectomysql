@@ -19,18 +19,18 @@ export class CorrecComponent implements OnInit {
   stock: number;
   ubicacion: string;
   motivo: string;
-  termino1:string;
-  termino2:string;
-  arrayBusqueda=[];
+  termino1: string;
+  termino2: string;
+  arrayBusqueda = [];
 
-  constructor(private http: HttpClient, 
-              private serviceMp: MatprimService) { }
+  constructor(private http: HttpClient,
+    private serviceMp: MatprimService) { }
 
   ngOnInit(): void {
   }
 
   buscarMp() {
-    this.serviceMp.buscar(this.termino1, this.termino2 ).
+    this.serviceMp.buscar(this.termino1, this.termino2).
       subscribe((data: any) => {
         this.arrayBusqueda = data.response;
       }, (err) => {
@@ -65,6 +65,12 @@ export class CorrecComponent implements OnInit {
         let datos = data.response;
         this.descripcion = datos.descripcion;
         this.ubicacion = datos.ubicacion;
+        if (this.ubicacion == "SI") { // uso campo ubicacion para poner si esta obsoleto o no la MP
+          setTimeout(() => {
+            this.resetear();
+            return alertify.error("MATERIA PRIMA OBSOLETA !");
+          }, 2000)
+        }
         this.stock = datos.stock;
       }, (err) => {
         console.log(err);
