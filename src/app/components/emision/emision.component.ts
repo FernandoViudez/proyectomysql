@@ -80,12 +80,12 @@ export class EmisionComponent implements OnInit, OnDestroy {
   pendientes = false;
   arrayB = [];
 
-  constructor(private http: HttpClient) { 
-    let anio=new Date().getFullYear();
-    let mes=new Date().getMonth()+1;
-    let dia=new Date().getDate();
+  constructor(private http: HttpClient) {
+    let anio = new Date().getFullYear();
+    let mes = new Date().getMonth() + 1;
+    let dia = new Date().getDate();
 
-    this.fechaDelDia=`${dia}/${mes}/${anio}`;
+    this.fechaDelDia = `${dia}/${mes}/${anio}`;
 
   }
 
@@ -252,7 +252,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
     this.arrayConj[index].indice1 = cantidad;
     for (let item of this.arrayConj) {
-      
+
       this.totCantidadEnvasar += Number(item.indice1);
     }
     console.log("totcantenv", this.totCantidadEnvasar);
@@ -261,7 +261,8 @@ export class EmisionComponent implements OnInit, OnDestroy {
   calcularFaltantes() {
     this.arrayCantidadesRestadas = [];
     let operacion = 0;
-    for (let item of this.arrayAsoc) {
+
+    for (let [index, item] of this.arrayAsoc.entries()) {
       if (item.mpi != "I") {
         if (this.unidadmedida == "LT") {
           operacion = (item.cantidad * this.cantidadPlani * this.pesoespecifico) / 100;
@@ -269,8 +270,20 @@ export class EmisionComponent implements OnInit, OnDestroy {
           operacion = (item.cantidad * this.cantidadPlani) / 100;
         }
 
-        let cantidadCalculada = numeral(operacion).format('0.000');
-        this.arrayCantidadesRestadas.push(cantidadCalculada);
+        let cantidadCalculada = numeral(operacion).format('0.00');
+
+        if(this.arrayCantidadesRestadas.find(cant=>cant.id==item.codmp || item.codpt )){
+          this.arrayCantidadesRestadas.map(cant=>{
+            if(cant.id==item.codmp || cant.id==item.codpt ){
+              let tot= Number(cant.cantidadCalculada)  + Number(cantidadCalculada);
+              cant.cantidadCalculada = numeral(tot).format('0.00');
+              cant.cantidadCalculada.toString(); 
+            }
+          })
+        }else{
+          this.arrayCantidadesRestadas.push({ cantidadCalculada, id: item.codmp ? item.codmp : item.codpt, tabla: item.codmp ? 'promatpri' : 'prodterm' });
+        }
+      
 
         for (let item2 of this.arrayMat) {
           if (item.codmp == item2.id) {
@@ -358,44 +371,48 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
   guardarEnvases(input, codmp, envasado) {
 
-    if(!Number.isInteger(input / envasado )){
+    if (!Number.isInteger(input / envasado)) {
       return Swal.fire({
-        title:"Error!",
-        text:"CORREGIR CANTIDAD A ENVASAR!!!",
-        icon:"error",
-        confirmButtonColor:"green",
-        confirmButtonText:"Aceptar",
-        allowEnterKey:false,
-        allowEscapeKey:false,
+        title: "Error!",
+        text: "CORREGIR CANTIDAD A ENVASAR!!!",
+        icon: "error",
+        confirmButtonColor: "green",
+        confirmButtonText: "Aceptar",
+        allowEnterKey: false,
+        allowEscapeKey: false,
         allowOutsideClick: false
-        
+
       })
     }
 
     for (let item of this.arrayConj) { //RECORRER ARREGLO QUE LLEGA Y VALIDAR SI ESTAS MODIFICANDO ENVASES
       if (item.codmp == codmp) {
         let envases = input / item.envasado;
-          item.indice = envases;
-          return;
-        }
+        item.indice = envases;
+        return;
+      }
     }
-    
+
   }
 
   listarPendientes() {
     this.pendientes = true;
     this.http.get("http://localhost:8080/api/traerPendientes").
       subscribe((data: any) => {
-        this.arrayB=[];
-        for(let item of data.response){
-          if(!item.lote){
+        this.arrayB = [];
+        for (let item of data.response) {
+          if (!item.lote) {
             this.arrayB.push(item);
           }
         }
-        
+
       }, (err) => {
         console.log(err);
       })
   }
 
 }
+
+
+
+

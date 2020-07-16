@@ -21,7 +21,7 @@ export class RecepmpComponent implements OnInit {
   nroPart: string;
   unidadRecibo: string;
   cantidad: number;
-  cantEtiquetas: string;
+  cantEtiquetas: number;
   numeroLoteInt = 0;
   usuario = "MARCOS";
   fecha: string;
@@ -197,7 +197,7 @@ export class RecepmpComponent implements OnInit {
   omit_number(event) {
     let key;
     key = event.keyCode;  //         key = event.charCode;  (Both can be used)   key == 45  // allows minus(-)
-    return ((key > 47 && key < 58) || key == 46);
+    return ((key > 47 && key < 58) || key == 46 );
   }
 
 }

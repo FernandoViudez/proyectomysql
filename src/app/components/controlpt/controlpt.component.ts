@@ -186,6 +186,12 @@ export class ControlptComponent implements OnInit {
         //TRAEMOS DATA DEL CONTROL
         this.codpt = item.codpt;
         this.descripcion = item.descripcion;
+        if (this.descripcion == "ANULADO") {  
+          setTimeout(() => {
+            this.resetearInputs();
+            return alertify.error("BATCH TICKET ANULADO !");
+          }, 2000) 
+        }
         this.pesoespecifico = item.pesoespecifico;
         this.fecha = item.fecha ? item.fecha.split("T")[0] : item.fecha;
         this.viscosidadcps = item.viscosidadcps;

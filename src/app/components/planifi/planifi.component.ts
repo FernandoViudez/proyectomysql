@@ -203,7 +203,7 @@ export class PlanifiComponent implements OnInit {
     if (!this.codpt) {
       return alertify.error("Código del producto incorrecto");
     }
-    if (!this.cantidad) {
+    if (!this.cantidad || this.cantidad < 0) {
       return alertify.error("La cantidad es incorrecta");
     }
     if (!this.formaenv) {
@@ -417,4 +417,11 @@ export class PlanifiComponent implements OnInit {
         console.log(err);
       })
   }
+
+  omit_number(event) {
+    let key;
+    key = event.keyCode;  //         key = event.charCode;  (Both can be used)   key == 45  // allows minus(-)
+    return ((key > 47 && key < 58) || key == 46);
+  }
+
 }

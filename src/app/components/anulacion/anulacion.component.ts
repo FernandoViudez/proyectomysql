@@ -10,20 +10,27 @@ declare let alertify:any;
 })
 export class AnulacionComponent implements OnInit {
 
+  codpt: number;
+  descripcion: string;
+
   batch: number;
+  url = "http://localhost:8080/api/";
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-  }
+    let btnanular = document.getElementById("btnanular");
+    btnanular.setAttribute("disabled","");
+  } 
 
-  onBatchChange() {
+  onBatchSubmit() {
     if(!this.batch){
-      return alertify.error("BATCH OBLIGATORIO!!")
+      return alertify.error("DEBE INGRESAR UN NUMERO DE BATCH !")
     }
+
     Swal.fire({ 
       title:"¿ ANULAR BT ?",
-      text:"¿ Esta seguro de q ue quiere anular el batch ?",
+      text:"¿ Esta seguro de que desea anular el batch ?",
       icon:'error',
       showCancelButton:true,
       cancelButtonColor:"red",
@@ -33,19 +40,45 @@ export class AnulacionComponent implements OnInit {
     }).then(res => {
       if (res.value) {
         Swal.showLoading();
-        this.http.get(`http://localhost:8080/api/anularBatch/${this.batch}`)
+        this.http.get(`${this.url}anularBatch/${this.batch}`)
           .subscribe(data => {
             Swal.close();
             console.log(data);
             this.batch=null;
-            alertify.success("Has anulado el BT!");
+            this.descripcion=null;
+            this.codpt = null;
+            alertify.success("Has anulado el Batch Ticket !");
+            this.ngOnInit()
           }, (err) => {
             console.log(err);
           })
+      } else {
+        this.batch=null;
+        this.descripcion=null;
+        this.codpt = null;
+        this.ngOnInit()
       }
     })
 
   }
 
+  onBatchChange(){
+    console.log("ENTRO")
+    this.http.get(`${this.url}obtenerBatch/${this.batch}`)
+    .subscribe((data : any) => {
+      console.log(data);
+        //TRAEMOS DATA DEL CONTROL
+        this.codpt = data.response.codpt;
+        this.descripcion = data.response.descripcion;
+        let btnanular = document.getElementById("btnanular")
+        btnanular.removeAttribute("disabled");
+    }, err=>{
+      console.log(err);
+      this.batch = null;
+      this.descripcion = null;
+      this.codpt = null;
+      alertify.error(err.error.message);
+    })
+  }
 
 }

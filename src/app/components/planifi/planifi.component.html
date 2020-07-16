@@ -53,7 +53,7 @@
                 <label>Cantidad</label>
                 <div class="input-group">
                     <input type="number" aria-describedby="basic-addon2" [(ngModel)]="cantidad" class="form-control boldText"
-                        id="cantidad">
+                        (keypress)="omit_number($event)" id="cantidad">
                     <div class="input-group-append">
                         <span class="input-group-text boldText" id="basic-addon2">{{unidadmedida}}</span>
                     </div>
@@ -104,8 +104,10 @@
                         <option value="PRE-PESADO">PRE-PESADO</option>
                         <option value="DISPERSION">DISPERSION</option>
                         <option value="MOLIENDA">MOLIENDA</option>
-                        <option value="FILTRADO">FILTRADO</option>
                         <option value="CONTROL DE CALIDAD">CONTROL DE CALIDAD</option>
+                        <option value="AJUSTE DE VISCOSIDAD">C.C. AJUSTE VISCOSIDAD</option>
+                        <option value="FILTRADO">FILTRADO</option>
+                        <option value="ENVASADO">ENVASADO</option>
                     </select>
                 </div>
             </div>
