@@ -33,7 +33,7 @@
       <div class="col-4">
         <div class="m-auto" style="width: 70%;">
           <label for="TFA"><b>INGRESE F(ormula), T(int) o A(lternativa)</b></label>
-          <input (keyup)="buscar()" id="TFA" [(ngModel)]="tintoformoalt" type="text" class="ml-1 boldText"
+          <input (keyup)="buscar()" id="TFA" [(ngModel)]="tintoformoalt" maxlength="1" type="text" class="ml-1 boldText"
             style="width: 10%;">
           <span class="badge badge-primary ml-5" style="font-size: 23px;">{{tintoformoalt}}</span>
         </div>
@@ -118,7 +118,11 @@
   </div>
 
   <div class="row mt-3">
-    <div class="col-10">
+    <div class="col-2">
+      <button class="btn btn-info float-right mt-1 ml-2" style="margin-right: 7%;"
+      (click)="imprimirBusqueda()">IMPRIMIR FICHA DE FORMULACION</button>
+    </div>
+    <div class="col-8">
       <div style="width: 100%; text-align: right;">
         <h5 class="text-success" id="sumTot" *ngIf="sumaTot<=100"><b>Suma de cantidades: {{sumaTot | numeralPipe}}</b>
         </h5>
@@ -129,8 +133,6 @@
     <div class="col-2">
       <button class="btn float-right" style="margin-right: 6%; background-color: rgb(190, 171, 131);"
         (click)="resetearBusqueda()">RESETEAR BUSQUEDA</button>
-        <button class="btn btn-info float-right mt-3" style="margin-right: 7%;"
-        (click)="imprimirBusqueda()">IMPRIMIR BUSQUEDA</button>
     </div>
   </div>
 
@@ -207,25 +209,81 @@
 </div>
 
 <div class="yesPrint">
+  <style>
+    .tab1 {
+        display: inline-block;
+        margin-left: 40px;
+    }
+    .tab2 {
+        display: inline-block;
+        margin-left: 80px;
+    }
+
+	table {
+	    font-family: arial,helvetica,sans-serif;
+	    border-collapse: collapse;
+	    width: 100%;	    
+	    padding: 0.1px;
+	}
+
+	th {
+	    border: 0.5px solid #dddddd;
+	    text-align: center;
+	    padding: 2.5px;
+	    font-size:13px;
+	}
+	
+	td {
+	    border: 0.5px solid #dddddd;
+	    text-align: left;
+	    padding: 2.5px;
+	    font-size:13px;
+	}
+    
+	tr:nth-child(even) {
+	   background-color: #dddddd;
+	}
+	
+	pre {
+	   border: 0.5px solid #dddddd;
+	   padding: 0.5px;
+	   font-size:13px;
+	   font-family: arial,helvetica,sans-serif;
+	   line-height: 20pt;
+	}
+
+   </style>
+
+  <div>
+    <b><h4 class="text-center">FICHA DE FORMULACION
+      <span *ngIf="tintoformoalt == 'T' || tintoformoalt == 't'"> FORMULA PARA TINTURADO </span>
+      <span *ngIf="tintoformoalt == 'F' || tintoformoalt == 'f'"> FORMULA PRINCIPAL </span>
+      <span *ngIf="tintoformoalt == 'A' || tintoformoalt == 'a'"> FORMULA ALTERNATIVA </span>
+    </h4>
+    </b>
+  </div>
+  <pre>
+  Codigo: {{idprod}} <span class="tab1"></span> Producto: {{descripcion1}} (tambien color {{colorigual}}) <br>
+  Fecha ultima modificacion: {{ultimamodificacion | datePipe}} <span class="tab1"></span> Reemplaza a ___ / ___ / ___  <span class="tab1"></span> Motivo del cambio: _________________________ <br>
+  Relacion de la mezcla: {{relaciondemezcla}} <span class="tab1"></span> Forma conjunto con: {{formaconjunto}}  
+  </pre>
+  <br><hr>
+  <b><h5 class="text-center">FORMULA</h5>
+  </b>
+  <br>
   <table class="w-100">
     <tr class="text-center" *ngIf="array.length==0">
       <th></th>
     </tr>
     <tr class="bg-dark text-white" *ngIf="array.length > 0">
-      <th>CODIGO</th>
-      <th>TFA</th>
       <th>ORDEN</th>
-      <th>MPI</th>
-      <th>CODIGO MP</th>
-      <th>CODIGO PT</th>
+      <th>MP</th>
+      <th>PT</th>
       <th>DESCRIPCION</th>
       <th>CANTIDAD</th>
     </tr>
     <tr *ngFor="let item of array">
-      <td>{{item.idprod}}</td>
-      <td>{{item.tintoformoalt}}</td>
       <td>{{item.orden}}</td>
-      <td>{{item.mpi}}</td>
       <td>{{item.codmp}}</td>
       <td>{{item.codpt}}</td>
       <td>{{item.descripcion}}</td>
@@ -233,4 +291,36 @@
       <td *ngIf="!item.cantidad"> </td>
     </tr>
   </table>
-</div>
+  <br><hr>
+  <b><h5 class="text-center">DATOS FISICOS</h5>
+  </b>
+  <br>
+  <table>
+    <tr>
+         <td>Peso Especifico : {{pesoespecifico | numeralPipe}} g/cm3</td>
+    </tr>
+    <tr>
+         <td>Viscosidad CPS : {{viscosidadspindle}} {{spindlenumero}} </td>
+         <td>Viscosidad UK : {{viscosidaduk}}</td>
+    </tr>
+    <tr>
+         <td>Molienda : {{molienda}}</td>
+         <td>Brillo : {{brillo}}</td>
+    </tr>
+    <tr>
+         <td>Solidos p.p.P. : {{solidosppp }}</td>
+         <td>Solidos p.p.V. : {{solidosppv}} </td>
+    </tr>
+    <tr>
+         <td>Contenido resina : {{resina}}</td>
+         <td>Contenido pigmento : {{pigmento}} </td>
+         <td>Contenido solvente : {{solvente}} </td>
+    </tr>
+    <tr>
+         <td>Relacion mezcla: {{relaciondemezcla}}</td>
+         <td>con COMP. {{formaconjunto}}</td>
+    </tr>
+    </table><br><br>
+    <h5>Aprobo: <br><br> Controlo: <br><br> Autorizo:<br> </h5>
+
+  </div>

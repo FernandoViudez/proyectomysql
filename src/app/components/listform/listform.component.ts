@@ -21,6 +21,15 @@ export class ListformComponent implements OnInit {
   pigmento = 0;
   solvente = 0;
   precio = 0;
+  ultimamodificacion: string;
+  formaconjunto: string;
+  relaciondemezcla: string;
+  colorigual: string;
+  viscosidadspindle: string;
+  spindlenumero: string;
+  viscosidaduk: string;
+  molienda: string;
+  brillo: string;
   idbus: number;
   termino1: string;
   termino2: string;
@@ -60,6 +69,15 @@ export class ListformComponent implements OnInit {
         this.pigmento = datos.pigmento;
         this.solvente = datos.solvente;
         this.precio = datos.precio;
+        this.ultimamodificacion = datos.ultimamodificacion;
+        this.formaconjunto = datos.formaconjunto;
+        this.relaciondemezcla = datos.relaciondemezcla;
+        this.colorigual = datos.colorigual;
+        this.viscosidadspindle = datos.viscosidadspindle;
+        this.spindlenumero = datos.spindlenumero;
+        this.viscosidaduk = datos.viscosidaduk;
+        this.molienda = datos.molienda;
+        this.brillo = datos.brillo;
       }
       this.array = data.response;
     }, (err) => {
@@ -101,6 +119,15 @@ export class ListformComponent implements OnInit {
     this.pigmento = null;
     this.solvente = null;
     this.precio = null;
+    this.ultimamodificacion = null;
+    this.formaconjunto = null;
+    this.relaciondemezcla = null;
+    this.colorigual = null;
+    this.viscosidadspindle = null;
+    this.spindlenumero = null;
+    this.viscosidaduk = null;
+    this.molienda = null;
+    this.brillo = null;
     this.descripcion1 = null;
 
   }
