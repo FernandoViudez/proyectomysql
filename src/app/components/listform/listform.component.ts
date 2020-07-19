@@ -88,13 +88,23 @@ export class ListformComponent implements OnInit {
   validarId() {
     this.service.validarIdProd(this.idprod).
       subscribe((data: any) => {
-        alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !")
-        this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
+        alertify.success("ESTE PRODUCTO TERMINADO EXISTE... SIGUE ADELANTE !")
+        console.log(data.color)
+        if(data.color == null) {
+          this.descripcion1 = `${data.desc}  ${data.componente}`;
+        } else {
+          this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
+        }
+
       }, (err) => {
         if (err.error.response) {
           let data=err.error.response;
           alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !")
-          this.descripcion1 = `${data.descripcion}  ${data.color}  ${data.componente}`;
+          if(data.color == null) {
+            this.descripcion1 = `${data.desc}  ${data.componente}`;
+          } else {
+            this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
+          }
         } else {
           alertify.error("NO EXISTE ESTE PRODUCTO TERMINADO !")
           return this.resetear1();

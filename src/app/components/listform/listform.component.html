@@ -84,7 +84,7 @@
     <hr class="bg-light">
   </div>
 
-  <div style="overflow: scroll; height:370px; width: 90%;" class="m-auto">
+  <div style="overflow: scroll; height:420px; width: 90%;" class="m-auto">
     <table class="w-100">
       <tr class="text-center" *ngIf="array.length==0">
         <th></th>
@@ -124,9 +124,9 @@
     </div>
     <div class="col-8">
       <div style="width: 100%; text-align: right;">
-        <h5 class="text-success" id="sumTot" *ngIf="sumaTot<=100"><b>Suma de cantidades: {{sumaTot | numeralPipe}}</b>
+        <h5 class="text-success boldText" id="sumTot" *ngIf="sumaTot<=100"><b>Suma de cantidad: {{sumaTot | numeralPipe}}</b>
         </h5>
-        <h5 class="text-danger" id="sumTot" *ngIf="sumaTot>100"><b>Suma de cantidades: {{sumaTot | numeralPipe}}</b>
+        <h5 class="text-danger boldText" id="sumTot" *ngIf="sumaTot>100"><b>Suma de cantidad: {{sumaTot | numeralPipe}}</b>
         </h5>
       </div>
     </div>
@@ -263,11 +263,11 @@
     </b>
   </div>
   <pre>
-  Codigo: {{idprod}} <span class="tab1"></span> Producto: {{descripcion1}} (tambien color {{colorigual}}) <br>
+  Codigo: {{idprod}} <span class="tab1"></span> Producto: {{descripcion1}} <span *ngIf="colorigual != null "> (tambien color {{colorigual}}) </span>  <br>
   Fecha ultima modificacion: {{ultimamodificacion | datePipe}} <span class="tab1"></span> Reemplaza a ___ / ___ / ___  <span class="tab1"></span> Motivo del cambio: _________________________ <br>
-  Relacion de la mezcla: {{relaciondemezcla}} <span class="tab1"></span> Forma conjunto con: {{formaconjunto}}  
+  Relacion de la mezcla: {{relaciondemezcla}} <span class="tab1"></span> <span *ngIf="formaconjunto != null "> Forma conjunto con: {{formaconjunto}} </span>   
   </pre>
-  <br><hr>
+  <br>
   <b><h5 class="text-center">FORMULA</h5>
   </b>
   <br>
@@ -308,19 +308,19 @@
          <td>Brillo : {{brillo}}</td>
     </tr>
     <tr>
-         <td>Solidos p.p.P. : {{solidosppp }}</td>
-         <td>Solidos p.p.V. : {{solidosppv}} </td>
+         <td>Solidos p.p.P. : {{solidosppp }} %</td>
+         <td>Solidos p.p.V. : {{solidosppv}} %</td>
     </tr>
     <tr>
-         <td>Contenido resina : {{resina}}</td>
-         <td>Contenido pigmento : {{pigmento}} </td>
-         <td>Contenido solvente : {{solvente}} </td>
+         <td>Contenido resina : {{resina}} %</td>
+         <td>Contenido pigmento : {{pigmento}} %</td>
+         <td>Contenido solvente : {{solvente}} %</td>
     </tr>
     <tr>
          <td>Relacion mezcla: {{relaciondemezcla}}</td>
-         <td>con COMP. {{formaconjunto}}</td>
+         <td *ngIf="formaconjunto != null ">con COMP. {{formaconjunto}}</td>
     </tr>
-    </table><br><br>
-    <h5>Aprobo: <br><br> Controlo: <br><br> Autorizo:<br> </h5>
-
+    </table><br><br><br><br><br><br>
+    <h5>Aprobo:<span class="tab2"></span>Controlo:<span class="tab2"></span>Autorizo:</h5>
+    
   </div>

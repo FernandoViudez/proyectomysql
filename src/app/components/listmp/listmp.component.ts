@@ -109,6 +109,5 @@ export class ListmpComponent implements OnInit {
         this.solvente = data.solvente;
       })
   }
-
-
+  
 }
