@@ -54,7 +54,8 @@ export class ListmpComponent implements OnInit {
   }
 
   resetear() {
-    let datos = null
+    let datos = null;
+    this.array = [];
     this.id = datos;
     this.descripcion = datos; this.tipo = datos; this.ubicacion = datos; this.riesgo = datos; this.proteccion = datos; this.precio = 0;
     this.pesoespecifico = 0; this.ppp = 0; this.ppv = 0; this.resina = 0; this.pigmento = 0; this.solvente = 0;
