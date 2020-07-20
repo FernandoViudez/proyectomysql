@@ -9,7 +9,7 @@ declare let alertify: any;
 @Component({
   selector: 'app-planifi',
   templateUrl: './planifi.component.html',
-  styles: []
+  styles: ['./planifi.component.css']
 })
 
 export class PlanifiComponent implements OnInit {

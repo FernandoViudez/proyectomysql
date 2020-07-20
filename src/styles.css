@@ -20,6 +20,7 @@ margin: 0;
   }
   .yesPrint{
     display:block;
+    size: portrait !important;
   }
   * {
     box-sizing: border-box;

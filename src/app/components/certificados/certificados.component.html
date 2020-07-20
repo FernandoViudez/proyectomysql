@@ -1,0 +1,94 @@
+<div class="container">
+
+    <div class="row mt-3">
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" [(ngModel)]="descripcion" placeholder="Descripcion"
+                (change)="onDescripcionChange()">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="tipo" [(ngModel)]="tipo">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="solidos" [(ngModel)]="solidos">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="espesormano" [(ngModel)]="espesormano">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="relacionmezcla" [(ngModel)]="relacionmezcla">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="vidamezcla" [(ngModel)]="vidamezcla">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="temp1" [(ngModel)]="temp1">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="hra1" [(ngModel)]="hra1">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="secotacto" [(ngModel)]="secotacto">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="temp2" [(ngModel)]="temp2">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="hra2" [(ngModel)]="hra2">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="secoduro" [(ngModel)]="secoduro">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="temp3" [(ngModel)]="temp3">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="hra3" [(ngModel)]="hra3">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="pararecubrir" [(ngModel)]="pararecubrir">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="temp4" [(ngModel)]="temp4">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="hra4" [(ngModel)]="hra4">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="curado" [(ngModel)]="curado">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="temp5" [(ngModel)]="temp5">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="hra5" [(ngModel)]="hra5">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="vidaalmacen" [(ngModel)]="vidaalmacen">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="dilucion" [(ngModel)]="dilucion">
+        </div>
+        <div class="col-3 m-auto">
+            <input type="text" class="form-control" placeholder="limpeza" [(ngModel)]="limpeza">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-success mt-3 float-right" (click)="onSubmit()">Submit</button>
+        </div>
+    </div>
+</div>

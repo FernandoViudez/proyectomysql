@@ -17,6 +17,7 @@ import { AltaformComponent } from './components/altaform/altaform.component';
 import { AnulacionComponent } from './components/anulacion/anulacion.component';
 import { ControlptComponent } from './components/controlpt/controlpt.component';
 import { ControlComponent } from './components/control/control.component';
+import { CertificadosComponent } from './components/certificados/certificados.component';
 
 
 
@@ -48,6 +49,7 @@ const routes: Routes = [
   { path: "anulacion", canActivate: [UserGuard], component: AnulacionComponent },
   { path: "controlpt", canActivate: [UserGuard], component: ControlptComponent },
   { path: "control", canActivate: [UserGuard], component: ControlComponent },
+  { path: "certificados", canActivate: [UserGuard], component: CertificadosComponent },
 
 
   { path: "", redirectTo: "inicio", pathMatch: "full" },

@@ -52,8 +52,8 @@
             <div class="col-6">
                 <label>Cantidad</label>
                 <div class="input-group">
-                    <input type="number" aria-describedby="basic-addon2" [(ngModel)]="cantidad" class="form-control boldText"
-                        (keypress)="omit_number($event)" id="cantidad">
+                    <input type="number" aria-describedby="basic-addon2" [(ngModel)]="cantidad"
+                        class="form-control boldText" (keypress)="omit_number($event)" id="cantidad">
                     <div class="input-group-append">
                         <span class="input-group-text boldText" id="basic-addon2">{{unidadmedida}}</span>
                     </div>
@@ -81,11 +81,11 @@
             </div>
         </div>
 
-      <div class="row mt-3">
+        <div class="row mt-3">
             <div class="col-4">
                 <label>Lote</label>
                 <input type="number" disabled [(ngModel)]="lote" class="form-control boldText" id="lote">
-            </div>  
+            </div>
             <div class="col-4">
                 <label>Fecha de Comienzo</label>
                 <input type="date" [(ngModel)]="fechacomienzo" class="form-control boldText" id="fechacomienzo">
@@ -94,9 +94,9 @@
                 <label>Operario</label>
                 <input type="string" [(ngModel)]="operario" class="form-control boldText" id="operario">
             </div>
-       </div>
-         
-       <div class="row mt-4">
+        </div>
+
+        <div class="row mt-4">
             <div class="col-3">
                 <span>Proceso</span>
                 <div class="input-group">
@@ -145,12 +145,12 @@
             <div class="col-3">
                 <label>Fecha Finalizado</label>
                 <input type="date" [(ngModel)]="fechafin" class="form-control boldText" id="fechafin">
-            </div>       
-	</div>
-	
+            </div>
+        </div>
+
         <div class="row mt-2">
             <div class="col-12">
-		<div class="float-right mt-4">
+                <div class="float-right mt-4">
                     <button *ngIf="borrar && !lote" (click)="borrarFila()" class="btn btn-primary mr-3"><svg
                             class="bi bi-trash-fill" width="15px" height="15px" viewBox="0 0 16 16" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
@@ -160,163 +160,163 @@
                         </svg></button>
                     <button class="btn btn-primary mr-5" (click)="cancelar()">Cancelar Operación</button>
                     <button class="btn btn-success" (click)="finalizar()">Cargar</button>
-		</div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PRODUCTOS TERMINADOS</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="recipient-name9" class="col-form-label">Código</label>
-                                <input (keyup)="buscarP()" [(ngModel)]="idBus" type="number" class="form-control"
-                                    id="recipient-name40">
-                            </div>
-                        </div>
-                        <div class="col-8">
-                            <div class="form-group">
-                                <label for="recipient-name9" class="col-form-label">Descripción</label>
-                                <input (keyup)="buscarP()" [(ngModel)]="termino1" type="text" class="form-control"
-                                    id="recipient-name40">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="recipient-name010" class="col-form-label">Color</label>
-                                <input (keyup)="buscarP()" [(ngModel)]="termino2" type="text" class="form-control"
-                                    id="recipient-name01">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="recipient-name012" class="col-form-label">Componente</label>
-                                <input (keyup)="buscarP()" type="text" [(ngModel)]="termino3" class="form-control"
-                                    id="recipient-name02">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="overflow: scroll; height: 250px; width: 100%;">
-                        <table class="table table-hover">
-                            <tr>
-                                <th>CODIGO</th>
-                                <th>DESCRIPCIÓN</th>
-                                <th>COLOR</th>
-                                <th>COMPONENTE</th>
-                            </tr>
-                            <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arraypt"
-                                (click)="seleccionarIdPt(item2.id)" style="cursor: pointer;">
-                                <td>{{item2.id}}</td>
-                                <td>{{item2.descripcion}}</td>
-                                <td>{{item2.color}}</td>
-                                <td>{{item2.componente}}</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PLANIFICACIÓN</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="recipient-name9" class="col-form-label">Código</label>
-                                <input (keyup)="buscarPlan()" [(ngModel)]="codptB" type="number" class="form-control"
-                                    id="recipient-name000">
-                            </div>
-                        </div>
-                        <div class="col-8">
-                            <div class="form-group">
-                                <label for="recipient-name9" class="col-form-label">Descripción</label>
-                                <input (keyup)="buscarPlan()" [(ngModel)]="descripcionB" type="text"
-                                    class="form-control" id="recipient-name40987">
-                            </div>
-                        </div>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PRODUCTOS TERMINADOS</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+                    <div class="modal-body">
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="recipient-name010" class="col-form-label">Ciente</label>
-                                <input (keyup)="buscarPlan()" [(ngModel)]="clienteB" type="text" class="form-control"
-                                    id="recipient-name01908">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="recipient-name9" class="col-form-label">Código</label>
+                                    <input (keyup)="buscarP()" [(ngModel)]="idBus" type="number" class="form-control"
+                                        id="recipient-name40">
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="recipient-name9" class="col-form-label">Descripción</label>
+                                    <input (keyup)="buscarP()" [(ngModel)]="termino1" type="text" class="form-control"
+                                        id="recipient-name40">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div style="overflow: scroll; height: 300px; width: 100%;">
-                        <table class="table table-hover">
-                            <tr>
-                                <th>CODIGO</th>
-                                <th>DESCRIPCION</th>
-                                <th>CANTIDAD</th>
-                                <th>ENVASADO SOLICITADO</th>
-                                <th>CLIENTE</th>
-                                <th>LOTE</th>
-                                <th>FECHA PROMETIDA</th>
-                                <th>OPERARIO</th>
-                                <th>PROCESO</th>
-                                <th>DISPERSORA</th>
-                                <th>MOLINO</th>
-                            </tr>
-                            <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayB"
-                                (click)="traerDatos(item2.id)" style="cursor: pointer;">
-                                <td>{{item2.codpt}}</td>
-                                <td>{{item2.descripcion}}</td>
-                                <td>{{item2.cantidad}}</td>
-                                <td>{{item2.formaenv}}</td>
-                                <td>{{item2.cliente}}</td>
-                                <td>{{item2.lote}}</td>
-                                <td>{{item2.fechacompr | datePipe}}</td>
-                                <td>{{item2.operario}}</td>
-                                <td>{{item2.proceso}}</td>
-                                <td>{{item2.dispersora}}</td>
-                                <td>{{item2.molino}}</td>
-                            </tr>
-                        </table>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="recipient-name010" class="col-form-label">Color</label>
+                                    <input (keyup)="buscarP()" [(ngModel)]="termino2" type="text" class="form-control"
+                                        id="recipient-name01">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="recipient-name012" class="col-form-label">Componente</label>
+                                    <input (keyup)="buscarP()" type="text" [(ngModel)]="termino3" class="form-control"
+                                        id="recipient-name02">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="overflow: scroll; height: 250px; width: 100%;">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>CODIGO</th>
+                                    <th>DESCRIPCIÓN</th>
+                                    <th>COLOR</th>
+                                    <th>COMPONENTE</th>
+                                </tr>
+                                <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arraypt"
+                                    (click)="seleccionarIdPt(item2.id)" style="cursor: pointer;">
+                                    <td>{{item2.id}}</td>
+                                    <td>{{item2.descripcion}}</td>
+                                    <td>{{item2.color}}</td>
+                                    <td>{{item2.componente}}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button *ngIf="pendientes" type="button" class="btn btn-danger"
-                        (click)="imprimir()">Imprimir
-                        Pendientes</button>
-                        <button *ngIf="!pendientes" type="button" class="btn btn-danger"
-                        (click)="imprimir()">Imprimir
-                        Busqueda</button>
-                    <button type="button" class="btn btn-success" (click)="resetear1()">Resetear</button>
-                    <button type="button" class="btn btn-info" (click)="listarPendientes()">Listar Pendientes</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PLANIFICACIÓN</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="recipient-name9" class="col-form-label">Código</label>
+                                    <input (keyup)="buscarPlan()" [(ngModel)]="codptB" type="number"
+                                        class="form-control" id="recipient-name000">
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="recipient-name9" class="col-form-label">Descripción</label>
+                                    <input (keyup)="buscarPlan()" [(ngModel)]="descripcionB" type="text"
+                                        class="form-control" id="recipient-name40987">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="recipient-name010" class="col-form-label">Ciente</label>
+                                    <input (keyup)="buscarPlan()" [(ngModel)]="clienteB" type="text"
+                                        class="form-control" id="recipient-name01908">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="overflow: scroll; height: 300px; width: 100%;">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>CODIGO</th>
+                                    <th>DESCRIPCION</th>
+                                    <th>CANTIDAD</th>
+                                    <th>ENVASADO SOLICITADO</th>
+                                    <th>CLIENTE</th>
+                                    <th>LOTE</th>
+                                    <th>FECHA PROMETIDA</th>
+                                    <th>OPERARIO</th>
+                                    <th>PROCESO</th>
+                                    <th>DISPERSORA</th>
+                                    <th>MOLINO</th>
+                                </tr>
+                                <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayB"
+                                    (click)="traerDatos(item2.id)" style="cursor: pointer;">
+                                    <td>{{item2.codpt}}</td>
+                                    <td>{{item2.descripcion}}</td>
+                                    <td>{{item2.cantidad}}</td>
+                                    <td>{{item2.formaenv}}</td>
+                                    <td>{{item2.cliente}}</td>
+                                    <td>{{item2.lote}}</td>
+                                    <td>{{item2.fechacompr | datePipe}}</td>
+                                    <td>{{item2.operario}}</td>
+                                    <td>{{item2.proceso}}</td>
+                                    <td>{{item2.dispersora}}</td>
+                                    <td>{{item2.molino}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button *ngIf="pendientes" type="button" class="btn btn-danger" (click)="imprimir()">Imprimir
+                            Pendientes</button>
+                        <button *ngIf="!pendientes" type="button" class="btn btn-danger" (click)="imprimir()">Imprimir
+                            Busqueda</button>
+                        <button type="button" class="btn btn-success" (click)="resetear1()">Resetear</button>
+                        <button type="button" class="btn btn-info" (click)="listarPendientes()">Listar
+                            Pendientes</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>

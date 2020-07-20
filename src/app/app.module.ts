@@ -28,6 +28,7 @@ import { NumeralPipe } from './pipes/numeral.pipe';
 import { AnulacionComponent } from './components/anulacion/anulacion.component';
 import { ControlptComponent } from './components/controlpt/controlpt.component';
 import { ControlComponent } from './components/control/control.component';
+import { CertificadosComponent } from './components/certificados/certificados.component';
 
 
 
@@ -57,6 +58,7 @@ import { ControlComponent } from './components/control/control.component';
     DatePipe,
     NumeralPipe,
     AnulacionComponent,
+    CertificadosComponent,
   ],
   imports: [
     BrowserModule,
