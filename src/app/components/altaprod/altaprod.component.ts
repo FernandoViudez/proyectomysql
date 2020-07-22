@@ -57,6 +57,7 @@ export class AltaprodComponent implements OnInit {
     this.service1.buscarpt(this.idbus, this.termino1, this.termino2, this.termino3).subscribe((data: any) => {
       this.arraypt = data.response;
     }, (err) => {
+      console.log(err)
       return;
     })
   }
