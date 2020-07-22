@@ -88,7 +88,7 @@ export class CertificadosComponent implements OnInit {
         })
 
       }, err => {
-        alertify.success("Certificado inexistente, siga adelante!");
+        alertify.success("Producto inexistente, complete los datos!");
         console.log(err);
       })
   }

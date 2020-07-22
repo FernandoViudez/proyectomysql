@@ -1,94 +1,108 @@
-<div class="container">
-
-    <div class="row mt-3">
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" [(ngModel)]="descripcion" placeholder="Descripcion"
-                (change)="onDescripcionChange()">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="tipo" [(ngModel)]="tipo">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="solidos" [(ngModel)]="solidos">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="espesormano" [(ngModel)]="espesormano">
-        </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="relacionmezcla" [(ngModel)]="relacionmezcla">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="vidamezcla" [(ngModel)]="vidamezcla">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="temp1" [(ngModel)]="temp1">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="hra1" [(ngModel)]="hra1">
-        </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="secotacto" [(ngModel)]="secotacto">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="temp2" [(ngModel)]="temp2">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="hra2" [(ngModel)]="hra2">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="secoduro" [(ngModel)]="secoduro">
-        </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="temp3" [(ngModel)]="temp3">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="hra3" [(ngModel)]="hra3">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="pararecubrir" [(ngModel)]="pararecubrir">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="temp4" [(ngModel)]="temp4">
-        </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="hra4" [(ngModel)]="hra4">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="curado" [(ngModel)]="curado">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="temp5" [(ngModel)]="temp5">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="hra5" [(ngModel)]="hra5">
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="vidaalmacen" [(ngModel)]="vidaalmacen">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="dilucion" [(ngModel)]="dilucion">
-        </div>
-        <div class="col-3 m-auto">
-            <input type="text" class="form-control" placeholder="limpeza" [(ngModel)]="limpeza">
-        </div>
-    </div>
+<div class="bg rounded p-3 mt-1 text-white" style="background-color:rgb(86,169,97)">
     <div class="row">
-        <div class="col-12">
-            <button class="btn btn-success mt-3 float-right" (click)="onSubmit()">Submit</button>
+        <div class="col-6">
+            <h2>Datos para completar Certificados de Calidad</h2>
+            <hr>
+        </div>
+        <div class="col-4 text-center">
+            <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal1" class="mt-2 bi bi-search"
+                width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                    clip-rule="evenodd" />
+                <path fill-rule="evenodd"
+                    d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                    clip-rule="evenodd" />
+            </svg>
         </div>
     </div>
 </div>
+
+<div class="container">
+
+    <div class="row mt-2">
+        <div class="col-6">
+            <span>Descripción</span>
+            <input type="text" class="form-control" [(ngModel)]="descripcion" placeholder="Ingresar producto"
+                (change)="onDescripcionChange()">
+        </div>
+        <div class="col-6">
+            <span>Tipo generico</span>
+            <input type="text" class="form-control" [(ngModel)]="tipo">
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-4 m-auto">
+            <span>Solidos por volumen</span>
+            <input type="text" class="form-control" [(ngModel)]="solidos">
+        </div>
+        <div class="col-4 m-auto">
+            <span>Espesor por mano</span>
+            <input type="text" class="form-control" [(ngModel)]="espesormano">
+        </div>
+        <div class="col-4 m-auto">
+            <span>Relacion de la mezla</span>
+            <input type="text" class="form-control" [(ngModel)]="relacionmezcla">
+        </div>
+    </div>
+    <div>
+        <table class="table mt-4">
+            <tr>
+                <th></th>
+                <th>Horas</th>
+                <th>Temperatura</th>
+                <th>H.R.A.</th>
+            </tr>
+            <tr>
+                <td>Vida util de la mezcla</td>
+                <td><input type="text" class="form-control" placeholder="horas" [(ngModel)]="vidamezcla"> </td>
+                <td><input type="text" class="form-control" placeholder="grados C" [(ngModel)]="temp1"></td>
+                <td><input type="text" class="form-control" placeholder="% HRA" [(ngModel)]="hra1"></td>
+            </tr>
+            <tr>
+                <td>Seco al tacto</td>
+                <td><input type="text" class="form-control" placeholder="horas" [(ngModel)]="secotacto"> </td>
+                <td><input type="text" class="form-control" placeholder="grados C" [(ngModel)]="temp2"></td>
+                <td><input type="text" class="form-control" placeholder="% HRA" [(ngModel)]="hra2"></td>
+            </tr>
+            <tr>
+                <td>Secado duro</td>
+                <td><input type="text" class="form-control" placeholder="horas" [(ngModel)]="secoduro"> </td>
+                <td><input type="text" class="form-control" placeholder="grados C" [(ngModel)]="temp3"></td>
+                <td><input type="text" class="form-control" placeholder="% HRA" [(ngModel)]="hra3"></td>
+            </tr>
+            <tr>
+                <td>Tiempo para recubrir</td>
+                <td><input type="text" class="form-control" placeholder="horas" [(ngModel)]="pararecubrir"> </td>
+                <td><input type="text" class="form-control" placeholder="grados C" [(ngModel)]="temp4"></td>
+                <td><input type="text" class="form-control" placeholder="% HRA" [(ngModel)]="hra4"></td>
+            </tr>
+            <tr>
+                <td>Curado completo</td>
+                <td><input type="text" class="form-control" placeholder="horas" [(ngModel)]="curado"> </td>
+                <td><input type="text" class="form-control" placeholder="grados C" [(ngModel)]="temp5"></td>
+                <td><input type="text" class="form-control" placeholder="% HRA" [(ngModel)]="hra5"></td>
+            </tr>
+        </table>
+    </div>
+        <div class="row mt-2">
+            <div class="col-4 m-auto">
+                Vida util en estiba<input type="text" class="form-control" [(ngModel)]="vidaalmacen">
+            </div>
+            <div class="col-4 m-auto">
+                Solvente para dilucion<input type="text" class="form-control" [(ngModel)]="dilucion">
+            </div>
+            <div class="col-4 m-auto">
+                Solvente para limpieza<input type="text" class="form-control" [(ngModel)]="limpeza">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-10">
+                <div class="float-right">
+                    <button class="btn btn-primary mr-2" (click)="reset()">Cancelar</button>
+                    <button class="btn btn-success" (click)="onSubmit()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
