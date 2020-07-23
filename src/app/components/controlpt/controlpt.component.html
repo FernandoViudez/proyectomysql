@@ -275,7 +275,7 @@
                     CERTIFICADO DE IDENTIDAD DEL PRODUCTO
                 </div>
                 <div class="text-right">
-                    FECHA DE EMISION: {{fecha}}
+                    FECHA DE EMISION: {{fecha | datePipe}}
                 </div>
                 <hr class="new3">
                 <div>
@@ -305,7 +305,6 @@
                 <tr>
                     <td>PESO ESPECIFICO</td>
                     <td>{{pesoespecifico | numeralPipe}} gr/lt</td>
-                    <!--| numeralPipe}} </td> -->
                     <td>{{pePt}} gr/lt</td>
                 </tr>
                 <tr>
