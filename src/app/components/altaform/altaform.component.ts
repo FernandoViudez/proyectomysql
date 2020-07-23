@@ -48,14 +48,14 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
 
   constructor(private service: FormService,
-    private router: Router,
+    private route: Router,
     private MatPrimService: MatprimService,
     private prodTermService: ProdtermService) { 
-      //let user_role = localStorage.getItem("user_role");
-      //if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
-      //  alert("Acceso no autorizado !")
-      //  route.navigate(['inicio'])
-      //}
+      let user_role = localStorage.getItem("user_role");
+      if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+        alert("Acceso no autorizado !")
+        route.navigate(['inicio'])
+      }
     }
 
   cambiarTexto() {
@@ -89,7 +89,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
             confirmButtonText: "Presione aquí para Continuar"
           }).then(res => {
             if (res.value) {
-              this.router.navigateByUrl("/app");
+              this.route.navigateByUrl("/app");
             }
           })
         }

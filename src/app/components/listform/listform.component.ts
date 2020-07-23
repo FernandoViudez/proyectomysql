@@ -166,11 +166,12 @@ export class ListformComponent implements OnInit {
   }
 
   imprimirBusqueda() {
-    //if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
-    //  alert("Acceso no autorizado !")
-    //} else {
+    let user_role = localStorage.getItem ("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+      alert("No autorizado !")
+    } else {
       window.print();
-    //}
+    }
   }
 
 }
