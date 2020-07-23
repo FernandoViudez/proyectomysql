@@ -66,23 +66,28 @@ export class PlanifiComponent implements OnInit {
     let data = { codpt: this.codptB, descripcion: this.descripcionB, cliente: this.clienteB }
     this.http.post("http://localhost:8080/api/getPlani", data).
       subscribe((data: any) => {
-        for (let item of data.response) {
-          console.log(item);
-          if (item.proceso == "ENVASADO") {
-            item.isGreen = true;
-          } else if (item.proceso == "FALTANTE") {
-            item.isRed = true;
-          } else if (item.fechafin) {
-            item.isOrange = true;
-          } else {
-            item.isYellow = true;
-          }
-        }
+        this.generarClases(data.response);
         this.arrayB = data.response;
       }, (err) => {
         console.log(err);
       })
   }
+
+  generarClases(data: any){
+    for (let item of data) {
+      console.log(item);
+      if (item.proceso == "ENVASADO") {
+        item.isGreen = true;
+      } else if (item.proceso == "FALTANTE") {
+        item.isRed = true;
+      } else if (item.fechafin) {
+        item.isOrange = true;
+      } else {
+        item.isYellow = true;
+      }
+    }
+  }
+
   //BUSQUEDA DE PRODUCTO TERMINADO 
   buscarP() {
     this.service1.buscarpt(this.idBus, this.termino1, this.termino2, this.termino3).subscribe((data: any) => {
@@ -424,6 +429,7 @@ export class PlanifiComponent implements OnInit {
     this.pendientes = true;
     this.http.get("http://localhost:8080/api/traerPendientes").
       subscribe((data: any) => {
+        this.generarClases(data.response);
         this.arrayB = data.response;
       }, (err) => {
         console.log(err);
