@@ -106,8 +106,8 @@
                         <option value="MOLIENDA">MOLIENDA</option>
                         <option value="CONTROL DE CALIDAD">CONTROL DE CALIDAD</option>
                         <option value="AJUSTE DE VISCOSIDAD">C.C. AJUSTE VISCOSIDAD</option>
-                        <option value="FILTRADO">FILTRADO</option>
                         <option value="ENVASADO">ENVASADO</option>
+                        <option value="FALTANTE">FALTANTE</option>
                     </select>
                 </div>
             </div>
@@ -291,8 +291,16 @@
                                     <th>MOLINO</th>
                                     <th>FECHA FINALIZADO</th>
                                 </tr>
-                                <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayB"
-                                    (click)="traerDatos(item2.id)" style="cursor: pointer;">
+                                <tr [ngClass]="{
+                                    bg-orange: item2.isOrange, 
+                                    bg-yellow: item2.isYellow,
+                                    bg-green: item2.isGreen,
+                                    bg-red: item2.isRed
+                                }" 
+                                data-dismiss="modal" 
+                                *ngFor="let item2 of arrayB"
+                                (click)="traerDatos(item2.id)" 
+                                style="cursor: pointer;">
                                     <td>{{item2.descripcion}}</td>
                                     <td>{{item2.cantidad}}</td>
                                     <td>{{item2.formaenv}}</td>

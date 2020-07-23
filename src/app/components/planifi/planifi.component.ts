@@ -9,7 +9,7 @@ declare let alertify: any;
 @Component({
   selector: 'app-planifi',
   templateUrl: './planifi.component.html',
-  styles: ['./planifi.component.css']
+  styleUrls: ['./planifi.component.css']
 })
 
 export class PlanifiComponent implements OnInit {
@@ -66,6 +66,20 @@ export class PlanifiComponent implements OnInit {
     let data = { codpt: this.codptB, descripcion: this.descripcionB, cliente: this.clienteB }
     this.http.post("http://localhost:8080/api/getPlani", data).
       subscribe((data: any) => {
+        for(let item of data.response){
+          if(item.proceso == "ENVASADO"){
+            item.isGreen = true;
+          }else if(item.proceso == "FALTANTE"){
+            item.isRed = true;
+          }else{
+            item.isYellow = true;
+          }
+                    
+          if(item.fechafin){
+            item.isOrange = true;
+          }
+
+        }
         this.arrayB = data.response;
       }, (err) => {
         console.log(err);
