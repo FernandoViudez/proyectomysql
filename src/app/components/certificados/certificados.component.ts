@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CertificadosService } from '../../services/certificados.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 declare let alertify: any;
 
 @Component({
@@ -38,7 +39,13 @@ export class CertificadosComponent implements OnInit {
   //Flag
   private editar: boolean = false;
 
-  constructor(private certificadosService: CertificadosService) { }
+  constructor(private certificadosService: CertificadosService, private route: Router) { 
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+  }
 
   ngOnInit(): void {
   }
@@ -113,9 +120,9 @@ export class CertificadosComponent implements OnInit {
 
   onSubmit() {
     let data = {
-      descripcion: this.descripcion,
-      tipo: this.tipo,
-      solidos: this.solidos,
+      descripcion: this.descripcion = this.descripcion.toUpperCase(),
+      tipo: this.tipo = this.tipo.toUpperCase(),
+      solidos: this.solidos = this.solidos.toUpperCase(),
       espesormano: this.espesormano,
       relacionmezcla: this.relacionmezcla,
       vidamezcla: this.vidamezcla,
@@ -133,9 +140,9 @@ export class CertificadosComponent implements OnInit {
       curado: this.curado,
       temp5: this.temp5,
       hra5: this.hra5,
-      vidaalmacen: this.vidaalmacen,
-      dilucion: this.dilucion,
-      limpeza: this.limpeza,
+      vidaalmacen: this.vidaalmacen = this.vidaalmacen.toUpperCase(),
+      dilucion: this.dilucion = this.dilucion.toUpperCase(),
+      limpeza: this.limpeza = this.limpeza.toUpperCase(),
 
     }
     if (this.editar) {

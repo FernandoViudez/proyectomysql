@@ -32,7 +32,13 @@ export class AltaenvComponent implements OnInit, OnDestroy {
   constructor(private service: EnvService,
     private http: HttpClient,
     private servicioMp: MatprimService,
-    private router: Router) { }
+    private router: Router) {
+    //let user_role = localStorage.getItem("user_role");
+    //if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+    //  alert("Acceso no autorizado !")
+    //  route.navigate(['inicio'])
+    //}
+  }
 
   ngOnInit(): void {
     this.service.traerTodo().subscribe((data: any) => {

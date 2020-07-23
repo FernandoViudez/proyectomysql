@@ -50,7 +50,13 @@ export class AltaformComponent implements OnInit, OnDestroy {
   constructor(private service: FormService,
     private router: Router,
     private MatPrimService: MatprimService,
-    private prodTermService: ProdtermService) { }
+    private prodTermService: ProdtermService) { 
+      //let user_role = localStorage.getItem("user_role");
+      //if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+      //  alert("Acceso no autorizado !")
+      //  route.navigate(['inicio'])
+      //}
+    }
 
   cambiarTexto() {
     if (this.mostrar) {

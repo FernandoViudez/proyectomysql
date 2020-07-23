@@ -21,88 +21,99 @@
 <div class="container">
 
     <div class="row mt-2">
-        <div class="col-6">
+        <div class="col-4">
             <span>Descripción</span>
-            <input type="text" class="form-control" [(ngModel)]="descripcion" placeholder="Ingresar producto"
+            <input type="text" class="form-control boldText" [(ngModel)]="descripcion" placeholder="Ingresar descripción producto"
                 (change)="onDescripcionChange()">
         </div>
-        <div class="col-6">
+        <div class="col-8">
             <span>Tipo generico</span>
-            <input type="text" class="form-control" [(ngModel)]="tipo">
+            <input type="text" class="form-control boldText" [(ngModel)]="tipo">
         </div>
     </div>
     <div class="row mt-2">
         <div class="col-4 m-auto">
-            <span>Solidos por volumen</span>
-            <input type="text" class="form-control" [(ngModel)]="solidos">
+            <span>Sólidos por volumen</span>
+            <input type="text" class="form-control boldText " [(ngModel)]="solidos">
         </div>
         <div class="col-4 m-auto">
             <span>Espesor por mano</span>
-            <input type="text" class="form-control" [(ngModel)]="espesormano">
+            <input type="text" class="form-control boldText" [(ngModel)]="espesormano">
         </div>
         <div class="col-4 m-auto">
-            <span>Relacion de la mezla</span>
-            <input type="text" class="form-control" [(ngModel)]="relacionmezcla">
+            <span>Relación de la mezla</span>
+            <input type="text" class="form-control boldText" [(ngModel)]="relacionmezcla">
         </div>
     </div>
     <div>
         <table class="table mt-4">
-            <tr>
-                <th></th>
-                <th>Horas</th>
-                <th>Temperatura</th>
-                <th>H.R.A.</th>
-            </tr>
-            <tr>
-                <td>Vida util de la mezcla</td>
-                <td><input type="text" class="form-control" placeholder="horas" [(ngModel)]="vidamezcla"> </td>
-                <td><input type="text" class="form-control" placeholder="grados C" [(ngModel)]="temp1"></td>
-                <td><input type="text" class="form-control" placeholder="% HRA" [(ngModel)]="hra1"></td>
-            </tr>
-            <tr>
-                <td>Seco al tacto</td>
-                <td><input type="text" class="form-control" placeholder="horas" [(ngModel)]="secotacto"> </td>
-                <td><input type="text" class="form-control" placeholder="grados C" [(ngModel)]="temp2"></td>
-                <td><input type="text" class="form-control" placeholder="% HRA" [(ngModel)]="hra2"></td>
-            </tr>
-            <tr>
-                <td>Secado duro</td>
-                <td><input type="text" class="form-control" placeholder="horas" [(ngModel)]="secoduro"> </td>
-                <td><input type="text" class="form-control" placeholder="grados C" [(ngModel)]="temp3"></td>
-                <td><input type="text" class="form-control" placeholder="% HRA" [(ngModel)]="hra3"></td>
-            </tr>
-            <tr>
-                <td>Tiempo para recubrir</td>
-                <td><input type="text" class="form-control" placeholder="horas" [(ngModel)]="pararecubrir"> </td>
-                <td><input type="text" class="form-control" placeholder="grados C" [(ngModel)]="temp4"></td>
-                <td><input type="text" class="form-control" placeholder="% HRA" [(ngModel)]="hra4"></td>
-            </tr>
-            <tr>
-                <td>Curado completo</td>
-                <td><input type="text" class="form-control" placeholder="horas" [(ngModel)]="curado"> </td>
-                <td><input type="text" class="form-control" placeholder="grados C" [(ngModel)]="temp5"></td>
-                <td><input type="text" class="form-control" placeholder="% HRA" [(ngModel)]="hra5"></td>
-            </tr>
+            <thead class="thead-dark table-sm text-center">
+                <tr>
+                    <th></th>
+                    <th>Horas</th>
+                    <th>Temperatura</th>
+                    <th>H.R.A.</th>
+                </tr>
+                <tr>
+                    <td style="font-size: 19px" class="align-middle">Vida util de la mezcla</td>
+                    <td><input type="text" class="form-control boldText" placeholder="horas" [(ngModel)]="vidamezcla">
+                    </td>
+                    <td><input type="text" class="form-control boldText" placeholder="grados C" [(ngModel)]="temp1">
+                    </td>
+                    <td><input type="text" class="form-control boldText" placeholder="% HRA" [(ngModel)]="hra1"></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 19px" class="align-middle">Seco al tacto</td>
+                    <td><input type="text" class="form-control boldText" placeholder="horas" [(ngModel)]="secotacto">
+                    </td>
+                    <td><input type="text" class="form-control boldText" placeholder="grados C" [(ngModel)]="temp2">
+                    </td>
+                    <td><input type="text" class="form-control boldText" placeholder="% HRA" [(ngModel)]="hra2"></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 19px" class="align-middle">Secado duro</td>
+                    <td><input type="text" class="form-control boldText" placeholder="horas" [(ngModel)]="secoduro">
+                    </td>
+                    <td><input type="text" class="form-control boldText" placeholder="grados C" [(ngModel)]="temp3">
+                    </td>
+                    <td><input type="text" class="form-control boldText" placeholder="% HRA" [(ngModel)]="hra3"></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 19px" class="align-middle">Tiempo para recubrir</td>
+                    <td><input type="text" class="form-control boldText" placeholder="horas" [(ngModel)]="pararecubrir">
+                    </td>
+                    <td><input type="text" class="form-control boldText" placeholder="grados C" [(ngModel)]="temp4">
+                    </td>
+                    <td><input type="text" class="form-control boldText" placeholder="% HRA" [(ngModel)]="hra4"></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 19px" class="align-middle">Curado completo</td>
+                    <td><input type="text" class="form-control boldText" placeholder="horas" [(ngModel)]="curado"> </td>
+                    <td><input type="text" class="form-control boldText" placeholder="grados C" [(ngModel)]="temp5">
+                    </td>
+                    <td><input type="text" class="form-control boldText" placeholder="% HRA" [(ngModel)]="hra5"></td>
+                </tr>
+            </thead>
         </table>
     </div>
-        <div class="row mt-2">
-            <div class="col-4 m-auto">
-                Vida util en estiba<input type="text" class="form-control" [(ngModel)]="vidaalmacen">
-            </div>
-            <div class="col-4 m-auto">
-                Solvente para dilucion<input type="text" class="form-control" [(ngModel)]="dilucion">
-            </div>
-            <div class="col-4 m-auto">
-                Solvente para limpieza<input type="text" class="form-control" [(ngModel)]="limpeza">
-            </div>
+    <div class="row mt-2">
+        <div class="col-4 m-auto">
+            Vida util en estiba<input type="text" class="form-control boldText" [(ngModel)]="vidaalmacen">
         </div>
-        <div class="row mt-4">
-            <div class="col-10">
-                <div class="float-right">
-                    <button class="btn btn-primary mr-2" (click)="reset()">Cancelar</button>
-                    <button class="btn btn-success" (click)="onSubmit()">Aceptar</button>
-                </div>
-            </div>
+        <div class="col-4 m-auto">
+            Solvente para dilución<input type="text" class="form-control boldText" [(ngModel)]="dilucion">
         </div>
-
+        <div class="col-4 m-auto">
+            Solvente para limpieza<input type="text" class="form-control boldText" [(ngModel)]="limpeza">
+        </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="float-right">
+                <button class="btn btn-primary mr-2" (click)="reset()">Cancelar</button>
+                <button class="btn btn-success" (click)="onSubmit()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -6,6 +6,7 @@ import { MatprimService } from 'src/app/services/matprim.service';
 import { AltaMp } from './altamp.interface';
 import { AltampService } from '../../services/altamp.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 declare let alertify: any;
 
 @Component({
@@ -50,9 +51,15 @@ export class AltampComponent implements OnInit, OnDestroy {
   fechaultimarecepcion: string;
 
   constructor(private http: HttpClient,
-            private service: FormService,
-            private servicioMp: MatprimService,
-            private altampService: AltampService) { }
+    private service: FormService,
+    private servicioMp: MatprimService,
+    private altampService: AltampService, private route: Router) { 
+      let user_role = localStorage.getItem("user_role");
+      if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+        alert("Acceso no autorizado !")
+        route.navigate(['inicio'])
+      }
+    }
 
   ngOnInit(): void {
   }

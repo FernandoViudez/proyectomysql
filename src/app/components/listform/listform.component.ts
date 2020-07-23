@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from 'src/app/services/form.service';
+import { Router } from '@angular/router';
 declare let alertify: any;
 
 @Component({
@@ -36,7 +37,7 @@ export class ListformComponent implements OnInit {
   termino3: string;
   arrayBusqueda = [];
 
-  constructor(private service: FormService) { }
+  constructor(private service: FormService, private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -164,8 +165,12 @@ export class ListformComponent implements OnInit {
     this.ngOnInit()
   }
 
-  imprimirBusqueda(){
-    window.print();
+  imprimirBusqueda() {
+    //if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+    //  alert("Acceso no autorizado !")
+    //} else {
+      window.print();
+    //}
   }
 
 }

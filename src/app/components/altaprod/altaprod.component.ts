@@ -3,6 +3,7 @@ import { FormService } from 'src/app/services/form.service';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { EnvService } from 'src/app/services/env.service';
+import { Router } from '@angular/router';
 declare let alertify: any;
 
 @Component({
@@ -48,7 +49,13 @@ export class AltaprodComponent implements OnInit {
 
   editar = false;
 
-  constructor(private service: FormService, private http: HttpClient, private service1: EnvService) { }
+  constructor(private service: FormService, private http: HttpClient, private service1: EnvService, private route: Router) { 
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+   }
 
   ngOnInit(): void {
   }

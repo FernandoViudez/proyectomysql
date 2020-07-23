@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 declare let alertify:any;
 
 @Component({
@@ -16,7 +17,13 @@ export class AnulacionComponent implements OnInit {
   batch: number;
   url = "http://localhost:8080/api/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: Router) { 
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+   }
 
   ngOnInit(): void {
     let btnanular = document.getElementById("btnanular");
