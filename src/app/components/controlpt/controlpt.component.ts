@@ -225,7 +225,7 @@ export class ControlptComponent implements OnInit {
         this.pararecubrir = item2.pararecubrir;
         this.temp4 = item2.temp4;
         this.hra4 = item2.hra4;
-        this.curado2 = item2.curado2;
+        this.curado2 = item2.curado;
         this.temp5 = item2.temp5;
         this.hra5 = item2.hra5;
         this.vidaalmacen = item2.vidaalmacen;

@@ -210,7 +210,7 @@
     <style>
         .tab1 {
             display: inline-block;
-            margin-left: 40px;
+            margin-left: 600px;
         }
 
         .tab2 {
@@ -255,15 +255,21 @@
             border-top: 1px dotted blue;
         }
     </style>
-    <a class="navbar-brand">
-        <img src="./assets/Logo_Revesta.jpg" width="100" height="50" alt="" loading="lazy">
-    </a>
+    <div class="row">
+        <div class="col-4">
+            <a class="navbar-brand">
+                <img src="./assets/Logo_Revesta.jpg" width="100" height="50" alt="" loading="lazy">
+            </a>
+        </div>
+        <div class="col-8">
+            <span align="right">REVESTA S.A.I.C. </span><br>
+            <span align="right">Av. Mitre 1249 - Florida</span><br>
+            <span align="right">Buenos Aires - Argentina</span><br>
+        </div>
+    </div>
     <div>
         <h5>
             <b>
-                <div>
-                    REVESTA S.A.I.C.
-                </div>
                 <hr class="new3">
                 <div class="text-center">
                     CERTIFICADO DE IDENTIDAD DEL PRODUCTO
@@ -278,11 +284,11 @@
                     <span class="tab2"></span> Componente : {{componente}}<br>
                     <span class="tab2"></span> Tipo generico : {{tipo}}<br>
                 </div>
-            <hr class="new3">
-            <div>
-                <span class="tab2"></span> Numero de Partida: {{numeroPartida}}
-                <span class="tab2"></span> Fecha de Elaboracion: {{fecha}}
-            </div>
+                <hr class="new3">
+                <div>
+                    <span class="tab2"></span> Numero de Partida: {{numeroPartida}}
+                    <span class="tab2"></span> Fecha de Elaboracion: {{fecha | datePipe}}
+                </div>
             </b>
             <hr class="new3">
             <b>
@@ -298,9 +304,9 @@
                 </tr><br>
                 <tr>
                     <td>PESO ESPECIFICO</td>
-                    <td>{{pesoespecifico}} </td>
+                    <td>{{pesoespecifico | numeralPipe}} gr/lt</td>
                     <!--| numeralPipe}} </td> -->
-                    <td>{{pePt}} </td>
+                    <td>{{pePt}} gr/lt</td>
                 </tr>
                 <tr>
                     <td>VISCOSIDAD INICIAL</td>
@@ -400,7 +406,8 @@
             </div>
             <hr class="new3"><br>
             <div>
-                REVESTA S.A.I.C.<br>Osvaldo de Vicenzo<br>Gerente de Laboratorio<br><br>VALIDADO ELECTRONICAMENTE<br>
+                REVESTA S.A.I.C.<br>Osvaldo de Vicenzo<br>Gerente de Laboratorio<br><br>VALIDADO
+                ELECTRONICAMENTE<br>
             </div>
         </h5>
 
