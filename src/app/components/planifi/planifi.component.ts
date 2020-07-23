@@ -66,19 +66,17 @@ export class PlanifiComponent implements OnInit {
     let data = { codpt: this.codptB, descripcion: this.descripcionB, cliente: this.clienteB }
     this.http.post("http://localhost:8080/api/getPlani", data).
       subscribe((data: any) => {
-        for(let item of data.response){
-          if(item.proceso == "ENVASADO"){
+        for (let item of data.response) {
+          console.log(item);
+          if (item.proceso == "ENVASADO") {
             item.isGreen = true;
-          }else if(item.proceso == "FALTANTE"){
+          } else if (item.proceso == "FALTANTE") {
             item.isRed = true;
-          }else{
+          } else if (item.fechafin) {
+            item.isOrange = true;
+          } else {
             item.isYellow = true;
           }
-                    
-          if(item.fechafin){
-            item.isOrange = true;
-          }
-
         }
         this.arrayB = data.response;
       }, (err) => {
@@ -246,7 +244,7 @@ export class PlanifiComponent implements OnInit {
       cliente: string, motivo: string, fechacompr: Date, fechafin: Date, fechacomienzo: Date,
       proceso: string, lote: number, operario: string, dispersora: string, molino: string,
       descripcion: string, editar: boolean, planifiService, id: number) {
-        console.log(cantidad);
+      console.log(cantidad);
       let data = {
         codpt,
         cantidad,
@@ -268,7 +266,7 @@ export class PlanifiComponent implements OnInit {
         planifiService.postearPlanifi(data).
           subscribe((data: any) => {
             alertify.success(data.message);
-  
+
           }, (err) => {
             console.log(err);
           })
@@ -298,8 +296,8 @@ export class PlanifiComponent implements OnInit {
           cargar(this.codpt, this.cantidad, this.formaenv,
             this.cliente, this.motivo, this.fechacompr, this.fechafin, this.fechacomienzo,
             this.proceso, this.lote, this.operario, this.dispersora, this.molino,
-            this.descripcion, this.editar, this.planifiService,  this.id)
-            this.resetear();
+            this.descripcion, this.editar, this.planifiService, this.id)
+          this.resetear();
         } else {
           return;
         }
@@ -308,8 +306,8 @@ export class PlanifiComponent implements OnInit {
       cargar(this.codpt, this.cantidad, this.formaenv,
         this.cliente, this.motivo, this.fechacompr, this.fechafin, this.fechacomienzo,
         this.proceso, this.lote, this.operario, this.dispersora, this.molino,
-        this.descripcion, this.editar, this.planifiService,this.id)
-        this.resetear()
+        this.descripcion, this.editar, this.planifiService, this.id)
+      this.resetear()
     }
 
 
