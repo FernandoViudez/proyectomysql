@@ -52,7 +52,7 @@ margin: 0;
 table,
 td,
 th {
-    border: 1px solid rgb(149, 149, 218);
+    border: 1px solid rgb(187, 187, 236);
 }
 
 a{
@@ -60,15 +60,15 @@ a{
 }
 
 .hoverFila{
-    background-color:rgb(206, 158, 160);
+    background-color:rgb(240, 222, 223);
 }
 
 .hoverFila:hover{
-    background-color:rgb(154, 180, 218); 
+    background-color:rgb(157, 179, 212); 
 }
 
 .filaActiva:active{
-    background-color: rgb(197, 197, 197);
+    background-color: rgb(83, 69, 69);
 }
 
 .zoom{

@@ -107,7 +107,7 @@
                         <option value="CONTROL DE CALIDAD">CONTROL DE CALIDAD</option>
                         <option value="AJUSTE DE VISCOSIDAD">C.C. AJUSTE VISCOSIDAD</option>
                         <option value="ENVASADO">ENVASADO</option>
-                        <option value="FALTANTE">FALTANTE</option>
+                        <option value="FALTANTE">MP EN FALTA</option>
                     </select>
                 </div>
             </div>
@@ -296,11 +296,8 @@
                                     'bg-yellow': item2.isYellow,
                                     'bg-green': item2.isGreen,
                                     'bg-red': item2.isRed
-                                }" 
-                                data-dismiss="modal" 
-                                *ngFor="let item2 of arrayB"
-                                (click)="traerDatos(item2.id)" 
-                                style="cursor: pointer;">
+                                }"  data-dismiss="modal" *ngFor="let item2 of arrayB" (click)="traerDatos(item2.id)"
+                                    style="cursor: pointer; height: 50px;">
                                     <td>{{item2.descripcion}}</td>
                                     <td>{{item2.cantidad}}</td>
                                     <td>{{item2.formaenv}}</td>
@@ -326,6 +323,27 @@
                         <button type="button" class="btn btn-info" (click)="listarPendientes()">Listar
                             Pendientes</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2 text-right">
+                        </div>
+                        <div class="col-2">
+                            <img src="./assets/circulo naranja.jpeg" height="20px" width="20px" alt="*">
+                            Productos finalizados
+                        </div>
+                        <div class="col-2">
+                            <img src="./assets/circulo verde.jpeg" height="18px" width="18px" alt="*">
+                            Productos en envasado
+                        </div>
+                        <div class="col-2">
+                            <img src="./assets/circulo amarillo.jpeg" height="18px" width="18px" alt="*">
+                            Productos en proceso
+                        </div>
+                        <div class="col-2">
+                            <img src="./assets/circulo rojo.jpeg" 
+                            height="15px" width="15px" alt="*">
+                            Materia prima faltante
+                        </div>
                     </div>
                 </div>
             </div>

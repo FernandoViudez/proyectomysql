@@ -201,16 +201,17 @@ export class AltaprodComponent implements OnInit {
           this.descripForma = null;
           return alertify.error("LIQUIDO SOLO CON POLVO!!");
         }
-        if (this.componente == "ENDURECEDOR" && data.componente != "INERTE" && data.componente != "POLVO") {
+        if (this.componente == "ENDURECEDOR" && data.componente != "INERTES" && data.componente != "POLVO") {
           this.formaconjunto = null;
           this.descripForma = null;
-          return alertify.error("ENDURECEDOR SOLO CON INERTE O POLVO!!");
+          return alertify.error("ENDURECEDOR SOLO CON INERTES O POLVO!!");
         }
         if (
           this.componente == "DILUYENTE"
           || this.componente == "SEMIELABORADO"
           || this.componente == "MONOCOMPONENTE"
-          || this.componente == "AGENTE CURADO"
+          || this.componente == "AGENTE DE CURA"
+          || this.componente == "INERTES"
           || this.componente == "POLVO" &&
           data.componente) {
           this.formaconjunto = null;

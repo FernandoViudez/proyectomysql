@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { MatprimService } from 'src/app/services/matprim.service';
+import numeral from 'numeral';
 declare let alertify: any;
 
 @Component({
@@ -62,9 +63,12 @@ export class RecepmpComponent implements OnInit {
       subscribe((data: any) => {
         let item = data.response;
         this.descripcion = item.descripcion;
-        this.stock = item.stock;
+        this.stock = numeral(item.stock).format('0.00');
         this.ubicacion = item.ubicacion;
         this.pesoespecifico = item.pesoespecifico;
+        if (item.unidadmedidacompra == 'Lt') {
+          this.stock = numeral(item.stock / item.pesoespecifico).format('0.00')
+        }
         this.unidadRecibo = item.unidadmedidacompra;
         this.fechaultimarecepcion = item.fechaultimarecepcion;
         this.calcularLote();
@@ -78,9 +82,12 @@ export class RecepmpComponent implements OnInit {
         if (err.error.response) {
           let item = err.error.response;
           this.descripcion = item.descripcion;
-          this.stock = item.stock;
+          this.stock = numeral(item.stock).format('0.00');
           this.ubicacion = item.ubicacion;
           this.pesoespecifico = item.pesoespecifico;
+          if (item.unidadmedidacompra == 'Lt') {
+            this.stock = numeral(item.stock / item.pesoespecifico).format('0.00')
+          }
           this.unidadRecibo = item.unidadmedidacompra;
           this.fechaultimarecepcion = item.fechaultimarecepcion;
           this.calcularLote();

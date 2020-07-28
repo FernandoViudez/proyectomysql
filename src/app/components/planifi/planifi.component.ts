@@ -82,9 +82,9 @@ export class PlanifiComponent implements OnInit {
         item.isRed = true;
       } else if (item.fechafin) {
         item.isOrange = true;
-      } else {
+      } else if (item.fechacomienzo) {
         item.isYellow = true;
-      }
+      } 
     }
   }
 
