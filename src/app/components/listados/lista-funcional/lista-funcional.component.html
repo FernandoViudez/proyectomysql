@@ -1,0 +1,68 @@
+<div class="p-5">
+    <div class="mb-5">
+        <div class="row">
+            <div class="col-3">
+                <input class="form-control w-50" style="margin: auto;" type="number" placeholder="Desde..." [(ngModel)]="desde">
+            </div>
+            <div class="col-3">
+                <input class="form-control w-50" style="margin: auto;" type="number" placeholder="Hasta..." [(ngModel)]="hasta">
+            </div>
+            <div class="col-2">
+                <div class="input-group">
+                    <select class="custom-select boldText" [(ngModel)]="operacion" id="inputGroupSelect01">
+                        <option value="RANGO">RANGO POR ID - M.P.</option>
+                        <option value="MINIMO">STOCK BAJO MINIMO MP</option>
+                        <option value="RANGOMOV">RANGO POR ID - MOVIMIENTOS</option>
+                        <option value="RANGOMOVD">RANGO POR ID - MOVIMIENTOS - COMPRAS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-success" [disabled]="isValid"
+                    (click)="onSubmit()">Realizar operacion</button>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-success" [disabled]="isValid || !items"
+                data-toggle="modal" data-target="#exampleModal">Generar Excel</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div style="overflow: scroll; height:450px; width: 90%; margin: auto;" class="table-striped table-responsive">
+
+        <table *ngIf="propiedades" class="table table-dark">
+            <tr>
+                <th *ngFor="let propiedad of propiedades.th">{{propiedad}}</th>
+            </tr>
+            <tr *ngFor="let item of items">
+                <td *ngFor="let propiedad of propiedades.tb">{{item[propiedad]}}</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ingrese datos de excel</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input placeholder="Nombre del archivo" [(ngModel)]="nombreArchivo" type="text" class="form-control">
+              <input placeholder="Nombre de la hoja" [(ngModel)]="nombreHoja" type="text" class="form-control mt-3">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-success" [disabled]="!nombreArchivo || !nombreHoja" (click)="onExcel()">Guardar y generar excel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+</div>
