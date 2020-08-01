@@ -128,6 +128,9 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         for(let item of data.response){ //Aplicamos los pipes necesarios
           item.fechacomienzo = item.fechacomienzo ? this.aplicarDatePipe(item.fechacomienzo) : undefined;
           item.fechafin = item.fechafin ? this.aplicarDatePipe(item.fechafin) : undefined;
+          if(item.fechacompr) {
+            item.componente = item.descripcion.split("-")[1];
+          }
         }
         
         this.items = data.response;
@@ -199,14 +202,14 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         "ID",
         "DESCRIPCION",
         "CANTIDAD",
-        "FECHA COMIENZO",
+        "COMPONENTE",
         "FECHA FIN"
       ],
       tb: [
         "id",
         "descripcion",
         "cantidad",
-        "fechacomienzo",
+        "componente",
         "fechafin"
       ]
 
