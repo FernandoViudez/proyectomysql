@@ -37,13 +37,13 @@
         <div class="row mt-2">
             <div class="col-3">
                 <label>Código del Producto</label>
-                <input disabled (change)="validarId()" type="number" [(ngModel)]="codpt" class="form-control boldText"
+                <input [disabled]="descripcion" (change)="validarId()" type="number" [(ngModel)]="codpt" class="form-control boldText"
                     id="codpt">
             </div>
             <div class="col-9">
-                <h4 class="bg-danger mt-3 text-center rounded text-white">
-                    {{descripcion}}
-                </h4>
+                <h2 class="bg-danger mt-3 text-center rounded text-white">
+                    {{descripcion}} 
+                </h2>
                 <hr>
             </div>
         </div>
@@ -266,11 +266,18 @@
                         </div>
 
                         <div class="row">
-                            <div class="col">
+                            <div class="col-8">
                                 <div class="form-group">
                                     <label for="recipient-name010" class="col-form-label">Ciente</label>
                                     <input (keyup)="buscarPlan()" [(ngModel)]="clienteB" type="text"
                                         class="form-control" id="recipient-name01908">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="recipient-name010" class="col-form-label">Lote</label>
+                                    <input (keyup)="buscarPlan()" [(ngModel)]="loteB" type="number"
+                                        class="form-control" id="recipient-name00012">
                                 </div>
                             </div>
                         </div>
