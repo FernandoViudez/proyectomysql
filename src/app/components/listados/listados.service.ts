@@ -32,4 +32,8 @@ export class ListadosService {
     return this.http.get(`${this.url}listarPorRangoMovimientos/${desde}/${hasta}`)
   }
 
+  rangoFechas(desde: number, hasta: number){
+    return this.http.get(`${this.url}listarPorRangoPlanificacion/${desde}/${hasta}`)
+  }
+
 }

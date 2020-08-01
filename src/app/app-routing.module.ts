@@ -19,7 +19,6 @@ import { ControlptComponent } from './components/controlpt/controlpt.component';
 import { ControlComponent } from './components/control/control.component';
 import { CertificadosComponent } from './components/certificados/certificados.component';
 import { ListaFuncionalComponent } from './components/listados/lista-funcional/lista-funcional.component';
-import { PlanificacionComponent } from './components/listados/planificacion/planificacion.component';
 import { PlanproduccionComponent } from './components/listados/planproduccion/planproduccion.component';
 import { FichasComponent } from './components/listados/fichas/fichas.component';
 
@@ -60,7 +59,6 @@ const routes: Routes = [
     canActivate: [UserGuard],
     children: [
       { path: "lista-funcional", component: ListaFuncionalComponent },
-      { path: "planificacion", component: PlanificacionComponent },
       { path: "planproduccion", component: PlanproduccionComponent },
       { path: "fichas", component: FichasComponent },
     ]

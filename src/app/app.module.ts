@@ -31,7 +31,6 @@ import { ControlComponent } from './components/control/control.component';
 import { CertificadosComponent } from './components/certificados/certificados.component';
 import { ListadosComponent } from './components/listados/listados.component';
 import { ListaFuncionalComponent } from './components/listados/lista-funcional/lista-funcional.component';
-import { PlanificacionComponent } from './components/listados/planificacion/planificacion.component';
 import { PlanproduccionComponent } from './components/listados/planproduccion/planproduccion.component';
 import { FichasComponent } from './components/listados/fichas/fichas.component';
 
@@ -66,7 +65,6 @@ import { FichasComponent } from './components/listados/fichas/fichas.component';
     CertificadosComponent,
     ListadosComponent,
     ListaFuncionalComponent,
-    PlanificacionComponent,
     PlanproduccionComponent,
     FichasComponent,
   ],
