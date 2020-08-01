@@ -1,5 +1,5 @@
-<div class= "p-2 mt-1 text-white boldText" style="background-color:rgb(137,145,21); ">
-        <h3 class="text-center">EMISION DE BATCH TICKET</h3>
+<div class="p-2 mt-1 text-white boldText" style="background-color:rgb(137,145,21); ">
+    <h3 class="text-center">EMISION DE BATCH TICKET</h3>
 </div>
 
 <div id="carouselExampleControls" class="carousel slide notPrint" data-interval="9000000">
@@ -42,7 +42,7 @@
                     <div>
                     </div>
                 </div>
-                
+
                 <div class="row mt-2">
                     <div class="col-3">
                         <label style="margin-left:50%;">Cantidad a elaborar</label>
@@ -110,9 +110,11 @@
                     <div class="col-2">
                         <label>A elaborar</label>
                         <div class="input-group">
-                            <input type="number" disabled class="form-control text-right boldText" [(ngModel)]="cantidadPlani">
+                            <input type="number" disabled class="form-control text-right boldText"
+                                [(ngModel)]="cantidadPlani">
                             <div class="input-group-append">
-                                    <span disabled class="input-group-text boldText" id="basic-addon2">{{unidadmedida}}</span>
+                                <span disabled class="input-group-text boldText"
+                                    id="basic-addon2">{{unidadmedida}}</span>
                             </div>
                         </div>
                     </div>
@@ -122,7 +124,7 @@
                     </div>
                     <div class="col-2">
                     </div>
-                </div> 
+                </div>
                 <div class="row mt-5">
                     <div class="col-12">
                         <div style="overflow: scroll; height: 340px; width: 90%;" class="m-auto">
@@ -137,13 +139,13 @@
                                     <td>{{item.codmp}}</td>
                                     <td>{{item.envasado | numeralPipe}} {{unidadmedida}} en {{item.descripcion}}</td>
                                     <td><input type="number" class="form-control boldText" #in
-                                            (keyup)="in.value=in.value; calcular(in.value, i)" 
+                                            (keyup)="in.value=in.value; calcular(in.value, i)"
                                             (change)="guardarEnvases(in.value, item.codmp, item.envasado)">
                                     </td>
                                     <td class="boldText">{{in.value/item.envasado}}</td>
                                 </tr>
                             </table>
-                        </div> 
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-1">
@@ -177,20 +179,24 @@
                     <div class="col-2">
                         <label>A elaborar</label>
                         <div class="input-group">
-                            <input type="number" disabled class="form-control text-right boldText" [(ngModel)]="cantidadPlani">
+                            <input type="number" disabled class="form-control text-right boldText"
+                                [(ngModel)]="cantidadPlani">
                             <div class="input-group-append">
-                                    <span disabled class="input-group-text boldText" id="basic-addon2">{{unidadmedida}}</span>
+                                <span disabled class="input-group-text boldText"
+                                    id="basic-addon2">{{unidadmedida}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <label>Proximo Batch</label>
-                        <input type="number" disabled class="form-control" style="font-size: 18px" [(ngModel)]="proximoBatch">
+                        <input type="number" disabled class="form-control" style="font-size: 18px"
+                            [(ngModel)]="proximoBatch">
                     </div>
                     <div class="col-2">
                         <button
                             *ngIf="id && cantidadPlani && !totCantidadEnvasar || totCantidadEnvasar  <= cantidadPlani"
-                            class="btn btn-success btn-block mt-4" style="font-size: 25px;" (click)="finalizar()">Emitir Ticket</button>
+                            class="btn btn-success btn-block mt-4" style="font-size: 25px;" (click)="finalizar()">Emitir
+                            Ticket</button>
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -251,49 +257,49 @@
 
 <div class="yesPrint">
     <style>
-    .tab1 {
-        display: inline-block;
-        margin-left: 40px;
-    }
-    .tab2 {
-        display: inline-block;
-        margin-left: 80px;
-    }
+        .tab1 {
+            display: inline-block;
+            margin-left: 40px;
+        }
 
-	table {
-	    font-family: arial,helvetica,sans-serif;
-	    border-collapse: collapse;
-	    width: 100%;	    
-	    padding: 0.1px;
-	}
+        .tab2 {
+            display: inline-block;
+            margin-left: 80px;
+        }
 
-	th {
-	    border: 0.5px solid #dddddd;
-	    text-align: center;
-	    padding: 2.5px;
-	    font-size:13px;
-	}
-	
-	td {
-	    border: 0.5px solid #dddddd;
-	    text-align: left;
-	    padding: 2.5px;
-	    font-size:13px;
-	}
-    
-	tr:nth-child(even) {
-	   background-color: #dddddd;
-	}
-	
-	pre {
-	   border: 0.5px solid #dddddd;
-	   padding: 0.5px;
-	   font-size:13px;
-	   font-family: arial,helvetica,sans-serif;
-	   line-height: 20pt;
-	}
+        table {
+            font-family: arial, helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            padding: 0.1px;
+        }
 
-   </style>
+        th {
+            border: 0.5px solid #dddddd;
+            text-align: center;
+            padding: 2.5px;
+            font-size: 13px;
+        }
+
+        td {
+            border: 0.5px solid #dddddd;
+            text-align: left;
+            padding: 2.5px;
+            font-size: 13px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        pre {
+            border: 0.5px solid #dddddd;
+            padding: 0.5px;
+            font-size: 13px;
+            font-family: arial, helvetica, sans-serif;
+            line-height: 20pt;
+        }
+    </style>
 
     <div>
         <h5>
@@ -312,8 +318,8 @@
             PESO FINAL ____________ Kg <span class="tab1"></span>CONTROLO ______________ <span class="tab1"></span> COMIENZO ENVASADO ___/___/___<span class="tab1"></span> FILTRO UTILIZADO # _______
             </pre>
 
-            <div class="w-100" *ngIf="tfa=='T'"> :   
-            <pre class="text-center">
+            <div class="w-100" *ngIf="tfa=='T'"> :
+                <pre class="text-center">
 		**** S I S T E M A   D E   T I N T U R A C I O N ****                                  
 		BASE DE DATOS ___________   BASE CLIENTES ___________                                   
 		AGREGAR PASTAS EN ___ ml       ___ onzas y fracciones
@@ -321,22 +327,21 @@
 
 		*****************  F O R M U L A  *******************    
             </pre>
-                
-            <table>
-                <tr>
-                    <th></th>
-                    <th>LOTE Nro.</th>
-                    <th>DESCRIPCION</th>
-                    <th>AGREGADO</th>
-                </tr>
-                <tr *ngFor="let item of arrayAsoc">
-                    <td>{{item.orden}}</td>
-                    <td></td>
-                    <td>{{item.descripcion}}</td>
-                    <td></td>  
-                </tr>
-            </table>
-            <pre>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>LOTE Nro.</th>
+                        <th>DESCRIPCION</th>
+                        <th>AGREGADO</th>
+                    </tr>
+                    <tr *ngFor="let item of arrayAsoc">
+                        <td>{{item.orden}}</td>
+                        <td></td>
+                        <td>{{item.descripcion}}</td>
+                        <td></td>
+                    </tr>
+                </table>
+                <pre>
 		COLOCAR EN EL SHAKER DURANTE TRES MINUTOS !!!
 		LLEVAR A C.C. --> APROBACION DE COLOR
 		>BASE DE DATOS --> IRAM
@@ -347,60 +352,66 @@
             </pre>
             </div>
 
+
+            <td *ngIf="tfa != 'T'">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>MP</th>
+                        <th>PT</th>
+                        <th>DESCRIPCION</th>
+                        <th>CANTIDAD</th>
+                        <th>LOTE Nro.</th>
+                        <th>PREPESAO</th>
+                        <th>AGREGADO</th>
+                        <th>RGO/PROT</th>
+                    </tr>
+                    <tr *ngFor="let item of arrayAsoc; let i = index;">
+                        <td>{{item.orden}}</td>
+                        <td>{{item.codmp}}</td>
+                        <td>{{item.codpt}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td *ngIf="unidadmedida == 'KG' && item.cantidad" class="text-right">
+                            {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0</td>
+                        <td *ngIf="unidadmedida == 'LT' && item.cantidad" class="text-right">
+                            {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0</td>
+                        <td *ngIf="!item.cantidad"> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-center">{{item.ind[1]}}</td>
+                    </tr>
+                </table>
+                <span>
+                    __. _________ ___________________________________________________________________________________
+                    _______+_______+_______ _____ ______ __________<br><br>
+                    __. _________ ___________________________________________________________________________________
+                    _______+_______+_______ _____ ______ __________<br><br>
+                    __. _________ ___________________________________________________________________________________
+                    _______+_______+_______ _____ ______ __________<br>
+                </span>
+            </td>
             
-            <td *ngIf="tfa != 'T'">   
+            <br>
+            <p class="text-center"> <b> DATOS DE APROBACION FINAL <span class="tab2"></span>ENTREGA ____ HORAS ___ C ___
+                    HRA</b></p>
+
+
+
             <table>
                 <tr>
-                    <th></th>
-                    <th>MP</th>
-                    <th>PT</th>
-                    <th>DESCRIPCION</th>
-                    <th>CANTIDAD</th>
-                    <th>LOTE Nro.</th>
-                    <th>PREPESAO</th>
-                    <th>AGREGADO</th>
-                    <th>RGO/PROT</th>
-                </tr>
-                <tr *ngFor="let item of arrayAsoc; let i = index;">
-                    <td>{{item.orden}}</td>
-                    <td>{{item.codmp}}</td>
-                    <td>{{item.codpt}}</td>
-                    <td>{{item.descripcion}}</td>
-                    <td *ngIf ="unidadmedida == 'KG' && item.cantidad" 
-                    	class="text-right">{{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0</td>
-                    <td *ngIf ="unidadmedida == 'LT' && item.cantidad" 
-                    	class="text-right">{{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0</td>
-                    <td *ngIf ="!item.cantidad"> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-center">{{item.ind[1]}}</td>
-                </tr>
-            </table>
-            __. _________  ___________________________________________________________________________________   _______+_______+_______ _____ ______ __________<br><br>
-            __. _________  ___________________________________________________________________________________   _______+_______+_______ _____ ______ __________<br><br>
-            __. _________  ___________________________________________________________________________________   _______+_______+_______ _____ ______ __________<br>
-            </td>
-
-            <br>
-            <p class="text-center"> <b> DATOS DE APROBACION FINAL <span class="tab2"></span>ENTREGA ____ HORAS ___ C ___ HRA</b></p>
-
-
-	    
-        <table>
-               <tr>
                     <td>Peso Especifico : {{pesoespecifico | numeralPipe}} g/cm3</td>
                     <td>____________</td>
                     <td>____________</td>
                     <td>____________</td>
-               </tr>
-		<tr>
+                </tr>
+                <tr>
                     <td>Viscosidad CPS : {{viscosidadspindle}} </td>
                     <td>_________ {{spindlenumero}}</td>
                     <td>____________</td>
                     <td>____________</td>
                 </tr>
-		<tr>
+                <tr>
                     <td>Viscosidad UK : {{viscosidaduk}}</td>
                     <td>____________</td>
                     <td>____________</td>
@@ -442,10 +453,10 @@
                     <td>____________</td>
                     <td>____________</td>
                 </tr>
-                </table><br>
+            </table><br>
         </h6>
         <h5>
-            ========== {{id}} {{descripcion}} {{componente}} {{color}} {{proximoBatch}} ========== 
+            ========== {{id}} {{descripcion}} {{componente}} {{color}} {{proximoBatch}} ==========
             FECHA DE APROBACION FINAL ___/ ___ /___ <span class="tab1"></span>HORA _____<br>
         </h5>
         <div>
@@ -458,21 +469,24 @@
                     <th></th>
                     <th>Ttl.KG x ENV.</th>
                     <th>Ttl.{{unidadmedida}}</th>
-                </tr>  
+                </tr>
                 <tr *ngFor="let item of arrayConj">
                     <td>{{item.codmp}}</td>
                     <td>{{item.descripcion}}</td>
                     <td class="text-right">{{item.envasado | numeralPipe}}</td>
-                    <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice | numeralPipe}}</td>
+                    <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice | numeralPipe}}
+                    </td>
                     <td *ngIf="item.indice == 0 || item.indice == ''" class="text-right">0</td>
                     <td>_______</td>
-                    <td *ngIf="unidadmedida=='LT'" class="text-right">{{(item.envasado * pesoespecifico) | numeralPipe}}</td>
+                    <td *ngIf="unidadmedida=='LT'" class="text-right">{{(item.envasado * pesoespecifico) | numeralPipe}}
+                    </td>
                     <td *ngIf="unidadmedida=='KG'" class="text-right">{{item.envasado | numeralPipe}}</td>
                     <td class="text-right">{{(item.envasado * item.indice) | numeralPipe}}</td>
                 </tr>
             </table>
             <hr>
-            <h6> Correcciones de STOCK Materia Prima ___/___/___ <span class="tab2"></span>STOCK Envases ___/___/___  <span class="tab2"></span>STOCK Producto Terminado ___/___/___</h6>
+            <h6> Correcciones de STOCK Materia Prima ___/___/___ <span class="tab2"></span>STOCK Envases ___/___/___
+                <span class="tab2"></span>STOCK Producto Terminado ___/___/___</h6>
         </div>
     </div>
 
@@ -516,7 +530,8 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <label>Seleccione T.F.A. (POR DEFECTO F)</label>
+                        <label style="background-color: greenyellow; " >* ATENCION ! Seleccione T.F.A. * </label>
+                        <label>* (por defecto 'F')</label>
                         <div class="input-group">
                             <select class="mt-2 custom-select boldText" [(ngModel)]="tfa" id="inputGroupSelect01">
                                 <option value="T">T</option>

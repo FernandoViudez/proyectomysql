@@ -42,6 +42,7 @@ export class PlanifiComponent implements OnInit {
   codptB: number;
   descripcionB: string;
   clienteB: string;
+  loteB: number;
   pendientes = false;
   arrayB = [];
 
@@ -63,7 +64,7 @@ export class PlanifiComponent implements OnInit {
   //BUSQUEDA DE PLANIFICACION
   buscarPlan() {
     this.pendientes = false;
-    let data = { codpt: this.codptB, descripcion: this.descripcionB, cliente: this.clienteB }
+    let data = { codpt: this.codptB, descripcion: this.descripcionB, cliente: this.clienteB, lote: this.loteB }
     this.http.post("http://localhost:8080/api/getPlani", data).
       subscribe((data: any) => {
         this.generarClases(data.response);
@@ -386,6 +387,7 @@ export class PlanifiComponent implements OnInit {
     this.codptB = null;
     this.descripcionB = null;
     this.clienteB = null;
+    this.loteB = null;
     this.arrayB = [];
     this.pendientes = false;
     this.unidadmedida = null;
@@ -397,6 +399,7 @@ export class PlanifiComponent implements OnInit {
     this.descripcionB = null;
     this.clienteB = null;
     this.arrayB = [];
+    this.loteB = null;
     this.pendientes = false;
   }
   //HABILITAR INPUTS PARA ESCRITURA
