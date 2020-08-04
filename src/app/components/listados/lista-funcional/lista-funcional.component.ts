@@ -20,6 +20,8 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   rangomp$: Observable<any>;
   public desde: number;
   public hasta: number;
+  public inicio: number;
+  public fin: number;
   public items: any[];
   public operacion: string;
   public nombreArchivo: string;
@@ -28,6 +30,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   //Flag
   esProveedor: boolean = false;
   sonFechas: boolean = false;
+  esPlani: boolean = false;
 
   //Total
   sumaTotal: number;
@@ -42,6 +45,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
       case "RANGO":
         this.sonFechas = false;
+        this.esPlani = false;
         if (this.desde && this.hasta) {
           return false;
         } else {
@@ -50,28 +54,23 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
       case "MINIMO":
         this.sonFechas = false;
+        this.esPlani = false;
         return false;
 
 
       case "RANGOMOV":
-        this.sonFechas = false;
-        if (this.desde && this.hasta) {
-          return false;
-        } else {
-          return true
-        }
-
-      case "RANGOMOV":
-        this.sonFechas = false;
-        if (this.desde && this.hasta) {
+        this.sonFechas = true;
+        this.esPlani = false;
+        if (this.desde && this.hasta && this.inicio && this.fin) {
           return false;
         } else {
           return true
         }
 
       case "RANGOMOVD":
-        this.sonFechas = false;
-        if (this.desde && this.hasta) {
+        this.sonFechas = true;
+        this.esPlani = false;
+        if (this.desde && this.hasta && this.inicio && this.fin) {
           return false;
         } else {
           return true
@@ -79,7 +78,8 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
       case "RANGOFECHAS":
         this.sonFechas = true;
-        if (this.desde && this.hasta) {
+        this.esPlani = true;
+        if (this.inicio && this.fin) {
           return false;
         } else {
           return true
@@ -95,7 +95,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
   //Realizar operacion
   onSubmit(realizarOperacion: boolean) {
-
+    this.esProveedor = false;
     switch (this.operacion) {
       case "RANGO":
         this.asignarPropiedadesDeMp();
@@ -107,32 +107,33 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         break;
       case "RANGOMOV":
         this.asignarPropiedadesDeMov();
-        realizarOperacion ? this.rangomp$ = this.listadosService.rangoMov(this.desde, this.hasta) : false;
+        realizarOperacion ? this.rangomp$ = this.listadosService.rangoMov(this.desde, this.hasta, this.inicio, this.fin) : false;
         break;
 
       case "RANGOMOVD":
         this.asignarPropiedadesDeMov();
         this.esProveedor = true;
-        realizarOperacion ? this.rangomp$ = this.listadosService.rangoMov(this.desde, this.hasta) : false;
+        realizarOperacion ? this.rangomp$ = this.listadosService.rangoMov(this.desde, this.hasta, this.inicio, this.fin) : false;
         break;
 
       case "RANGOFECHAS":
         this.asignarPropiedadesDePlan();
-        realizarOperacion ? this.rangomp$ = this.listadosService.rangoFechas(this.desde, this.hasta) : false;
+        realizarOperacion ? this.rangomp$ = this.listadosService.rangoFechas(this.inicio, this.fin) : false;
         break;
     }
 
     if (realizarOperacion) {
       this.sb$ = this.rangomp$.subscribe((data: any) => {
         data.response = this.esProveedor ? data.response.filter(this.filtrarPorProveedorYSuma) : data.response;
-        for(let item of data.response){ //Aplicamos los pipes necesarios
+        for (let item of data.response) { //Aplicamos los pipes necesarios
           item.fechacomienzo = item.fechacomienzo ? this.aplicarDatePipe(item.fechacomienzo) : undefined;
           item.fechafin = item.fechafin ? this.aplicarDatePipe(item.fechafin) : undefined;
-          if(item.fechacompr) {
+          item.fecha = item.fecha ? this.aplicarDatePipe(item.fecha) : undefined;
+          if (item.fechacompr) {
             item.componente = item.descripcion.split("-")[1];
           }
         }
-        
+        console.log(data.response);
         this.items = data.response;
       })
     }
@@ -217,15 +218,98 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   }
 
   //Calcula cantidades fabricadas en caso que el usuario
-  //desee calcularlas (Agregar boton en pantalla y lugar donde se muestra el resultado) 
+  //desee calcularlas (Agregar boton en pantalla y lugar donde se muestra el resultado)
+  //Ademas calcula la suma de todas las mnaterias primas iguales, las combina en una sola 
+  // Y divide por componente para subtotales 
   calcularCantidadesFabricadasEnPlani() {
     this.sumaTotal = 0;
-      for(let item of this.items){
-        this.sumaTotal += item.cantidad;
+    let arrayTemporal: any = [];
+    for (let index = 0; index < this.items.length; index++) {
+      this.sumaTotal += this.items[index].cantidad;
+
+      if (arrayTemporal.length != 0) {
+
+        if (arrayTemporal.find(item => item.codpt == this.items[index].codpt)) {
+
+          arrayTemporal.map(item => {
+
+            if (item.codpt == this.items[index].codpt) {
+              item.cantidad += this.items[index].cantidad
+
+            }
+          })
+
+        } else {
+
+          arrayTemporal.push(this.items[index])
+
+        }
+
+      } else {
+        arrayTemporal.push(this.items[index]);
       }
+
+    }
+
+    this.items = [];
+
+    for (let item of arrayTemporal) {
+      switch (item.componente.trim()) {
+        case "AGENTE DE CURA":
+          item.bgA = true;
+          this.items.push(item);
+          break;
+        case "DILUYENTE":
+          item.bgD = true;
+          this.items.push(item);
+          break;
+        case "ENDURECEDOR":
+          item.bgE = true;
+          this.items.push(item);
+          break;
+        case "INERTES":
+          item.bgI = true;
+          this.items.push(item);
+          break;
+        case "LÍQUIDO":
+          item.bgL = true;
+          this.items.push(item);
+          break;
+        case "MONOCOMPONENTE":
+          item.bgM = true;
+          this.items.push(item);
+          break;
+        case "POLVO":
+          item.bgP = true;
+          this.items.push(item);
+          break;
+        case "RESINA":
+          item.bgR = true;
+          this.items.push(item);
+          break;
+        case 'SEMIELABORADO':
+          item.bgS = true;
+          this.items.push(item);
+          break
+      }
+    }
+
+    this.items.sort(function (a, b) {
+      if (a.componente > b.componente) {
+        return 1;
+      }
+      if (a.componente < b.componente) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    });
+
+
+
   }
 
-  aplicarDatePipe(fecha){
+  aplicarDatePipe(fecha) {
     return this.datePipe.transform(fecha)
   }
 

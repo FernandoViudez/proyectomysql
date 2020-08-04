@@ -28,8 +28,8 @@ export class ListadosService {
     return this.http.get(`${this.url}stockMenorMinimo`)
   }
 
-  rangoMov(desde: number, hasta: number){
-    return this.http.get(`${this.url}listarPorRangoMovimientos/${desde}/${hasta}`)
+  rangoMov(desde: number, hasta: number, inicio: number, fin: number){
+    return this.http.get(`${this.url}listarPorRangoMovimientos/${desde}/${hasta}/${inicio}/${fin}`)
   }
 
   rangoFechas(desde: number, hasta: number){
