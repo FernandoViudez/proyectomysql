@@ -40,13 +40,14 @@
             </div>
         </div>
 
-        <div *ngIf="tipo" class="mt-2">
-
-            <div class="row">
-                <!-- <div class="col-3">
-                    <label><!Tipo de producto<!</label>
-                    <input disabled class="form-control" type="text" [(ngModel)]="tipo">
-                </div> -->
+        <div *ngIf="tipo">
+            <div class="row mt-2">
+                <div class="col-4 mt-2">
+                    <span>Tipo de producto</span>
+                    <input disabled class="boldText" type="text" [(ngModel)]="tipo">
+                </div>
+            </div>
+            <div class="row mt-2">
                 <div class="col-4">
                     <span *ngIf="tipo!='ENVASE'">Peso especifico</span>
                     <span *ngIf="tipo=='ENVASE'">Peso del envase 1</span>
