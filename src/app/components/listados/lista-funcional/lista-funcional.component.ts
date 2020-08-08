@@ -26,6 +26,19 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   public operacion: string;
   public nombreArchivo: string;
   public nombreHoja: string;
+  public subtotales = [
+    {titulo: "AGENTEDECURA", subtotal: 0},
+    {titulo: "DILUYENTE", subtotal: 0},
+    {titulo: "ENDURECEDOR", subtotal: 0},
+    {titulo: "INERTES", subtotal: 0},
+    {titulo: "LÍQUIDO", subtotal: 0},
+    {titulo: "MONOCOMPONENTE", subtotal: 0},
+    {titulo: "POLVO", subtotal: 0},
+    {titulo: "RESINA", subtotal: 0},
+    {titulo: "SEMIELABORADO", subtotal: 0},
+  ];
+  saldoInicial: number;
+  saldoFinal: number;
 
   //Flag
   esProveedor: boolean = false;
@@ -130,11 +143,12 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           item.fechafin = item.fechafin ? this.aplicarDatePipe(item.fechafin) : undefined;
           item.fecha = item.fecha ? this.aplicarDatePipe(item.fecha) : undefined;
           if (item.fechacompr) {
-            item.componente = item.descripcion.split("-")[1];
+            item.componente = item.descripcion?.split("-")[1];
           }
         }
-        console.log(data.response);
-        this.items = data.response;
+        console.log(data);
+        this.saldoInicial = data?.saldoInicial
+        this.items = data?.response;
       })
     }
 
@@ -215,6 +229,10 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       ]
 
     }
+  }
+
+  onPrint(){
+    window.print();
   }
 
   //Calcula cantidades fabricadas en caso que el usuario
@@ -305,8 +323,47 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       return 0;
     });
 
+    /** Calculo subtotales */
+    for (let item of this.items) {
+      switch (item.componente.trim()) {
+        case "AGENTE DE CURA":
+          this.subtotales[0].subtotal += item.cantidad;;
+          break;
+        case "DILUYENTE":
+          this.subtotales[1].subtotal += item.cantidad;
+          break;
+        case "ENDURECEDOR":
+          this.subtotales[2].subtotal += item.cantidad;
+          break;
+        case "INERTES":
+          this.subtotales[3].subtotal += item.cantidad;
+          break;
+        case "LÍQUIDO":
+          this.subtotales[4].subtotal += item.cantidad;
+          break;
+        case "MONOCOMPONENTE":
+          this.subtotales[5].subtotal += item.cantidad;
+          break;
+        case "POLVO":
+          this.subtotales[6].subtotal += item.cantidad;
+          break;
+        case "RESINA":
+          this.subtotales[7].subtotal += item.cantidad;
+          break;
+        case 'SEMIELABORADO':
+          this.subtotales[8].subtotal += item.cantidad;
+          break
+      }
+    }
+    console.log(this.subtotales);
 
+  }
 
+  calcularSaldoFinal(){
+    this.saldoFinal  = this.saldoInicial;
+      for(let item of this.items){
+        this.saldoFinal += item.cantidad;
+      }
   }
 
   aplicarDatePipe(fecha) {

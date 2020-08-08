@@ -108,14 +108,14 @@ export class PlanifiComponent implements OnInit {
       subscribe((data: any) => {
         let dato = data.response[0];
         enviarMessage();
-        this.descripcion = `${dato.descripcion} - ${data.componente} - ${data.color}`;
+        this.descripcion = `${dato.descripcion} - ${data.componente} - ${data.color || "" }`;
         this.unidadmedida = dato.unidadmedida;
       }, (err) => {
         if (err.error.response) {
           let dato = err.error.response;
           enviarMessage();
           alertify.error(" ATENCIÓN!! PRODUCTO SIN FORMULA ")
-          this.descripcion = `${dato.descripcion} - ${dato.componente} - ${dato.color}`;
+          this.descripcion = `${dato.descripcion} - ${dato.componente} - ${dato.color || "" }`;
           this.unidadmedida = dato.unidadmedida;
         } else {
           alertify.error(" ESTE PRODUCTO TERMINADO NO EXISTE ")
