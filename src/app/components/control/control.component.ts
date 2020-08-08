@@ -166,7 +166,8 @@ export class ControlComponent implements OnInit {
 
   onLoteChange(){
     this.servicioControl.traerporLote(this.numeroLote, "calidadmp", "numeroLote")
-    .subscribe((item:any)=>{
+    .subscribe((data:any)=>{
+      let item = data.response
       this.id=item.codigoMp;
       this.descripcion = item.descripcion;
       this.pesoespecifico = item.peso;
