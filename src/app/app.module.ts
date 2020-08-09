@@ -33,6 +33,7 @@ import { ListadosComponent } from './components/listados/listados.component';
 import { ListaFuncionalComponent } from './components/listados/lista-funcional/lista-funcional.component';
 import { PlanproduccionComponent } from './components/listados/planproduccion/planproduccion.component';
 import { FichasComponent } from './components/listados/fichas/fichas.component';
+import { RolodexComponent } from './components/listados/rolodex/rolodex.component';
 
 
 
@@ -67,6 +68,7 @@ import { FichasComponent } from './components/listados/fichas/fichas.component';
     ListaFuncionalComponent,
     PlanproduccionComponent,
     FichasComponent,
+    RolodexComponent,
   ],
   imports: [
     BrowserModule,

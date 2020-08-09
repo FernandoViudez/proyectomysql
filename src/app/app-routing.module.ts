@@ -21,6 +21,7 @@ import { CertificadosComponent } from './components/certificados/certificados.co
 import { ListaFuncionalComponent } from './components/listados/lista-funcional/lista-funcional.component';
 import { PlanproduccionComponent } from './components/listados/planproduccion/planproduccion.component';
 import { FichasComponent } from './components/listados/fichas/fichas.component';
+import { RolodexComponent } from './components/listados/rolodex/rolodex.component';
 
 
 
@@ -59,6 +60,7 @@ const routes: Routes = [
     canActivate: [UserGuard],
     children: [
       { path: "lista-funcional", component: ListaFuncionalComponent },
+      { path: "rolodex", component: RolodexComponent },
       { path: "planproduccion", component: PlanproduccionComponent },
       { path: "fichas", component: FichasComponent },
     ]

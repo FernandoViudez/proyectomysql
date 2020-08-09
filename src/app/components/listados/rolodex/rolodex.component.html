@@ -1,0 +1,32 @@
+
+<div class="row mt-3">
+    <div class="col-4">
+        <input class="form-control w-50" style="margin: auto;" type="number"
+            placeholder="Desde..." [(ngModel)]="desde">
+        <input class="form-control w-50" style="margin: auto;" type="date"
+            placeholder="Desde..." [(ngModel)]="inicio">
+    </div>
+    <div class="col-4">
+        <input class="form-control w-50" style="margin: auto;" type="number"
+            placeholder="Hasta..." [(ngModel)]="hasta">
+        <input class="form-control w-50" style="margin: auto;" type="date"
+            placeholder="Hasta..." [(ngModel)]="fin">
+    </div>
+    <div class="col-3">
+        <button class="btn btn-success" [disabled]="isValid" (click)="onSubmit()">Realizar
+            operacion</button>
+    </div>
+</div>
+
+<div style="overflow: scroll; height:450px; width: 90%; margin: auto;" class="table-striped table-responsive mt-3">
+
+    <table *ngIf="propiedades" class="table table-dark">
+        <tr>
+            <th *ngFor="let propiedad of propiedades.th">{{propiedad}}</th>
+        </tr>
+        <tr *ngFor="let item of items">
+            <td *ngFor="let propiedad of propiedades.tb">{{item[propiedad]}}</td>
+        </tr>
+    </table>
+
+</div>

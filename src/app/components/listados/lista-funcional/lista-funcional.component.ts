@@ -357,14 +357,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     }
     console.log(this.subtotales);
 
-  }
-
-  calcularSaldoFinal(){
-    this.saldoFinal  = this.saldoInicial;
-      for(let item of this.items){
-        this.saldoFinal += item.cantidad;
-      }
-  }
+  } 
 
   aplicarDatePipe(fecha) {
     return this.datePipe.transform(fecha)
