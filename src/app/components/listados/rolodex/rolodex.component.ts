@@ -58,25 +58,61 @@ export class RolodexComponent implements OnInit {
     this.sb$ = this.listadosService.rolodex(this.desde, this.hasta, this.inicio, this.fin)
     .subscribe((data: any) => {
 
-      for(let item of data.response){
-        if(item.tipo == "SUMA") this.sumaTotal += item.cantidad; 
-        if(item.tipo == "RESTA") this.restaTotal += item.cantidad;
-      }
-
-      for(let item of data.response){
-        item.sumas = this.sumaTotal;
-        item.restas = this.restaTotal;
-        item.saldoFinal = item.saldoInicial + item.sumas + item.restas;
-      }
-
       /** La data aca viene ya con todos los datos resueltos por el back */
       // console.log(data);
-      this.items = data.response;
-
-
-
+      this.agruparCalcular(data.response);
     })
    
+  }
+
+  agruparCalcular(items){
+
+    let arrayTemporal: any = [];
+    
+    /** Agrupamos codigos */
+    for (let index = 0; index < items.length; index++) {
+
+      if (arrayTemporal.length != 0) {
+
+        if (arrayTemporal.find(item => item.id == items[index].id)) {
+
+          arrayTemporal.map(item => {
+
+            if (item.id == items[index].id && item.tipo == "SUMA") {
+
+              item.sumas += items[index].cantidad;
+            
+            }else if (item.id == items[index].id && item.tipo == "RESTA"){
+
+              item.restas += items[index].cantidad;
+
+            }
+
+          })
+
+        } else {
+
+          arrayTemporal.push(items[index])
+
+        }
+
+      } else {
+
+        arrayTemporal.push(items[index]);
+      
+      }
+
+    }
+
+    /** Calculamos el saldo final por renglon */
+
+    for(let item of arrayTemporal){
+      item.saldoFinal = item.saldoInicial + item.sumas + item.restas;
+    }
+    
+    /** Igualamos el temporal a items */
+    this.items = arrayTemporal;
+
   }
 
 }
