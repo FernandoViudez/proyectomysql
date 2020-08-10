@@ -59,8 +59,8 @@ export class RolodexComponent implements OnInit {
     .subscribe((data: any) => {
 
       /** La data aca viene ya con todos los datos resueltos por el back */
-      // console.log(data);
-      this.agruparCalcular(data.response);
+      let response = this.setearEn0(data.response);
+      this.agruparCalcular(response);
     })
    
   }
@@ -91,6 +91,12 @@ export class RolodexComponent implements OnInit {
           })
 
         } else {
+          
+          if(items[index].tipo=="SUMA"){
+            items[index].sumas = items[index].cantidad;
+          }else{
+            items[index].restas = items[index].cantidad;
+          }
 
           arrayTemporal.push(items[index])
 
@@ -98,11 +104,18 @@ export class RolodexComponent implements OnInit {
 
       } else {
 
+        if(items[index].tipo=="SUMA"){
+          items[index].sumas = items[index].cantidad;
+        }else{
+          items[index].restas = items[index].cantidad;
+        }
+
         arrayTemporal.push(items[index]);
       
       }
 
     }
+
 
     /** Calculamos el saldo final por renglon */
 
@@ -113,6 +126,14 @@ export class RolodexComponent implements OnInit {
     /** Igualamos el temporal a items */
     this.items = arrayTemporal;
 
+  }
+
+  setearEn0(items){
+    for(let item of items){
+      item.sumas = 0;
+      item.restas = 0;
+    }
+    return items;
   }
 
 }
