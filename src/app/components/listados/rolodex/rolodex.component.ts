@@ -25,7 +25,7 @@ export class RolodexComponent implements OnInit {
   propiedades = {
     th: [
       "CODIGO",
-      "DETALLE",
+      "DESCRIPCION",
       "SALDO INICIAL",
       "SUMAS",
       "RESTAS",
@@ -33,7 +33,7 @@ export class RolodexComponent implements OnInit {
     ],
     tb: [
       "id",
-      "detalle",
+      "descripcion",
       "saldoInicial",
       "sumas",
       "restas",
