@@ -44,45 +44,46 @@ export class RolodexComponent implements OnInit {
   constructor(private listadosService: ListadosService) { }
 
   get isValid() {
-    if(this.inicio && this.desde && this.hasta && this.fin){
+    if (this.inicio && this.desde && this.hasta && this.fin) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
 
   ngOnInit(): void {
   }
-  
-  onSubmit(){
-    this.sb$ = this.listadosService.rolodex(this.desde, this.hasta, this.inicio, this.fin)
-    .subscribe((data: any) => {
 
-      /** La data aca viene ya con todos los datos resueltos por el back */
-      let response = this.setearEn0(data.response);
-      this.agruparCalcular(response);
-    })
-   
+  onSubmit() {
+    this.sb$ = this.listadosService.rolodex(this.desde, this.hasta, this.inicio, this.fin)
+      .subscribe((data: any) => {
+
+        /** La data aca viene ya con todos los datos resueltos por el back */
+        let response = this.setearEn0([...data.response]);
+        this.agruparCalcular([...response]);
+      })
+
   }
 
-  agruparCalcular(items){
+  agruparCalcular(items) {
 
     let arrayTemporal: any = [];
-    
+
     /** Agrupamos codigos */
     for (let index = 0; index < items.length; index++) {
 
+      /** Si no hay nada en el temporal, agregamos uno */
       if (arrayTemporal.length != 0) {
-
+        /** Si hay algo en el arreglo, buscame si tiene algun id igual al current */
         if (arrayTemporal.find(item => item.id == items[index].id)) {
 
+          /** Si encuentra algo, editale la suam/resta segun el caso */
           arrayTemporal.map(item => {
 
-            if (item.id == items[index].id && item.tipo == "SUMA") {
-
+            if (item.id == items[index].id && items[index].tipo == "SUMA") {
               item.sumas += items[index].cantidad;
-            
-            }else if (item.id == items[index].id && item.tipo == "RESTA"){
+
+            } else if (item.id == items[index].id && items[index].tipo == "RESTA"){
 
               item.restas += items[index].cantidad;
 
@@ -91,11 +92,15 @@ export class RolodexComponent implements OnInit {
           })
 
         } else {
-          
-          if(items[index].tipo=="SUMA"){
+          /** Si no hay nada parecido a el, entonces agregamelo */
+          if (items[index].tipo == "SUMA") {
+            
             items[index].sumas = items[index].cantidad;
-          }else{
+
+          } else {
+
             items[index].restas = items[index].cantidad;
+
           }
 
           arrayTemporal.push(items[index])
@@ -103,15 +108,16 @@ export class RolodexComponent implements OnInit {
         }
 
       } else {
-
-        if(items[index].tipo=="SUMA"){
+        /** Al agregar uno seteamos las sumas y restas del mismo para ya tenerlo en el temporal */
+        console.log(items[index]);
+        if (items[index].tipo == "SUMA") {
           items[index].sumas = items[index].cantidad;
-        }else{
+        } else {
           items[index].restas = items[index].cantidad;
         }
 
         arrayTemporal.push(items[index]);
-      
+
       }
 
     }
@@ -119,17 +125,17 @@ export class RolodexComponent implements OnInit {
 
     /** Calculamos el saldo final por renglon */
 
-    for(let item of arrayTemporal){
+    for (let item of arrayTemporal) {
       item.saldoFinal = item.saldoInicial + item.sumas + item.restas;
     }
-    
+
     /** Igualamos el temporal a items */
     this.items = arrayTemporal;
 
   }
 
-  setearEn0(items){
-    for(let item of items){
+  setearEn0(items) {
+    for (let item of items) {
       item.sumas = 0;
       item.restas = 0;
     }
