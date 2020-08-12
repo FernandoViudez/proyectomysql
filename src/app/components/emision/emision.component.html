@@ -193,7 +193,7 @@
                             [(ngModel)]="proximoBatch">
                     </div>
                     <div class="col-2">
-                        <button
+                        <button [disabled]="botonCancelado"
                             *ngIf="id && cantidadPlani && !totCantidadEnvasar || totCantidadEnvasar  <= cantidadPlani"
                             class="btn btn-success btn-block mt-4" style="font-size: 25px;" (click)="finalizar()">Emitir
                             Ticket</button>

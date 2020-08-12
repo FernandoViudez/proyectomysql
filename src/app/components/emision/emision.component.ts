@@ -28,6 +28,9 @@ export class EmisionComponent implements OnInit, OnDestroy {
   arrayCodMp = [];
   fechaDelDia: string;
 
+  // FLAG BUTTON
+  botonCancelado: boolean = false;
+
   //PRODTERM
 
   color: string;
@@ -272,18 +275,18 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
         let cantidadCalculada = numeral(operacion).format('0.00');
 
-        if(this.arrayCantidadesRestadas.find(cant=>cant.id==item.codmp || item.codpt )){
-          this.arrayCantidadesRestadas.map(cant=>{
-            if(cant.id==item.codmp || cant.id==item.codpt ){
-              let tot= Number(cant.cantidadCalculada)  + Number(cantidadCalculada);
+        if (this.arrayCantidadesRestadas.find(cant => cant.id == item.codmp || item.codpt)) {
+          this.arrayCantidadesRestadas.map(cant => {
+            if (cant.id == item.codmp || cant.id == item.codpt) {
+              let tot = Number(cant.cantidadCalculada) + Number(cantidadCalculada);
               cant.cantidadCalculada = numeral(tot).format('0.00');
-              cant.cantidadCalculada.toString(); 
+              cant.cantidadCalculada.toString();
             }
           })
-        }else{
+        } else {
           this.arrayCantidadesRestadas.push({ cantidadCalculada, id: item.codmp ? item.codmp : item.codpt, tabla: item.codmp ? 'promatpri' : 'prodterm' });
         }
-      
+
 
         for (let item2 of this.arrayMat) {
           if (item.codmp == item2.id) {
@@ -323,7 +326,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
     }).then(res => {
       if (res.value) {
 
-
+        this.botonCancelado = true;
         let data = {
           codpt: this.id,
           tfa: this.tfa,
