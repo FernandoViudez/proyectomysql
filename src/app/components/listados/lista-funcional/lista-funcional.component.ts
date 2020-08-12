@@ -3,6 +3,7 @@ import { ListadosService } from '../listados.service';
 import { Subscription, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { DatePipe } from '../../../pipes/date.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-funcional',
@@ -27,15 +28,15 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   public nombreArchivo: string;
   public nombreHoja: string;
   public subtotales = [
-    {titulo: "AGENTEDECURA", subtotal: 0},
-    {titulo: "DILUYENTE", subtotal: 0},
-    {titulo: "ENDURECEDOR", subtotal: 0},
-    {titulo: "INERTES", subtotal: 0},
-    {titulo: "LÍQUIDO", subtotal: 0},
-    {titulo: "MONOCOMPONENTE", subtotal: 0},
-    {titulo: "POLVO", subtotal: 0},
-    {titulo: "RESINA", subtotal: 0},
-    {titulo: "SEMIELABORADO", subtotal: 0},
+    { titulo: "AGENTEDECURA", subtotal: 0 },
+    { titulo: "DILUYENTE", subtotal: 0 },
+    { titulo: "ENDURECEDOR", subtotal: 0 },
+    { titulo: "INERTES", subtotal: 0 },
+    { titulo: "LÍQUIDO", subtotal: 0 },
+    { titulo: "MONOCOMPONENTE", subtotal: 0 },
+    { titulo: "POLVO", subtotal: 0 },
+    { titulo: "RESINA", subtotal: 0 },
+    { titulo: "SEMIELABORADO", subtotal: 0 },
   ];
   saldoInicial: number;
   saldoFinal: number;
@@ -51,7 +52,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   //Date Pipe
   datePipe = new DatePipe();
 
-  constructor(private listadosService: ListadosService) { }
+  constructor(private listadosService: ListadosService, private route: Router) { }
 
   get isValid() {
     switch (this.operacion) {
@@ -161,13 +162,22 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   }
 
   //cuando se genera el excel
-  onExcel() {
-    this.sb$ = this.listadosService.generarExcel(this.items, this.nombreArchivo, this.nombreHoja, this.propiedades.tb).subscribe
+  onExcel() { // no permito que otro que no se administrador mande estadistica produccion a excel
+    if (this.operacion=="RANGOFECHAS") {
+      console.log(this.operacion);
+      let user_role = localStorage.getItem("user_role");
+      if (user_role != "ADMIN_ROL") {
+        alert("No autorizado - Realizar impresion !")
+      }
+    } else {
+      this.sb$ = this.listadosService.generarExcel(this.items, this.nombreArchivo, this.nombreHoja, this.propiedades.tb).subscribe
       ((data: any) => {
         console.log(data);
       }, (err) => {
         console.log(err);
       })
+    }
+    this.resetear()
   }
 
   //Propiedades para la tabla
@@ -193,17 +203,23 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   asignarPropiedadesDeMov() {
     this.propiedades = {
       th: [
-        "ID",
+        "ID", 
+        "DESCRIPCION",             
         "CANTIDAD",
         "DETALLE",
+        "COMPROBANTE",
         "FECHA",
+        "PROVEEDOR",
         "MOTIVO"
       ],
       tb: [
         "id",
+        "descripcion",
         "cantidad",
         "detalle",
+        "numeroComprobante",
         "fecha",
+        "proveedor",
         "motivo"
       ]
 
@@ -218,26 +234,28 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         "DESCRIPCION",
         "CANTIDAD",
         "COMPONENTE",
+        "PROCESO",
         "FECHA FIN"
       ],
       tb: [
-        "id",
+        "codpt",
         "descripcion",
         "cantidad",
         "componente",
+        "proceso",
         "fechafin"
       ]
 
     }
   }
 
-  onPrint(){
+  onPrint() {
     window.print();
   }
 
   //Calcula cantidades fabricadas en caso que el usuario
   //desee calcularlas (Agregar boton en pantalla y lugar donde se muestra el resultado)
-  //Ademas calcula la suma de todas las mnaterias primas iguales, las combina en una sola 
+  //Ademas calcula la suma de todos los productos iguales, las combina en una sola 
   // Y divide por componente para subtotales 
   calcularCantidadesFabricadasEnPlani() {
     this.sumaTotal = 0;
@@ -327,7 +345,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     for (let item of this.items) {
       switch (item.componente.trim()) {
         case "AGENTE DE CURA":
-          this.subtotales[0].subtotal += item.cantidad;;
+          this.subtotales[0].subtotal += item.cantidad;
           break;
         case "DILUYENTE":
           this.subtotales[1].subtotal += item.cantidad;
@@ -357,7 +375,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     }
     console.log(this.subtotales);
 
-  } 
+  }
 
   aplicarDatePipe(fecha) {
     return this.datePipe.transform(fecha)
@@ -367,5 +385,15 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     this.sb$ ? this.sb$.unsubscribe() : false;
   }
 
+  resetear() {
+    this.sonFechas = null;
+    this.esPlani = null;
+    this.desde = null;
+    this.hasta = null;
+    this.inicio = null;
+    this.fin = null;
+    this.items = [];
+    this.operacion = null;
+  }
 
 }
