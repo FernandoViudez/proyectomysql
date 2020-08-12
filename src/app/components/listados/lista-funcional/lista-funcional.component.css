@@ -1,27 +1,41 @@
 .bgA{
-    background-color: lightblue;
+    background-color: blue;
+    font-size: 17px;
 }
 .bgD{
-    background-color: lightcoral;
+    background-color: coral;
+    font-size: 17px;
 }
 .bgE{
-    background-color: lightcyan;
+    background-color: red;
+    font-size: 17px;
 }
 .bgI{
-    background-color: lightpink;
+    background-color: pink;
+    color: black;
+    font-size: 17px;
 }
 .bgL{
-    background-color: lightsalmon;
+    background-color: salmon;
+    color: black;
+    font-size: 17px;
 }
 .bgM{
-    background-color: lightseagreen;
+    background-color: rgb(80, 145, 141);
+    color: black;
+    font-size: 17px;
 }
 .bgP{
-    background-color: lightskyblue;
+    background-color: skyblue;
+    color: black;
+    font-size: 17px;
 }
 .bgR{
-    background-color: lightyellow;
+    background-color: yellow;
+    color: black;
+    font-size: 17px;
 }
 .bgS{
-    background-color: lightgreen;
+    background-color: green;
+    font-size: 17px;
 }
