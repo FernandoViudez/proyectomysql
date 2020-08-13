@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ListadosService } from '../listados.service';
+import { NumeralPipe } from '../../../pipes/numeral.pipe';
 
 @Component({
   selector: 'app-rolodex',
@@ -19,18 +20,21 @@ export class RolodexComponent implements OnInit {
   saldoFinalTotal: number;
   items: any[];
 
+  //Numeral Pipe
+  private numeralPipe = new NumeralPipe();
+
   /** Propiedades de almacenamiento de saldos */
   sumaTotal: number = 0;
   restaTotal: number = 0;
 
   //cuando se genera el excel
   onExcel() {
-      this.sb$ = this.listadosService.generarExcel(this.items, this.nombreArchivo, this.nombreHoja, this.propiedades.tb).subscribe
-        ((data: any) => {
-          console.log(data);
-        }, (err) => {
-          console.log(err);
-        })
+    this.sb$ = this.listadosService.generarExcel(this.items, this.nombreArchivo, this.nombreHoja, this.propiedades.tb).subscribe
+      ((data: any) => {
+        console.log(data);
+      }, (err) => {
+        console.log(err);
+      })
     this.resetear()
   }
 
@@ -163,4 +167,7 @@ export class RolodexComponent implements OnInit {
     this.items = [];
   }
 
+  aplicarNumeralPipe(number) {
+    return this.numeralPipe.transform(number)
+  }
 }
