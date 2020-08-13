@@ -74,12 +74,17 @@ export class RolodexComponent implements OnInit {
 
   onSubmit() {
     this.sb$ = this.listadosService.rolodex(this.desde, this.hasta, this.inicio, this.fin)
-      .subscribe(async function (data: any){
+      .subscribe((data: any)=>{
 
         /** La data aca viene ya con todos los datos resueltos por el back */
         let response = this.setearEn0([...data.response]);
-        await this.agruparCalcular([...response]);
-        this.iterarYAplicar(this.items);
+        this.agruparCalcular([...response])
+        .then(res=>{
+          this.iterarYAplicar(this.items);
+        })
+        .catch(err=>{
+          console.log(err);
+        })
       })
 
   }
