@@ -9,10 +9,12 @@ import { ListadosService } from '../listados.service';
 })
 export class RolodexComponent implements OnInit {
 
-  inicio: number;
-  desde: number;
-  hasta: number;
-  fin: number;
+  public inicio: number;
+  public desde: number;
+  public hasta: number;
+  public fin: number;
+  public nombreArchivo: string;
+  public nombreHoja: string;
   sb$: Subscription;
   saldoFinalTotal: number;
   items: any[];
@@ -20,6 +22,17 @@ export class RolodexComponent implements OnInit {
   /** Propiedades de almacenamiento de saldos */
   sumaTotal: number = 0;
   restaTotal: number = 0;
+
+  //cuando se genera el excel
+  onExcel() {
+      this.sb$ = this.listadosService.generarExcel(this.items, this.nombreArchivo, this.nombreHoja, this.propiedades.tb).subscribe
+        ((data: any) => {
+          console.log(data);
+        }, (err) => {
+          console.log(err);
+        })
+    this.resetear()
+  }
 
   //Propiedadesde que se mostrarán
   propiedades = {
@@ -83,7 +96,7 @@ export class RolodexComponent implements OnInit {
             if (item.id == items[index].id && items[index].tipo == "SUMA") {
               item.sumas += items[index].cantidad;
 
-            } else if (item.id == items[index].id && items[index].tipo == "RESTA"){
+            } else if (item.id == items[index].id && items[index].tipo == "RESTA") {
 
               item.restas += items[index].cantidad;
 
@@ -94,7 +107,7 @@ export class RolodexComponent implements OnInit {
         } else {
           /** Si no hay nada parecido a el, entonces agregamelo */
           if (items[index].tipo == "SUMA") {
-            
+
             items[index].sumas = items[index].cantidad;
 
           } else {
@@ -140,6 +153,14 @@ export class RolodexComponent implements OnInit {
       item.restas = 0;
     }
     return items;
+  }
+
+  resetear() {
+    this.desde = null;
+    this.hasta = null;
+    this.inicio = null;
+    this.fin = null;
+    this.items = [];
   }
 
 }

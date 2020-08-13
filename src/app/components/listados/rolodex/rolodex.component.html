@@ -1,21 +1,29 @@
-
+<div class="bg rounded p-3 mt-1 text-white" style="background-color:rgb(180, 178, 32)">
+    <div class="row">
+        <div class="col-6">
+            <h2>Existencia en Inventarios</h2>
+            <hr>
+        </div>
+    </div>
+</div>
 <div class="row mt-3">
-    <div class="col-4">
-        <input class="form-control w-50" style="margin: auto;" type="number"
-            placeholder="Desde..." [(ngModel)]="desde">
-        <input class="form-control w-50" style="margin: auto;" type="date"
-            placeholder="Desde..." [(ngModel)]="inicio">
+    <div class="col-2">
     </div>
-    <div class="col-4">
-        <input class="form-control w-50" style="margin: auto;" type="number"
-            placeholder="Hasta..." [(ngModel)]="hasta">
-        <input class="form-control w-50" style="margin: auto;" type="date"
-            placeholder="Hasta..." [(ngModel)]="fin">
+    <div class="col-2 mt-4">
+        <input class="form-control w-80 boldText" style="margin: auto;" type="number" placeholder="Desde..."
+            [(ngModel)]="desde">
     </div>
-    <div class="col-3">
-        <button class="btn btn-success" [disabled]="isValid" (click)="onSubmit()">Realizar
-            operacion</button>
+    <div class="col-2 mt-4">
+        <input class="form-control w-80 boldText" style="margin: auto;" type="number" placeholder="Hasta..."
+            [(ngModel)]="hasta">
     </div>
+    <div class="col-2 mt-4">
+        <input class="form-control w-80 boldText" style="margin: auto;" type="date" [(ngModel)]="inicio">
+    </div>
+    <<div class="col-2 mt-4">
+        <input class="form-control w-80 boldText" style="margin: auto;" type="date" [(ngModel)]="fin">
+</div>
+
 </div>
 
 <div style="overflow: scroll; height:450px; width: 90%; margin: auto;" class="table-striped table-responsive mt-3">
@@ -28,5 +36,41 @@
             <td *ngFor="let propiedad of propiedades.tb">{{item[propiedad]}}</td>
         </tr>
     </table>
+</div>
+<div class="row mt-2">
+    <div class="col-7">
+        <button type="button" class="btn btn-info float-lg-right" (click)="resetear()">Resetear</button>
+    </div>
+    <div class="col-2">
+        <button class="btn btn-warning float-lg-right" [disabled]="isValid || !items" data-toggle="modal"
+            data-target="#exampleModal">Generar Excel</button>
+    </div>
+    <div class="col-2">
+        <button class="btn btn-success float-lg-right" [disabled]="isValid" (click)="onSubmit()">Realizar
+            operacion</button>
+    </div>
+</div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ingrese nombre de tabla excel a crear</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input placeholder="Nombre del archivo" [(ngModel)]="nombreArchivo" type="text" class="form-control">
+                <input placeholder="Nombre de la hoja" [(ngModel)]="nombreHoja" type="text" class="form-control mt-3">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" [disabled]="!nombreArchivo || !nombreHoja"
+                    (click)="onExcel()" data-dismiss="modal">Guardar y generar excel</button>
+            </div>
+        </div>
+    </div>
 </div>
