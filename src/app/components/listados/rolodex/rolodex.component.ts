@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ListadosService } from '../listados.service';
 import { NumeralPipe } from '../../../pipes/numeral.pipe';
-import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-rolodex',
