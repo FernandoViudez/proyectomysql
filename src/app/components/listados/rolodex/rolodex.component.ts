@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ListadosService } from '../listados.service';
 import { NumeralPipe } from '../../../pipes/numeral.pipe';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-rolodex',
@@ -76,10 +77,12 @@ export class RolodexComponent implements OnInit {
       .subscribe((data: any)=>{
         console.log(data);
         /** La data aca viene ya con todos los datos resueltos por el back */
+        Swal.showLoading();
         let response = this.setearEn0([...data.response]);
         this.agruparCalcular([...response], data.flag)
         .then(res=>{
           this.iterarYAplicar(this.items);
+          Swal.close();
         })
         .catch(err=>{
           console.log(err);
@@ -93,6 +96,7 @@ export class RolodexComponent implements OnInit {
       
       let arrayTemporal: any = [];
 
+      // if()
       /** Agrupamos codigos */
       for (let index = 0; index < items.length; index++) {
   
