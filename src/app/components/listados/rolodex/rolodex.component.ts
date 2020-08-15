@@ -74,10 +74,10 @@ export class RolodexComponent implements OnInit {
   onSubmit() {
     this.sb$ = this.listadosService.rolodex(this.desde, this.hasta, this.inicio, this.fin)
       .subscribe((data: any)=>{
-
+        console.log(data);
         /** La data aca viene ya con todos los datos resueltos por el back */
         let response = this.setearEn0([...data.response]);
-        this.agruparCalcular([...response])
+        this.agruparCalcular([...response], data.flag)
         .then(res=>{
           this.iterarYAplicar(this.items);
         })
@@ -88,7 +88,7 @@ export class RolodexComponent implements OnInit {
 
   }
 
-  agruparCalcular(items) {
+  agruparCalcular(items, flag) {
     return new Promise((resolve, reject) => {
       
       let arrayTemporal: any = [];
@@ -146,6 +146,14 @@ export class RolodexComponent implements OnInit {
   
       }
   
+      /** si no hay movimientos en el rango de fechas solicitado */
+
+      if (flag==true) {
+        for (let item of arrayTemporal) { 
+          item.sumas = 0;
+          item.restas = 0;
+        }
+      }
   
       /** Calculamos el saldo final por renglon */
   
@@ -177,7 +185,7 @@ export class RolodexComponent implements OnInit {
   }
 
   aplicarNumeralPipe(number) {
-    return this.numeralPipe.transform(number)
+    return this.numeralPipe.transform(number, "true")
   }
 
   iterarYAplicar(items: any[]){
