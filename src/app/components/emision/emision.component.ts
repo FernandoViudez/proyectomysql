@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import numeral from 'numeral';
+import { GenericService } from '../../services/generic.service';
 declare let alertify;
 
 @Component({
@@ -83,7 +84,8 @@ export class EmisionComponent implements OnInit, OnDestroy {
   pendientes = false;
   arrayB = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private genericService: GenericService) {
     let anio = new Date().getFullYear();
     let mes = new Date().getMonth() + 1;
     let dia = new Date().getDate();
@@ -412,6 +414,18 @@ export class EmisionComponent implements OnInit, OnDestroy {
       }, (err) => {
         console.log(err);
       })
+  }
+
+  calcularPlanProduccion(){
+    /** Necesitamos filtrar pendientes por los que no tengan batch emitido  */
+    this.arrayB.filter(item => !item.batch);
+
+    /** Luego enviamos ese arreglo al backend para que haga las operaciones necesarias */
+    this.genericService.calcularPlan(this.arrayB)
+    .subscribe(data=>{
+      console.log(data);
+    })
+
   }
 
 }

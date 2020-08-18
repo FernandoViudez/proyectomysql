@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { ListadosService } from '../listados.service';
 import { NumeralPipe } from '../../../pipes/numeral.pipe';
 import Swal from 'sweetalert2';
+import { window } from 'rxjs/operators';
+import { GenericService } from '../../../services/generic.service';
 
 @Component({
   selector: 'app-rolodex',
@@ -32,11 +34,12 @@ export class RolodexComponent implements OnInit {
   onExcel() {
     this.sb$ = this.listadosService.generarExcel(this.items, this.nombreArchivo, this.nombreHoja, this.propiedades.tb).subscribe
       ((data: any) => {
-        console.log(data);
+        this.genericService.downloadExcel(data.url);
       }, (err) => {
         console.log(err);
       })
     this.resetear()
+
   }
 
   //Propiedadesde que se mostrarán
@@ -59,7 +62,7 @@ export class RolodexComponent implements OnInit {
     ]
   }
 
-  constructor(private listadosService: ListadosService) { }
+  constructor(private listadosService: ListadosService, private genericService: GenericService) { }
 
   get isValid() {
     if (this.inicio && this.desde && this.hasta && this.fin) {

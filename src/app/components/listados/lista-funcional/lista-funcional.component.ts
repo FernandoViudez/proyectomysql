@@ -4,6 +4,7 @@ import { Subscription, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { DatePipe } from '../../../pipes/date.pipe';
 import { Router } from '@angular/router';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'app-lista-funcional',
@@ -52,7 +53,8 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   //Date Pipe
   datePipe = new DatePipe();
 
-  constructor(private listadosService: ListadosService, private route: Router) { }
+  constructor(private listadosService: ListadosService, private route: Router,
+    private genericService: GenericService) { }
 
   get isValid() {
     switch (this.operacion) {
@@ -172,7 +174,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     } else {
       this.sb$ = this.listadosService.generarExcel(this.items, this.nombreArchivo, this.nombreHoja, this.propiedades.tb).subscribe
       ((data: any) => {
-        console.log(data);
+        this.genericService.downloadExcel(data.url);
       }, (err) => {
         console.log(err);
       })

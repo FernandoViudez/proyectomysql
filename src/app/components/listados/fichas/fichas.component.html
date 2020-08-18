@@ -1,1 +1,45 @@
-<p>fichas works!</p>
+
+
+<div class="container notPrint">
+    <div class="row mt-3">
+        <div class="col-6">
+            <input type="number" class="form-control" [(ngModel)]="desde" >
+        </div>
+        <div class="col-6">
+            <input type="number" class="form-control" [(ngModel)]="hasta" >
+        </div>
+    </div>
+    <div class="row mt-5" style="overflow: scroll; height:450px; width: 90%; margin: auto;">
+        <table class="table bg-dark" style="color: white">
+            <thead>
+                <tr>
+                    <th  *ngFor="let propiedad of propiedades.th">{{propiedad}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items">
+                    <td *ngFor="let propiedad of propiedades.tb">{{item[propiedad]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row mt-3">
+        <button class="btn btn-success" [disabled]="!checkInputs" (click)="obtenerPorRango()">Realizar operacion</button>
+        <button class="btn btn-primary" [disabled]="!items" (click)="onPrint()">Imprimir</button>
+    </div>
+</div>
+
+<div class="yesPrint">
+    <table class="table bg-dark" style="color: white">
+        <thead>
+            <tr>
+                <th  *ngFor="let propiedad of propiedades.th">{{propiedad}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of items">
+                <td *ngFor="let propiedad of propiedades.tb">{{item[propiedad]}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

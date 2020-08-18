@@ -39,4 +39,9 @@ export class ControlService {
     return this.httpClient.post(`${this.url}getControlByLote`, data);
   }
 
+  traerPorRango(desde: number, hasta: number){
+    console.log("listarFichas");
+    return this.httpClient.get(`${this.url}listarFichas/${desde}/${hasta}`);
+  }
+
 }

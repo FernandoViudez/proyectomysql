@@ -432,6 +432,7 @@ export class PlanifiComponent implements OnInit {
     this.pendientes = true;
     this.http.get("http://localhost:8080/api/traerPendientes").
       subscribe((data: any) => {
+        console.log(data)
         this.generarClases(data.response);
         this.arrayB = data.response;
       }, (err) => {
