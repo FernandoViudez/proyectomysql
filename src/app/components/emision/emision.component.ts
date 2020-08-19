@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import numeral from 'numeral';
 import { GenericService } from '../../services/generic.service';
+import { ListadosService } from '../listados/listados.service';
 declare let alertify;
 
 @Component({
@@ -85,7 +86,8 @@ export class EmisionComponent implements OnInit, OnDestroy {
   arrayB = [];
 
   constructor(private http: HttpClient,
-    private genericService: GenericService) {
+    private genericService: GenericService,
+    private listadosService: ListadosService) {
     let anio = new Date().getFullYear();
     let mes = new Date().getMonth() + 1;
     let dia = new Date().getDate();
@@ -422,9 +424,19 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
     /** Luego enviamos ese arreglo al backend para que haga las operaciones necesarias */
     this.genericService.calcularPlan(this.arrayB)
-    .subscribe(data=>{
-      console.log(data);
+    .subscribe((data: any)=>{
+      this.onExcel(data.response);
     })
+
+  }
+
+  onExcel(items) {
+    this.listadosService.generarExcel(items, 'PLANIFICACION', "Planificacion", ['idprod', 'codmp', 'descripcion', 'stock', 'cantidad']).subscribe
+      ((data: any) => {
+        this.genericService.downloadExcel(data.url);
+      }, (err) => {
+        console.log(err);
+      })
 
   }
 

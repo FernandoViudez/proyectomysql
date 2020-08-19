@@ -30,18 +30,6 @@ export class RolodexComponent implements OnInit {
   sumaTotal: number = 0;
   restaTotal: number = 0;
 
-  //cuando se genera el excel
-  onExcel() {
-    this.sb$ = this.listadosService.generarExcel(this.items, this.nombreArchivo, this.nombreHoja, this.propiedades.tb).subscribe
-      ((data: any) => {
-        this.genericService.downloadExcel(data.url);
-      }, (err) => {
-        console.log(err);
-      })
-    this.resetear()
-
-  }
-
   //Propiedadesde que se mostrarán
   propiedades = {
     th: [
@@ -204,5 +192,17 @@ export class RolodexComponent implements OnInit {
     }
     this.items = items;
   }
+
+    //cuando se genera el excel
+    onExcel() {
+      this.sb$ = this.listadosService.generarExcel(this.items, this.nombreArchivo, this.nombreHoja, this.propiedades.tb).subscribe
+        ((data: any) => {
+          this.genericService.downloadExcel(data.url);
+        }, (err) => {
+          console.log(err);
+        })
+      this.resetear()
+  
+    }
 
 }
