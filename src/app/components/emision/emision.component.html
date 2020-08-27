@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <label>Proximo Batch</label>
+                        <label>Próximo Batch</label>
                         <input type="number" disabled [(ngModel)]="proximoBatch" class="form-control boldText">
                     </div>
                     <div>
@@ -119,7 +119,7 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <label>Proximo Batch</label>
+                        <label>Próximo Batch</label>
                         <input type="number" disabled class="form-control boldText" min=0 [(ngModel)]="proximoBatch">
                     </div>
                     <div class="col-2">
@@ -130,8 +130,8 @@
                         <div style="overflow: scroll; height: 340px; width: 90%;" class="m-auto">
                             <table class="table table-hover text-center">
                                 <tr>
-                                    <th>Codigo de envasado</th>
-                                    <th>Descripcion</th>
+                                    <th>Código de envasado</th>
+                                    <th>Descripción</th>
                                     <th>Total a Envasar</th>
                                     <th>Envases</th>
                                 </tr>
@@ -391,7 +391,7 @@
                     _______+_______+_______ _____ ______ __________<br>
                 </span>
             </td>
-            
+
             <br>
             <p class="text-center"> <b> DATOS DE APROBACION FINAL <span class="tab2"></span>ENTREGA ____ HORAS ___ C ___
                     HRA</b></p>
@@ -424,7 +424,7 @@
                     <td>____________</td>
                 </tr>
                 <tr>
-                    <td>Solidos P.P.P. : {{solidosppp }}</td>
+                    <td>Sólidos P.P.P. : {{solidosppp }}</td>
                     <td>____________</td>
                     <td>____________</td>
                     <td>____________</td>
@@ -442,7 +442,7 @@
                     <td>____________</td>
                 </tr>
                 <tr>
-                    <td>Relacion mezcla: {{relaciondemezcla}}</td>
+                    <td>Relación mezcla: {{relaciondemezcla}}</td>
                     <td>con COMP. {{formaconjunto}}</td>
                     <td>____________</td>
                     <td>____________</td>
@@ -497,7 +497,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PLANIFICACIÓN</h5>
+                <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PRODUCTOS PARA ELABORAR</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -530,7 +530,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <label style="background-color: greenyellow; " >* ATENCION ! Seleccione T.F.A. * </label>
+                        <label style="background-color: greenyellow; ">* ATENCION ! Seleccione T.F.A. * </label>
                         <label>* (por defecto 'F')</label>
                         <div class="input-group">
                             <select class="mt-2 custom-select boldText" [(ngModel)]="tfa" id="inputGroupSelect01">
@@ -550,12 +550,12 @@
                             <th>CANTIDAD</th>
                             <th>ENVASADO SOLICITADO</th>
                             <th>CLIENTE</th>
-                            <th>LOTE</th>
+                            <!-- <th>LOTE</th> -->
                             <th>FECHA PROMETIDA</th>
-                            <th>OPERARIO</th>
+                            <!-- <th>OPERARIO</th>
                             <th>PROCESO</th>
                             <th>DISPERSORA</th>
-                            <th>MOLINO</th>
+                            <th>MOLINO</th> -->
                         </tr>
                         <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayB"
                             (click)="traerDatos(item2.id, item2.codpt)" style="cursor: pointer;">
@@ -564,20 +564,22 @@
                             <td>{{item2.cantidad}}</td>
                             <td>{{item2.formaenv}}</td>
                             <td>{{item2.cliente}}</td>
-                            <td>{{item2.lote}}</td>
+                            <!-- <td>{{item2.lote}}</td> -->
                             <td>{{item2.fechacompr | datePipe}}</td>
-                            <td>{{item2.operario}}</td>
+                            <!-- <td>{{item2.operario}}</td>
                             <td>{{item2.proceso}}</td>
                             <td>{{item2.dispersora}}</td>
-                            <td>{{item2.molino}}</td>
+                            <td>{{item2.molino}}</td> -->
                         </tr>
                     </table>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" (click)="resetear1()">Resetear</button>
+                <button type="button" class="card-body d-flex aign-items-start align-items-center"
+                    (click)="calcularPlanProduccion()" [disabled]="!pendientes && arrayB.length == 0">Imprimir planificación de
+                    produccion</button>
+                <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" (click)="resetear1()">Resetear</button>
                 <button type="button" class="btn btn-info" (click)="listarPendientes()">Listar Pendientes</button>
-                <button type="button" class="btn btn-info" (click)="calcularPlanProduccion()" [disabled]="!pendientes && arrayB.length == 0">Plan produccion</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

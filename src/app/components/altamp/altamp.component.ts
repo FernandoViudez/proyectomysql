@@ -146,7 +146,6 @@ export class AltampComponent implements OnInit, OnDestroy {
             if (res.value) {
               this.fechaultimarecepcion = dato.fechaultimarecepcion;
               this.descripcion = dato.descripcion;
-
               this.tipo = dato.tipo;
               this.ubicacion = dato.ubicacion;
               this.riesgo = dato.riesgo;

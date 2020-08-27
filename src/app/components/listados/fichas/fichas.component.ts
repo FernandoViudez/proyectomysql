@@ -55,4 +55,10 @@ export class FichasComponent implements OnInit {
     window.print();
   }
 
+  resetear() {
+    this.desde = null;
+    this.hasta = null;
+    this.items = [];
+  }
+
 }

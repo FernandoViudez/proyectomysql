@@ -35,6 +35,7 @@ export class CertificadosComponent implements OnInit {
   public vidaalmacen: string;
   public dilucion: string;
   public limpeza: string;
+  public id: string;
 
   //Flag
   private editar: boolean = false;
@@ -58,7 +59,7 @@ export class CertificadosComponent implements OnInit {
     this.certificadosService.getCertificado(descripcion)
       .subscribe((data: any) => {
         Swal.fire({
-          title: "CERTIFICADO existente",
+          title: "PRODUCTO existente",
           text: "¿ Desea editarlo ?",
           cancelButtonColor: "red",
           confirmButtonColor: "green",
@@ -91,6 +92,7 @@ export class CertificadosComponent implements OnInit {
             this.dilucion = data.response.dilucion;
             this.limpeza = data.response.limpeza;
             this.editar = true;
+            document.getElementById("descripcion").setAttribute("disabled","");
           }
         })
 
@@ -178,6 +180,8 @@ export class CertificadosComponent implements OnInit {
     this.dilucion = null;
     this.limpeza = null;
     this.editar = false;
+    let id = document.getElementById("descripcion");
+    id.removeAttribute("disabled");
   }
 
 
