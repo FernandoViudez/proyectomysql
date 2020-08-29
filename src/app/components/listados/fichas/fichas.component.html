@@ -2,7 +2,7 @@
     <div class="bg rounded p-3 mt-1 text-white" style="background-color:rgb(86,169,97)">
         <div class="row">
             <div class="col-6">
-                <h2>Impresión fichas de extensión</h2>
+                <h2>Impresión fichas de extensión de productos terminados</h2>
                 <hr>
             </div>
         </div>
@@ -34,13 +34,15 @@
     </div>
     <div class="row mt-3">
         <div class="col-7">
-            <button type="button" class="btn float-lg-left" style="background-color: rgb(190, 171, 131);" (click)="resetear()">Resetear</button>
+            <button type="button" class="btn float-lg-left" style="background-color: rgb(190, 171, 131);"
+                (click)="resetear()">Resetear</button>
         </div>
         <div class="col-2">
             <button class="btn btn-warning float-lg-right" [disabled]="!items" (click)="onPrint()">Imprimir</button>
         </div>
         <div class="col-2">
-            <button class="btn btn-success float-lg-right" [disabled]="!checkInputs" (click)="obtenerPorRango()">Realizar
+            <button class="btn btn-success float-lg-right" [disabled]="!checkInputs"
+                (click)="obtenerPorRango()">Realizar
                 operacion</button>
         </div>
 
@@ -48,16 +50,40 @@
 </div>
 
 <div class="yesPrint">
-    <table class="table bg-dark" style="color: white">
-        <thead>
-            <tr>
-                <th *ngFor="let propiedad of propiedades.th">{{propiedad}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of items">
-                <td *ngFor="let propiedad of propiedades.tb">{{item[propiedad]}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <tr *ngFor="let item of items">
+        <div *ngIf="validarDescripcion(item.descripcion)">
+            <div style="text-align: center;">
+                FICHA DE EXTENSION
+            </div>
+            <br><br>
+            <hr>
+            <div>
+                producto: {{item.descripcion}}
+            </div>
+            <div>
+                Nro. de batch: {{item.numeroPartida}}
+            </div>
+            <div>
+                Fecha de elaboracion: {{item.fecha}}
+            </div>
+            <hr>
+            <div>
+                Datos fisicos
+            </div>
+            <div>
+                Peso especifico: {{item.pesoespecifico}}
+            </div>
+            <div>
+                Viscosidad brookfield: {{item.viscosidadcps}} - {{item.spindle}}
+            </div>
+            <div>
+                Viscosidad Stormer: {{item.viscosidaduk}} - UK
+            </div>
+        </div>
+
+
+    </tr>
+    <!-- </tbody>
+    </table> -->
+
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlService } from '../../control/services/control.service';
+import { DatePipe } from '../../../pipes/date.pipe';
 
 @Component({
   selector: 'app-fichas',
@@ -11,22 +12,29 @@ export class FichasComponent implements OnInit {
   public desde: number;
   public hasta: number;
 
+  //Date Pipe
+  datePipe = new DatePipe();
+
   /** Arreglo de items */
   public items: any[];
 
   /** Propiedades del arreglo */
   propiedades = {
-    th:[
+    th: [
       /** Texto que se muestra en el thead */
-      "LOTE",
+      "PARTIDA",
+      "CODIGO PT",
       "DESCRIPCION",
-      "TIPO"
+      "FECHA APROBACION",
+      "RESULTADO"
     ],
-    tb:[
+    tb: [
       /** Texto que se muestra en el tbody */
-      "numeroLote",
+      "numeroPartida",
+      "codigopt",
       "descripcion",
-      "tipoProd"
+      "fecha",
+      "aprobado"
     ]
   }
 
@@ -35,23 +43,30 @@ export class FichasComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get checkInputs(){
-    if(this.desde != null && this.hasta != null){
+  get checkInputs() {
+    if (this.desde != null && this.hasta != null) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
   obtenerPorRango() {
     this.controlService.traerPorRango(this.desde, this.hasta)
-    .subscribe((data: any)=>{
-      console.log(data);
-      this.items = data.response;
-    })
+      .subscribe((data: any) => {
+        console.log(data);
+        this.items = data.response;
+        for (let item of data.response) { //Aplicamos los pipes necesarios
+          item.fecha = item.fecha ? this.aplicarDatePipe(item.fecha) : undefined;
+        }
+      })
   }
 
-  onPrint(){
+  aplicarDatePipe(fecha) {
+    return this.datePipe.transform(fecha)
+  }
+
+  onPrint() {
     window.print();
   }
 
@@ -59,6 +74,14 @@ export class FichasComponent implements OnInit {
     this.desde = null;
     this.hasta = null;
     this.items = [];
+  }
+
+  validarDescripcion(noseimprime: string) {
+    let items = ["DILUYENTE", "SEMIELABORADO", "ANULADO"];
+    for(let item of items){
+      if(noseimprime.includes(item)) return false;
+    }
+    return true;
   }
 
 }
