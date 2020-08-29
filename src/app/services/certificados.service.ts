@@ -19,9 +19,12 @@ export class CertificadosService {
   }
 
   getCertificado(descripcion:string){
-    return this.http.get(`${this.url}obtenerCertificado/${descripcion}`)
+    return this.http.post(`${this.url}obtenerCertificado`, { descripcion })
   }
 
+  buscarCertificado(descripcion){
+    return this.http.get(`${this.url}buscarCertificado/${descripcion}`);
+  }
 
 
 

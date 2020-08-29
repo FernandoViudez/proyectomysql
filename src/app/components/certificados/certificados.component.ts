@@ -35,10 +35,14 @@ export class CertificadosComponent implements OnInit {
   public vidaalmacen: string;
   public dilucion: string;
   public limpeza: string;
-
+  
   //Flag
   private editar: boolean = false;
-
+  
+  //Arreglo busqueda
+  public arrayB; 
+  public descripcionB;
+  
   constructor(private certificadosService: CertificadosService, private route: Router) { 
     let user_role = localStorage.getItem("user_role");
     if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
@@ -98,6 +102,11 @@ export class CertificadosComponent implements OnInit {
         alertify.success("Producto inexistente, complete los datos!");
         console.log(err);
       })
+  }
+
+  seleccionarItem(descripcion){
+    this.descripcion = descripcion
+    this.getCertificado(descripcion);
   }
 
   addCertificado(data) {
@@ -178,6 +187,17 @@ export class CertificadosComponent implements OnInit {
     this.dilucion = null;
     this.limpeza = null;
     this.editar = false;
+  }
+
+  buscarCertificado(){
+    this.certificadosService.buscarCertificado(this.descripcionB)
+    .subscribe((data: any) => {
+      this.arrayB = data.response;
+      
+    }, err => {
+      console.log(err);
+    })
+
   }
 
 

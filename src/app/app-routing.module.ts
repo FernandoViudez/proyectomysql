@@ -19,7 +19,6 @@ import { ControlptComponent } from './components/controlpt/controlpt.component';
 import { ControlComponent } from './components/control/control.component';
 import { CertificadosComponent } from './components/certificados/certificados.component';
 import { ListaFuncionalComponent } from './components/listados/lista-funcional/lista-funcional.component';
-import { PlanproduccionComponent } from './components/listados/planproduccion/planproduccion.component';
 import { FichasComponent } from './components/listados/fichas/fichas.component';
 import { RolodexComponent } from './components/listados/rolodex/rolodex.component';
 
@@ -61,7 +60,6 @@ const routes: Routes = [
     children: [
       { path: "lista-funcional", component: ListaFuncionalComponent },
       { path: "rolodex", component: RolodexComponent },
-      { path: "planproduccion", component: PlanproduccionComponent },
       { path: "fichas", component: FichasComponent },
     ]
   },

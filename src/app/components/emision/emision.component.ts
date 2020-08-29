@@ -418,15 +418,15 @@ export class EmisionComponent implements OnInit, OnDestroy {
       })
   }
 
-  calcularPlanProduccion(){
+  calcularPlanProduccion() {
     /** Necesitamos filtrar pendientes por los que no tengan batch emitido  */
     this.arrayB.filter(item => !item.batch);
 
     /** Luego enviamos ese arreglo al backend para que haga las operaciones necesarias */
     this.genericService.calcularPlan(this.arrayB)
-    .subscribe((data: any)=>{
-      this.onExcel(data.response);
-    })
+      .subscribe((data: any) => {
+        this.onExcel(data.response);
+      })
 
   }
 
@@ -438,6 +438,38 @@ export class EmisionComponent implements OnInit, OnDestroy {
         console.log(err);
       })
 
+  }
+
+  imprimirEnNuevaPestana() {
+    /** Aca va el HTML para la ventana de impresion N°2 */
+    let contenido = `
+    <div>
+      ${this.proximoBatch}
+      ${this.cantidadPlani} 
+      ${this.unidadmedida}
+      ${this.pesoespecifico}
+      ${this.id}
+      ${this.descripcion}
+      ${this.componente}
+      ${this.color}
+      ${this.arrayAsoc}
+      ${this.arrayConj}
+      ${this.viscosidadspindle}
+      ${this.spindlenumero}
+      ${this.viscosidaduk}
+      ${this.molienda}
+      ${this.solidosppp}
+      ${this.solidosppv}
+      ${this.brillo}
+      ${this.relaciondemezcla}
+      ${this.formaconjunto}
+      ${this.formaconjunto}
+    </div>`;
+    let popUp;
+    popUp = window.open('', '_blank', 'width=1000, height=700, scrollbars=no, menubar = no, location = no, status = no, titlebar = no');
+    popUp.document.open();
+    popUp.document.write('<html><head></head><body onload="winow.print()">' + contenido + '</html>');
+    popUp.document.close();
   }
 
 }

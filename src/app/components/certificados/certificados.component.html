@@ -23,8 +23,8 @@
     <div class="row mt-2">
         <div class="col-4">
             <span>Descripción</span>
-            <input type="text" class="form-control boldText" [(ngModel)]="descripcion" placeholder="Ingresar descripción producto"
-                (change)="onDescripcionChange()">
+            <input type="text" class="form-control boldText" [(ngModel)]="descripcion"
+                placeholder="Ingresar descripción producto" (change)="onDescripcionChange()">
         </div>
         <div class="col-8">
             <span>Tipo generico</span>
@@ -116,4 +116,51 @@
         </div>
     </div>
 
+</div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5>BUSQUEDA DE CERTIFICADO</h5>
+
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-12">
+                        <input [(ngModel)]="descripcionB" (keyup)="buscarCertificado()" class="form-control" type="text"
+                            placeholder="Ingrese la descripcion">
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div style="overflow: scroll; height: 200px; width: 100%;">
+                            <table class="table w-100 table-dark">
+                                <thead>
+                                    <tr>
+                                        <th>TIPO</th>
+                                        <th>DESCRIPCION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-dismiss="modal" *ngFor="let item of arrayB" (click)="seleccionarItem(item.descripcion)" style="cursor: pointer">
+                                        <td>{{item.tipo}}</td>
+                                        <td>{{item.descripcion}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-info" (click)="resetear()">Resetear</button> -->
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
 </div>
