@@ -161,7 +161,7 @@
                                 clip-rule="evenodd" />
                         </svg></button>
                     <button class="btn btn-primary mr-5" (click)="cancelar()">Cancelar Operación</button>
-                    <button class="btn btn-success" (click)="finalizar()">Cargar</button>
+                    <button class="btn btn-success" (click)="finalizar()">Cargar Planificación</button>
                 </div>
             </div>
         </div>
@@ -324,11 +324,11 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button *ngIf="pendientes" type="button" class="btn btn-danger" (click)="imprimir()">Imprimir
+                        <button *ngIf="pendientes" type="button" class="btn btn-warning" (click)="imprimir()">Imprimir
                             Pendientes</button>
-                        <button *ngIf="!pendientes" type="button" class="btn btn-danger" (click)="imprimir()">Imprimir
+                        <button *ngIf="!pendientes" type="button" class="btn btn-warning" (click)="imprimir()">Imprimir
                             Busqueda</button>
-                        <button type="button" class="btn btn-success" (click)="resetear1()">Resetear</button>
+                        <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" (click)="resetear1()">Resetear</button>
                         <button type="button" class="btn btn-info" (click)="listarPendientes()">Listar
                             Pendientes</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>

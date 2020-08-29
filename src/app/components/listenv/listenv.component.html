@@ -124,6 +124,9 @@
                     </div>
 
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -132,8 +135,8 @@
         <div class="col-12">
             <button class="btn float-right" style="margin-right: 6%; background-color: rgb(190, 171, 131);"
                 (click)="resetearBusqueda()">RESETEAR BUSQUEDA</button>
-                <button class="btn float-right btn-info" style="margin-right: 7%;"
-                (click)="imprimirBusqueda()">IMPRIMIR BUSQUEDA</button>
+            <button class="btn float-right btn-warning" style="margin-right: 7%;" (click)="imprimirBusqueda()">IMPRIMIR
+                BUSQUEDA</button>
         </div>
     </div>
 
@@ -150,7 +153,7 @@
             <th>CANTIDAD ENVASADA</th>
             <th>CODIGO DE BARRAS</th>
         </tr>
-        <tr  *ngFor="let item2 of array">
+        <tr *ngFor="let item2 of array">
             <td>{{item2.codmp}}</td>
             <td>{{item2.descripcion}}</td>
             <td class="text-right">{{item2.envasado | numeralPipe}} </td>
