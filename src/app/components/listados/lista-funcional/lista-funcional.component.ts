@@ -341,6 +341,8 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       return 0;
     });
 
+    this.resetearSubtotales();
+
     /** Calculo subtotales */
     for (let item of this.items) {
       switch (item.componente.trim()) {
@@ -395,8 +397,15 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     this.items = [];
     this.operacion = null;
     this.sumaTotal = null; 
+    this.resetearSubtotales();
     //this.subtotales[].subtotal = null;   no limpia los subtotales
     // cuando listo 01-07-2020 a hoy no totaliza....
+  }
+
+  resetearSubtotales(){
+    for(let i = 0; i < this.subtotales.length; i++){
+      this.subtotales[i].subtotal = 0;
+    }
   }
 
 }
