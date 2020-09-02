@@ -42,8 +42,7 @@
         </div>
         <div class="col-2">
             <button class="btn btn-success float-lg-right" [disabled]="!checkInputs"
-                (click)="obtenerPorRango()">Realizar
-                operacion</button>
+                (click)="obtenerPorRango()">Realizar busqueda</button>
         </div>
 
     </div>
@@ -51,39 +50,58 @@
 
 <div class="yesPrint">
     <tr *ngFor="let item of items">
-        <div *ngIf="validarDescripcion(item.descripcion)">
-            <div style="text-align: center;">
-                FICHA DE EXTENSION
-            </div>
-            <br><br>
-            <hr>
-            <div>
-                producto: {{item.descripcion}}
-            </div>
-            <div>
-                Nro. de batch: {{item.numeroPartida}}
-            </div>
-            <div>
-                Fecha de elaboracion: {{item.fecha}}
-            </div>
-            <hr>
-            <div>
-                Datos fisicos
-            </div>
-            <div>
-                Peso especifico: {{item.pesoespecifico}}
-            </div>
-            <div>
-                Viscosidad brookfield: {{item.viscosidadcps}} - {{item.spindle}}
-            </div>
-            <div>
-                Viscosidad Stormer: {{item.viscosidaduk}} - UK
+        <div *ngIf="!item.descripcion.includes ('DILUYENTE')">
+            <div *ngIf="!item.descripcion.includes ('ANULADO')">
+                <div *ngIf="!item.descripcion.includes ('SEMIELABORADO')">
+                    <h4>
+                        <br><br><br>
+                        <div style="text-align: left;">
+                            REVESTA S.A.I.C. - Departamento Control de Calidad
+                        </div>
+                        <hr>
+                        <div style="text-align: left;">
+                            FICHA DE EXTENSION
+                        </div>
+                        <hr>
+                        <div>
+                            Producto: {{item.descripcion}}
+                        </div>
+                        <div>
+                            Nro. de batch: {{item.numeroPartida}}
+                        </div>
+                        <div>
+                            Fecha de elaboración: {{item.fecha}}
+                        </div>
+                        <hr>
+                        <div style="text-align:center;">
+                            Datos fisicos
+                        </div>
+                        <div>
+                            Peso especifico: {{item.pesoespecifico | numeralPipe}}
+                        </div>
+                        <div>
+                            Viscosidad brookfield: {{item.viscosidadcps}} Cps {{item.spindle}} RPM
+                        </div>
+                        <div>
+                            Viscosidad Stormer: {{item.viscosidaduk}} - UK
+                        </div>
+                        <hr>
+                        <div style="text-align: center;">
+                            Datos de aplicación
+                        </div>
+                        <div>
+                            Fecha: ___ / ___ / ___ Temperatura: _____ C <br><br>
+                            Dilución: _____ % Solvente _______________ <br><br>
+                            Endurecedor utilizado _____________________ <br><br>
+                            Espesor aplicado ___________ micrones <br><br>
+                            Observaciones:
+                            ________________________________________________________________________________
+                            <br><br><br>
+                            --------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8<
+                                -------- 8< -------- 8< -------- 8< -------- 8< --------</div>
+                    </h4>
+                </div>
             </div>
         </div>
-
-
     </tr>
-    <!-- </tbody>
-    </table> -->
-
 </div>
