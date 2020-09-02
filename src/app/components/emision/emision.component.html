@@ -581,13 +581,18 @@
                     </table>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="card-body d-flex aign-items-start align-items-center"
-                    (click)="calcularPlanProduccion()" [disabled]="!pendientes && arrayB.length == 0">Imprimir planificación de
-                    produccion</button>
-                <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" (click)="resetear1()">Resetear</button>
-                <button type="button" class="btn btn-info" (click)="listarPendientes()">Listar Pendientes</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            <div class="row mt-2 mb-2">
+                <div class="col-6">
+                    <button type="button" class="btn-danger ml-5 btn" (click)="calcularPlanProduccion()"
+                        [disabled]="!pendientes && arrayB.length == 0">Imprimir planificación de
+                        produccion</button>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
+                        (click)="resetear1()">Resetear</button>
+                    <button type="button" class="btn btn-info ml-2 mr-2" (click)="listarPendientes()">Listar Pendientes</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
