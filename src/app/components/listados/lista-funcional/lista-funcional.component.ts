@@ -236,7 +236,6 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         "DESCRIPCION",
         "CANTIDAD",
         "COMPONENTE",
-        "PROCESO",
         "FECHA FIN"
       ],
       tb: [
@@ -244,7 +243,6 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         "descripcion",
         "cantidad",
         "componente",
-        "proceso",
         "fechafin"
       ]
 
@@ -396,6 +394,9 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     this.fin = null;
     this.items = [];
     this.operacion = null;
+    this.sumaTotal = null; 
+    //this.subtotales[].subtotal = null;   no limpia los subtotales
+    // cuando listo 01-07-2020 a hoy no totaliza....
   }
 
 }

@@ -61,9 +61,10 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" [routerLink]="['../correc']">CORRECCIÓN DE STOCK</a>
           <div *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="dropdown-divider"></div>
-          <a *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="dropdown-item" [routerLink]="['../anulacion']">ANULACION DE B.T.</a>
-          
-          
+          <a *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="dropdown-item"
+            [routerLink]="['../anulacion']">ANULACION DE B.T.</a>
+
+
         </div>
       </li>
       <li *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="nav-item dropdown">
@@ -79,7 +80,7 @@
           <a class="dropdown-item" [routerLink]="['../certificados']">DATOS PARA EMISION CERTIFICADOS</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" [routerLink]="['../listados/fichas']">LISTAR FICHAS DE EXTENSION</a>
-        
+
         </div>
       </li>
 
@@ -89,19 +90,16 @@
           LISTADOS
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['../listados/lista-funcional']">M.P. - RANGOS - MINIMO - MOVIMIENTOS</a>
+          <a class="dropdown-item" [routerLink]="['../listados/lista-funcional']">VARIOS M.P. - ESTADISTICA PRODUCCION</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['../listados/planproduccion']">LISTADO PLANIFICACION NECESIDAD</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['../listados/rolodex']">ROLODEX</a>
-        
+          <a class="dropdown-item" [routerLink]="['../listados/rolodex']">INVENTARIO CONTINUO (ROLODEX)</a>
         </div>
       </li>
 
 
     </ul>
     <div class="form-inline my-2 my-lg-0">
-      <button class="btn btn-primary my-2 my-sm-0" type="button"(click)="salir()">Salir</button>
+      <button class="btn btn-primary my-2 my-sm-0" type="button" (click)="salir()">Salir</button>
     </div>
   </div>
 </nav>
