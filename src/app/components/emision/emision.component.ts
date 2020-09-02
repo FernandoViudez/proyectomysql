@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import numeral from 'numeral';
@@ -32,6 +32,9 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
   // FLAG BUTTON
   botonCancelado: boolean = false;
+
+  // PANTALLAS DE PRINT
+  disableYesPrint: boolean = true;
 
   //PRODTERM
 
@@ -329,7 +332,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
       allowOutsideClick: false,
     }).then(res => {
       if (res.value) {
-
+        this.disableYesPrint = false;
         this.botonCancelado = true;
         let data = {
           codpt: this.id,
@@ -441,35 +444,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
   }
 
   imprimirEnNuevaPestana() {
-    /** Aca va el HTML para la ventana de impresion N°2 */
-    let contenido = `
-    <div>
-      ${this.proximoBatch}
-      ${this.cantidadPlani} 
-      ${this.unidadmedida}
-      ${this.pesoespecifico}
-      ${this.id}
-      ${this.descripcion}
-      ${this.componente}
-      ${this.color}
-      ${this.arrayAsoc}
-      ${this.arrayConj}
-      ${this.viscosidadspindle}
-      ${this.spindlenumero}
-      ${this.viscosidaduk}
-      ${this.molienda}
-      ${this.solidosppp}
-      ${this.solidosppv}
-      ${this.brillo}
-      ${this.relaciondemezcla}
-      ${this.formaconjunto}
-      ${this.formaconjunto}
-    </div>`;
-    let popUp;
-    popUp = window.open('', '_blank', 'width=1000, height=700, scrollbars=no, menubar = no, location = no, status = no, titlebar = no');
-    popUp.document.open();
-    popUp.document.write('<html><head></head><body onload="winow.print()">' + contenido + '</html>');
-    popUp.document.close();
+    window.print();
   }
 
 }
