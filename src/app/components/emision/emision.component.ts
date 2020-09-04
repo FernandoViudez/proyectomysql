@@ -32,6 +32,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
   // FLAG BUTTON
   botonCancelado: boolean = false;
+  cancelarPrepesado: boolean = false;
 
   // PANTALLAS DE PRINT
   disableYesPrint: boolean = true;
@@ -196,6 +197,8 @@ export class EmisionComponent implements OnInit, OnDestroy {
       for (let item of this.arrayAsoc) {
         item.ind = 0;
       }
+
+      this.cancelarPrepesado = true;
 
       //PROD
       this.idPlani = id

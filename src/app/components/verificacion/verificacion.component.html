@@ -1,0 +1,10 @@
+<div>
+
+    <input placeholder="Codigo mp" class="form-control w-50" type="number" [(ngModel)]="codigomp" (change)="traerDescripcion()">
+    
+    <input placeholder="Operario" class="form-control w-50" type="text" [(ngModel)]="operario">
+    
+    <input placeholder="Lote" class="form-control w-50" type="number" [(ngModel)]="lote">
+
+    <button class="btn btn-success" (click)="enviarData()">VERIFICAR</button>
+</div>

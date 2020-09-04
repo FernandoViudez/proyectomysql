@@ -33,6 +33,7 @@ import { ListadosComponent } from './components/listados/listados.component';
 import { ListaFuncionalComponent } from './components/listados/lista-funcional/lista-funcional.component';
 import { FichasComponent } from './components/listados/fichas/fichas.component';
 import { RolodexComponent } from './components/listados/rolodex/rolodex.component';
+import { VerificacionComponent } from './components/verificacion/verificacion.component';
 
 
 
@@ -67,6 +68,7 @@ import { RolodexComponent } from './components/listados/rolodex/rolodex.componen
     ListaFuncionalComponent,
     FichasComponent,
     RolodexComponent,
+    VerificacionComponent,
   ],
   imports: [
     BrowserModule,

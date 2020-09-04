@@ -63,6 +63,8 @@
           <div *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="dropdown-divider"></div>
           <a *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="dropdown-item"
             [routerLink]="['../anulacion']">ANULACION DE B.T.</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['../verificacion']">VERIFICACION</a>
 
 
         </div>
@@ -90,7 +92,8 @@
           LISTADOS
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['../listados/lista-funcional']">VARIOS M.P. - ESTADISTICA PRODUCCION</a>
+          <a class="dropdown-item" [routerLink]="['../listados/lista-funcional']">VARIOS M.P. - ESTADISTICA
+            PRODUCCION</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" [routerLink]="['../listados/rolodex']">INVENTARIO CONTINUO (ROLODEX)</a>
         </div>
