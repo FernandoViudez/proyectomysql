@@ -301,9 +301,9 @@ export class EmisionComponent implements OnInit, OnDestroy {
         for (let item2 of this.arrayMat) {
           if (item.codmp == item2.id) {
             if (item2.stock < 0) {
-              item.ind = [-cantidadCalculada, `${item2.riesgo} ${item2.proteccion}`];
+              item.ind = [-cantidadCalculada, `${item2.riesgo} ${item2.proteccion}`, `${item2.tipo}` ];
             } else {
-              item.ind = [item2.stock - cantidadCalculada, `${item2.riesgo} ${item2.proteccion}`];
+              item.ind = [item2.stock - cantidadCalculada, `${item2.riesgo} ${item2.proteccion}`, `${item2.tipo}`];
             }
           } else if (item.codpt == item2.id) {
             if (item2.stock < 0) {
