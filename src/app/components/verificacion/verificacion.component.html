@@ -1,10 +1,56 @@
-<div>
+<div class="bg rounded p-3 mt-1 text-white" style="background-color:rgb(227, 241, 23)">
+    <div class="row">
+        <div class="col-6 text-dark">
+            <h2>Verificación de materias primas versus numero de lote</h2>
+            <hr>
+        </div>
+    </div>
+</div>
 
-    <input placeholder="Codigo mp" class="form-control w-50" type="number" [(ngModel)]="codigomp" (change)="traerDescripcion()">
-    
-    <input placeholder="Operario" class="form-control w-50" type="text" [(ngModel)]="operario">
-    
-    <input placeholder="Lote" class="form-control w-50" type="number" [(ngModel)]="lote">
-
-    <button class="btn btn-success" (click)="enviarData()">VERIFICAR</button>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-3">
+            <span>Operario</span>
+            <div class="input-group">
+                <select class="mt-2 custom-select boldText" [(ngModel)]="operario" id="operario">
+                    <option value="CALIVA">Caliva</option>
+                    <option value="CORTEZ">Cortez</option>
+                    <option value="ESTAMATTI">Estamatti</option>
+                    <option value="GALANTE">Galante</option>
+                    <option value="GIORGI">Giorgi</option>
+                    <option value="MACIEL">Maciel</option>
+                    <option value="DARIO">Parisi</option>
+                    <option value="PORTILLO">Portillo</option>
+                    <option value="SANDOVAL">Sandoval</option>
+                    <option value="SOSA">Sosa</option>
+                    <option value="VIVAS">Vivas</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="col-3 mt-5">
+            <span>Codigo de materia prima</span>
+            <div class="input-group">
+                <input placeholder="Codigo mp" class="form-control w-50 boldText" type="number" [(ngModel)]="codigomp"
+                    (change)="traerDescripcion()">
+                {{descripcion}}
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="col-3 mt-5">
+            <span>Numero de lote</span>
+            <input placeholder="Lote" class="form-control w-50 boldText" type="number" [(ngModel)]="lote">
+        </div>
+    </div>
+    <div>
+        <div class="col-3">
+            <span>Numero de partida (batch)</span>
+            <input placeholder="Partida" class="form-control w-50 boldText" type="number" [(ngModel)]="partida">
+        </div>
+    </div>
+</div>
+<div >
+    <button [disabled]="!partida || !lote || !codigomp" class="btn btn-success" (click)="enviarData()">VERIFICAR</button>
 </div>

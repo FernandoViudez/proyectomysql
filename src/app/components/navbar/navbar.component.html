@@ -62,10 +62,7 @@
           <a class="dropdown-item" [routerLink]="['../correc']">CORRECCIÓN DE STOCK</a>
           <div *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="dropdown-divider"></div>
           <a *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="dropdown-item"
-            [routerLink]="['../anulacion']">ANULACION DE B.T.</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['../verificacion']">VERIFICACION</a>
-
+            [routerLink]="['../anulacion']">ANULACION DE B.T.</a>      
 
         </div>
       </li>
@@ -99,6 +96,15 @@
         </div>
       </li>
 
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          VERIFICACION
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['../verificacion']">VERIFICACION</a>
+        </div>
+      </li>
 
     </ul>
     <div class="form-inline my-2 my-lg-0">

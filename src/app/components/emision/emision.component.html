@@ -1,5 +1,5 @@
 <div class="p-2 mt-1 text-white boldText" style="background-color:rgb(137,145,21); ">
-    <h3 class="text-center">EMISION DE BATCH TICKET</h3>
+    <h3 class="text-center">Verificacion de materias primas a utilizar</h3>
 </div>
 
 <div id="carouselExampleControls" class="carousel slide notPrint" data-interval="9000000">
@@ -234,7 +234,7 @@
                 <button [disabled]="!cancelarPrepesado" (click)="cancelar()" class="btn btn-primary">
                     Cancelar todo
                 </button>
-                <button [disabled]="!cancelarPrepesado" (click)="imprimirEnNuevaPestana()" class="btn btn-info ml-2">
+                <button [disabled]="!cancelarPrepesado" (click)="imprimirEnNuevaPestana()" class="btn btn-warning ml-2">
                     Imprimir prepesado
                 </button>
             </div>
@@ -477,7 +477,7 @@
                     <td>{{item.codmp}}</td>
                     <td>{{item.descripcion}}</td>
                     <td class="text-right">{{item.envasado | numeralPipe}}</td>
-                    <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice | numeralPipe}}
+                    <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}
                     </td>
                     <td *ngIf="item.indice == 0 || item.indice == ''" class="text-right">0</td>
                     <td>_______</td>
@@ -496,7 +496,97 @@
 </div>
 
 <div class="yesPrint" *ngIf="disableYesPrint">
-    <h1>Test print screen 2</h1>
+    <b>
+        <h2>
+            REVESTA S.A.I.C. <span class="tab2"></span><span class="tab1">
+            </span>PREPESADO DEL BATCH TICKET {{proximoBatch}}
+        </h2>
+    </b>
+    <br><br>
+    <pre>
+        CODIGO: {{id}} <span class="tab2"></span><span class="tab2"></span> PRODUCTO: {{descripcion}} {{componente}} {{color}}
+        CANTIDAD: {{cantidadPlani | numeralPipe: 'true'}} {{unidadmedida}} - (<span *ngIf="unidadmedida=='LT'"> {{(cantidadPlani * pesoespecifico) | numeralPipe: 'true'}} Kg</span><span *ngIf="unidadmedida=='KG'"> {{cantidadPlani | numeralPipe}} Kg</span>) <span class="tab1"></span> FECHA EMISION: {{fechaDelDia}} 
+        OPERARIO: ___________________ <span class="tab1"></span> FECHA PREPARADO PREPESADO: ___/___/ ___ <br>
+        RECIBIO Y CONTROLO: ___________________ <span class="tab1"></span>FECHA: ___/___/ ___  <span class="tab1"></span>HORA: _________
+    </pre>
+    <td *ngIf="tfa != 'T'">
+        <table>
+            <tr>
+                <th></th>
+                <th>MP</th>
+                <th>PT</th>
+                <th>DESCRIPCION</th>
+                <th>CANTIDAD</th>
+                <th>LOTE Nro.</th>
+                <th>PREPESADO</th>
+                <th>RGO/PROT</th>
+            </tr>
+            <tr *ngFor="let item of arrayAsoc; let i = index;">
+                <ng-container layout="row" *ngIf="item.mpi != 'I' && item.ind[2] != 'SOLVENTE'">;
+                    <td>{{item.orden}}</td>
+                    <td>{{item.codmp}}</td>
+                    <td>{{item.codpt}}</td>
+                    <td>{{item.descripcion}}</td>
+                    <td *ngIf="unidadmedida == 'KG' && item.cantidad" class="text-right">
+                        {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0</td>
+                    <td *ngIf="unidadmedida == 'LT' && item.cantidad" class="text-right">
+                        {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0</td>
+                    <td *ngIf="!item.cantidad"> </td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center">{{item.ind[1]}}</td>
+                </ng-container>
+            </tr>
+        </table>
+        <br><hr><br><br>
+        <h2>
+            <span class="text-md-center">SEPARADO, ENVASAMIENTO Y ETIQUETADO LATAS DEL BATCH TICKET {{proximoBatch}}</span>
+        </h2>
+        <table>
+            <tr>
+                <th>CODMP</th>
+                <th>FRACCIONAMIENTO SOLICITADO</th>
+                <th>ENVASADO</th>
+                <th>CANTIDAD</th>
+                <th>SEPARADO</th>
+                <th>ETIQUETADO</th>
+                <th>REALIZO TAREA</th>
+            </tr>
+            <tr *ngFor="let item of arrayConj">
+                <ng-container layout="row" *ngIf="item.indice != ''">
+                <td>{{item.codmp}}</td>
+                <td>{{item.descripcion}}</td>
+                <td class="text-right">{{item.envasado | numeralPipe}}</td>
+                <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}
+                </td>
+                <td *ngIf="item.indice == 0 || item.indice == ''" class="text-right">0</td>
+                <td>____________</td>
+                <td>____________</td>
+                <td>____________</td>
+                </ng-container>
+            </tr>
+        </table>
+        <hr><br><br>
+        <h2>
+            <span style="text-align: center;">ETIQUETAS PARA IDENTIFICAR BATCH TICKET {{proximoBatch}}</span>
+        </h2>
+        <div *ngFor="let item of arrayAsoc; let i = index;">
+            <ng-container layout="row" *ngIf="item.mpi != 'I' && item.ind[2] != 'SOLVENTE'">
+                --------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8<
+                    -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< --------
+                <div style="font-size: 15px; font-weight: bold; ">Batch: {{proximoBatch}} <span class="tab1"></span>
+                    CODIGO: {{id}} </div><br>
+                Item : {{item.orden}} <br>
+                <div style="font-size: 25px; font-weight: bold; text-align: center;"> {{item.codmp}}{{item.codpt}} -
+                    {{item.descripcion}}</div>
+                <div style="font-size: 25px; font-weight: bold; text-align: right;"
+                    *ngIf="unidadmedida == 'KG' && item.cantidad">
+                    Cantidad: {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0 - kg</div>
+                <div style="font-size: 25px; font-weight: bold; text-align: right;"
+                    *ngIf="unidadmedida == 'LT' && item.cantidad">
+                    Cantidad: {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0 - kg</div>
+            </ng-container>
+        </div>
 </div>
 
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -583,14 +673,15 @@
             </div>
             <div class="row mt-2 mb-2">
                 <div class="col-6">
-                    <button type="button" class="btn-danger ml-5 btn" (click)="calcularPlanProduccion()"
+                    <button type="button" class="btn-warning ml-5 btn" (click)="calcularPlanProduccion()"
                         [disabled]="!pendientes && arrayB.length == 0">Imprimir planificación de
                         produccion</button>
                 </div>
                 <div class="col-6 text-right">
                     <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
                         (click)="resetear1()">Resetear</button>
-                    <button type="button" class="btn btn-info ml-2 mr-2" (click)="listarPendientes()">Listar Pendientes</button>
+                    <button type="button" class="btn btn-info ml-2 mr-2" (click)="listarPendientes()">Listar
+                        Pendientes</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
