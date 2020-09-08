@@ -1,0 +1,35 @@
+<p>Atención, todos los datos tienen que ser ingrados exactos para que traiga sus resultados, si se quiere sin algo exacto es necesario cambiar la sentencia de query de "lote=" a "lote LIKE"...</p>
+
+<div class="row">
+    <div class="col-4">
+        <input type="number" [(ngModel)]="codigoMp" placeholder="Ingrese el codigo de Materia prima">
+    </div>
+    <div class="col-4">
+        <input type="text" [(ngModel)]="lote" placeholder="Ingrese el Lote">
+    </div>
+    <div class="col-4">
+        <button class="btn btn-success" (click)="onBusqueda()">Buscar</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <table *ngIf="arregloVerificaciones.length != 0">
+            <tr>
+                <th>Id</th>
+                <th>Codigo mp</th>
+                <th>Lote</th>
+                <th>Fecha</th>
+                <th>Operario</th>
+            </tr>
+            <tr *ngFor="let item of arregloVerificaciones">
+                <td>{{item.id}}</td>
+                <td>{{item.codigoMp}}</td>
+                <td>{{item.lote}}</td>
+                <td>{{item.fecha}}</td>
+                <td>{{item.operario}}</td>
+            </tr>
+
+        </table>
+    </div>
+</div>

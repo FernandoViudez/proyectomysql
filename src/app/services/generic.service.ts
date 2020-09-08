@@ -27,6 +27,10 @@ export class GenericService {
   traerDescripcion(codigomp: number){
     return this.http.get(`${this.url}tarerDescripcionDeCalidadMp/${codigomp}`);
   }
+
+  listadoVerificacion(codigoMp: number, lote: number){
+    return this.http.get(`${this.url}traerVerificacion/${codigoMp}/${lote}`);
+  }
   
 
 
