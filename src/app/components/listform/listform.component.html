@@ -119,7 +119,7 @@
 
   <div class="row mt-3">
     <div class="col-2">
-      <button class="btn btn-warning float-right mt-1 ml-5" style="margin-right: 7%;"
+      <button [disabled]="!tintoformoalt" class="btn btn-warning float-right mt-1 ml-5" style="margin-right: 7%;"
       (click)="imprimirBusqueda()">IMPRIMIR FICHA DE FORMULACION</button>
     </div>
     <div class="col-8">
