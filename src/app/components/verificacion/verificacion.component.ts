@@ -70,9 +70,8 @@ export class VerificacionComponent implements OnInit {
         } else {
           let timerInterval
           Swal.fire({
-            title: 'Auto close alert!',
-            html: 'I will close in <b></b> milliseconds.',
-            timer: 2000,
+            title: 'Verificacion correcta ',
+            timer: 3000,
             timerProgressBar: true,
             onBeforeOpen: () => {
               Swal.showLoading()

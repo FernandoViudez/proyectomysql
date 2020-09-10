@@ -128,6 +128,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     localStorage.removeItem("activo");
+    this.onTxt();
   }
 
   //BUSQUEDA DE PLANIFICACION
@@ -450,6 +451,10 @@ export class EmisionComponent implements OnInit, OnDestroy {
     window.print();
   }
 
+  onTxt() { 
+        this.genericService.downloadTxt("etilatas.txt");
+  }
+ 
 }
 
 
