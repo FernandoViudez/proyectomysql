@@ -68,8 +68,24 @@ export class VerificacionComponent implements OnInit {
             icon: "error"
           })
         } else {
-          return Swal.fire({
-            title: "CORRECTO"
+          let timerInterval
+          Swal.fire({
+            title: 'Verificacion correcta ',
+            timer: 3000,
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+              Swal.showLoading()
+              timerInterval = setInterval(() => {
+              }, 100)
+            },
+            onClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log('I was closed by the timer')
+            }
           })
         }
 
