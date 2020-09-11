@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { MatprimService } from 'src/app/services/matprim.service';
 import numeral from 'numeral';
+import { GenericService } from 'src/app/services/generic.service';
 declare let alertify: any;
 
 @Component({
@@ -10,7 +11,7 @@ declare let alertify: any;
   templateUrl: './recepmp.component.html',
   styles: []
 })
-export class RecepmpComponent implements OnInit {
+export class RecepmpComponent implements OnInit, OnDestroy {
 
   id: number;
   descripcion: string;
@@ -35,7 +36,8 @@ export class RecepmpComponent implements OnInit {
   termino2: string;
 
   constructor(private http: HttpClient,
-    private servicioMp: MatprimService) { }
+    private servicioMp: MatprimService,
+    private genericService: GenericService) { }
 
   ngOnInit(): void {
 
@@ -205,6 +207,10 @@ export class RecepmpComponent implements OnInit {
     let key;
     key = event.keyCode;  //         key = event.charCode;  (Both can be used)   key == 45  // allows minus(-)
     return ((key > 47 && key < 58) || key == 46 );
+  }
+
+  ngOnDestroy(){
+    this.genericService.downloadTxt("RecepcionMp.txt", "<h1 style='color: white; background-color: blue;'>RecepcionMp.txt no existe :( </h1>")
   }
 
 }

@@ -302,7 +302,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
         for (let item2 of this.arrayMat) {
           if (item.codmp == item2.id) {
             if (item2.stock < 0) {
-              item.ind = [-cantidadCalculada, `${item2.riesgo} ${item2.proteccion}`, `${item2.tipo}` ];
+              item.ind = [-cantidadCalculada, `${item2.riesgo} ${item2.proteccion}`, `${item2.tipo}`];
             } else {
               item.ind = [item2.stock - cantidadCalculada, `${item2.riesgo} ${item2.proteccion}`, `${item2.tipo}`];
             }
@@ -452,7 +452,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
   }
 
   onTxt() { 
-        this.genericService.downloadTxt("etilatas.txt");
+    this.genericService.downloadTxt("etilatas.txt", "<h1 style='color: white; background-color: blue;'>etilatas.txt no existe</h1>");
   }
  
 }

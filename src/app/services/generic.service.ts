@@ -15,8 +15,8 @@ export class GenericService {
     window.open(url, "_blank")
   }
 
-  downloadTxt(filename: string) {
-    window.open(`${this.url}descargarTxt/${filename}`, "_blank");
+  downloadTxt(filename: string, html: string) {
+    window.open(`${this.url}descargarTxt?filename=${filename}&html=${html}`, "_blank");
   }
 
   calcularPlan(array: any[]) {
