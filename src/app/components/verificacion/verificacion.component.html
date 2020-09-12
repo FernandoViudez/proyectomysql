@@ -28,29 +28,49 @@
             </div>
         </div>
     </div>
-    <div>
-        <div class="col-3 mt-5">
+    <div class="row mt-4">
+        <div class="col-5">
             <span>Codigo de materia prima</span>
-            <div class="input-group">
-                <input placeholder="Codigo mp" class="form-control w-50 boldText" type="number" [(ngModel)]="codigomp"
-                    (change)="traerDescripcion()">
-                {{descripcion}}
-            </div>
+            <input placeholder="Codigo mp" class="form-control w-50 boldText" type="number" [(ngModel)]="codigomp"
+                (change)="traerDescripcion()">
+        </div>
+        <div class="col-7 mt-4">
+            <b>
+                <h2>{{descripcion}}</h2>
+            </b>
         </div>
     </div>
-    <div>
-        <div class="col-3 mt-5">
+    <!-- buscar en materias pimas el codigpo de materia prima, si no existe poner alertify
+    
+        2. buscar en calidad mp la descripcion del lote (para poder mostrarla
+        
+        3. buscar que el numero de partida exista..... se puede eso ?  traer descripcion ????)
+
+
+        te la recomplique !!1 jajajajajajajja
+    -->
+    <div class="row mt-4">
+        <div class="col-3">
             <span>Numero de lote</span>
-            <input placeholder="Lote" class="form-control w-50 boldText" type="number" [(ngModel)]="lote">
+            <input placeholder="Lote" class="form-control boldText" type="number" [(ngModel)]="lote"
+                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;" />
         </div>
     </div>
-    <div>
+    <div class="row mt-4">
         <div class="col-3">
             <span>Numero de partida (batch)</span>
-            <input placeholder="Partida" class="form-control w-50 boldText" type="number" [(ngModel)]="partida">
+            <input placeholder="Partida" class="form-control boldText" type="number" [(ngModel)]="partida"
+            pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==7) return false;" />
         </div>
     </div>
 </div>
-<div >
-    <button [disabled]="!partida || !lote || !codigomp" class="btn btn-success" (click)="enviarData()">VERIFICAR</button>
-</div>
+
+<div class="row mt-3">
+    <div class="col-7">
+        <button type="button" class="btn float-lg-right" style="background-color: rgb(190, 171, 131);"
+            (click)="resetear()">Resetear</button>
+    </div>
+    <div class="col-2">
+        <button [disabled]="!partida || !lote || !codigomp" class="btn btn-success"
+            (click)="enviarData()">VERIFICAR</button>
+    </div>

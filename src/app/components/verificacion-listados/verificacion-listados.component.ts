@@ -10,6 +10,7 @@ export class VerificacionListadosComponent implements OnInit {
 
   public lote: number;
   public codigoMp: number;
+  public operario: string;
   public arregloVerificaciones = [];
 
   constructor(private genericService: GenericService) { }
