@@ -19,9 +19,11 @@ export class VerificacionListadosComponent implements OnInit {
 
   onBusqueda(){
     if(this.codigoMp && this.lote){
-      this.genericService.listadoVerificacion(this.codigoMp, this.lote)
+      this.genericService.listadoVerificacion(this.codigoMp, this.lote, this.operario,)
       .subscribe((data: any) => {
         this.arregloVerificaciones = data.response;
+      },e=>{
+        console.log(e);
       })
     }
   }

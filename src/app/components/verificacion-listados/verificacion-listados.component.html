@@ -1,13 +1,16 @@
 <p>Atención, todos los datos tienen que ser ingrados exactos para que traiga sus resultados, si se quiere sin algo exacto es necesario cambiar la sentencia de query de "lote=" a "lote LIKE"...</p>
 
 <div class="row">
-    <div class="col-4">
+    <div class="col-3">
         <input type="number" [(ngModel)]="codigoMp" placeholder="Ingrese el codigo de Materia prima">
     </div>
-    <div class="col-4">
+    <div class="col-3">
+        <input type="text" [(ngModel)]="operario" placeholder="Ingrese el operario">
+    </div>
+    <div class="col-3">
         <input type="text" [(ngModel)]="lote" placeholder="Ingrese el Lote">
     </div>
-    <div class="col-4">
+    <div class="col-3">
         <button class="btn btn-success" (click)="onBusqueda()">Buscar</button>
     </div>
 </div>
