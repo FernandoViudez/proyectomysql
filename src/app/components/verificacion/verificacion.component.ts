@@ -25,13 +25,13 @@ export class VerificacionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  traerDescripcion() {
+  traerDescripcion() {  //tiene que traerlo de la base de datos materia prima
     this.genericService.traerDescripcion(this.codigomp)
       .subscribe((data: any) => {
         console.log(data);
         this.descripcion = data.response[0].descripcion;
       }, err => {
-        console.log(err);
+        console.log(err);  // poner mensaje alertify  "no existe esa materia prima"
       })
   }
 
@@ -80,6 +80,7 @@ export class VerificacionComponent implements OnInit {
             },
             onClose: () => {
               clearInterval(timerInterval)
+              this.resetear()
             }
           }).then((result) => {
             /* Read more about handling dismissals below */
@@ -89,9 +90,16 @@ export class VerificacionComponent implements OnInit {
           })
         }
 
-
       }, err => {
         console.log(err);
       })
+  }
+
+  resetear() {
+    this.codigomp = null;
+    this.lote = null;
+    this.operario = null;
+    this.partida = null;
+    // como se borra la descripcion que puse cuando encuentra la materia prima
   }
 }
