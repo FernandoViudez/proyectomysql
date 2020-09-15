@@ -53,8 +53,9 @@
         <div class="col-3">
             <span>Numero de lote</span>
             <input placeholder="Lote" class="form-control boldText" type="number" [(ngModel)]="lote"
-                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;" />
+                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;" (change)="traerLote()" />
         </div>
+        {{descripcionLote}}
     </div>
     <div class="row mt-4">
         <div class="col-3">

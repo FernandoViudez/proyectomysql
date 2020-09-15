@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from '../../services/generic.service';
 import Swal from 'sweetalert2';
+declare let alertify: any;
 
 @Component({
   selector: 'app-verificacion',
@@ -15,6 +16,7 @@ export class VerificacionComponent implements OnInit {
   public lote: number;
   public partida: number;
   public descripcion: string;
+  public descripcionLote: string;
 
   // ok(boolean) (Sending the verification, we validate the data sent by the user,
   // and we determinate the ok field seeing the repsonse)
@@ -28,10 +30,18 @@ export class VerificacionComponent implements OnInit {
   traerDescripcion() {  //tiene que traerlo de la base de datos materia prima
     this.genericService.traerDescripcion(this.codigomp)
       .subscribe((data: any) => {
-        console.log(data);
         this.descripcion = data.response[0].descripcion;
       }, err => {
-        console.log(err);  // poner mensaje alertify  "no existe esa materia prima"
+        alertify.error("NO EXISTE ESA MATERIA PRIMA");
+      })
+  }
+  
+  traerLote() {  //tiene que traerlo de la base de datos materia prima
+    this.genericService.traerLote(this.lote)
+      .subscribe((data: any) => {
+        console.log(data);
+      }, err => {
+        alertify.error(err.error.message);
       })
   }
 
@@ -100,6 +110,6 @@ export class VerificacionComponent implements OnInit {
     this.lote = null;
     this.operario = null;
     this.partida = null;
-    // como se borra la descripcion que puse cuando encuentra la materia prima
+    this.descripcion = null;
   }
 }

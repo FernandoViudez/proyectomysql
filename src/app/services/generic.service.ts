@@ -29,11 +29,15 @@ export class GenericService {
   }
 
   traerDescripcion(codigomp: number) {
-    return this.http.get(`${this.url}tarerDescripcionDeCalidadMp/${codigomp}`);
+    return this.http.get(`${this.url}traerDescripcionDeCalidadMp/${codigomp}`);
+  }
+  
+  traerLote(lote: number) {
+    return this.http.get(`${this.url}traerLote/${lote}`);
   }
 
   listadoVerificacion(codigoMp: number, lote: number, operario: string,){
-    return this.http.get(`${this.url}traerVerificacion/${codigoMp}/${lote}/${operario}`);
+    return this.http.post(`${this.url}traerVerificacion`, { codigoMp, lote, operario });
   }
   
 
