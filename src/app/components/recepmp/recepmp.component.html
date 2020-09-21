@@ -24,7 +24,7 @@
         <div class="row mt-2" >
             <div class="col-3">
                 <label>Ingrese el Código de Materia Prima</label>
-                <input (change)="traerDatosMp()" class="form-control boldText" type="number" [(ngModel)]="id">
+                <input id="id" (change)="traerDatosMp()" class="form-control boldText" type="number" [(ngModel)]="id" required>
             </div>
             <div class="col-6">
                 <label>Descripción</label>

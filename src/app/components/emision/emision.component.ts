@@ -451,10 +451,26 @@ export class EmisionComponent implements OnInit, OnDestroy {
     window.print();
   }
 
-  onTxt() { 
-    this.genericService.downloadTxt("etilatas.txt", "<h1 style='color: white; background-color: blue;'>etilatas.txt no existe</h1>");
+  onTxt() {
+    this.genericService.downloadTxt("etilatas.txt", "<h1 style='color: white; background-color: blue; text-align: center; '>El archivo 'etilatas.txt' no existe</h1>");
   }
- 
+
+  calcularFechaVencimiento() {
+
+    let diaActual = new Date();
+
+    // dias a sumar segun el producto.  thiokol tiene 6 meses resto 1 anio
+    if (this.id == 10565 || this.id == 10572 || this.id == 30644 || this.id == 30645) {
+      var dias = 180;
+    } else {
+      var dias = 365; // si quisiera agregar a mano dias usaria parseInt(numero.value);
+    }
+
+    //nueva fecha sumando los dias 
+    diaActual.setDate(diaActual.getDate() + dias);
+    return diaActual.getDate() + '/' + (diaActual.getMonth() + 1) + '/' + diaActual.getFullYear();
+  }
+
 }
 
 

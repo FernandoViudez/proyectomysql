@@ -10,11 +10,11 @@
 
     <div class="row mt-3">
         <div class="col-6">
-            <span>Desde ficha</span>
+            <span>Desde partida numero</span>
             <input type="number" class="form-control" [(ngModel)]="desde">
         </div>
         <div class="col-6">
-            <span>Hasta ficha</span>
+            <span>Hasta partida numero</span>
             <input type="number" class="form-control" [(ngModel)]="hasta">
         </div>
     </div>
@@ -64,7 +64,7 @@
                         </div>
                         <hr>
                         <div>
-                            Producto: {{item.descripcion}}
+                            Código: {{item.codpt}} Producto: {{item.descripcion}}
                         </div>
                         <div>
                             Nro. de batch: {{item.numeroPartida}}

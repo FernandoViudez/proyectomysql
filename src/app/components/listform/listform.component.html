@@ -1,19 +1,19 @@
 <div class="notPrint">
 
   <div class="p-0 mt-1" style="background-color:rgb(190, 171, 131)">
-    <h6 class="text-center">VISUALIZACION DE FORMULAS</h6>
+    <h5 class="text-center font-weight-bold">VISUALIZACION DE FORMULAS</h5>
   </div>
 
-  <div class="jumbotron p-2 mt-1" style="background-color:rgb(180, 71, 21); font-size: 11px;">
+  <div class="jumbotron p-2 mt-1" style="background-color:rgb(180, 138, 21); font-size: 11px;">
     <div class="row text-white">
-      <div class="col-3">
-        <div class="m-auto" style="width: 100%;">
-          <label for="idp" style="font-size:15px"><b> INGRESE CODIGO P.T.</b></label>
+      <div class="col-3 boldText mt-2">
+        <div class="m-auto" style="width: 100%; ">
+          <label for="idp">INGRESE CODIGO P.T.</label>
           <input (change)="validarId()" (keyup)="buscar()" id="idp" [(ngModel)]="idprod" type="number"
             class="ml-1 boldText" style="width: 30%;">
         </div>
       </div>
-      <div class="col-1">
+      <div class="col-1 mt-2">
         <svg (click)="resetear1()" data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3"
           class="bi bi-search" width="2.5em" height="2.5em" viewBox="0 0 16 16" fill="white"
           xmlns="http://www.w3.org/2000/svg">
@@ -25,14 +25,14 @@
             clip-rule="evenodd" />
         </svg>
       </div>
-      <div class="col-4">
+      <div class="col-4 mt-2">
         <div class="">
           <span class="badge badge-primary" style="font-size: 23px;">{{descripcion1}}</span>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-4 mt-2">
         <div class="m-auto" style="width: 70%;">
-          <label for="TFA"><b>INGRESE F(ormula), T(int) o A(lternativa)</b></label>
+          <label for="TFA" style="font-size:15px"><b>INGRESE F(ormula), T(int) o A(lternativa)</b></label>
           <input (keyup)="buscar()" id="TFA" [(ngModel)]="tintoformoalt" maxlength="1" type="text" class="ml-1 boldText"
             style="width: 10%;">
           <span class="badge badge-primary ml-5" style="font-size: 23px;">{{tintoformoalt}}</span>

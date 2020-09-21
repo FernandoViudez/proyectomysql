@@ -1,7 +1,7 @@
 <div class="w-100 zoom">
 
     <div class="p-1">
-        <h6 align="center" class="bg-info text-white">DATOS GENERALES</h6>
+        <h5 align="center" class="bg-info text-white font-weight-bold">DATOS GENERALES</h5>
         <div class="row">
             <div class="col-3">
                 <span for="">Codigo de la Materia Prima</span>
@@ -68,18 +68,31 @@
             </div>
             <div class="col-2">
                 <span>Obsoleto</span>
-                <div class="input-group mt-1">
-                    <select class="custom-select boldText" [(ngModel)]="ubicacion" id="inputGroupSelect02">
-                        <option value="SI">SI</option>
-                        <option value=NULL>NO</option>
-                    </select>
+                <div *ngIf="ubicacion == 'SI'">
+                    <div class="input-group mt-1">
+                        <select class="custom-select boldText" style="background-color: rgb(255, 148, 77)"
+                            [(ngModel)]="ubicacion" id="inputGroupSelect02">
+                            <option value=NULL></option>
+                            <option value="SI">SI</option>
+                            <option value=NULL>NO</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="ubicacion != 'SI'">
+                    <div class="input-group mt-1">
+                        <select class="custom-select boldText" [(ngModel)]="ubicacion" id="inputGroupSelect02">
+                            <option value=NULL></option>
+                            <option value="SI">SI</option>
+                            <option value=NULL>NO</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="p-1 mt-2">
-        <h6 align="center" class="bg-info text-white">DATOS FÍSICOS</h6>
+        <h5 align="center" class="bg-info text-white font-weight-bold">DATOS FÍSICOS</h5>
         <div class="row mt-3 mb-3">
             <div class="col-2">
                 <span>Peso Específico</span>
@@ -112,7 +125,7 @@
     </div>
 
     <div class="p-1 mt-2">
-        <h6 align="center" class="bg-info text-white">DATOS DE APROBACIÓN</h6>
+        <h5 align="center" class="bg-info text-white font-weight-bold">DATOS DE APROBACIÓN</h5>
         <div class="row mt-3 mb-3">
             <div class="col-6">
                 <span>Condicion de aprobación 1</span>
@@ -131,7 +144,7 @@
     </div>
 
     <div class="p-1 mt-2">
-        <h6 align="center" class="bg-info text-white">OTROS</h6>
+        <h5 align="center" class="bg-info text-white font-weight-bold">OTROS</h5>
         <div class="row">
             <div class="col-2">
                 <span>Código Semi-elaborado</span>
@@ -234,7 +247,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" style="background-color: rgb(190, 171, 131); " (click)="resetearBusqueda()">Resetear</button>
+                <button type="button" class="btn" style="background-color: rgb(190, 171, 131); "
+                    (click)="resetearBusqueda()">Resetear</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

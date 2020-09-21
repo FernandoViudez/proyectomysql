@@ -31,7 +31,7 @@ export class FichasComponent implements OnInit {
     tb: [
       /** Texto que se muestra en el tbody */
       "numeroPartida",
-      "codigopt",
+      "codpt",
       "descripcion",
       "fecha",
       "aprobado"

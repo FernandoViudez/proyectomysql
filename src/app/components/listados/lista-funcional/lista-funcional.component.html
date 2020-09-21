@@ -14,10 +14,10 @@
                 <select (change)="isValid" class="custom-select boldText ml-2" [(ngModel)]="operacion"
                     id="inputGroupSelect01">
                     <option value="RANGO">Listado de Materias Primas por rango</option>
-                    <option value="MINIMO">Stock bajo minimo de Materias Primas</option>
+                    <option value="MINIMO">Stock bajo mínimo de Materias Primas</option>
                     <option value="RANGOMOVD">Compras de Materias Primas por rango de fechas</option>
                     <option value="RANGOMOV">Movimientos de Materias Primas por rango de fechas</option>
-                    <option value="RANGOFECHAS">Estadistica de produccion por rango de fechas</option>
+                    <option value="RANGOFECHAS">Estadística de producción por rango de fechas</option>
                 </select>
             </div>
         </div>
@@ -30,11 +30,11 @@
                 [(ngModel)]="hasta">
         </div>
         <div class="col-2 mt-2" *ngIf='operacion != "MINIMO"'>
-            <a *ngIf="sonFechas">Desde fecha</a> 
+            <a *ngIf="sonFechas">Desde fecha</a>
             <input *ngIf="sonFechas" class="form-control boldText" type="date" [(ngModel)]="inicio">
         </div>
         <div class="col-2 mt-2" *ngIf='operacion != "MINIMO"'>
-            <a *ngIf="sonFechas">Hasta fecha</a> 
+            <a *ngIf="sonFechas">Hasta fecha</a>
             <input *ngIf="sonFechas" class="form-control boldText" type="date" [(ngModel)]="fin">
         </div>
     </div>
@@ -63,32 +63,34 @@
     </div>
 
     <div class="row mt-3" *ngIf="esPlani">
-        <div class="col">
+        <div class="col-2">
+            <button [disabled]="!items || items.length == 0" (click)="calcularCantidadesFabricadasEnPlani()"
+                class="btn btn-outline-dark float-right">
+                Paso 1 - Calcular y agrupar
+            </button>
+        </div>
+        <div class="col-2; left-align; ">
+            <button [disabled]="!items || items.length == 0" (click)="onPrint()"
+                class="btn btn-outline-warning float-right">
+                Paso 2 - Imprimir
+            </button>
+        </div>
+        <div class="col-2">
             <h3 align="center">
                 Suma Total: {{sumaTotal | numeralPipe}}
             </h3>
         </div>
-        <div class="col-6">
-            <button [disabled]="!items || items.length == 0" (click)="calcularCantidadesFabricadasEnPlani()"
-                class="btn btn-outline-success float-right">
-                Calcular y agrupar
-            </button>
-
-            <button [disabled]="!items || items.length == 0" (click)="onPrint()"
-                class="btn btn-outline-success float-right">
-                Imprimir
-            </button>
-        </div>
     </div>
     <div class="row mt-2">
-        <div class="col-7">
-            <button type="button" class="btn float-lg-right" style="background-color: rgb(190, 171, 131);" (click)="resetear()">Resetear</button>
+        <div class="col-9">
+            <button type="button" class="btn float-lg-right" style="background-color: rgb(190, 171, 131);"
+                (click)="resetear()">Resetear</button>
         </div>
-        <div class="col-2">
+        <div class="col-1">
             <button class="btn btn-warning float-lg-right" [disabled]="isValid || !items" data-toggle="modal"
                 data-target="#exampleModal">Generar Excel</button>
         </div>
-        <div class="col-2">
+        <div class="col-1">
             <button class="btn btn-success float-lg-right" [disabled]="isValid" (click)="onSubmit(true)">Realizar
                 operacion</button>
         </div>
