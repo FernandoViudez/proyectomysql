@@ -6,6 +6,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatprimService } from 'src/app/services/matprim.service';
 import { ProdtermService } from 'src/app/services/prodterm.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-altaform',
@@ -50,13 +51,13 @@ export class AltaformComponent implements OnInit, OnDestroy {
   constructor(private service: FormService,
     private route: Router,
     private MatPrimService: MatprimService,
-    private prodTermService: ProdtermService) { 
-      let user_role = localStorage.getItem("user_role");
-      if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
-        alert("Acceso no autorizado !")
-        route.navigate(['inicio'])
-      }
+    private prodTermService: ProdtermService) {
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
     }
+  }
 
   cambiarTexto() {
     if (this.mostrar) {
@@ -75,25 +76,6 @@ export class AltaformComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.service.cargarFilas().
-      subscribe((data: any) => {
-        if (data.response.length !== 0) {
-          Swal.fire({
-            title: "Base de datos en uso!!",
-            text: "La base de datos está siendo usada, vaya a tomar un mate y vuelva...",
-            icon: "warning",
-            allowEnterKey: false,
-            allowEscapeKey: false,
-            allowOutsideClick: false,
-            confirmButtonColor: "green",
-            confirmButtonText: "Presione aquí para Continuar"
-          }).then(res => {
-            if (res.value) {
-              this.route.navigateByUrl("/app");
-            }
-          })
-        }
-      })
   }
 
   ngOnDestroy() {
@@ -115,14 +97,6 @@ export class AltaformComponent implements OnInit, OnDestroy {
     document.getElementById("idp").setAttribute("disabled", "");
     this.idprod = id;
     this.validarIdprod()
-  }
-
-  cargarFilas() {
-    this.service.cargarFilas().subscribe((data: any) => {
-      this.array = data.response;
-      this.sumarTotal(data.response);
-    })
-
   }
 
   cargar() {
@@ -160,14 +134,29 @@ export class AltaformComponent implements OnInit, OnDestroy {
         return alertify.error("NO PUEDES INGRESAR UNA CANTIDAD EN UNA INSTRUCCIÓN !")
       }
 
-      this.service.cargar(this.idprod, this.tintoformoalt.toUpperCase(), this.mpi, this.codmp, this.codpt, this.descripcion, this.cantidad)
-        .subscribe((data: any) => {
-          alertify.success("¡ RENGLON AGREGADO !")
-          this.resetear()
-          this.sumarTotal(data.response);
-          this.array = data.response;
-          this.calcular(data.response);
-        })
+      // this.service.cargar(this.idprod, this.tintoformoalt.toUpperCase(), this.mpi, this.codmp, this.codpt, this.descripcion, this.cantidad)
+      //   .subscribe((data: any) => {
+      //     alertify.success("¡ RENGLON AGREGADO !")
+      //     this.resetear()
+      //     this.sumarTotal(data.response);
+      //     this.array = data.response;
+      //     this.calcular(data.response);
+      //   })
+
+      /** Agregamos al this.array */
+      this.array.push({
+        idprod: this.idprod,
+        tfa: this.tintoformoalt.toUpperCase(),
+        mpi: this.mpi,
+        codmp: this.codmp,
+        codpt: this.codpt,
+        descripcion: this.descripcion,
+        cantidad: this.cantidad
+      });
+
+      /** Calculamos */
+      this.sumarTotal(this.array);
+      this.calcular(this.array);
 
     } else {
       return alertify.error("¡ MPI INCORRECTO !")
@@ -177,13 +166,10 @@ export class AltaformComponent implements OnInit, OnDestroy {
   eliminarTodo(destroy) {
     if (this.idprod) {
       if (destroy) {
-        return this.service.eliminarTodo(this.idprod).subscribe((data) => {
-          alertify.success("¡ OPERACIÓN CANCELADA !")
-          this.sumaTot = null;
-          this.resetear()
-          this.resetear1()
-          this.cargarFilas()
-        })
+        alertify.success("¡ OPERACIÓN CANCELADA !")
+        this.sumaTot = null;
+        this.resetear()
+        this.resetear1()
       }
       Swal.fire({
         title: "CANCELAR",
@@ -193,13 +179,10 @@ export class AltaformComponent implements OnInit, OnDestroy {
         showCancelButton: true,
       }).then(res => {
         if (res.value) {
-          this.service.eliminarTodo(this.idprod).subscribe((data) => {
-            alertify.success("¡OPERACIÓN CANCELADA!")
-            this.sumaTot = null;
-            this.resetear()
-            this.resetear1()
-            this.cargarFilas()
-          })
+          alertify.success("¡OPERACIÓN CANCELADA!")
+          this.sumaTot = null;
+          this.resetear()
+          this.resetear1()
         } else
           return;
       })
@@ -223,7 +206,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       return alertify.error("¡ EL DATO EN TFA ES INCORRECTO !")
     }
 
-    function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr) {
+    function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array) {
       return new Promise((resolve, reject) => {
         Swal.fire({
           title: "¡¡Atención!!",
@@ -242,7 +225,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
             })
             Swal.showLoading()
             service.finalizar(tintoformoalt, idprod, pe, ppp, ppv, resi,
-              pig, pr).subscribe((data: any) => {
+              pig, pr, array).subscribe((data: any) => {
                 Swal.close()
                 Swal.fire({
                   title: "GENIAL",
@@ -261,9 +244,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
     if (this.tintoformoalt == "T") {
       let response = finalizar(0, this.service, this.tintoformoalt, this.idprod, this.pe, this.ppp, this.ppv,
-        this.resi, this.pig, this.pr);
+        this.resi, this.pig, this.pr, this.array);
       response.then(data => {
-        this.cargarFilas();
         this.resetear();
         this.resetear1();
       }).catch(err => {
@@ -271,9 +253,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
       })
     } else if (this.sumaTot) {
       let response = finalizar(this.sumaTot, this.service, this.tintoformoalt, this.idprod, this.pe, this.ppp, this.ppv,
-        this.resi, this.pig, this.pr);
+        this.resi, this.pig, this.pr, this.array);
       response.then(data => {
-        this.cargarFilas();
         this.resetear();
         this.resetear1();
       }).catch(err => {
@@ -290,7 +271,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
     this.service.calcular(this.sumaTot, data).subscribe((data: any) => {
       this.pe = data.pe;
       this.pig = data.tpig,
-      this.ppp = data.tppp;
+        this.ppp = data.tppp;
       this.ppv = data.ttppv;
       this.pr = data.tpr;
       this.resi = data.tres;
@@ -299,7 +280,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
   }
 
-  borraFila(orden) {
+  borraFila(index) {
     Swal.fire({
       title: "ELIMINACIÓN DE FILA",
       text: "¿ ESTA SEGURO QUE DESEA ELIMINAR ESTA FILA ?",
@@ -312,14 +293,21 @@ export class AltaformComponent implements OnInit, OnDestroy {
         return;
       }
 
-      this.service.borrarFila(orden)
-        .subscribe((data: any) => {
-          this.sumarTotal(data.response);
-          this.array = data.response;
-          this.calcular(data.response)
-          alertify.success("¡ FILA BORRADA CORRECTAMENTE !")
+      // this.service.borrarFila(orden)
+      //   .subscribe((data: any) => {
+      //     this.sumarTotal(data.response);
+      //     this.array = data.response;
+      //     this.calcular(data.response)
+      //   })
 
-        })
+      this.array.splice(index, 1);
+      this.reordenar();
+
+      /** Calcular */
+      this.sumarTotal(this.array);
+      this.calcular(this.array);
+      alertify.success("¡ FILA BORRADA CORRECTAMENTE !")
+
     })
 
 
@@ -328,26 +316,52 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
   traerFilas(ind) {
     this.ind = ind;
-    this.service.traerFilas(ind)
-      .subscribe((data: any) => {
-        let item = data.response;
-        this.orden = item[0].orden;
-        this.mpi = item[0].mpi;
-        this.codmp = item[0].codmp;
-        this.codpt = item[0].codpt;
-        this.descripcion = item[0].descripcion;
-        this.cantidad = item[0].cantidad;
-      })
+
+    /** Encontramos el item con ind:  this.ind   */
+    let index = this.array.map(item => item.ind).indexOf(this.ind);
+
+    this.orden = this.array[index].orden;
+    this.mpi = this.array[index].mpi;
+    this.codmp = this.array[index].codmp;
+    this.codpt = this.array[index].codpt;
+    this.descripcion = this.array[index].descripcion;
+    this.cantidad = this.array[index].cantidad;
+
+
+    // this.service.traerFilas(ind)
+    //   .subscribe((data: any) => {
+    //     let item = data.response;
+    //     this.orden = item[0].orden;
+    //     this.mpi = item[0].mpi;
+    //     this.codmp = item[0].codmp;
+    //     this.codpt = item[0].codpt;
+    //     this.descripcion = item[0].descripcion;
+    //     this.cantidad = item[0].cantidad;
+    //   })
   }
 
   editar() {
-    this.service.editar(this.mpi, this.codmp, this.codpt, this.descripcion, this.cantidad, this.ind)
-      .subscribe((data: any) => {
-        this.array = data.response;
-        this.sumarTotal(data.response);
-        this.calcular(data.response);
-        this.resetear();
-      })
+
+    /** Encontramos el item con ind:  this.ind   */
+    let index = this.array.map(item => item.ind).indexOf(this.ind);
+
+    /** Editamos el item en la posicicon index del this.array */
+    ["mpi", "codmp", "codpt", "descripcion", "cantidad", "ind"].forEach(item => {
+      this.array[index][item] = this[item];
+    })
+
+    /** Calculamos */
+    this.sumarTotal(this.array);
+    this.calcular(this.array);
+    this.resetear();
+
+    // this.service.editar(this.mpi, this.codmp, this.codpt, this.descripcion, this.cantidad, this.ind)
+    //   .subscribe((data: any) => {
+    //     this.array = data.response;
+    //     this.sumarTotal(data.response);
+    //     this.calcular(data.response);
+    //     this.resetear();
+    //   })
   }
 
   traerEditar() {
@@ -355,7 +369,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.array = data;
         this.sumarTotal(data);
-        this.calcular(this.array)
+        this.calcular(data)
       })
   }
 
@@ -387,6 +401,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
     this.pr = null;
     this.descripcion1 = null;
     this.solv = null;
+    this.array = [];
     document.getElementById("idp").removeAttribute("disabled");
     document.getElementById("TFA").removeAttribute("disabled");
 
@@ -395,16 +410,16 @@ export class AltaformComponent implements OnInit, OnDestroy {
   validar() {
     // ACA VA LA TAREA DE MARC, ES UNA VALIDACION CON IF SOBRE this.tintoformoalt
     this.tintoformoalt = this.tintoformoalt.toUpperCase()
-    
+
     if (this.tintoformoalt != "F" && this.tintoformoalt != "T" && this.tintoformoalt != "A") {
       this.resetear();
       this.resetear1();
       return alertify.error("¡ EL DATO EN TFA ES INCORRECTO !");
     }
-    
-    
+
+
     let data = { idprod: this.idprod, tintoformoalt: this.tintoformoalt };
-    fetch(`http://localhost:8080/api/detect`, {
+    fetch(`${environment.backend}detect`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -527,7 +542,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
         return alertify.error("¡ NO HAY FORMULAS CARGADAS CON ESE CODIGO DE PRODUCTO !")
       }
 
-      this.array=data.response;
+      this.array = data.response;
 
       this.sumarTotal(data.response);
       this.calcular(data.response)
@@ -541,11 +556,14 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
   dropped(event: CdkDragDrop<any>) {
     moveItemInArray(this.array, event.previousIndex, event.currentIndex);
-    this.service.drop(event.currentIndex, event.previousIndex).
-      subscribe((data: any) => {
-        this.array = data.response;
-      }, (err) => {
-        console.log(err);
-      })
+    this.reordenar();
   }
+
+  reordenar() {
+    /** Reordenar el item.orden en base al index que provee el ciclo for */
+    for (let i = 0; i < this.array.length; i++) {
+      this.array[i].orden = i + 1;
+    }
+  }
+
 }
