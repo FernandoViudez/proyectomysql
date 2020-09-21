@@ -73,6 +73,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
         }
         this.unidadRecibo = item.unidadmedidacompra;
         this.fechaultimarecepcion = item.fechaultimarecepcion;
+        document.getElementById("id").setAttribute("disabled","");
         this.calcularLote();
         if (this.ubicacion == "SI") { // uso campo ubicacion para poner si esta obsoleto o no la MP
           setTimeout(() => {
@@ -92,6 +93,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
           }
           this.unidadRecibo = item.unidadmedidacompra;
           this.fechaultimarecepcion = item.fechaultimarecepcion;
+          document.getElementById("id").setAttribute("disabled","");
           this.calcularLote();
         } else {
           this.id = null;
@@ -174,6 +176,8 @@ export class RecepmpComponent implements OnInit, OnDestroy {
     this.termino2 = null;
     this.fechaultimarecepcion = null;
     this.pesoespecifico = null;
+    let id = document.getElementById("id");
+    id.removeAttribute("disabled");
   }
 
   cancelar() {
@@ -206,11 +210,11 @@ export class RecepmpComponent implements OnInit, OnDestroy {
   omit_number(event) {
     let key;
     key = event.keyCode;  //         key = event.charCode;  (Both can be used)   key == 45  // allows minus(-)
-    return ((key > 47 && key < 58) || key == 46 );
+    return ((key > 47 && key < 58) || key == 46);
   }
 
-  ngOnDestroy(){
-    this.genericService.downloadTxt("RecepcionMp.txt", "<h1 style='color: white; background-color: blue;'>RecepcionMp.txt no existe :( </h1>")
+  ngOnDestroy() {
+    this.genericService.downloadTxt("RecepcionMp.txt", "<h1 style='color: white; background-color: blue; text-align: center; '>El archivo 'RecepcionMp.txt' no existe</h1>")
   }
 
 }

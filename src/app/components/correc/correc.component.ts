@@ -72,6 +72,7 @@ export class CorrecComponent implements OnInit {
           }, 2000)
         }
         this.stock = datos.stock;
+        document.getElementById("id").setAttribute("disabled","");
       }, (err) => {
         console.log(err);
       })
@@ -86,7 +87,8 @@ export class CorrecComponent implements OnInit {
     this.stock = null;
     this.ubicacion = null;
     this.motivo = null;
+    let id = document.getElementById("id");
+    id.removeAttribute("disabled");
   }
-
 
 }

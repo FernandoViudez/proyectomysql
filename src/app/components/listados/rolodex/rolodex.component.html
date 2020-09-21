@@ -1,7 +1,7 @@
 <div class="bg rounded p-3 mt-1 text-white" style="background-color:rgb(180, 178, 32)">
     <div class="row">
         <div class="col-6">
-            <h2>Existencia en Inventarios</h2>
+            <h2>Existencia en Inventarios (histórico)</h2>
             <hr>
         </div>
     </div>
@@ -38,14 +38,15 @@
     </table>
 </div>
 <div class="row mt-2">
-    <div class="col-7">
-        <button type="button" class="btn float-lg-right" style="background-color: rgb(190, 171, 131);" (click)="resetear()">Resetear</button>
+    <div class="col-9">
+        <button type="button" class="btn float-lg-right" style="background-color: rgb(190, 171, 131);"
+            (click)="resetear()">Resetear</button>
     </div>
-    <div class="col-2">
+    <div class="col-1">
         <button class="btn btn-warning float-lg-right" [disabled]="isValid || !items" data-toggle="modal"
             data-target="#exampleModal">Generar Excel</button>
     </div>
-    <div class="col-2">
+    <div class="col-1">
         <button class="btn btn-success float-lg-right" [disabled]="isValid" (click)="onSubmit()">Realizar
             operacion</button>
     </div>

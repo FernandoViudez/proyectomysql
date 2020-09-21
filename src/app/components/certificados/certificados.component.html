@@ -23,8 +23,8 @@
     <div class="row mt-2">
         <div class="col-4">
             <span>Descripción</span>
-            <input type="text" class="form-control boldText" [(ngModel)]="descripcion" id="descripcion" placeholder="Ingresar descripción del producto"
-                (change)="onDescripcionChange()">
+            <input type="text" class="form-control boldText" [(ngModel)]="descripcion" id="descripcion" placeholder="nombre del producto"
+                (change)="onDescripcionChange()" style="text-transform: uppercase; ">
         </div>
         <div class="col-8">
             <span>Tipo generico</span>

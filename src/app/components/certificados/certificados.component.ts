@@ -97,6 +97,8 @@ export class CertificadosComponent implements OnInit {
             this.limpeza = data.response.limpeza;
             this.editar = true;
             document.getElementById("descripcion").setAttribute("disabled","");
+          } else {
+            this.reset()
           }
         })
 
@@ -104,7 +106,7 @@ export class CertificadosComponent implements OnInit {
         alertify.success("Producto inexistente, complete los datos!");
         console.log(err);
       })
-  }
+  } 
 
   seleccionarItem(descripcion){
     this.descripcion = descripcion

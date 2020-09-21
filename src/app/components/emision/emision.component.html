@@ -319,6 +319,7 @@
             OPERARIO: ___________________ <span class="tab1"></span> NRO.CUBA UTILIZADA: _________ <span class="tab1"></span> PESO CUBA: _________
             DISPERSORA NRO: _____ <span class="tab1"></span>CON DISCO: PLANO / CONN / MULTILAMINAR <span class="tab1"></span>MOLINO NRO: ______
             PESO FINAL ____________ Kg <span class="tab1"></span>CONTROLO ______________ <span class="tab1"></span> COMIENZO ENVASADO ___/___/___<span class="tab1"></span> FILTRO UTILIZADO # _______
+            ETIQUETADO COMO: {{descripcionEtiquetas}} - {{colorEtiquetas}} **** FECHA VENCIMIENTO: {{calcularFechaVencimiento()}}
             </pre>
 
             <div class="w-100" *ngIf="tfa=='T'"> :
@@ -505,6 +506,7 @@
     <br><br>
     <pre>
         CODIGO: {{id}} <span class="tab2"></span><span class="tab2"></span> PRODUCTO: {{descripcion}} {{componente}} {{color}}
+        ETIQUETADO COMO: {{descripcionEtiquetas}} - {{colorEtiquetas}}
         CANTIDAD: {{cantidadPlani | numeralPipe: 'true'}} {{unidadmedida}} - (<span *ngIf="unidadmedida=='LT'"> {{(cantidadPlani * pesoespecifico) | numeralPipe: 'true'}} Kg</span><span *ngIf="unidadmedida=='KG'"> {{cantidadPlani | numeralPipe}} Kg</span>) <span class="tab1"></span> FECHA EMISION: {{fechaDelDia}} 
         OPERARIO: ___________________ <span class="tab1"></span> FECHA PREPARADO PREPESADO: ___/___/ ___ <br>
         RECIBIO Y CONTROLO: ___________________ <span class="tab1"></span>FECHA: ___/___/ ___  <span class="tab1"></span>HORA: _________
@@ -538,9 +540,11 @@
                 </ng-container>
             </tr>
         </table>
-        <br><hr><br><br>
+        <br>
+        <hr><br><br>
         <h2>
-            <span class="text-md-center">SEPARADO, ENVASAMIENTO Y ETIQUETADO LATAS DEL BATCH TICKET {{proximoBatch}}</span>
+            <span class="text-md-center">SEPARADO, ENVASAMIENTO Y ETIQUETADO LATAS DEL BATCH TICKET
+                {{proximoBatch}}</span>
         </h2>
         <table>
             <tr>
@@ -554,15 +558,15 @@
             </tr>
             <tr *ngFor="let item of arrayConj">
                 <ng-container layout="row" *ngIf="item.indice != ''">
-                <td>{{item.codmp}}</td>
-                <td>{{item.descripcion}}</td>
-                <td class="text-right">{{item.envasado | numeralPipe}}</td>
-                <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}
-                </td>
-                <td *ngIf="item.indice == 0 || item.indice == ''" class="text-right">0</td>
-                <td>____________</td>
-                <td>____________</td>
-                <td>____________</td>
+                    <td>{{item.codmp}}</td>
+                    <td>{{item.descripcion}}</td>
+                    <td class="text-right">{{item.envasado | numeralPipe}}</td>
+                    <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}
+                    </td>
+                    <td *ngIf="item.indice == 0 || item.indice == ''" class="text-right">0</td>
+                    <td>____________</td>
+                    <td>____________</td>
+                    <td>____________</td>
                 </ng-container>
             </tr>
         </table>
@@ -572,21 +576,23 @@
         </h2>
         <div *ngFor="let item of arrayAsoc; let i = index;">
             <ng-container layout="row" *ngIf="item.mpi != 'I' && item.ind[2] != 'SOLVENTE'">
-                --------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8<
-                    -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< --------
-                <div style="font-size: 15px; font-weight: bold; ">Batch: {{proximoBatch}} <span class="tab1"></span>
-                    CODIGO: {{id}} </div><br>
-                Item : {{item.orden}} <br>
-                <div style="font-size: 25px; font-weight: bold; text-align: center;"> {{item.codmp}}{{item.codpt}} -
-                    {{item.descripcion}}</div>
-                <div style="font-size: 25px; font-weight: bold; text-align: right;"
-                    *ngIf="unidadmedida == 'KG' && item.cantidad">
-                    Cantidad: {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0 - kg</div>
-                <div style="font-size: 25px; font-weight: bold; text-align: right;"
-                    *ngIf="unidadmedida == 'LT' && item.cantidad">
-                    Cantidad: {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0 - kg</div>
-            </ng-container>
-        </div>
+                --------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8<
+                    -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8<
+                    -------- 8< -------- <div style="font-size: 15px; font-weight: bold; ">Batch: {{proximoBatch}} <span
+                        class="tab1"></span>
+                    CODIGO: {{id}}
+        </div><br>
+        Item : {{item.orden}} <br>
+        <div style="font-size: 25px; font-weight: bold; text-align: center;"> {{item.codmp}}{{item.codpt}} -
+            {{item.descripcion}}</div>
+        <div style="font-size: 25px; font-weight: bold; text-align: right;"
+            *ngIf="unidadmedida == 'KG' && item.cantidad">
+            Cantidad: {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0 - kg</div>
+        <div style="font-size: 25px; font-weight: bold; text-align: right;"
+            *ngIf="unidadmedida == 'LT' && item.cantidad">
+            Cantidad: {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0 - kg</div>
+        </ng-container>
+</div>
 </div>
 
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

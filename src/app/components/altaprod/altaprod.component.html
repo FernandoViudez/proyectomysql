@@ -1,8 +1,7 @@
 <div class="zoom">
-
     <!-- DATOS GENERALES -->
-    <div class= "p-1 mt-2">
-        <h6 class="bg-info text-white text-center">DATOS GENERALES</h6>
+    <div class="p-1 mt-2">
+        <h5 class="bg-info text-white text-center font-weight-bold">DATOS GENERALES</h5>
         <div class="row">
             <div class="col-3">
                 <label>Código del producto</label>
@@ -59,7 +58,8 @@
         <div class="row">
             <div class="col-2">
                 <label>Forma Conjunto con...</label>
-                <input (change)="validarForma()" type="number" [(ngModel)]="formaconjunto" class="form-control boldText">
+                <input (change)="validarForma()" type="number" [(ngModel)]="formaconjunto"
+                    class="form-control boldText">
             </div>
             <div class="col-2">
                 <h4 class="mt-4 ">
@@ -79,7 +79,7 @@
 
     <!-- DATOS FISICOS -->
     <div class="p-1 mt-5">
-        <h6 align="center" class="bg-info text-white">DATOS FISICOS</h6>
+        <h5 align="center" class="bg-info text-white font-weight-bold">DATOS FISICOS</h5>
         <div class="row">
             <div class="col-2">
                 <label>Viscosidad Spindle</label>
@@ -100,14 +100,25 @@
             <div class="col-2">
                 <label>Brillo</label>
                 <input type="text" [(ngModel)]="brillo" class="form-control boldText">
-            </div> 
+            </div>
             <div class="col-2">
                 <span>Unidad de Medida</span>
-                <div class="input-group">
-                    <select class="mt-2 custom-select boldText" [(ngModel)]="unidadmedida" id="inputGroupSelect01">
-                        <option value="KG">Kilogramo</option>
-                        <option value="LT">Litro</option>
-                    </select>
+                <div *ngIf="unidadmedida == 'KG'">
+                    <div class="input-group mt-1">
+                        <select class="mt-2 custom-select boldText" style="background-color: rgb(255, 243, 77)"
+                            [(ngModel)]="unidadmedida" id="inputGroupSelect01">
+                            <option value="KG">Kilogramo</option>
+                            <option value="LT">Litro</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="unidadmedida != 'KG'">
+                    <div class="input-group mt-1">
+                        <select class="mt-2 custom-select boldText" [(ngModel)]="unidadmedida" id="inputGroupSelect01">
+                            <option value="KG">Kilogramo</option>
+                            <option value="LT">Litro</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -141,7 +152,7 @@
 
     <!-- OTROS DATOS, LE TENGO QUE CAMBIAR EL NOMBRE JAJAAJ -->
     <div class="p-1 mt-5">
-        <h6 align="center" class="text-white bg-info">OTROS DATOS</h6>
+        <h5 align="center" class="text-white bg-info font-weight-bold">OTROS DATOS</h5>
         <div class="row">
             <div class="col-2">
                 <label class="text-center">Última Elaboración</label>

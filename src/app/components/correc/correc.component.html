@@ -5,121 +5,125 @@
                 <h2>Corrección de Stock de Materia Prima</h2>
                 <hr>
             </div>
-	<div class="col-6">
-            <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3"
-                class="float-right bi bi-search mr-5" width="3em" height="3em" viewBox="0 0 16 16" fill="black"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-                    clip-rule="evenodd" />
-                <path fill-rule="evenodd"
-                    d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
-                    clip-rule="evenodd" />
+            <div class="col-6">
+                <svg data-toggle="modal" style="cursor: pointer; " data-target="#exampleModal3"
+                    class="float-right bi bi-search mr-5" width="3em" height="3em" viewBox="0 0 16 16"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                        clip-rule="evenodd" />
+                    <path fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                        clip-rule="evenodd" />
                 </svg>
-        </div>
-    </div>
-</div>
-
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-3">
-            <label for="">Ingrese el código de la Materia Prima</label>
-            <input (change)="validarMp()" type="number" [(ngModel)]="id" class="form-control boldText">
-        </div>
-        <div class="col-6">
-            <label for="">Descripción</label>
-            <input type="string" disabled [(ngModel)]="descripcion" class="form-control boldText">
-        </div>
-        <div class="col-2">
-            <label for="">Stock actual</label>
-            <input *ngIf="stock>0 || stock==null || stock==0" type="number" disabled [(ngModel)]="stock" class="form-control text-success boldText">
-            <input *ngIf="stock<0" type="number" disabled [(ngModel)]="stock" class="form-control text-primary boldText">
-        </div>
-        <div class="col-1">
-            <label for="">Obsoleta ?</label>
-            <input type="string" disabled [(ngModel)]="ubicacion" class="form-control boldText">
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-4">
-            <label for="">Nueva cantidad a sumar o restar</label>
-            <input type="number" [(ngModel)]="cantidad" class="form-control boldText">
-        </div>
-        <div class="col-8">
-            <label for="">Ingrese el motivo de la correción</label>
-            <input type="stirng" [(ngModel)]="motivo" class="form-control boldText">
-        </div>
-    </div>
-
-    <div class="mt-4">
-        <button class="float-right btn btn-success mt-1" (click)="finalizar()">Corregir Stock</button>
-        <button class="float-right btn btn-primary mt-1 mr-2" (click)="resetear()">Cancelar operación</button>
-    </div>
-
-    <div *ngIf="cantidad>0" class="mt-5 alert alert-success boldText">
-        <h1>Recuerda</h1>
-        <p>ESTÁS SUMANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
-        <p>Nuevo stock: {{stock + cantidad}}</p>
-    </div>
-    <div *ngIf="cantidad<0" class="mt-5 alert alert-danger boldText">
-        <h1>Atencion !! </h1>
-        <p>ESTÁS RESTANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
-        <p>Nuevo stock: {{stock + cantidad}}</p>
-    </div>
-
-</div> 
-
-<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content" style="width: 90%;">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE MATERIAS PRIMAS</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="recipient-name9" class="col-form-label">CODIGO DE LA MATERIA PRIMA:</label>
-                        <input (keyup)="buscarMp()" [(ngModel)]="termino1" type="number" class="form-control"
-                            id="recipient-name40">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
-                        <input (keyup)="buscarMp()" [(ngModel)]="termino2" type="text" class="form-control"
-                            id="recipient-name40">
-                    </div>
-                </div>
-            </div>
-            <div style="overflow: scroll; height: 200px; width: 100%;">
-                <table class="table table-hover">
-                    <tr>
-                        <th>COD</th>
-                        <th>DESCRIPCIÓN</th>
-                        <th>TIPO</th>
-                        <th>UNIDAD DE MEDIDA</th>
-                    </tr>
-                    <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
-                        (click)="seleccionarId(item2.id)" style="cursor: pointer;">
-                        <td>{{item2.id}}</td>
-                        <td>{{item2.descripcion}}</td>
-                        <td>{{item2.tipo}}</td>
-                        <td>{{item2.unidadmedidacompra}}</td>
-                    </tr>
-                </table>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" (click)="resetear()">Resetear</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-3">
+                <label for="">Ingrese el código de la Materia Prima</label>
+                <input (change)="validarMp()" type="number" [(ngModel)]="id" class="form-control boldText" id="id">
+            </div>
+            <div class="col-6">
+                <label for="">Descripción</label>
+                <input type="string" disabled [(ngModel)]="descripcion" class="form-control boldText">
+            </div>
+            <div class="col-2">
+                <label for="">Stock actual</label>
+                <input *ngIf="stock>0 || stock==null || stock==0" type="number" disabled [(ngModel)]="stock"
+                    class="form-control text-success boldText">
+                <input *ngIf="stock<0" type="number" disabled [(ngModel)]="stock"
+                    class="form-control text-primary boldText">
+            </div>
+            <div class="col-1" *ngIf="ubicacion == 'SI'">
+                <label>Obsoleta ?</label>
+                <input  type="string" disabled [(ngModel)]="ubicacion"
+                    class="form-control boldText" style="background-color: rgb(255, 148, 77)">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-4">
+                <label for="">Nueva cantidad a sumar o restar</label>
+                <input type="number" [(ngModel)]="cantidad" class="form-control boldText">
+            </div>
+            <div class="col-8">
+                <label for="">Ingrese el motivo de la correción</label>
+                <input type="stirng" [(ngModel)]="motivo" class="form-control boldText">
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <button class="float-right btn btn-success mt-1" (click)="finalizar()">Corregir Stock</button>
+            <button class="float-right btn btn-primary mt-1 mr-2" (click)="resetear()">Cancelar operación</button>
+        </div>
+
+        <div *ngIf="cantidad>0" class="mt-5 alert alert-success boldText">
+            <h1>Recuerda</h1>
+            <p>ESTÁS SUMANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
+            <p>Nuevo stock: {{stock + cantidad}}</p>
+        </div>
+        <div *ngIf="cantidad<0" class="mt-5 alert alert-danger boldText">
+            <h1>Atencion !! </h1>
+            <p>ESTÁS RESTANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
+            <p>Nuevo stock: {{stock + cantidad}}</p>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="width: 90%;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE MATERIAS PRIMAS</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="recipient-name9" class="col-form-label">CODIGO DE LA MATERIA PRIMA:</label>
+                                <input (keyup)="buscarMp()" [(ngModel)]="termino1" type="number" class="form-control"
+                                    id="recipient-name40">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
+                                <input (keyup)="buscarMp()" [(ngModel)]="termino2" type="text" class="form-control"
+                                    id="recipient-name40">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="overflow: scroll; height: 200px; width: 100%;">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>COD</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>TIPO</th>
+                                <th>UNIDAD DE MEDIDA</th>
+                            </tr>
+                            <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
+                                (click)="seleccionarId(item2.id)" style="cursor: pointer;">
+                                <td>{{item2.id}}</td>
+                                <td>{{item2.descripcion}}</td>
+                                <td>{{item2.tipo}}</td>
+                                <td>{{item2.unidadmedidacompra}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
+                        (click)="resetear()">Resetear</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>

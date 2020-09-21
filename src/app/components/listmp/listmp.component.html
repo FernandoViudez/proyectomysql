@@ -1,11 +1,11 @@
 <div class="notPrint">
     <div class="p-0 mt-1" style="background-color:rgb(190, 171, 131)">
-        <h6 class="text-center">VISUALIZACION DE MATERIAS PRIMAS</h6>
+        <h5 class="text-center font-weight-bold">VISUALIZACION DE MATERIAS PRIMAS</h5>
     </div>
 
-    <div class="jumbotron p-2 mt-1" style="background-color:rgb(180, 71, 21); ">
+    <div class="jumbotron p-2 mt-1" style="background-color:rgb(180, 138, 21); ">
         <div class="row text-white">
-            <div class="col-4">
+            <div class="col-4 mt-2">
                 <div class="m-auto boldText">
                     <label style="font-size:15px"><b>CODIGO M.P.</b></label>
                     <input (keyup)="buscar()" [(ngModel)]="id" type="number" class="ml-1 boldText">
@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <div class="col-8">
+            <div class="col-8 mt-2">
                 <div class="m-auto boldText">
                     <label style="font-size:15px"><b>INGRESE DESCRIPCIÓN</b></label>
                     <input (keyup)="buscar()" [(ngModel)]="descripcion" type="text" class="ml-1 boldText">

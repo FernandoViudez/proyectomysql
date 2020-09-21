@@ -182,7 +182,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     this.resetear()
   }
 
-  //Propiedades para la tabla
+  //Propiedades para la tabla listado de materias primas y bajo minimo materias primas
   asignarPropiedadesDeMp() {
     this.propiedades = {
       th: [
@@ -201,7 +201,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     }
   }
 
-  //Propiedades para la tabla
+  //Propiedades para la tabla compras de materias primas y movimientos materias primas por rango fechas
   asignarPropiedadesDeMov() {
     this.propiedades = {
       th: [
@@ -228,7 +228,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     }
   }
 
-  //Propiedades para la tabla
+  //Propiedades para la tabla estadistica de produccion
   asignarPropiedadesDePlan() {
     this.propiedades = {
       th: [
