@@ -497,7 +497,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       subscribe((data: any) => {
 
         this.existept = "existe";
-        this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
+        this.descripcion1 = `${data.desc}  ${data.color || ''} ${data.componente}`;
       }, (err) => {
         this.existept = "noexiste";
         return alertify.error(err.error.message);
@@ -512,7 +512,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       subscribe((data: any) => {
 
         alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !");
-        this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
+        this.descripcion1 = `${data.desc}  ${data.color || ''}  ${data.componente}`;
         this.componente = data.componente;
 
       }, (err) => {
@@ -520,7 +520,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
         if (err.error.response) {
           let data = err.error.response;
           alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !");
-          this.descripcion1 = `${data.descripcion}  ${data.color}  ${data.componente}`;
+          this.descripcion1 = `${data.descripcion}  ${data.color || ''}  ${data.componente}`;
           this.componente = data.componente;
           alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !");
         } else {
