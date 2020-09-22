@@ -151,7 +151,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
         codmp: this.codmp,
         codpt: this.codpt,
         descripcion: this.descripcion,
-        cantidad: this.cantidad
+        cantidad: this.cantidad,
+        ind: this.array.length + 1
       });
 
       /** Calculamos */
@@ -563,6 +564,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
     /** Reordenar el item.orden en base al index que provee el ciclo for */
     for (let i = 0; i < this.array.length; i++) {
       this.array[i].orden = i + 1;
+      this.array[i].ind = i + 1;
     }
   }
 

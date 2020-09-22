@@ -356,8 +356,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
           descripcionEtiquetas: this.descripcionEtiquetas,
           colorEtiquetas: this.colorEtiquetas,
           tipogenerico: this.tipogenerico
-        }
-
+        } 
 
         this.http.post("http://localhost:8080/api/finalizarEmision", data).subscribe((data: any) => {
           this.imprimir();
@@ -400,10 +399,9 @@ export class EmisionComponent implements OnInit, OnDestroy {
     }
 
     for (let item of this.arrayConj) { //RECORRER ARREGLO QUE LLEGA Y VALIDAR SI ESTAS MODIFICANDO ENVASES
-      if (item.codmp == codmp) {
+      if (item.codmp == codmp && item.envasado == envasado) {
         let envases = input / item.envasado;
         item.indice = envases;
-        return;
       }
     }
 
