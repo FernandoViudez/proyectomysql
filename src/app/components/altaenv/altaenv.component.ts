@@ -79,14 +79,14 @@ export class AltaenvComponent implements OnInit, OnDestroy {
     this.service.detectarIdPt(id).subscribe((data: any) => {
       document.getElementById("idp").setAttribute("disabled", "");
       this.idprod = id
-      this.descripcion1 = `${data.desc} ${data.color} ${data.componente}`;
+      this.descripcion1 = `${data.desc} ${data.color || ''} ${data.componente}`;
       this.detectarId()
     }, (err) => {
       if (err.error.response) {
         document.getElementById("idp").setAttribute("disabled", "");
         let data=err.error.response;
         this.idprod = id
-        this.descripcion1 = `${data.descripcion} ${data.color} ${data.componente}`;
+        this.descripcion1 = `${data.descripcion} ${data.color || ''} ${data.componente}`;
         this.detectarId()
       }else{
         this.resetear();

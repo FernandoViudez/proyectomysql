@@ -290,7 +290,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     this.items = [];
 
     for (let item of arrayTemporal) {
-      switch (item.componente.trim()) {
+      switch (item.componente?.trim()) {
         case "AGENTE DE CURA":
           item.bgA = true;
           this.items.push(item);
