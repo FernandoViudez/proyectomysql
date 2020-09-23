@@ -64,7 +64,7 @@ export class VerificacionComponent implements OnInit {
       codigomp: this.codigomp,
       lote: this.lote,
       operario: this.operario,
-      partida: this.partida
+      partida: this.partida,
     };
 
     this.genericService.agregarVerificacion(data)
@@ -74,14 +74,19 @@ export class VerificacionComponent implements OnInit {
         if (data.ok == "false") {
           return Swal.fire({
             title: "ALERTA",
+            imageUrl: "./assets/imagen_NO_ok_2.jpeg",
+            imageWidth: 400,
+            imageHeight: 200,
             text: "NO COINCIDE MATERIA PRIMA CON NUMERO DE LOTE",
-            icon: "error"
           })
         } else {
           let timerInterval
           Swal.fire({
             title: 'Verificacion correcta ',
-            timer: 3000,
+            imageUrl: "./assets/imagen_ok.jpg",
+            imageWidth: 400,
+            imageHeight: 200,
+            timer: 2500,
             timerProgressBar: true,
             onBeforeOpen: () => {
               Swal.showLoading()
@@ -111,5 +116,6 @@ export class VerificacionComponent implements OnInit {
     this.operario = null;
     this.partida = null;
     this.descripcion = null;
+    this.descripcionLote = null;
   }
 }

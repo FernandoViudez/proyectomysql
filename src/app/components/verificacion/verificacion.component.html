@@ -30,7 +30,7 @@
     </div>
     <div class="row mt-4">
         <div class="col-5">
-            <span>Codigo de materia prima</span>
+            <span>Código de materia prima</span>
             <input placeholder="Codigo mp" class="form-control w-50 boldText" type="number" [(ngModel)]="codigomp"
                 (change)="traerDescripcion()">
         </div>
@@ -54,8 +54,12 @@
             <span>Numero de lote</span>
             <input placeholder="Lote" class="form-control boldText" type="number" [(ngModel)]="lote"
                 pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;" (change)="traerLote()" />
+            </div>
+        <div class="col-7 mt-4">
+            <b>
+                <h2>{{descripcionLote}}</h2>
+            </b>
         </div>
-        {{descripcionLote}}
     </div>
     <div class="row mt-4">
         <div class="col-3">

@@ -32,7 +32,7 @@
       </div>
       <div class="col-4 mt-2">
         <div class="m-auto" style="width: 70%;">
-          <label for="TFA" style="font-size:15px"><b>INGRESE F(ormula), T(int) o A(lternativa)</b></label>
+          <label for="TFA" style="font-size:15px"><b>F(órmula), T(int) o A(lternativa)</b></label>
           <input (keyup)="buscar()" id="TFA" [(ngModel)]="tintoformoalt" maxlength="1" type="text" class="ml-1 boldText"
             style="width: 10%;">
           <span class="badge badge-primary ml-5" style="font-size: 23px;">{{tintoformoalt}}</span>
@@ -44,7 +44,7 @@
     <div class="row m-auto text-white" style="margin-top: 2% !important;">
       <div class="col-2">
         <div class="m-auto ml-2">
-          <h6 style="font-size: 14px;" id="pe"><b>Peso especifico: </b><span class="badge"
+          <h6 style="font-size: 14px;" id="pe"><b>Peso específico: </b><span class="badge"
               style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pesoespecifico | numeralPipe}}</span>
           </h6>
         </div>
@@ -120,13 +120,19 @@
   <div class="row mt-3">
     <div class="col-2">
       <button [disabled]="!tintoformoalt" class="btn btn-warning float-right mt-1 ml-5" style="margin-right: 7%;"
-      (click)="imprimirBusqueda()">IMPRIMIR FICHA DE FORMULACION</button>
+        (click)="imprimirBusqueda()">IMPRIMIR FICHA DE FORMULACION</button>
     </div>
-    <div class="col-8">
+    <div class="col-1">
+      <button class="btn btn-warning float-lg-right" [disabled]="!tintoformoalt" data-toggle="modal"
+        data-target="#exampleModal">Generar Excel</button>
+    </div>
+    <div class="col-7">
       <div style="width: 100%; text-align: right;">
-        <h5 class="text-success boldText" id="sumTot" *ngIf="sumaTot<=100"><b>Suma de cantidad: {{sumaTot | numeralPipe}}</b>
+        <h5 class="text-success boldText" id="sumTot" *ngIf="sumaTot<=100"><b>Suma de cantidad:
+            {{sumaTot | numeralPipe}}</b>
         </h5>
-        <h5 class="text-danger boldText" id="sumTot" *ngIf="sumaTot>100"><b>Suma de cantidad: {{sumaTot | numeralPipe}}</b>
+        <h5 class="text-danger boldText" id="sumTot" *ngIf="sumaTot>100"><b>Suma de cantidad:
+            {{sumaTot | numeralPipe}}</b>
         </h5>
       </div>
     </div>
@@ -135,6 +141,32 @@
         (click)="resetearBusqueda()">RESETEAR BUSQUEDA</button>
     </div>
   </div>
+
+  <!--  <!-- Modal 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ingrese nombre de tabla excel a crear</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input placeholder="Nombre del archivo" [(ngModel)]="nombreArchivo" type="text"
+                        class="form-control">
+                    <input placeholder="Nombre de la hoja" [(ngModel)]="nombreHoja" type="text"
+                        class="form-control mt-3">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" [disabled]="!nombreArchivo || !nombreHoja"
+                        (click)="onExcel()" data-dismiss="modal">Guardar y generar excel</button>
+                </div>
+            </div>
+        </div>
+    </div>  -->
 
   <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -211,55 +243,56 @@
 <div class="yesPrint">
   <style>
     .tab1 {
-        display: inline-block;
-        margin-left: 40px;
+      display: inline-block;
+      margin-left: 40px;
     }
+
     .tab2 {
-        display: inline-block;
-        margin-left: 80px;
+      display: inline-block;
+      margin-left: 80px;
     }
 
-	table {
-	    font-family: arial,helvetica,sans-serif;
-	    border-collapse: collapse;
-	    width: 100%;	    
-	    padding: 0.1px;
-	}
+    table {
+      font-family: arial, helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      padding: 0.1px;
+    }
 
-	th {
-	    border: 0.5px solid #dddddd;
-	    text-align: center;
-	    padding: 2.5px;
-	    font-size:13px;
-	}
-	
-	td {
-	    border: 0.5px solid #dddddd;
-	    text-align: left;
-	    padding: 2.5px;
-	    font-size:13px;
-	}
-    
-	tr:nth-child(even) {
-	   background-color: #dddddd;
-	}
-	
-	pre {
-	   border: 0.5px solid #dddddd;
-	   padding: 0.5px;
-	   font-size:13px;
-	   font-family: arial,helvetica,sans-serif;
-	   line-height: 20pt;
-	}
+    th {
+      border: 0.5px solid #dddddd;
+      text-align: center;
+      padding: 2.5px;
+      font-size: 13px;
+    }
 
-   </style>
+    td {
+      border: 0.5px solid #dddddd;
+      text-align: left;
+      padding: 2.5px;
+      font-size: 13px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    pre {
+      border: 0.5px solid #dddddd;
+      padding: 0.5px;
+      font-size: 13px;
+      font-family: arial, helvetica, sans-serif;
+      line-height: 20pt;
+    }
+  </style>
 
   <div>
-    <b><h4 class="text-center">FICHA DE FORMULACION
-      <span *ngIf="tintoformoalt == 'T' || tintoformoalt == 't'"> FORMULA PARA TINTURADO </span>
-      <span *ngIf="tintoformoalt == 'F' || tintoformoalt == 'f'"> FORMULA PRINCIPAL </span>
-      <span *ngIf="tintoformoalt == 'A' || tintoformoalt == 'a'"> FORMULA ALTERNATIVA </span>
-    </h4>
+    <b>
+      <h4 class="text-center">FICHA DE FORMULACION
+        <span *ngIf="tintoformoalt == 'T' || tintoformoalt == 't'"> FORMULA PARA TINTURADO </span>
+        <span *ngIf="tintoformoalt == 'F' || tintoformoalt == 'f'"> FORMULA PRINCIPAL </span>
+        <span *ngIf="tintoformoalt == 'A' || tintoformoalt == 'a'"> FORMULA ALTERNATIVA </span>
+      </h4>
     </b>
   </div>
   <pre>
@@ -268,7 +301,8 @@
   Relacion de la mezcla: {{relaciondemezcla}} <span class="tab1"></span> <span *ngIf="formaconjunto != null "> Forma conjunto con: {{formaconjunto}} </span>   
   </pre>
   <br>
-  <b><h5 class="text-center">FORMULA</h5>
+  <b>
+    <h5 class="text-center">FORMULA</h5>
   </b>
   <br>
   <table class="w-100">
@@ -291,36 +325,38 @@
       <td *ngIf="!item.cantidad"> </td>
     </tr>
   </table>
-  <br><hr>
-  <b><h5 class="text-center">DATOS FISICOS</h5>
+  <br>
+  <hr>
+  <b>
+    <h5 class="text-center">DATOS FISICOS</h5>
   </b>
   <br>
   <table>
     <tr>
-         <td>Peso Especifico : {{pesoespecifico | numeralPipe}} g/cm3</td>
+      <td>Peso Especifico : {{pesoespecifico | numeralPipe}} g/cm3</td>
     </tr>
     <tr>
-         <td>Viscosidad CPS : {{viscosidadspindle}} {{spindlenumero}} </td>
-         <td>Viscosidad UK : {{viscosidaduk}}</td>
+      <td>Viscosidad CPS : {{viscosidadspindle}} {{spindlenumero}} </td>
+      <td>Viscosidad UK : {{viscosidaduk}}</td>
     </tr>
     <tr>
-         <td>Molienda : {{molienda}}</td>
-         <td>Brillo : {{brillo}}</td>
+      <td>Molienda : {{molienda}}</td>
+      <td>Brillo : {{brillo}}</td>
     </tr>
     <tr>
-         <td>Solidos p.p.P. : {{solidosppp }} %</td>
-         <td>Solidos p.p.V. : {{solidosppv}} %</td>
+      <td>Solidos p.p.P. : {{solidosppp }} %</td>
+      <td>Solidos p.p.V. : {{solidosppv}} %</td>
     </tr>
     <tr>
-         <td>Contenido resina : {{resina}} %</td>
-         <td>Contenido pigmento : {{pigmento}} %</td>
-         <td>Contenido solvente : {{solvente}} %</td>
+      <td>Contenido resina : {{resina}} %</td>
+      <td>Contenido pigmento : {{pigmento}} %</td>
+      <td>Contenido solvente : {{solvente}} %</td>
     </tr>
     <tr>
-         <td>Relacion mezcla: {{relaciondemezcla}}</td>
-         <td *ngIf="formaconjunto != null ">con COMP. {{formaconjunto}}</td>
+      <td>Relacion mezcla: {{relaciondemezcla}}</td>
+      <td *ngIf="formaconjunto != null ">con COMP. {{formaconjunto}}</td>
     </tr>
-    </table><br><br><br><br><br><br>
-    <h5>Aprobo:<span class="tab2"></span>Controlo:<span class="tab2"></span>Autorizo:</h5>
-    
-  </div>
+  </table><br><br><br><br><br><br>
+  <h5>Aprobo:<span class="tab2"></span>Controlo:<span class="tab2"></span>Autorizo:</h5>
+
+</div>

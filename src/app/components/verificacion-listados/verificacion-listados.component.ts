@@ -12,6 +12,9 @@ export class VerificacionListadosComponent implements OnInit {
   public codigoMp: number;
   public operario: string;
   public arregloVerificaciones = [];
+  public partida: number;
+  public descripcion: string;
+  public fecha: Date;
 
   constructor(private genericService: GenericService) { }
 
@@ -27,6 +30,16 @@ export class VerificacionListadosComponent implements OnInit {
         console.log(e);
       })
     // }
+  }
+
+  resetear() {
+    this.codigoMp = null;
+    this.lote = null;
+    this.operario = null;
+    this.partida = null;
+    this.descripcion = null;
+    this.arregloVerificaciones = [];
+    this.fecha = null;
   }
 
 }
