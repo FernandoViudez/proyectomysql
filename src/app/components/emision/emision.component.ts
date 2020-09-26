@@ -336,8 +336,10 @@ export class EmisionComponent implements OnInit, OnDestroy {
       allowOutsideClick: false,
     }).then(res => {
       if (res.value) {
+        Swal.showLoading();
         this.disableYesPrint = false;
         this.botonCancelado = true;
+        
         let data = {
           codpt: this.id,
           tfa: this.tfa,
@@ -357,18 +359,27 @@ export class EmisionComponent implements OnInit, OnDestroy {
           colorEtiquetas: this.colorEtiquetas,
           tipogenerico: this.tipogenerico
         } 
+        
 
-        this.http.post("http://localhost:8080/api/finalizarEmision", data).subscribe((data: any) => {
+        /** DEJAMOS TIMEPO A QUE SE GUARDE LA DATA Y SE HAGA EL CAMBIO DE HTMLS POR ATRAS */
+        setTimeout(() => {
+          Swal.close();
           this.imprimir();
-          Swal.fire({
-            title: "¡ Genial !",
-            text: "¡ Se ha emitido el ticket correctamente !",
-            icon: "success"
+
+          this.http.post("http://localhost:8080/api/finalizarEmision", data).subscribe((data: any) => {
+            Swal.fire({
+              title: "¡ Genial !",
+              text: "¡ Se ha emitido el ticket correctamente !",
+              icon: "success"
+            }).then(res => {
+              window.location.reload();
+            })
+          }, (err) => {
+            console.log(err);
           })
-          window.location.reload();
-        }, (err) => {
-          console.log(err);
-        })
+
+        }, 3000)
+
 
       } else {
         return;
