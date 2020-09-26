@@ -35,11 +35,11 @@ export class VerificacionComponent implements OnInit {
         alertify.error("NO EXISTE ESA MATERIA PRIMA");
       })
   }
-  
+
   traerLote() {  //tiene que traerlo de la base de datos materia prima
     this.genericService.traerLote(this.lote)
       .subscribe((data: any) => {
-        console.log(data);
+        this.descripcionLote = data.response[0].descripcion;
       }, err => {
         alertify.error(err.error.message);
       })
@@ -72,7 +72,7 @@ export class VerificacionComponent implements OnInit {
         console.log(data);
 
         if (data.ok == "false") {
-          return Swal.fire({
+          Swal.fire({
             title: "ALERTA",
             imageUrl: "./assets/imagen_NO_ok_2.jpeg",
             imageWidth: 400,
@@ -95,7 +95,6 @@ export class VerificacionComponent implements OnInit {
             },
             onClose: () => {
               clearInterval(timerInterval)
-              this.resetear()
             }
           }).then((result) => {
             /* Read more about handling dismissals below */
@@ -104,7 +103,7 @@ export class VerificacionComponent implements OnInit {
             }
           })
         }
-
+        this.resetear()
       }, err => {
         console.log(err);
       })
