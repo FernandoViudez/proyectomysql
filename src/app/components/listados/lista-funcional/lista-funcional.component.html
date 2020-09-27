@@ -17,17 +17,22 @@
                     <option value="MINIMO">Stock bajo mínimo de Materias Primas</option>
                     <option value="RANGOMOVD">Compras de Materias Primas por rango de fechas</option>
                     <option value="RANGOMOV">Movimientos de Materias Primas por rango de fechas</option>
-                    <option value="RANGOFECHAS">Busqueda de Materias Primas en Fórmulas</option>
+                    <option value="MPENFORMULAS">Busqueda de Materias Primas en Fórmulas</option>
                     <option value="RANGOFECHAS">Estadística de producción por rango de fechas</option>
                 </select>
             </div>
         </div>
         <div class="col-2 mt-4" *ngIf='operacion != "MINIMO"'>
-            <input *ngIf="!esPlani" class="form-control boldText" type="number" placeholder="Desde MP..."
+            <input *ngIf="!esPlani && !esMp" class="form-control boldText" type="number" placeholder="Desde MP..."
                 [(ngModel)]="desde">
         </div>
+        <!-- Para codmp -->
         <div class="col-2 mt-4" *ngIf='operacion != "MINIMO"'>
-            <input *ngIf="!esPlani" class="form-control boldText" type="number" placeholder="Hasta MP..."
+            <input *ngIf="esMp" class="form-control boldText" type="number" [(ngModel)]="codmp"
+                placeholder="Codigo de Materia prima...">
+        </div>
+        <div class="col-2 mt-4" *ngIf='operacion != "MINIMO"'>
+            <input *ngIf="!esPlani && !esMp" class="form-control boldText" type="number" placeholder="Hasta MP..."
                 [(ngModel)]="hasta">
         </div>
         <div class="col-2 mt-2" *ngIf='operacion != "MINIMO"'>

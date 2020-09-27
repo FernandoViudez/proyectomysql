@@ -61,7 +61,7 @@
         </tr>
         <tr *ngFor="let item of arregloVerificaciones">
             <td>{{item.fecha | datePipe}}</td>
-            <td>{{item.fecha}}</td>
+            <td>{{item.fecha | timePipe}}</td>
             <td>{{item.operario}}</td>
             <td>{{item.codigomp}}</td>
             <td>{{item.lote}}</td>

@@ -35,6 +35,7 @@ import { FichasComponent } from './components/listados/fichas/fichas.component';
 import { RolodexComponent } from './components/listados/rolodex/rolodex.component';
 import { VerificacionComponent } from './components/verificacion/verificacion.component';
 import { VerificacionListadosComponent } from './components/verificacion-listados/verificacion-listados.component';
+import { TimePipe } from './pipes/time.pipe';
 
 
 
@@ -63,6 +64,7 @@ import { VerificacionListadosComponent } from './components/verificacion-listado
     LoggedComponent,
     DatePipe,
     NumeralPipe,
+    TimePipe,
     AnulacionComponent,
     CertificadosComponent,
     ListadosComponent,

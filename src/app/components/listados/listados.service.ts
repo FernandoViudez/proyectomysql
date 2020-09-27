@@ -40,4 +40,8 @@ export class ListadosService {
     return this.http.get(`${this.url}listarPorRangoPlanificacion/${desde}/${hasta}`)
   }
 
+  mpEnFormulas(mp: number){
+    return this.http.get(`${this.url}getAllMpInsideProasoc/${mp}`);
+  }
+
 }

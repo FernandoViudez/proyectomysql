@@ -24,6 +24,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   public hasta: number;
   public inicio: number;
   public fin: number;
+  public codmp: number;
   public items: any[];
   public operacion: string;
   public nombreArchivo: string;
@@ -46,6 +47,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   esProveedor: boolean = false;
   sonFechas: boolean = false;
   esPlani: boolean = false;
+  esMp: boolean = false;
 
   //Total
   sumaTotal: number;
@@ -62,6 +64,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       case "RANGO":
         this.sonFechas = false;
         this.esPlani = false;
+        this.esMp = false;
         if (this.desde && this.hasta) {
           return false;
         } else {
@@ -71,12 +74,14 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       case "MINIMO":
         this.sonFechas = false;
         this.esPlani = false;
+        this.esMp = false;
         return false;
 
 
       case "RANGOMOV":
         this.sonFechas = true;
         this.esPlani = false;
+        this.esMp = false;
         if (this.desde && this.hasta && this.inicio && this.fin) {
           return false;
         } else {
@@ -86,6 +91,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       case "RANGOMOVD":
         this.sonFechas = true;
         this.esPlani = false;
+        this.esMp = false;
         if (this.desde && this.hasta && this.inicio && this.fin) {
           return false;
         } else {
@@ -95,7 +101,18 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       case "RANGOFECHAS":
         this.sonFechas = true;
         this.esPlani = true;
+        this.esMp = true;
         if (this.inicio && this.fin) {
+          return false;
+        } else {
+          return true
+        }
+
+      case "MPENFORMULAS":
+        this.sonFechas = false;
+        this.esPlani = false;
+        this.esMp = true;
+        if (this.codmp) {
           return false;
         } else {
           return true
@@ -136,6 +153,11 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         this.asignarPropiedadesDePlan();
         realizarOperacion ? this.rangomp$ = this.listadosService.rangoFechas(this.inicio, this.fin) : false;
         break;
+
+      case "MPENFORMULAS":
+        this.asignarPropiedadesDeMpEnFormulas();
+        realizarOperacion ? this.rangomp$ = this.listadosService.mpEnFormulas(this.codmp) : false;
+        break;
     }
 
     if (realizarOperacion) {
@@ -165,7 +187,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
   //cuando se genera el excel
   onExcel() { // no permito que otro que no se administrador mande estadistica produccion a excel
-    if (this.operacion=="RANGOFECHAS") {
+    if (this.operacion == "RANGOFECHAS") {
       console.log(this.operacion);
       let user_role = localStorage.getItem("user_role");
       if (user_role != "ADMIN_ROL") {
@@ -173,11 +195,11 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       }
     } else {
       this.sb$ = this.listadosService.generarExcel(this.items, this.nombreArchivo, this.nombreHoja, this.propiedades.tb).subscribe
-      ((data: any) => {
-        this.genericService.downloadExcel(data.url);
-      }, (err) => {
-        console.log(err);
-      })
+        ((data: any) => {
+          this.genericService.downloadExcel(data.url);
+        }, (err) => {
+          console.log(err);
+        })
     }
     this.resetear()
   }
@@ -205,8 +227,8 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   asignarPropiedadesDeMov() {
     this.propiedades = {
       th: [
-        "ID", 
-        "DESCRIPCION",             
+        "ID",
+        "DESCRIPCION",
         "CANTIDAD",
         "DETALLE",
         "COMPROBANTE",
@@ -244,6 +266,23 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         "cantidad",
         "componente",
         "fechafin"
+      ]
+
+    }
+  }
+
+  // Propiedades que se muestran en formulas
+  asignarPropiedadesDeMpEnFormulas() {
+    this.propiedades = {
+      th: [
+        "ID",
+        "DESCRIPCION",
+        "CODMP",
+      ],
+      tb: [
+        "idprod",
+        "descripcion",
+        "codmp",
       ]
 
     }
@@ -396,14 +435,14 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     this.fin = null;
     this.items = [];
     this.operacion = null;
-    this.sumaTotal = null; 
+    this.sumaTotal = null;
     this.resetearSubtotales();
     //this.subtotales[].subtotal = null;   no limpia los subtotales
     // cuando listo 01-07-2020 a hoy no totaliza....
   }
 
-  resetearSubtotales(){
-    for(let i = 0; i < this.subtotales.length; i++){
+  resetearSubtotales() {
+    for (let i = 0; i < this.subtotales.length; i++) {
       this.subtotales[i].subtotal = 0;
     }
   }

@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from 'src/app/services/form.service';
 import { Router } from '@angular/router';
+import { GenericService } from 'src/app/services/generic.service';
+import { ListadosService } from '../listados/listados.service';
 declare let alertify: any;
+
+interface onExcelDTO {
+  ok: boolean;
+  message: string;
+  url: string;
+}
 
 @Component({
   selector: 'app-listform',
@@ -37,7 +45,9 @@ export class ListformComponent implements OnInit {
   termino3: string;
   arrayBusqueda = [];
 
-  constructor(private service: FormService, private route: Router) { }
+  constructor(private service: FormService, private route: Router, 
+    private readonly genericService : GenericService,
+    private readonly listadosService: ListadosService) { }
 
   ngOnInit(): void {
   }
@@ -172,6 +182,24 @@ export class ListformComponent implements OnInit {
     } else {
       window.print();
     }
+  }
+
+  onExcel(){
+    this.listadosService.generarExcel(this.array, 
+      'Listados_Formulas', 'Sheet1', [
+        "idprod",
+        "tintoformoalt",
+        "orden",
+        "mpi",
+        "codmp",
+        "codpt",
+        "descripcion",
+        "cantidad",
+        "ind",
+      ] )
+      .subscribe( (data: onExcelDTO ) => {
+        this.genericService.downloadExcel(data.url);
+      })
   }
 
 }

@@ -146,13 +146,14 @@ export class AltaformComponent implements OnInit, OnDestroy {
       /** Agregamos al this.array */
       this.array.push({
         idprod: this.idprod,
-        tfa: this.tintoformoalt.toUpperCase(),
+        tintoformoalt: this.tintoformoalt.toUpperCase(),
         mpi: this.mpi,
         codmp: this.codmp,
         codpt: this.codpt,
         descripcion: this.descripcion,
         cantidad: this.cantidad,
-        ind: this.array.length + 1
+        ind: this.array.length + 1,
+        orden: this.array[this.array.length - 1]?.orden + 1 || 1,
       });
 
       /** Calculamos */
