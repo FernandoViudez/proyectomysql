@@ -195,7 +195,6 @@ export class ListformComponent implements OnInit {
         "codpt",
         "descripcion",
         "cantidad",
-        "ind",
       ] )
       .subscribe( (data: onExcelDTO ) => {
         this.genericService.downloadExcel(data.url);

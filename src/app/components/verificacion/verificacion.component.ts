@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from '../../services/generic.service';
 import Swal from 'sweetalert2';
+import { NumberValueAccessor } from '@angular/forms';
 declare let alertify: any;
 
 @Component({
@@ -17,6 +18,7 @@ export class VerificacionComponent implements OnInit {
   public partida: number;
   public descripcion: string;
   public descripcionLote: string;
+  public descripcionPartida: Number;
 
   // ok(boolean) (Sending the verification, we validate the data sent by the user,
   // and we determinate the ok field seeing the repsonse)
@@ -32,7 +34,7 @@ export class VerificacionComponent implements OnInit {
       .subscribe((data: any) => {
         this.descripcion = data.response[0].descripcion;
       }, err => {
-        alertify.error("NO EXISTE ESA MATERIA PRIMA");
+        alertify.error("ESA MATERIA PRIMA NO SE COMPRO HACE AÑOS");
       })
   }
 
@@ -41,7 +43,16 @@ export class VerificacionComponent implements OnInit {
       .subscribe((data: any) => {
         this.descripcionLote = data.response[0].descripcion;
       }, err => {
-        alertify.error(err.error.message);
+        alertify.error("LOTE ERRONEO O EQUIVOCADO");
+      })
+  }
+
+  traerPartida() {  //tiene que traerlo de la base de datos calidad PT
+    this.genericService.traerPartida(this.partida)
+      .subscribe((data: any) => {
+        this.descripcionPartida = data.response[0].numeroPartida;
+      }, err => {
+        alertify.error("PARTIDA INEXISTENTE");
       })
   }
 
@@ -116,5 +127,6 @@ export class VerificacionComponent implements OnInit {
     this.partida = null;
     this.descripcion = null;
     this.descripcionLote = null;
+    this.descripcionPartida = null;
   }
 }

@@ -35,6 +35,10 @@ export class GenericService {
   traerLote(lote: number) {
     return this.http.get(`${this.url}traerLote/${lote}`);
   }
+   
+  traerPartida(numeroPartida: number) {
+    return this.http.get(`${this.url}traerPartida/${numeroPartida}`);
+  }
 
   listadoVerificacion(codigoMp: number, lote: number, operario: string, fecha: Date, partida: number){
     return this.http.post(`${this.url}traerVerificacion`, { codigoMp, lote, operario, fecha, partida });

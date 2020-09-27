@@ -437,8 +437,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     this.operacion = null;
     this.sumaTotal = null;
     this.resetearSubtotales();
-    //this.subtotales[].subtotal = null;   no limpia los subtotales
-    // cuando listo 01-07-2020 a hoy no totaliza....
+    this.esMp = null;
   }
 
   resetearSubtotales() {

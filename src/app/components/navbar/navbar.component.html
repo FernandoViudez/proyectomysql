@@ -39,15 +39,18 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['../listmp']">MATERIA PRIMA</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['../listprod']">PRODUCTO TERMINADO</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['../listfor']">FÓRMULAS</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['../listenv']">ENVASADO</a>
+          <div *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO' || user_role == 'ENCARGADO'">
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['../listprod']">PRODUCTO TERMINADO</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['../listfor']">FÓRMULAS</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['../listenv']">ENVASADO</a>
+          </div>
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <li *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO' || user_role == 'ENCARGADO'"
+        class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           PROCESOS
@@ -62,7 +65,7 @@
           <a class="dropdown-item" [routerLink]="['../correc']">CORRECCIÓN DE STOCK</a>
           <div *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="dropdown-divider"></div>
           <a *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="dropdown-item"
-            [routerLink]="['../anulacion']">ANULACION DE B.T.</a>      
+            [routerLink]="['../anulacion']">ANULACION DE B.T.</a>
 
         </div>
       </li>
@@ -83,7 +86,8 @@
         </div>
       </li>
 
-      <li class="nav-item dropdown">
+      <li *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO' || user_role == 'ENCARGADO'"
+        class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           LISTADOS
@@ -105,6 +109,10 @@
           <a class="dropdown-item" [routerLink]="['../verificacion']">VERIFICACION</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" [routerLink]="['../verificacionListados']">LISTADOS VERIFICACION</a>
+          <div *ngIf="user_role == 'ADMIN_ROL'">
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['../eliminarAnteriores']">ELIMINAR DATOS VIEJOS</a>
+          </div>
         </div>
       </li>
 

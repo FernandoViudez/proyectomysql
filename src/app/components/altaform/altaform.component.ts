@@ -569,4 +569,10 @@ export class AltaformComponent implements OnInit, OnDestroy {
     }
   }
 
+  omit_number(event) {
+    let key;
+    key = event.keyCode;  //         key = event.charCode;  (Both can be used)   key == 45  // allows minus(-)
+    return ((key > 47 && key < 58) || key == 46);
+  }
+  
 }

@@ -230,7 +230,7 @@
         </div>
         <div class="form-group">
           <label for="recipient-name4" class="col-form-label">Cantidad</label>
-          <input step="0.01" type="number" [(ngModel)]="cantidad" class="form-control" id="recipient-name4">
+          <input step="0.01" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantidad" class="form-control" id="recipient-name4">
         </div>
       </div>
       <div class="modal-footer">
@@ -287,7 +287,7 @@
         </div>
         <div class="form-group">
           <label for="recipient-name04" class="col-form-label">Cantidad</label>
-          <input step="0.01" type="number" [(ngModel)]="cantidad" class="form-control" id="recipient-name04">
+          <input step="0.01" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantidad" class="form-control" id="recipient-name04">
         </div>
 
       </div>
