@@ -6,17 +6,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TimePipe implements PipeTransform {
 
   transform(fecha: any, ...args: unknown[]): unknown {
-    
-    if(fecha){
+
+    if (fecha) {
       console.log(fecha);
       // return fecha;
-      let fechaTotal = fecha.split(":");
-      let horas = fechaTotal[1];
-      let minutos = fechaTotal[2].split(".")[0];
-      let segundos = fechaTotal[2].split(".")[1].split("Z")[0];
-      let ultimaHora=`${horas}:${minutos}:${segundos}`
+      let fechaTotal = fecha.split("T");
+      let horas = fechaTotal[1].split(":")[0];  // si la hora no sale bien cambiar por let horas = Number(fechaTotal[1].split(":")[0]) -3 ;
+      let minutos = fechaTotal[1].split(":")[1];
+      let ultimaHora = `${horas}:${minutos}`
       return ultimaHora;
-    }else{
+    } else {
       return "00:00";
     }
 

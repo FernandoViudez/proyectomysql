@@ -52,6 +52,7 @@ export class VerificacionComponent implements OnInit {
       .subscribe((data: any) => {
         this.descripcionPartida = data.response[0].numeroPartida;
       }, err => {
+        this.partida = null;
         alertify.error("PARTIDA INEXISTENTE");
       })
   }

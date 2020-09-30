@@ -173,6 +173,21 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         }
         console.log(data);
         this.saldoInicial = data?.saldoInicial
+
+        if(data.orderByDesc){
+          data.response.sort(function (a, b) {
+            if (a.descripcion > b.descripcion) {
+              return 1;
+            }
+            if (a.descripcion < b.descripcion) {
+              return -1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+        }
+
+        // igualacion de los datos 
         this.items = data?.response;
       })
     }
@@ -277,11 +292,13 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       th: [
         "ID",
         "DESCRIPCION",
+        "COLOR",
         "CODMP",
       ],
       tb: [
         "idprod",
         "descripcion",
+        "color",
         "codmp",
       ]
 
