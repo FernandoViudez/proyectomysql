@@ -36,6 +36,7 @@ import { RolodexComponent } from './components/listados/rolodex/rolodex.componen
 import { VerificacionComponent } from './components/verificacion/verificacion.component';
 import { VerificacionListadosComponent } from './components/verificacion-listados/verificacion-listados.component';
 import { TimePipe } from './pipes/time.pipe';
+import { EliminarDatosComponent } from './components/eliminar-datos/eliminar-datos.component';
 
 
 
@@ -73,6 +74,7 @@ import { TimePipe } from './pipes/time.pipe';
     RolodexComponent,
     VerificacionComponent,
     VerificacionListadosComponent,
+    EliminarDatosComponent,
   ],
   imports: [
     BrowserModule,

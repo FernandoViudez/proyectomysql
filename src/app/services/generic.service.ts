@@ -44,6 +44,9 @@ export class GenericService {
     return this.http.post(`${this.url}traerVerificacion`, { codigoMp, lote, operario, fecha, partida });
   }
   
+  eliminarDatos(fecha: Date){
+    return this.http.post(`${this.url}eliminarDatosViejos`, { fecha });
+  }
 
 
 }
