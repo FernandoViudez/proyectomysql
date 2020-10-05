@@ -25,7 +25,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
   cantidad: number;
   cantEtiquetas: number;
   numeroLoteInt = 0;
-  usuario = "MARCOS";
+  usuario = localStorage.getItem("username");
   fecha: string;
   lotePrint: number;
   fechaultimarecepcion: Date;

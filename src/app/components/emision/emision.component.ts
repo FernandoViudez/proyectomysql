@@ -357,7 +357,8 @@ export class EmisionComponent implements OnInit, OnDestroy {
           relaciondemezcla: this.relaciondemezcla,
           descripcionEtiquetas: this.descripcionEtiquetas,
           colorEtiquetas: this.colorEtiquetas,
-          tipogenerico: this.tipogenerico
+          tipogenerico: this.tipogenerico,
+          usuario: localStorage.getItem("username")
         } 
         
 

@@ -8,7 +8,7 @@ import { GenericService } from 'src/app/services/generic.service';
 })
 export class EliminarDatosComponent implements OnInit {
   
-  public readonly fecha: Date;
+  public fecha: Date;
 
   constructor(private readonly genericService: GenericService) { }
 
