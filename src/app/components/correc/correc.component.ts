@@ -49,7 +49,7 @@ export class CorrecComponent implements OnInit {
       return alertify.error("DATOS INCORRECTOS, INGRESE DATOS VÁLIDOS");
     }
 
-    let data = { id: this.id, cantidad: this.cantidad, usuario: "CAMBIAR ESTE USUARIO", motivo: this.motivo.toUpperCase() }
+    let data = { id: this.id, cantidad: this.cantidad, usuario: localStorage.getItem("username"), motivo: this.motivo.toUpperCase() }
     this.http.post(`http://localhost:8080/api/correcionStock`, data).
       subscribe((data) => {
         this.resetear();
