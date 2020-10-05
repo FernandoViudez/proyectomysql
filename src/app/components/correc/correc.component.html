@@ -39,8 +39,8 @@
             </div>
             <div class="col-1" *ngIf="ubicacion == 'SI'">
                 <label>Obsoleta ?</label>
-                <input  type="string" disabled [(ngModel)]="ubicacion"
-                    class="form-control boldText" style="background-color: rgb(255, 148, 77)">
+                <input type="string" disabled [(ngModel)]="ubicacion" class="form-control boldText"
+                    style="background-color: rgb(255, 148, 77)">
             </div>
         </div>
         <hr>
@@ -60,15 +60,19 @@
             <button class="float-right btn btn-primary mt-1 mr-2" (click)="resetear()">Cancelar operación</button>
         </div>
 
-        <div *ngIf="cantidad>0" class="mt-5 alert alert-success boldText">
-            <h1>Recuerda</h1>
-            <p>ESTÁS SUMANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
-            <p>Nuevo stock: {{stock + cantidad}}</p>
-        </div>
-        <div *ngIf="cantidad<0" class="mt-5 alert alert-danger boldText">
-            <h1>Atencion !! </h1>
-            <p>ESTÁS RESTANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
-            <p>Nuevo stock: {{stock + cantidad}}</p>
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <div *ngIf="cantidad>0" class="mt-5 alert alert-success boldText">
+                    <h1>Recuerda</h1>
+                    <p>ESTÁS SUMANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
+                    <h1>Nuevo stock: {{stock + cantidad}}</h1>
+                </div>
+                <div *ngIf="cantidad<0" class="mt-5 alert alert-danger boldText">
+                    <h1>Atencion !! </h1>
+                    <p>ESTÁS RESTANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
+                    <h1>Nuevo stock: {{stock + cantidad}}</h1>
+                </div>
+            </div>
         </div>
 
     </div>

@@ -88,4 +88,12 @@ export class AnulacionComponent implements OnInit {
     })
   }
 
+  cancelar() {
+    this.batch = null;
+    this.descripcion = null;
+    this.codpt = null;
+    let btnanular = document.getElementById("btnanular");
+    btnanular.setAttribute("disabled","");
+  }
+
 }

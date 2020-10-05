@@ -44,8 +44,9 @@
         <div class="col-5">
             <span>Numero de lote</span>
             <input placeholder="Lote" class="form-control w-50 boldText" type="number" [(ngModel)]="lote"
-                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length == 5) return false;" (change)="traerLote()" />
-            </div>
+                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length == 5) return false;"
+                (change)="traerLote()" />
+        </div>
         <div class="col-6 mt-4">
             <b>
                 <h2>{{descripcionLote}}</h2>
@@ -56,7 +57,8 @@
         <div class="col-5">
             <span>Numero de partida (batch)</span>
             <input placeholder="Partida" class="form-control w-50 boldText" type="number" [(ngModel)]="partida"
-            pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length == 7) return false;" (change)="traerPartida()" />
+                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length == 7) return false;"
+                (change)="traerPartida()" />
         </div>
         <div class="col-6 mt-4">
             <b>
@@ -75,3 +77,4 @@
         <button [disabled]="!operario || !partida || !lote || !codigomp" class="btn btn-success"
             (click)="enviarData()">VERIFICAR</button>
     </div>
+</div>

@@ -24,6 +24,11 @@ export class EliminarDatosComponent implements OnInit {
     }, e => {
       console.log(e);
     })
+    this.resetear()
+  }
+
+  resetear() {
+    this.fecha = null;
   }
 
 }

@@ -75,6 +75,13 @@ export class CorrecComponent implements OnInit {
         document.getElementById("id").setAttribute("disabled","");
       }, (err) => {
         console.log(err);
+        if (err.error.response) {
+          let item = err.error.response;
+        } else {
+          this.id = null;
+          this.resetear(); // puse esto por si borra el codigo de MP
+          return alertify.error("NO EXISTE ESE CODIGO DE MATERIA PRIMA !");
+        }
       })
   }
 
@@ -87,6 +94,9 @@ export class CorrecComponent implements OnInit {
     this.stock = null;
     this.ubicacion = null;
     this.motivo = null;
+    this.arrayBusqueda = [];
+    this.termino1 = null;
+    this.termino2 = null;
     let id = document.getElementById("id");
     id.removeAttribute("disabled");
   }

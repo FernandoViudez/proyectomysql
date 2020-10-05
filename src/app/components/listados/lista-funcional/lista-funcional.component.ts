@@ -174,7 +174,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         console.log(data);
         this.saldoInicial = data?.saldoInicial
 
-        if(data.orderByDesc){
+        if (data.orderByDesc) {
           data.response.sort(function (a, b) {
             if (a.descripcion > b.descripcion) {
               return 1;
@@ -191,8 +191,6 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         this.items = data?.response;
       })
     }
-
-
   }
 
   //Filtrado por proovedor y tipo de operacion: "SUMA"
@@ -240,28 +238,56 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
   //Propiedades para la tabla compras de materias primas y movimientos materias primas por rango fechas
   asignarPropiedadesDeMov() {
-    this.propiedades = {
-      th: [
-        "ID",
-        "DESCRIPCION",
-        "CANTIDAD",
-        "DETALLE",
-        "COMPROBANTE",
-        "FECHA",
-        "PROVEEDOR",
-        "MOTIVO"
-      ],
-      tb: [
-        "id",
-        "descripcion",
-        "cantidad",
-        "detalle",
-        "numeroComprobante",
-        "fecha",
-        "proveedor",
-        "motivo"
-      ]
-
+    if (this.operacion == "RANGOMOV") {
+      this.propiedades = {
+        th: [
+          "ID",
+          "DESCRIPCION",
+          "CANTIDAD",
+          "DETALLE",
+          "COMPROBANTE",
+          "FECHA",
+          "PROVEEDOR",
+          "MOTIVO",
+          "LOTE"
+        ],
+        tb: [
+          "id",
+          "descripcion",
+          "cantidad",
+          "detalle",
+          "numeroComprobante",
+          "fecha",
+          "proveedor",
+          "motivo",
+          "numeroLoteInt"
+        ]
+      }
+    } else {
+      this.propiedades = {
+        th: [
+          "ID",
+          "DESCRIPCION",
+          "CANTIDAD",
+          "DETALLE",
+          "COMPROBANTE",
+          "FECHA",
+          "PROVEEDOR",
+          //"MOTIVO",
+          "LOTE"
+        ],
+        tb: [
+          "id",
+          "descripcion",
+          "cantidad",
+          "detalle",
+          "numeroComprobante",
+          "fecha",
+          "proveedor",
+          //"motivo",
+          "numeroLoteInt"
+        ]
+      }
     }
   }
 
