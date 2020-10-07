@@ -137,7 +137,26 @@ export class LoggedComponent implements OnInit {
       "Si te centras en lo bueno, lo bueno puede llegar a ser incluso mejor.",
       "Siempre parece imposible... hasta que se hace. Nelson Mandela",
       "Es un proceso lento, pero abandonar no hará que llegues más rápido a la meta.",
-      "La clave del éxito está en empezar antes de sentirte completamente preparado."
+      "La clave del éxito está en empezar antes de sentirte completamente preparado.",
+      "Cuando haces lo correcto, obtienes la sensación de paz y serenidad; hazlo una y otra vez. Roy T Bennett",
+      "Debes hacer las cosas que crees que no puedes hacer. Eleanor Roosevelt",
+      "Si puedes soñarlo puedes hacerlo, recuerda que todo esto comenzó con un ratón. Walt Disney",
+      "Si dominamos nuestra mente, vendrá la felicidad. Dalai Lama",
+      "Cáete siete veces y levántate ocho. Proverbio japonés",
+      "Todo lo que puedas imaginar, es real. Pablo Picasso",
+      "La esperanza es el sueño del hombre despierto. Aristóteles",
+      "Un objetivo sin un plan es solo un deseo. Antoine de Saint-Exupéry",
+      "Si no te gustan las cosas, ¡cámbialas! No eres un árbol. Jim Rohn",
+      "Para tener éxito, primero debemos creer que podemos hacerlo. Nikos Kazantzakis",
+      "El fracaso es éxito si aprendemos de él. Malcolm Forbes",
+      "El poder de la imaginación nos hace infinitos. John Muir",
+      "El mejor momento del día es ahora. Pierre Bonnard",
+      "No cuentes los días, haz que los días cuenten. Muhammad Ali",
+      "Siempre es temprano para rendirse. Norman Vincent Peale",
+      "El aprendizaje es un regalo. Incluso cuando el dolor es tu maestro. Maya Watson",
+      "Haz una cosa que te de miedo al día. Eleanor Roosevelt",
+      "Nunca eres demasiado viejo para tener otra meta u otro sueño. CS Lewis",
+      "Encuentra algo que te apasione y mantente tremendamente interesado en ello. Julia Child"
     ];
 
     var numero = Math.random();

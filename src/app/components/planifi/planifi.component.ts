@@ -4,7 +4,16 @@ import { HttpClient } from '@angular/common/http';
 import { EnvService } from 'src/app/services/env.service';
 import Swal from 'sweetalert2';
 import { PlanifiService } from '../../services/planifi.service';
+import { GenericService } from 'src/app/services/generic.service';
+import { ListadosService } from '../listados/listados.service';
+import { DatePipe } from 'src/app/pipes/date.pipe';
 declare let alertify: any;
+
+interface onExcelDTO {
+  ok: boolean;
+  message: string;
+  url: string;
+}
 
 @Component({
   selector: 'app-planifi',
@@ -45,6 +54,7 @@ export class PlanifiComponent implements OnInit {
   loteB: number;
   pendientes = false;
   arrayB = [];
+  datePipeComponent: DatePipe = new DatePipe();
 
   //BUSQUEDA DE PRODUCTO
   idBus: number;
@@ -56,7 +66,9 @@ export class PlanifiComponent implements OnInit {
   constructor(private service: FormService,
     private http: HttpClient,
     private service1: EnvService,
-    private planifiService: PlanifiService) { }
+    private planifiService: PlanifiService,
+    private readonly genericService : GenericService,
+    private readonly listadosService: ListadosService) { }
 
   ngOnInit(): void {
     this.deshabilitar();
@@ -69,12 +81,13 @@ export class PlanifiComponent implements OnInit {
       subscribe((data: any) => {
         this.generarClases(data.response);
         this.arrayB = data.response;
+        this.recorrerYAplicarPipes();
       }, (err) => {
         console.log(err);
       })
   }
 
-  generarClases(data: any){
+  generarClases(data: any) {
     for (let item of data) {
       console.log(item);
       if (item.proceso == "ENVASADO") {
@@ -85,7 +98,7 @@ export class PlanifiComponent implements OnInit {
         item.isOrange = true;
       } else if (item.fechacomienzo) {
         item.isYellow = true;
-      } 
+      }
     }
   }
 
@@ -108,14 +121,14 @@ export class PlanifiComponent implements OnInit {
       subscribe((data: any) => {
         let dato = data.response[0];
         enviarMessage();
-        this.descripcion = `${dato.descripcion} - ${data.componente} - ${data.color || "" }`;
+        this.descripcion = `${dato.descripcion} - ${data.componente} - ${data.color || ""}`;
         this.unidadmedida = dato.unidadmedida;
       }, (err) => {
         if (err.error.response) {
           let dato = err.error.response;
           enviarMessage();
           alertify.error(" ATENCIÓN!! PRODUCTO SIN FORMULA ")
-          this.descripcion = `${dato.descripcion} - ${dato.componente} - ${dato.color || "" }`;
+          this.descripcion = `${dato.descripcion} - ${dato.componente} - ${dato.color || ""}`;
           this.unidadmedida = dato.unidadmedida;
         } else {
           alertify.error(" ESTE PRODUCTO TERMINADO NO EXISTE ")
@@ -439,6 +452,7 @@ export class PlanifiComponent implements OnInit {
         console.log(data)
         this.generarClases(data.response);
         this.arrayB = data.response;
+        this.recorrerYAplicarPipes();
       }, (err) => {
         console.log(err);
       })
@@ -448,6 +462,41 @@ export class PlanifiComponent implements OnInit {
     let key;
     key = event.keyCode;  //         key = event.charCode;  (Both can be used)   key == 45  // allows minus(-)
     return ((key > 47 && key < 58) || key == 46);
+  }
+
+  onExcel() {
+    this.listadosService.generarExcel(this.arrayB, 
+      'Listado_Planificacion', 'Sheet1', [
+      "descripcion",
+      "cantidad",
+      "formaenv",
+      "codpt",
+      "cliente",
+      "lote",
+      "fechacompr",
+      "operario",
+      "proceso",
+      "dispersora",
+      "molino",
+      "fechafin"
+    ])
+      .subscribe((data: onExcelDTO) => {
+        this.genericService.downloadExcel(data.url);
+      })
+  }
+
+  private recorrerYAplicarPipes(): void {
+    for (let item of this.arrayB) {
+      item.fechacompr = this.aplicarDatePipe(item.fechacompr);
+      if (item.fechafin) {
+        item.fechafin = this.aplicarDatePipe(item.fechafin);
+      }
+
+    }
+  }
+
+  private aplicarDatePipe(value: string): string {
+    return this.datePipeComponent.transform(value);
   }
 
 }

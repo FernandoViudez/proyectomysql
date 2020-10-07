@@ -37,12 +37,12 @@
         <div class="row mt-2">
             <div class="col-3">
                 <label>Código del Producto</label>
-                <input [disabled]="descripcion" (change)="validarId()" type="number" [(ngModel)]="codpt" class="form-control boldText"
-                    id="codpt">
+                <input [disabled]="descripcion" (change)="validarId()" type="number" [(ngModel)]="codpt"
+                    class="form-control boldText" id="codpt">
             </div>
             <div class="col-9 mt-2">
                 <h2 class="bg-danger mt-3 text-center rounded text-white">
-                    {{descripcion}} 
+                    {{descripcion}}
                 </h2>
                 <hr>
             </div>
@@ -278,8 +278,8 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="recipient-name010" class="col-form-label">Lote</label>
-                                    <input (keyup)="buscarPlan()" [(ngModel)]="loteB" type="number"
-                                        class="form-control" id="recipient-name00012">
+                                    <input (keyup)="buscarPlan()" [(ngModel)]="loteB" type="number" class="form-control"
+                                        id="recipient-name00012">
                                 </div>
                             </div>
                         </div>
@@ -305,7 +305,7 @@
                                     'bg-yellow': item2.isYellow,
                                     'bg-green': item2.isGreen,
                                     'bg-red': item2.isRed
-                                }"  data-dismiss="modal" *ngFor="let item2 of arrayB" (click)="traerDatos(item2.id)"
+                                }" data-dismiss="modal" *ngFor="let item2 of arrayB" (click)="traerDatos(item2.id)"
                                     style="cursor: pointer; height: 50px;">
                                     <td>{{item2.descripcion}}</td>
                                     <td>{{item2.cantidad}}</td>
@@ -313,44 +313,53 @@
                                     <td>{{item2.codpt}}</td>
                                     <td>{{item2.cliente}}</td>
                                     <td>{{item2.lote}}</td>
-                                    <td>{{item2.fechacompr | datePipe}}</td>
+                                    <td>{{item2.fechacompr}}</td>
                                     <td>{{item2.operario}}</td>
                                     <td>{{item2.proceso}}</td>
                                     <td>{{item2.dispersora}}</td>
                                     <td>{{item2.molino}}</td>
-                                    <td>{{item2.fechafin | datePipe}}</td>
+                                    <td>{{item2.fechafin}}</td>
                                 </tr>
                             </table>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button *ngIf="pendientes" type="button" class="btn btn-warning" (click)="imprimir()">Imprimir
-                            Pendientes</button>
-                        <button *ngIf="!pendientes" type="button" class="btn btn-warning" (click)="imprimir()">Imprimir
-                            Busqueda</button>
-                        <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" (click)="resetear1()">Resetear</button>
-                        <button type="button" class="btn btn-info" (click)="listarPendientes()">Listar
-                            Pendientes</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    <div class="row">
+                        <div class="col-5">
+                            <button *ngIf="pendientes" type="button" class="btn btn-warning ml-3"
+                                (click)="imprimir()">Imprimir
+                                Pendientes</button>
+                            <button *ngIf="!pendientes" type="button" class="btn btn-warning ml-3"
+                                (click)="imprimir()">Imprimir
+                                Busqueda</button>
+                            <button class="btn btn-warning ml-3" (click)="onExcel()">Generar Excel</button>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn ml-3" style="background-color: rgb(190, 171, 131);"
+                                (click)="resetear1()">Resetear</button>
+                            <button type="button" class="btn btn-info ml-3" (click)="listarPendientes()">Listar
+                                Pendientes</button>
+                            <button type="button" class="btn btn-primary ml-3" data-dismiss="modal">Cerrar</button>
+                        </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-2 text-right">
                         </div>
                         <div class="col-2">
-                            <img src="./assets/circulo naranja.jpeg" height="20px" width="20px" alt="*">
+                            <img src="./assets/circulo naranja.jpeg" height="22px" width="22px" alt="*">
                             Productos finalizados
                         </div>
                         <div class="col-2">
-                            <img src="./assets/circulo verde.jpeg" height="18px" width="18px" alt="*">
+                            <img src="./assets/circulo verde.jpeg" height="20px" width="20px" alt="*">
                             Productos en envasado
                         </div>
                         <div class="col-2">
-                            <img src="./assets/circulo amarillo.jpeg" height="18px" width="18px" alt="*">
+                            <img src="./assets/circulo amarillo.jpeg" height="20px" width="20px" alt="*">
                             Productos en proceso
                         </div>
                         <div class="col-2">
-                            <img src="./assets/circulo rojo.jpeg" 
-                            height="15px" width="15px" alt="*">
+                            <img src="./assets/circulo rojo.jpeg" height="18px" width="18px" alt="*">
                             Materia prima faltante
                         </div>
                     </div>
@@ -389,7 +398,7 @@
                 <td>{{item2.codpt}}</td>
                 <td>{{item2.cliente}}</td>
                 <td>{{item2.lote}}</td>
-                <td>{{item2.fechacompr | datePipe}}</td>
+                <td>{{item2.fechacompr}}</td>
                 <td>{{item2.operario}}</td>
                 <td>{{item2.proceso}}</td>
                 <td>{{item2.dispersora}}</td>

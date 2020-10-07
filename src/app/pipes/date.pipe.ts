@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DatePipe implements PipeTransform {
 
-  transform(fecha: any, ...args: unknown[]): unknown {
+  transform(fecha: any): any {
     
     if(fecha){
       let nuevaFecha=fecha.split("-");
