@@ -82,17 +82,21 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col-4">
+            <div class="col-3">
                 <label>Lote</label>
                 <input type="number" disabled [(ngModel)]="lote" class="form-control boldText" id="lote">
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <label>Fecha de Comienzo</label>
                 <input type="date" [(ngModel)]="fechacomienzo" class="form-control boldText" id="fechacomienzo">
             </div>
-            <div class="col-4">
-                <label>Operario</label>
+            <div class="col-3">
+                <label>Operario producción</label>
                 <input type="string" [(ngModel)]="operario" class="form-control boldText" id="operario">
+            </div>
+            <div class="col-3">
+                <label>Operario envasado</label>
+                <input type="string" [(ngModel)]="operarioenv" class="form-control boldText" id="operarioenv">
             </div>
         </div>
 
@@ -295,6 +299,7 @@
                                     <th>LOTE</th>
                                     <th>FECHA PROMETIDA</th>
                                     <th>OPERARIO</th>
+                                    <th>OPER.ENV.</th>
                                     <th>PROCESO</th>
                                     <th>DISPERSORA</th>
                                     <th>MOLINO</th>
@@ -315,6 +320,7 @@
                                     <td>{{item2.lote}}</td>
                                     <td>{{item2.fechacompr}}</td>
                                     <td>{{item2.operario}}</td>
+                                    <td>{{item2.operarioenv}}</td>
                                     <td>{{item2.proceso}}</td>
                                     <td>{{item2.dispersora}}</td>
                                     <td>{{item2.molino}}</td>
@@ -384,6 +390,7 @@
                 <th>LOTE</th>
                 <th>FECHA PROMETIDA</th>
                 <th>OPERARIO</th>
+                <th>OPER.ENV.</th>
                 <th>PROCESO</th>
                 <th>DISPERSORA</th>
                 <th>MOLINO</th>
@@ -400,6 +407,7 @@
                 <td>{{item2.lote}}</td>
                 <td>{{item2.fechacompr}}</td>
                 <td>{{item2.operario}}</td>
+                <td>{{item2.operarioenv}}</td>
                 <td>{{item2.proceso}}</td>
                 <td>{{item2.dispersora}}</td>
                 <td>{{item2.molino}}</td>

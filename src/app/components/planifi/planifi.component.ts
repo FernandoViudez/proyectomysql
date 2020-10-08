@@ -43,9 +43,11 @@ export class PlanifiComponent implements OnInit {
   proceso: any;
   fechafin: any;
   operario: any;
+  operarioenv: any;
   dispersora: any;
   molino: any;
   unidadmedida: string;
+  correccion: any;
 
   //BUSQUEDA DE PLANIFICACION
   codptB: number;
@@ -67,7 +69,7 @@ export class PlanifiComponent implements OnInit {
     private http: HttpClient,
     private service1: EnvService,
     private planifiService: PlanifiService,
-    private readonly genericService : GenericService,
+    private readonly genericService: GenericService,
     private readonly listadosService: ListadosService) { }
 
   ngOnInit(): void {
@@ -174,6 +176,8 @@ export class PlanifiComponent implements OnInit {
       this.formaenv = data.formaenv;
       this.cliente = data.cliente;
       this.motivo = data.motivo;
+      this.operarioenv = data.operarioenv;
+      this.correccion = data.correccion;
 
       this.fechafin = fechafin;
       this.fechacomienzo = fechacomienzo;
@@ -261,11 +265,18 @@ export class PlanifiComponent implements OnInit {
       return alertify.error("CARGAR FECHA DE COMIENZO !");
     }
 
+    if (this.proceso == 'AJUSTE DE VISCOSIDAD' && !this.correccion) {
+      var correccion = this.proceso;
+    } else if (this.proceso == 'AJUSTE DE COLOR' && !this.correccion) {
+      var correccion = this.proceso;
+    }
 
+    console.log(correccion);
+    console.log(this.proceso);
 
     function cargar(codpt: number, cantidad: number, formaenv: string,
       cliente: string, motivo: string, fechacompr: Date, fechafin: Date, fechacomienzo: Date,
-      proceso: string, lote: number, operario: string, dispersora: string, molino: string,
+      proceso: string, lote: number, operario: string, operarioenv: string, correccion: string, dispersora: string, molino: string,
       descripcion: string, editar: boolean, planifiService, id: number) {
       console.log(cantidad);
       let data = {
@@ -279,10 +290,12 @@ export class PlanifiComponent implements OnInit {
         proceso,
         fechafin,
         operario,
+        operarioenv,
         dispersora,
         molino,
         motivo,
         descripcion,
+        correccion,
       }
 
       if (!editar) {
@@ -318,7 +331,7 @@ export class PlanifiComponent implements OnInit {
         if (res.value) {
           cargar(this.codpt, this.cantidad, this.formaenv,
             this.cliente, this.motivo, this.fechacompr, this.fechafin, this.fechacomienzo,
-            this.proceso, this.lote, this.operario, this.dispersora, this.molino,
+            this.proceso, this.lote, this.operario, this.operarioenv, this.correccion, this.dispersora, this.molino,
             this.descripcion, this.editar, this.planifiService, this.id)
           this.resetear();
         } else {
@@ -328,7 +341,7 @@ export class PlanifiComponent implements OnInit {
     } else {
       cargar(this.codpt, this.cantidad, this.formaenv,
         this.cliente, this.motivo, this.fechacompr, this.fechafin, this.fechacomienzo,
-        this.proceso, this.lote, this.operario, this.dispersora, this.molino,
+        this.proceso, this.lote, this.operario, this.operarioenv, this.correccion, this.dispersora, this.molino,
         this.descripcion, this.editar, this.planifiService, this.id)
       this.resetear()
     }
@@ -397,6 +410,8 @@ export class PlanifiComponent implements OnInit {
     this.proceso = null;
     this.fechafin = null;
     this.operario = null;
+    this.operarioenv = null;
+    this.correccion = null;
     this.dispersora = null;
     this.molino = null;
     this.id = null;
@@ -425,6 +440,7 @@ export class PlanifiComponent implements OnInit {
     document.getElementById("proceso").removeAttribute("disabled");
     document.getElementById("fechafin").removeAttribute("disabled");
     document.getElementById("operario").removeAttribute("disabled");
+    document.getElementById("operarioenv").removeAttribute("disabled");
     document.getElementById("dispersora").removeAttribute("disabled");
     document.getElementById("molino").removeAttribute("disabled");
     document.getElementById("cantidad").setAttribute("disabled", "");
@@ -436,6 +452,7 @@ export class PlanifiComponent implements OnInit {
     document.getElementById("proceso").setAttribute("disabled", "");
     document.getElementById("fechafin").setAttribute("disabled", "");
     document.getElementById("operario").setAttribute("disabled", "");
+    document.getElementById("operarioenv").setAttribute("disabled", "");
     document.getElementById("dispersora").setAttribute("disabled", "");
     document.getElementById("molino").setAttribute("disabled", "");
     document.getElementById("cantidad").removeAttribute("disabled");
@@ -465,7 +482,7 @@ export class PlanifiComponent implements OnInit {
   }
 
   onExcel() {
-    this.listadosService.generarExcel(this.arrayB, 
+    this.listadosService.generarExcel(this.arrayB,
       'Listado_Planificacion', 'Sheet1', [
       "descripcion",
       "cantidad",
@@ -475,9 +492,11 @@ export class PlanifiComponent implements OnInit {
       "lote",
       "fechacompr",
       "operario",
+      "operarioenv",
       "proceso",
       "dispersora",
       "molino",
+      "correccion",
       "fechafin"
     ])
       .subscribe((data: onExcelDTO) => {
