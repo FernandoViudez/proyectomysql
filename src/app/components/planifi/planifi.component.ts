@@ -250,7 +250,6 @@ export class PlanifiComponent implements OnInit {
     if (!this.motivo) {
       return alertify.error("El motivo es obligatorio!!")
     }
-
     if (!this.fechacompr) {
       return alertify.error("La fecha comprometida es obligatoria!!")
     }
@@ -266,19 +265,16 @@ export class PlanifiComponent implements OnInit {
     }
 
     if (this.proceso == 'AJUSTE DE VISCOSIDAD' && !this.correccion) {
-      var correccion = this.proceso;
+      this.correccion = this.proceso;
     } else if (this.proceso == 'AJUSTE DE COLOR' && !this.correccion) {
-      var correccion = this.proceso;
+      this.correccion = this.proceso;
     }
-
-    console.log(correccion);
-    console.log(this.proceso);
 
     function cargar(codpt: number, cantidad: number, formaenv: string,
       cliente: string, motivo: string, fechacompr: Date, fechafin: Date, fechacomienzo: Date,
-      proceso: string, lote: number, operario: string, operarioenv: string, correccion: string, dispersora: string, molino: string,
-      descripcion: string, editar: boolean, planifiService, id: number) {
-      console.log(cantidad);
+      proceso: string, lote: number, operario: string, operarioenv: string, dispersora: string, molino: string,
+      descripcion: string, editar: boolean, planifiService, id: number, correccion: string,) {
+
       let data = {
         codpt,
         cantidad,
@@ -331,8 +327,8 @@ export class PlanifiComponent implements OnInit {
         if (res.value) {
           cargar(this.codpt, this.cantidad, this.formaenv,
             this.cliente, this.motivo, this.fechacompr, this.fechafin, this.fechacomienzo,
-            this.proceso, this.lote, this.operario, this.operarioenv, this.correccion, this.dispersora, this.molino,
-            this.descripcion, this.editar, this.planifiService, this.id)
+            this.proceso, this.lote, this.operario, this.operarioenv, this.dispersora, this.molino,
+            this.descripcion, this.editar, this.planifiService, this.id, this.correccion)
           this.resetear();
         } else {
           return;
@@ -341,8 +337,8 @@ export class PlanifiComponent implements OnInit {
     } else {
       cargar(this.codpt, this.cantidad, this.formaenv,
         this.cliente, this.motivo, this.fechacompr, this.fechafin, this.fechacomienzo,
-        this.proceso, this.lote, this.operario, this.operarioenv, this.correccion, this.dispersora, this.molino,
-        this.descripcion, this.editar, this.planifiService, this.id)
+        this.proceso, this.lote, this.operario, this.operarioenv, this.dispersora, this.molino,
+        this.descripcion, this.editar, this.planifiService, this.id, this.correccion)
       this.resetear()
     }
 
