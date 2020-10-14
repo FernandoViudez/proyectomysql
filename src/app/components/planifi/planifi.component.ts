@@ -265,9 +265,13 @@ export class PlanifiComponent implements OnInit {
     }
 
     if (this.proceso == 'AJUSTE DE VISCOSIDAD' && !this.correccion) {
-      this.correccion = this.proceso;
+      this.correccion = 'viscosidad';
     } else if (this.proceso == 'AJUSTE DE COLOR' && !this.correccion) {
-      this.correccion = this.proceso;
+      this.correccion = 'color';
+    } else if (this.proceso == 'AJUSTE DE COLOR' && this.correccion == 'viscosidad') {
+      this.correccion = 'color + viscosidad'
+    } else if (this.proceso == 'AJUSTE DE VISCOSIDAD' && this.correccion == 'color') {
+      this.correccion = 'color + viscosidad'
     }
 
     function cargar(codpt: number, cantidad: number, formaenv: string,
