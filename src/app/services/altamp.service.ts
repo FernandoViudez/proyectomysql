@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { obtenerPath } from '../_utils/generarBackPath';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AltampService {
 
-  url: string = "http://localhost:8080/api/";
+  private url: string = obtenerPath();
 
   constructor(private http: HttpClient) { }
 

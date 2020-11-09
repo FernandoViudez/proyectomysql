@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { obtenerPath } from '../_utils/generarBackPath';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanifiService {
 
-  url: string="http://localhost:8080/api/";
+  url: string = obtenerPath();
 
   constructor(private http: HttpClient) { }
 

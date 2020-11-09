@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { obtenerPath } from '../_utils/generarBackPath';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GenericService {
 
-  url = environment.backend;
+  private url: string = obtenerPath();
 
   constructor(private http: HttpClient) { }
 

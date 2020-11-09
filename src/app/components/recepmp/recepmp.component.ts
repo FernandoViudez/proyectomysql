@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { MatprimService } from 'src/app/services/matprim.service';
 import numeral from 'numeral';
 import { GenericService } from 'src/app/services/generic.service';
+import { obtenerPath } from 'src/app/_utils/generarBackPath';
 declare let alertify: any;
 
 @Component({
@@ -105,7 +106,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
   }
 
   calcularLote() {
-    this.http.get("http://localhost:8080/api/calcularLote").
+    this.http.get(`${obtenerPath()}calcularLote`).
       subscribe((data: any) => {
         this.lotePrint = data.lote;
       })
@@ -146,7 +147,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
       cantEtiquetas: this.cantEtiquetas
     };
 
-    this.http.post("http://localhost:8080/api/postRmp", data).
+    this.http.post(`${obtenerPath()}postRmp`, data).
       subscribe((data: any) => {
         window.print();
         this.resetear();
@@ -199,7 +200,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
   }
 
   eliminarEtiquetas() {
-    this.http.get("http://localhost:8080/api/eliminarEtiquetas").
+    this.http.get(`${obtenerPath()}eliminarEtiquetas`).
       subscribe((data: any) => {
         alertify.success(data.message);
       }, (err) => {

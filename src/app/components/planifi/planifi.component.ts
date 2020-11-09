@@ -7,6 +7,7 @@ import { PlanifiService } from '../../services/planifi.service';
 import { GenericService } from 'src/app/services/generic.service';
 import { ListadosService } from '../listados/listados.service';
 import { DatePipe } from 'src/app/pipes/date.pipe';
+import { obtenerPath } from 'src/app/_utils/generarBackPath';
 declare let alertify: any;
 
 interface onExcelDTO {
@@ -79,7 +80,7 @@ export class PlanifiComponent implements OnInit {
   buscarPlan() {
     this.pendientes = false;
     let data = { codpt: this.codptB, descripcion: this.descripcionB, cliente: this.clienteB, lote: this.loteB }
-    this.http.post("http://localhost:8080/api/getPlani", data).
+    this.http.post(`${obtenerPath()}getPlani`, data).
       subscribe((data: any) => {
         this.generarClases(data.response);
         this.arrayB = data.response;
@@ -146,7 +147,7 @@ export class PlanifiComponent implements OnInit {
     this.borrar = true;
 
 
-    this.http.get(`http://localhost:8080/api/getPlani/${id}`).subscribe((dato: any) => {
+    this.http.get(`${obtenerPath()}getPlani/${id}`).subscribe((dato: any) => {
       let data = dato.response;
       let fechacompr: Date;
       let fechacomienzo: Date;
@@ -359,7 +360,7 @@ export class PlanifiComponent implements OnInit {
       icon: "question"
     }).then(res => {
       if (res.value) {
-        this.http.delete(`http://localhost:8080/api/deletePlani/${this.id}`).
+        this.http.delete(`${obtenerPath()}deletePlani/${this.id}`).
           subscribe((data: any) => {
             alertify.success(data.message);
             this.resetear();
@@ -460,7 +461,7 @@ export class PlanifiComponent implements OnInit {
 
   listarPendientes() {
     this.pendientes = true;
-    this.http.get("http://localhost:8080/api/traerPendientes").
+    this.http.get(`${obtenerPath()}traerPendientes`).
       subscribe((data: any) => {
         console.log(data)
         this.generarClases(data.response);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { obtenerPath } from 'src/app/_utils/generarBackPath';
 
 @Component({
   selector: 'app-listprod',
@@ -63,7 +64,7 @@ export class ListprodComponent implements OnInit {
   }
 
   buscar() {
-    this.http.post("http://localhost:8080/api/buscarPt", { id: this.id, termino1: this.descripcion, termino2: this.color, termino3: this.componente }).subscribe((data: any) => {
+    this.http.post(`${obtenerPath()}buscarPt`, { id: this.id, termino1: this.descripcion, termino2: this.color, termino3: this.componente }).subscribe((data: any) => {
       this.pesoespecifico = 0;
       this.solidosppp = 0;
       this.solidosppv = 0;
@@ -102,7 +103,7 @@ export class ListprodComponent implements OnInit {
   }
 
   traerDf(id) {
-    this.http.get(`http://localhost:8080/api/ptDf/${id}`).
+    this.http.get(`${obtenerPath()}ptDf/${id}`).
       subscribe((data: any) => {
         this.pesoespecifico = data.dfpe;
         this.solidosppp = data.dfppp;

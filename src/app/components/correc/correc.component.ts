@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatprimService } from 'src/app/services/matprim.service';
+import { obtenerPath } from 'src/app/_utils/generarBackPath';
 declare let alertify: any;
 
 @Component({
@@ -50,7 +51,7 @@ export class CorrecComponent implements OnInit {
     }
 
     let data = { id: this.id, cantidad: this.cantidad, usuario: localStorage.getItem("username"), motivo: this.motivo.toUpperCase() }
-    this.http.post(`http://localhost:8080/api/correcionStock`, data).
+    this.http.post(`${obtenerPath()}correcionStock`, data).
       subscribe((data) => {
         this.resetear();
         alertify.success("Has corregido un stock correctamente!")

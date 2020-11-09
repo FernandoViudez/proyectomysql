@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'
+import { obtenerPath } from '../_utils/generarBackPath';
 
 @Injectable({
   providedIn: 'root'
@@ -9,47 +10,49 @@ export class FormService {
 
   constructor(private http: HttpClient) { }
 
+  private url: string = obtenerPath();
+
   importarForm(idprod, idprod1, tintoformoalt1, componente) {
     let data = { idprod, idprod1, tintoformoalt1, componente };
-    return this.http.post("http://localhost:8080/api/importarForm", data).pipe(map(data => data))
+    return this.http.post(`${this.url}importarForm`, data).pipe(map(data => data))
   }
 
   buscarP(id, termino1, termino2, termino3) {
     let data = { id, termino1, termino2, termino3 };
-    return this.http.post("http://localhost:8080/api/buscarPt", data).pipe(map((data: any) => data.response));
+    return this.http.post(`${this.url}buscarPt`, data).pipe(map((data: any) => data.response));
   }
 
   traerEditar(idprod: number, tintoformoalt: string) {
     let data = { idprod, tintoformoalt }
-    return this.http.post('http://localhost:8080/api/traerAsoc', data).pipe(map((data: any) => data.response))
+    return this.http.post(`${this.url}traerAsoc`, data).pipe(map((data: any) => data.response))
   }
 
   cargarFilas() {
-    return this.http.get("http://localhost:8080/api/getAllProv").pipe(map(data => data))
+    return this.http.get(`${this.url}getAllProv`).pipe(map(data => data))
   }
 
   calcular(totCant: number, dato) {
     let data = { totCant, data: dato };
-    return this.http.post("http://localhost:8080/api/operations", data)
+    return this.http.post(`${this.url}operations`, data)
   }
 
   finalizar(tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array) {
     let data = { tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array };
-    return this.http.post("http://localhost:8080/api/postFor", data).pipe(map(data => data))
+    return this.http.post(`${this.url}postFor`, data).pipe(map(data => data))
   }
 
   eliminarTodo(idprod) {
-    return this.http.delete(`http://localhost:8080/api/deleteAll/${idprod}`).pipe(map(data => data))
+    return this.http.delete(`${this.url}deleteAll${idprod}`).pipe(map(data => data))
   }
 
   buscar(idprod, tintoformoalt) {
     let data = { idprod, tintoformoalt };
-    return this.http.post("http://localhost:8080/api/getFor", data).pipe(map((data: any) => data));
+    return this.http.post(`${this.url}getFor`, data).pipe(map((data: any) => data));
   }
 
   validarIdProd(idPt) {
     let data = { idPt };
-    return this.http.post("http://localhost:8080/api/detectIdPt", data).pipe(data => data);
+    return this.http.post(`${this.url}detectIdPt`, data).pipe(data => data);
   }
 
 }

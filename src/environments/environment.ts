@@ -2,9 +2,11 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { obtenerPath } from 'src/app/_utils/generarBackPath';
+
 export const environment = {
   production: false,
-  backend: "http://localhost:8080/api/"
+  backend: obtenerPath()
 };
 
 /*

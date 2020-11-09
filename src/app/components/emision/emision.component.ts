@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import numeral from 'numeral';
 import { GenericService } from '../../services/generic.service';
 import { ListadosService } from '../listados/listados.service';
+import { obtenerPath } from 'src/app/_utils/generarBackPath';
 declare let alertify;
 
 @Component({
@@ -114,7 +115,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
         showCancelButton: true
       }).then(res => {
         if (res.value) {
-          this.http.delete("http://localhost:8080/api/eliminarEtiquetasEmision").
+          this.http.delete(`${obtenerPath()}eliminarEtiquetasEmision`).
             subscribe((data: any) => {
               alertify.success(data.message);
             }, (err) => {
@@ -135,7 +136,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
   buscarPlan() {
     this.pendientes = false;
     let data = { codpt: this.codptB, descripcion: this.descripcionB, cliente: this.clienteB, pendientes: true }
-    this.http.post("http://localhost:8080/api/getPlani", data).
+    this.http.post(`${obtenerPath()}getPlani`, data).
       subscribe((data: any) => {
         this.arrayB = data.arrayPendientes;
       }, (err) => {
@@ -174,7 +175,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
   //CUANDO LE DAS A CLICK EN LA TABLA DE LUPA EN PLANIFICACION
   traerDatos(id, codpt) {
 
-    this.http.get(`http://localhost:8080/api/getAll/${codpt}/${id}/${this.tfa}`).subscribe((dato: any) => {
+    this.http.get(`${obtenerPath()}getAll/${codpt}/${id}/${this.tfa}`).subscribe((dato: any) => {
 
       let item = dato.response1[0]; //PROD VIENE UNO
       this.arrayConj = dato.response2; //ENVASADOS
@@ -255,7 +256,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
   }
   //GENERA EL PROXIMO BATCH
   generarProximoBatch() {
-    this.http.get("http://localhost:8080/api/generarBatch")
+    this.http.get(`${obtenerPath()}generarBatch`)
       .subscribe((data: any) => {
         this.proximoBatch = data.lote;
       })
@@ -339,7 +340,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
         Swal.showLoading();
         this.disableYesPrint = false;
         this.botonCancelado = true;
-        
+
         let data = {
           codpt: this.id,
           tfa: this.tfa,
@@ -359,21 +360,21 @@ export class EmisionComponent implements OnInit, OnDestroy {
           colorEtiquetas: this.colorEtiquetas,
           tipogenerico: this.tipogenerico,
           usuario: localStorage.getItem("username")
-        } 
-        
+        }
+
 
         /** DEJAMOS TIMEPO A QUE SE GUARDE LA DATA Y SE HAGA EL CAMBIO DE HTMLS POR ATRAS */
         setTimeout(() => {
           Swal.close();
           this.imprimir();
 
-          this.http.post("http://localhost:8080/api/finalizarEmision", data).subscribe((data: any) => {
+          this.http.post(`${obtenerPath()}finalizarEmision`, data).subscribe((data: any) => {
             Swal.fire({
               title: "¡ Genial !",
               text: "¡ Se ha emitido el ticket correctamente !",
               icon: "success"
             }).then(res => {
-              window.location.reload();
+              this.resetearTodo();
             })
           }, (err) => {
             console.log(err);
@@ -422,7 +423,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
   listarPendientes() {
     this.pendientes = true;
-    this.http.get("http://localhost:8080/api/traerPendientes").
+    this.http.get(`${obtenerPath()}traerPendientes`).
       subscribe((data: any) => {
         this.arrayB = [];
         for (let item of data.response) {
@@ -480,6 +481,90 @@ export class EmisionComponent implements OnInit, OnDestroy {
     //nueva fecha sumando los dias 
     diaActual.setDate(diaActual.getDate() + dias);
     return diaActual.getDate() + '/' + (diaActual.getMonth() + 1) + '/' + diaActual.getFullYear();
+  }
+
+  resetearTodo(): void {
+    this.resetear1();
+    //GENERALES
+    this.id = undefined;
+    this.descripcion = undefined;
+    this.descripcionEtiquetas = undefined;
+    this.colorEtiquetas = undefined;
+    this.proximoBatch = undefined;
+    this.aEnvasar = undefined;
+    this.totCantidadEnvasar = undefined;
+    this.tfa = "F";
+    this.arrayConj = [];
+    this.arrayAsoc = [];
+    this.arrayMat = [];
+    this.idPlani = undefined;
+    this.arrayCantidadesRestadas = [];
+    this.arrayCodMp = [];
+    this.fechaDelDia = undefined;
+
+    // FLAG BUTTON
+    this.botonCancelado = false;
+    this.cancelarPrepesado = false;
+
+    // PANTALLAS DE PRINT
+    this.disableYesPrint = true;
+
+    //PRODTERM
+
+    this.color = undefined;
+    this.colorigual = undefined;
+    this.componente = undefined;
+    this.formaconjunto = undefined;
+    this.relaciondemezcla = undefined;
+    this.tipogenerico = undefined;
+    this.unidadmedida = undefined;
+    this.pesoespecifico = 0;
+    this.viscosidadspindle = undefined;
+    this.viscosidaduk = undefined;
+    this.spindlenumero = undefined;
+    this.molienda = undefined;
+    this.brillo = undefined;
+    this.solidosppp = 0;
+    this.solidosppv = 0;
+    this.resina = 0;
+    this.pigmento = 0;
+    this.solvente = 0;
+    this.fechaultimaelaboracion = undefined;
+    this.precio = undefined;
+    this.ultimamodificacion = undefined;
+
+    //PLANIFICACION
+    this.lote = undefined;
+    this.proceso = undefined;
+    this.operario = undefined;
+    this.dispersora = undefined;
+    this.molino = undefined;
+    this.cantidadPlani = undefined;
+    this.formaenv = undefined;
+    this.cliente = undefined;
+    this.fechacompr = undefined;
+    this.fechafin = undefined;
+    this.fechacomienzo = undefined;
+    this.motivo = undefined;
+
+    //ENVASADO
+    this.cobarras = undefined;
+    this.descripcionEnv = undefined;
+    this.codmp = undefined;
+    this.envasado = undefined;
+    this.indice = undefined;
+
+    //BUSQUEDA DE PLANIFICACION
+    this.codptB = undefined;
+    this.descripcionB = undefined;
+    this.clienteB = undefined;
+    this.pendientes = false;
+    this.arrayB = [];
+
+    // Change to the next page
+    document.getElementById("svgNext").click();
+
+
   }
 
 }

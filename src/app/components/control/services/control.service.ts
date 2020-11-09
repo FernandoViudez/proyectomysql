@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { obtenerPath } from 'src/app/_utils/generarBackPath';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ControlService {
 
-  url = 'http://localhost:8080/api/';
+  private url: string = obtenerPath();
 
   constructor(private httpClient: HttpClient) { }
 

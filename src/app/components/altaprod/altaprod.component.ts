@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { EnvService } from 'src/app/services/env.service';
 import { Router } from '@angular/router';
+import { obtenerPath } from 'src/app/_utils/generarBackPath';
 declare let alertify: any;
 
 @Component({
@@ -276,7 +277,7 @@ export class AltaprodComponent implements OnInit {
     }
 
     if (!this.editar) {
-      this.http.post("http://localhost:8080/api/postPt", data).
+      this.http.post(`${obtenerPath()}postPt`, data).
         subscribe((data: any) => {
           Swal.close();
           this.resetear();
@@ -286,7 +287,7 @@ export class AltaprodComponent implements OnInit {
           console.log(err);
         })
     } else {
-      this.http.put(`http://localhost:8080/api/putPt/${this.id}`, data).
+      this.http.put(`${obtenerPath()}putPt/${this.id}`, data).
         subscribe((data: any) => {
           Swal.close();
           this.resetear();

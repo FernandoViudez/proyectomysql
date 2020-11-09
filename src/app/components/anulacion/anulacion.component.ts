@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { obtenerPath } from 'src/app/_utils/generarBackPath';
 declare let alertify:any;
 
 @Component({
@@ -13,9 +14,9 @@ export class AnulacionComponent implements OnInit {
 
   codpt: number;
   descripcion: string;
-
   batch: number;
-  url = "http://localhost:8080/api/";
+  
+  private url: string = obtenerPath();
 
   constructor(private http: HttpClient, private route: Router) { 
     let user_role = localStorage.getItem("user_role");
