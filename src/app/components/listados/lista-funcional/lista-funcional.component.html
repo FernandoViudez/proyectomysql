@@ -28,9 +28,12 @@
         </div>
         <!-- Solo para codmp en caso de buscar Mp dentro de formulas -->
         <div *ngIf="esMp && !sonFechas">
-            <div class="col-12 mt-4" *ngIf='operacion != "MINIMO"'>
+            <div class="col-6 mt-4" *ngIf='operacion != "MINIMO"'>
                 <input class="form-control boldText" type="number" [(ngModel)]="codmp"
                     placeholder="Codigo de Materia prima...">
+            </div>
+            <div class="col-6 mt-4" *ngIf='operacion != "MINIMO"'>
+                <p>{{mpDescription}}</p>
             </div>
         </div>
         <div class="col-2 mt-4" *ngIf='operacion != "MINIMO"'>

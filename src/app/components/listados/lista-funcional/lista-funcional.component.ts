@@ -29,6 +29,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   public operacion: string;
   public nombreArchivo: string;
   public nombreHoja: string;
+  public mpDescription: string;
   public subtotales = [
     { titulo: "AGENTEDECURA", subtotal: 0 },
     { titulo: "DILUYENTE", subtotal: 0 },
@@ -185,6 +186,10 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
             // a must be equal to b
             return 0;
           });
+        }
+
+        if(data.mpDescription) {
+          this.mpDescription = data.mpDescription; 
         }
 
         // igualacion de los datos 

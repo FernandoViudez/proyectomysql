@@ -125,7 +125,9 @@ export class ControlptComponent implements OnInit {
 
     this.servicioControl.postearDataPt(data).
       subscribe((response: any) => {
-        window.print();
+        if (this.aprobado != "RECHAZADO") {
+          window.print();
+        }
         this.resetearInputs();
         alertify.success("DATOS CARGADOS CORRECTAMENTE !");
       }, (err) => {
@@ -186,11 +188,11 @@ export class ControlptComponent implements OnInit {
         //TRAEMOS DATA DEL CONTROL
         this.codpt = item.codpt;
         this.descripcion = item.descripcion;
-        if (this.descripcion == "ANULADO") {  
+        if (this.descripcion == "ANULADO") {
           setTimeout(() => {
             this.resetearInputs();
             return alertify.error("BATCH TICKET ANULADO !");
-          }, 2000) 
+          }, 2000)
         }
         this.pesoespecifico = item.pesoespecifico;
         this.fecha = item.fecha ? item.fecha.split("T")[0] : item.fecha;
