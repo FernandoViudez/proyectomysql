@@ -207,6 +207,10 @@ export class AltaformComponent implements OnInit, OnDestroy {
     if (this.tintoformoalt != "F" && this.tintoformoalt != "T" && this.tintoformoalt != "A") {
       return alertify.error("¡ EL DATO EN TFA ES INCORRECTO !")
     }
+    
+    if(this.array.length == 0){
+      return alertify.error("¡ NO HA CARGADO NINGUN RENGLON PARA LAS FORMULAS !")
+    } 
 
     function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array) {
       return new Promise((resolve, reject) => {
@@ -404,8 +408,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
     this.descripcion1 = null;
     this.solv = null;
     this.array = [];
-    document.getElementById("idp").removeAttribute("disabled");
-    document.getElementById("TFA").removeAttribute("disabled");
+    document?.getElementById("idp")?.removeAttribute("disabled");
+    document?.getElementById("TFA")?.removeAttribute("disabled");
 
   }
 
@@ -494,11 +498,17 @@ export class AltaformComponent implements OnInit, OnDestroy {
     })
   }
 
-  validarpt() {
+  validarpt(esProductoDentroDeFormula: boolean) {
     this.prodTermService.validarPt(this.codpt).
       subscribe((data: any) => {
 
         this.existept = "existe";
+        console.log(esProductoDentroDeFormula);
+        if(esProductoDentroDeFormula) {
+          this.descripcion = `${data.desc}`;
+          console.log(this.descripcion);
+          return;
+        }
         this.descripcion1 = `${data.desc}  ${data.color || ''} ${data.componente}`;
       }, (err) => {
         this.existept = "noexiste";
