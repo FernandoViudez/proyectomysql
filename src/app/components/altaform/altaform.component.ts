@@ -159,6 +159,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       /** Calculamos */
       this.sumarTotal(this.array);
       this.calcular(this.array);
+      this.resetear();
 
     } else {
       return alertify.error("¡ MPI INCORRECTO !")
