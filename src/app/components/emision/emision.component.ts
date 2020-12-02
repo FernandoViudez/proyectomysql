@@ -30,6 +30,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
   arrayCantidadesRestadas = [];
   arrayCodMp = [];
   fechaDelDia: string;
+  con: number;
 
   // FLAG BUTTON
   botonCancelado: boolean = false;
@@ -247,7 +248,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
       this.colorEtiquetas = this.color;
 
       this.calcularFaltantes();
-
+      this.generarProximoBatch();
     }, (err) => {
       console.log(err);
     })
@@ -394,9 +395,13 @@ export class EmisionComponent implements OnInit, OnDestroy {
     window.print();
   }
 
-  guardarEnvases(input, codmp, envasado) {
+  guardarEnvases(input: number, codmp, envasado) {
+    console.log("Envasado -->  ", envasado);
 
-    if (!Number.isInteger(input / envasado)) {
+    // Paso el valor del input a numero para sacar el fixed
+    input = Number(input);
+
+    if (!Number.isInteger((Number(input.toFixed(2)) / envasado))) {
       return Swal.fire({
         title: "Error!",
         text: "CORREGIR CANTIDAD A ENVASAR!!!",
