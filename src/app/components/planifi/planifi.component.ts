@@ -255,7 +255,7 @@ export class PlanifiComponent implements OnInit {
       return alertify.error("La fecha comprometida es obligatoria!!")
     }
 
-    if (!calcularFecha(this.fechacompr) || this.fechafin && !calcularFecha(this.fechafin, true)) {
+    if (!calcularFecha(this.fechacompr) || (this.fechafin && !calcularFecha(this.fechafin, true))) {
       return alertify.error("ALGUNA DE LAS FECHAS INGRESADAS ES INCORRECTA !");
     }
 

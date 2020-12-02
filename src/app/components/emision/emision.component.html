@@ -3,6 +3,7 @@
 </div>
 
 <div id="carouselExampleControls" class="carousel slide notPrint" data-interval="9000000">
+    <button style="display: none;" id="hiddenButton" data-slide-to="0" ></button>
     <div class="carousel-inner">
         <div class="carousel-item active mt-4">
             <div style="height: 480px; ">
@@ -241,17 +242,17 @@
         </div>
         <div class="col-2">
             <button style="background: none; background-color: none; border: none;"
-            *ngIf="id && cantidadPlani > 0 && !totCantidadEnvasar || totCantidadEnvasar  <= cantidadPlani"
+                *ngIf="id && cantidadPlani > 0 && !totCantidadEnvasar || totCantidadEnvasar  <= cantidadPlani"
                 data-slide="prev" role="button" href="#carouselExampleControls">
-                <svg class="bi bi-caret-left-fill" style="cursor: pointer" width="4em" height="4em" viewBox="0 0 16 16"
-                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <svg class="bi bi-caret-left-fill" style="cursor: pointer" width="4em" height="4em"
+                    viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
                 </svg>
             </button>
             <button data-slide="next" href="#carouselExampleControls" role="button"
                 *ngIf="id && cantidadPlani > 0 && !totCantidadEnvasar || totCantidadEnvasar  <= cantidadPlani"
-                id="svgNext" style="background: none; background-color: none; border: none;">
+                style="background: none; background-color: none; border: none;">
                 <svg style="cursor: pointer" class="bi bi-caret-right-fill" width="4em" height="4em" viewBox="0 0 16 16"
                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path
