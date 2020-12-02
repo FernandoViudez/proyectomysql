@@ -244,7 +244,7 @@
         </div>
         <div class="col-2">
             <button style="background: none; background-color: none; border: none;"
-            *ngIf="id && cantidadPlani > 0 && !totCantidadEnvasar || totCantidadEnvasar  <= cantidadPlani"
+                *ngIf="id && cantidadPlani > 0 && !totCantidadEnvasar || totCantidadEnvasar  <= cantidadPlani"
                 data-slide="prev" role="button" href="#carouselExampleControls">
                 <svg class="bi bi-caret-left-fill" style="cursor: pointer" width="4em" height="4em" viewBox="0 0 16 16"
                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -320,7 +320,8 @@
             </b>
         </h5>
         <h6>
-            <pre>
+            <b>
+                <pre>
             CUBA Nro _____ <span class="tab1"></span> CODIGO: {{id}} <span class="tab1"></span> PRODUCTO: {{descripcion}} {{componente}} {{color}}
             CANTIDAD: {{cantidadPlani | numeralPipe: 'true'}} {{unidadmedida}} - (<span *ngIf="unidadmedida=='LT'"> {{(cantidadPlani * pesoespecifico) | numeralPipe: 'true'}} Kg</span><span *ngIf="unidadmedida=='KG'"> {{cantidadPlani | numeralPipe}} Kg</span>) <span class="tab1"></span> FECHA EMISION: {{fechaDelDia}} <span class="tab1"></span> FECHA INICIO PRODUCCION: ___/___/ ___ <span class="tab1"></span> HORA INICIO: _________
             OPERARIO: ___________________ <span class="tab1"></span> NRO.CUBA UTILIZADA: _________ <span class="tab1"></span> PESO CUBA: _________
@@ -328,7 +329,7 @@
             PESO FINAL ____________ Kg <span class="tab1"></span>CONTROLO ______________ <span class="tab1"></span> COMIENZO ENVASADO ___/___/___<span class="tab1"></span> FILTRO UTILIZADO # _______
             ETIQUETADO COMO: {{descripcionEtiquetas}} - {{colorEtiquetas}} **** FECHA VENCIMIENTO: {{calcularFechaVencimiento()}}
             </pre>
-
+            </b>
             <div class="w-100" *ngIf="tfa=='T'"> :
                 <pre class="text-center">
 		**** S I S T E M A   D E   T I N T U R A C I O N ****                                  
@@ -363,46 +364,51 @@
             </pre>
             </div>
 
-
-            <td *ngIf="tfa != 'T'">
-                <table>
-                    <tr>
-                        <th></th>
-                        <th>MP</th>
-                        <th>PT</th>
-                        <th>DESCRIPCION</th>
-                        <th>CANTIDAD</th>
-                        <th>LOTE Nro.</th>
-                        <th>PREPESAO</th>
-                        <th>AGREGADO</th>
-                        <th>RGO/PROT</th>
-                    </tr>
-                    <tr *ngFor="let item of arrayAsoc; let i = index;">
-                        <td>{{item.orden}}</td>
-                        <td>{{item.codmp}}</td>
-                        <td>{{item.codpt}}</td>
-                        <td>{{item.descripcion}}</td>
-                        <td *ngIf="unidadmedida == 'KG' && item.cantidad" class="text-right">
-                            {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0</td>
-                        <td *ngIf="unidadmedida == 'LT' && item.cantidad" class="text-right">
-                            {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0</td>
-                        <td *ngIf="!item.cantidad"> </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center">{{item.ind[1]}}</td>
-                    </tr>
-                </table>
-                <span>
-                    __. _________ ___________________________________________________________________________________
-                    _______+_______+_______ _____ ______ __________<br><br>
-                    __. _________ ___________________________________________________________________________________
-                    _______+_______+_______ _____ ______ __________<br><br>
-                    __. _________ ___________________________________________________________________________________
-                    _______+_______+_______ _____ ______ __________<br>
-                </span>
-            </td>
-
+            <b>
+                <h4>
+                    <td *ngIf="tfa != 'T'">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>MP</th>
+                                <th>PT</th>
+                                <th>DESCRIPCION</th>
+                                <th>CANTIDAD</th>
+                                <th>LOTE Nro.</th>
+                                <th>PREPESAO</th>
+                                <th>AGREGADO</th>
+                                <th>RGO/PROT</th>
+                            </tr>
+                            <tr *ngFor="let item of arrayAsoc; let i = index;">
+                                <td>{{item.orden}}</td>
+                                <td>{{item.codmp}}</td>
+                                <td>{{item.codpt}}</td>
+                                <td>{{item.descripcion}}</td>
+                                <td *ngIf="unidadmedida == 'KG' && item.cantidad" class="text-right">
+                                    {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0</td>
+                                <td *ngIf="unidadmedida == 'LT' && item.cantidad" class="text-right">
+                                    {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0</td>
+                                <td *ngIf="!item.cantidad"> </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-center">{{item.ind[1]}}</td>
+                            </tr>
+                        </table>
+                        <span>
+                            __. _________
+                            ___________________________________________________________________________________
+                            _______+_______+_______ _____ ______ __________<br><br>
+                            __. _________
+                            ___________________________________________________________________________________
+                            _______+_______+_______ _____ ______ __________<br><br>
+                            __. _________
+                            ___________________________________________________________________________________
+                            _______+_______+_______ _____ ______ __________<br>
+                        </span>
+                    </td>
+                </h4>
+            </b>
             <br>
             <p class="text-center"> <b> DATOS DE APROBACION FINAL <span class="tab2"></span>ENTREGA ____ HORAS ___ C ___
                     HRA</b></p>
@@ -470,35 +476,38 @@
             ========== {{id}} {{descripcion}} {{componente}} {{color}} {{proximoBatch}} ==========
             FECHA DE APROBACION FINAL ___/ ___ /___ <span class="tab1"></span>HORA _____<br>
         </h5>
-        <div>
-            <table>
-                <tr>
-                    <th>CODMP</th>
-                    <th>FRACCIONAMIENTO SOLICITADO</th>
-                    <th>ENVASADO</th>
-                    <th>CANTIDAD</th>
-                    <th></th>
-                    <th>Ttl.KG x ENV.</th>
-                    <th>Ttl.{{unidadmedida}}</th>
-                </tr>
-                <tr *ngFor="let item of arrayConj">
-                    <td>{{item.codmp}}</td>
-                    <td>{{item.descripcion}}</td>
-                    <td class="text-right">{{item.envasado | numeralPipe}}</td>
-                    <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}
-                    </td>
-                    <td *ngIf="item.indice == 0 || item.indice == ''" class="text-right">0</td>
-                    <td>_______</td>
-                    <td *ngIf="unidadmedida=='LT'" class="text-right">{{(item.envasado * pesoespecifico) | numeralPipe}}
-                    </td>
-                    <td *ngIf="unidadmedida=='KG'" class="text-right">{{item.envasado | numeralPipe}}</td>
-                    <td class="text-right">{{(item.envasado * item.indice) | numeralPipe}}</td>
-                </tr>
-            </table>
-            <hr>
-            <h6> Correcciones de STOCK Materia Prima ___/___/___ <span class="tab2"></span>STOCK Envases ___/___/___
-                <span class="tab2"></span>STOCK Producto Terminado ___/___/___</h6>
-        </div>
+        <b>
+            <div>
+                <table>
+                    <tr>
+                        <th>CODMP</th>
+                        <th>FRACCIONAMIENTO SOLICITADO</th>
+                        <th>ENVASADO</th>
+                        <th>CANTIDAD</th>
+                        <th></th>
+                        <th>Ttl.KG x ENV.</th>
+                        <th>Ttl.{{unidadmedida}}</th>
+                    </tr>
+                    <tr *ngFor="let item of arrayConj">
+                        <td>{{item.codmp}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td class="text-right">{{item.envasado | numeralPipe}}</td>
+                        <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}
+                        </td>
+                        <td *ngIf="item.indice == 0 || item.indice == ''" class="text-right">0</td>
+                        <td>_______</td>
+                        <td *ngIf="unidadmedida=='LT'" class="text-right">
+                            {{(item.envasado * pesoespecifico) | numeralPipe}}
+                        </td>
+                        <td *ngIf="unidadmedida=='KG'" class="text-right">{{item.envasado | numeralPipe}}</td>
+                        <td class="text-right">{{(item.envasado * item.indice) | numeralPipe}}</td>
+                    </tr>
+                </table>
+                <hr>
+                <h6> Correcciones de STOCK Materia Prima ___/___/___ <span class="tab2"></span>STOCK Envases ___/___/___
+                    <span class="tab2"></span>STOCK Producto Terminado ___/___/___</h6>
+            </div>
+        </b>
     </div>
 
 </div>
@@ -509,97 +518,98 @@
             REVESTA S.A.I.C. <span class="tab2"></span><span class="tab1">
             </span>PREPESADO DEL BATCH TICKET {{proximoBatch}}
         </h2>
-    </b>
-    <br><br>
-    <pre>
+        <br><br>
+        <pre>
         CODIGO: {{id}} <span class="tab2"></span><span class="tab2"></span> PRODUCTO: {{descripcion}} {{componente}} {{color}}
         ETIQUETADO COMO: {{descripcionEtiquetas}} - {{colorEtiquetas}}
         CANTIDAD: {{cantidadPlani | numeralPipe: 'true'}} {{unidadmedida}} - (<span *ngIf="unidadmedida=='LT'"> {{(cantidadPlani * pesoespecifico) | numeralPipe: 'true'}} Kg</span><span *ngIf="unidadmedida=='KG'"> {{cantidadPlani | numeralPipe}} Kg</span>) <span class="tab1"></span> FECHA EMISION: {{fechaDelDia}} 
         OPERARIO: ___________________ <span class="tab1"></span> FECHA PREPARADO PREPESADO: ___/___/ ___ <br>
         RECIBIO Y CONTROLO: ___________________ <span class="tab1"></span>FECHA: ___/___/ ___  <span class="tab1"></span>HORA: _________
-    </pre>
-    <td *ngIf="tfa != 'T'">
-        <table>
-            <tr>
-                <th></th>
-                <th>MP</th>
-                <th>PT</th>
-                <th>DESCRIPCION</th>
-                <th>CANTIDAD</th>
-                <th>LOTE Nro.</th>
-                <th>PREPESADO</th>
-                <th>RGO/PROT</th>
-            </tr>
-            <tr *ngFor="let item of arrayAsoc; let i = index;">
-                <ng-container layout="row" *ngIf="item.mpi != 'I' && item.ind[2] != 'SOLVENTE'">;
-                    <td>{{item.orden}}</td>
-                    <td>{{item.codmp}}</td>
-                    <td>{{item.codpt}}</td>
-                    <td>{{item.descripcion}}</td>
-                    <td *ngIf="unidadmedida == 'KG' && item.cantidad" class="text-right">
-                        {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0</td>
-                    <td *ngIf="unidadmedida == 'LT' && item.cantidad" class="text-right">
-                        {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0</td>
-                    <td *ngIf="!item.cantidad"> </td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-center">{{item.ind[1]}}</td>
-                </ng-container>
-            </tr>
-        </table>
-        <br>
-        <hr><br><br>
-        <h2>
-            <span class="text-md-center">SEPARADO, ENVASAMIENTO Y ETIQUETADO LATAS DEL BATCH TICKET
-                {{proximoBatch}}</span>
-        </h2>
-        <table>
-            <tr>
-                <th>CODMP</th>
-                <th>FRACCIONAMIENTO SOLICITADO</th>
-                <th>ENVASADO</th>
-                <th>CANTIDAD</th>
-                <th>SEPARADO</th>
-                <th>ETIQUETADO</th>
-                <th>REALIZO TAREA</th>
-            </tr>
-            <tr *ngFor="let item of arrayConj">
-                <ng-container layout="row" *ngIf="item.indice != ''">
-                    <td>{{item.codmp}}</td>
-                    <td>{{item.descripcion}}</td>
-                    <td class="text-right">{{item.envasado | numeralPipe}}</td>
-                    <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}
-                    </td>
-                    <td *ngIf="item.indice == 0 || item.indice == ''" class="text-right">0</td>
-                    <td>____________</td>
-                    <td>____________</td>
-                    <td>____________</td>
-                </ng-container>
-            </tr>
-        </table>
-        <hr><br><br>
-        <h2>
-            <span style="text-align: center;">ETIQUETAS PARA IDENTIFICAR BATCH TICKET {{proximoBatch}}</span>
-        </h2>
-        <div *ngFor="let item of arrayAsoc; let i = index;">
-            <ng-container layout="row" *ngIf="item.mpi != 'I' && item.ind[2] != 'SOLVENTE'">
-                --------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8<
-                    -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8<
-                    -------- 8< -------- <div style="font-size: 15px; font-weight: bold; ">Batch: {{proximoBatch}} <span
-                        class="tab1"></span>
-                    CODIGO: {{id}}
-        </div><br>
-        Item : {{item.orden}} <br>
-        <div style="font-size: 25px; font-weight: bold; text-align: center;"> {{item.codmp}}{{item.codpt}} -
-            {{item.descripcion}}</div>
-        <div style="font-size: 25px; font-weight: bold; text-align: right;"
-            *ngIf="unidadmedida == 'KG' && item.cantidad">
-            Cantidad: {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0 - kg</div>
-        <div style="font-size: 25px; font-weight: bold; text-align: right;"
-            *ngIf="unidadmedida == 'LT' && item.cantidad">
-            Cantidad: {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0 - kg</div>
-        </ng-container>
+        </pre>
+        <td *ngIf="tfa != 'T'">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>MP</th>
+                    <th>PT</th>
+                    <th>DESCRIPCION</th>
+                    <th>CANTIDAD</th>
+                    <th>LOTE Nro.</th>
+                    <th>PREPESADO</th>
+                    <th>RGO/PROT</th>
+                </tr>
+                <tr *ngFor="let item of arrayAsoc; let i = index;">
+                    <ng-container layout="row" *ngIf="item.mpi != 'I' && item.ind[2] != 'SOLVENTE'">;
+                        <td>{{item.orden}}</td>
+                        <td>{{item.codmp}}</td>
+                        <td>{{item.codpt}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td *ngIf="unidadmedida == 'KG' && item.cantidad" class="text-right">
+                            {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0</td>
+                        <td *ngIf="unidadmedida == 'LT' && item.cantidad" class="text-right">
+                            {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0</td>
+                        <td *ngIf="!item.cantidad"> </td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-center">{{item.ind[1]}}</td>
+                    </ng-container>
+                </tr>
+            </table>
+            <br>
+            <hr><br><br>
+            <h2>
+                <span class="text-md-center">SEPARADO, ENVASAMIENTO Y ETIQUETADO LATAS DEL BATCH TICKET
+                    {{proximoBatch}}</span>
+            </h2>
+            <table>
+                <tr>
+                    <th>CODMP</th>
+                    <th>FRACCIONAMIENTO SOLICITADO</th>
+                    <th>ENVASADO</th>
+                    <th>CANTIDAD</th>
+                    <th>SEPARADO</th>
+                    <th>ETIQUETADO</th>
+                    <th>REALIZO TAREA</th>
+                </tr>
+                <tr *ngFor="let item of arrayConj">
+                    <ng-container layout="row" *ngIf="item.indice != ''">
+                        <td>{{item.codmp}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td class="text-right">{{item.envasado | numeralPipe}}</td>
+                        <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}
+                        </td>
+                        <td *ngIf="item.indice == 0 || item.indice == ''" class="text-right">0</td>
+                        <td>____________</td>
+                        <td>____________</td>
+                        <td>____________</td>
+                    </ng-container>
+                </tr>
+            </table>
+            <hr><br><br>
+            <h2>
+                <span style="text-align: center;">ETIQUETAS PARA IDENTIFICAR BATCH TICKET {{proximoBatch}}</span>
+            </h2>
+            <div *ngFor="let item of arrayAsoc; let i = index;">
+                <ng-container layout="row" *ngIf="item.mpi != 'I' && item.ind[2] != 'SOLVENTE'">
+                    --------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8<
+                        -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8<
+                        -------- 8< -------- <div style="font-size: 15px; font-weight: bold; ">Batch: {{proximoBatch}}
+                        <span class="tab1"></span>
+                        CODIGO: {{id}}
+            </div><br>
+            Item : {{item.orden}} <br>
+            <div style="font-size: 25px; font-weight: bold; text-align: center;"> {{item.codmp}}{{item.codpt}} -
+                {{item.descripcion}}</div>
+            <div style="font-size: 25px; font-weight: bold; text-align: right;"
+                *ngIf="unidadmedida == 'KG' && item.cantidad">
+                Cantidad: {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0 - kg</div>
+            <div style="font-size: 25px; font-weight: bold; text-align: right;"
+                *ngIf="unidadmedida == 'LT' && item.cantidad">
+                Cantidad: {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0 - kg</div>
+            </ng-container>
+
 </div>
+</b>
 </div>
 
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

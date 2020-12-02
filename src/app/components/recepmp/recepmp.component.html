@@ -177,6 +177,8 @@
                 <p>Nro. Lote : {{lotePrint}}</p>
                 <p *ngIf="unidadRecibo=='Kg'">Cantidad recibida {{unidadRecibo}}: {{cantidad}}</p>
                 <p *ngIf="unidadRecibo=='Lt'">Cantidad recibida {{unidadRecibo}}: {{(cantidad / pesoespecifico)}} = {{cantidad}} Kg</p>                
+                <p *ngIf="unidadRecibo=='Un'">Cantidad recibida {{unidadRecibo}}: {{cantidad}}</p>
+                <p *ngIf="unidadRecibo=='Mt'">Cantidad recibida {{unidadRecibo}}: {{cantidad}}</p>
                 <p>Fecha recepcion : {{fecha}}</p>
             </div>
         </div>
