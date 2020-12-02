@@ -58,7 +58,8 @@ export class AnulacionComponent implements OnInit {
             alertify.success("Has anulado el Batch Ticket !");
             this.ngOnInit()
           }, (err) => {
-            console.log(err);
+            alertify.error(err.error.message);
+            this.cancelar();
           })
       } else {
         this.batch=null;

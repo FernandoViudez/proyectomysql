@@ -165,7 +165,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
       icon: "question"
     }).then(res => {
       if (res.value) {
-        this.resetearTodo()
+        this.resetearTodo();
       } else {
         return;
       }
@@ -565,7 +565,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
     this.pendientes = false;
     this.arrayB = [];
 
-    // Change to the first page
+    // Change to the next page
     document.getElementById("hiddenButton").click();
 
   }

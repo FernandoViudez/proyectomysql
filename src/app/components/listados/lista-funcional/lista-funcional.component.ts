@@ -486,6 +486,8 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     this.sumaTotal = null;
     this.resetearSubtotales();
     this.esMp = null;
+    this.mpDescription = null;
+    this.codmp = null;
   }
 
   resetearSubtotales() {

@@ -22,31 +22,27 @@
                 </select>
             </div>
         </div>
-        <div class="col-2 mt-4" *ngIf='operacion != "MINIMO"'>
-            <input *ngIf="!esPlani && !esMp" class="form-control boldText" type="number" placeholder="Desde MP..."
-                [(ngModel)]="desde">
+        <div class="col-2 mt-4" *ngIf='operacion != "MINIMO" && !esPlani && !esMp'>
+            <input class="form-control boldText" type="number" placeholder="Desde MP..." [(ngModel)]="desde">
+        </div>
+        <div class="col-2 mt-4" *ngIf='operacion != "MINIMO" && !esPlani && !esMp'>
+            <input class="form-control boldText" type="number" placeholder="Hasta MP..." [(ngModel)]="hasta">
         </div>
         <!-- Solo para codmp en caso de buscar Mp dentro de formulas -->
-        <div *ngIf="esMp && !sonFechas">
-            <div class="col-6 mt-4" *ngIf='operacion != "MINIMO"'>
-                <input class="form-control boldText" type="number" [(ngModel)]="codmp"
-                    placeholder="Codigo de Materia prima...">
-            </div>
-            <div class="col-6 mt-4" *ngIf='operacion != "MINIMO"'>
-                <p>{{mpDescription}}</p>
-            </div>
+        <div class="col-4 mt-4" *ngIf="esMp && !sonFechas && operacion != 'MINIMO'">
+            <input class="form-control boldText" type="number" [(ngModel)]="codmp"
+                placeholder="Codigo de Materia prima...">
         </div>
-        <div class="col-2 mt-4" *ngIf='operacion != "MINIMO"'>
-            <input *ngIf="!esPlani && !esMp" class="form-control boldText" type="number" placeholder="Hasta MP..."
-                [(ngModel)]="hasta">
+        <div class="col-4 mt-4" *ngIf="operacion == 'MPENFORMULAS'">
+            <h3><p>{{mpDescription}}</p></h3>
         </div>
-        <div class="col-2 mt-2" *ngIf='operacion != "MINIMO"'>
-            <a *ngIf="sonFechas">Desde fecha</a>
-            <input *ngIf="sonFechas" class="form-control boldText" type="date" [(ngModel)]="inicio">
+        <div class="col-2 mt-2" *ngIf='operacion != "MINIMO" && sonFechas'>
+            <a>Desde fecha</a>
+            <input class="form-control boldText" type="date" [(ngModel)]="inicio">
         </div>
-        <div class="col-2 mt-2" *ngIf='operacion != "MINIMO"'>
-            <a *ngIf="sonFechas">Hasta fecha</a>
-            <input *ngIf="sonFechas" class="form-control boldText" type="date" [(ngModel)]="fin">
+        <div class="col-2 mt-2" *ngIf='operacion != "MINIMO" && sonFechas'>
+            <a>Hasta fecha</a>
+            <input class="form-control boldText" type="date" [(ngModel)]="fin">
         </div>
     </div>
 
