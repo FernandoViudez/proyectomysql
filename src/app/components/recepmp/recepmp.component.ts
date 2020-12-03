@@ -119,7 +119,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
     let mes = new Date().getMonth() + 1;
     let dia = new Date().getDate();
 
-    this.fecha = `${mes}-${dia}-${anio}`;
+    this.fecha = `${dia}/${mes}/${anio}`;
 
     if (!this.id) {
       return alertify.error("EL CODIGO DE MATERIA PRIMA ES INCORRECTO !");
