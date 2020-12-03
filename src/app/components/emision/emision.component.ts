@@ -248,7 +248,6 @@ export class EmisionComponent implements OnInit, OnDestroy {
       this.colorEtiquetas = this.color;
 
       this.calcularFaltantes();
-      this.generarProximoBatch();
     }, (err) => {
       console.log(err);
     })
@@ -395,13 +394,10 @@ export class EmisionComponent implements OnInit, OnDestroy {
     window.print();
   }
 
-  guardarEnvases(input: number, codmp, envasado) {
-    console.log("Envasado -->  ", envasado);
-
-    // Paso el valor del input a numero para sacar el fixed
+  guardarEnvases(input: any, codmp, envasado) {
     input = Number(input);
-
-    if (!Number.isInteger((Number(input.toFixed(2)) / envasado))) {
+    
+    if (!Number.isInteger(input / envasado)) {
       return Swal.fire({
         title: "Error!",
         text: "CORREGIR CANTIDAD A ENVASAR!!!",
@@ -411,7 +407,6 @@ export class EmisionComponent implements OnInit, OnDestroy {
         allowEnterKey: false,
         allowEscapeKey: false,
         allowOutsideClick: false
-
       })
     }
 
@@ -567,6 +562,9 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
     // Change to the next page
     document.getElementById("hiddenButton").click();
+    
+    // Get the new batch
+    this.generarProximoBatch();
 
   }
 

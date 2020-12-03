@@ -227,8 +227,10 @@ export class PlanifiComponent implements OnInit {
 
       if (AnyoFecha < AnyoHoy) {
         return false;
-      } else if (MesFecha < MesHoy) {
-        return false;
+      } else if (MesFecha < MesHoy && AnyoFecha > AnyoHoy) { 
+        return true; // Si el mes es menor pero el año mayor, lo dejamos
+      } else if (MesFecha < MesHoy && AnyoFecha < AnyoHoy) { 
+        return false; // Si el mes es menor y el año tambien, no lo dejamos
       } else if (MesFecha === MesHoy && DiaFecha < DiaHoy) {
         return false;
       } else {
@@ -345,7 +347,7 @@ export class PlanifiComponent implements OnInit {
         this.proceso, this.lote, this.operario, this.operarioenv, this.dispersora, this.molino,
         this.descripcion, this.editar, this.planifiService, this.id, this.correccion)
       this.resetear()
-    }
+    } 
 
 
 
