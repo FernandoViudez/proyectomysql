@@ -114,6 +114,13 @@ export class RecepmpComponent implements OnInit, OnDestroy {
 
 
   finalizar() {
+
+    let anio = new Date().getFullYear();
+    let mes = new Date().getMonth() + 1;
+    let dia = new Date().getDate();
+
+    this.fecha = `${mes}-${dia}-${anio}`;
+
     if (!this.id) {
       return alertify.error("EL CODIGO DE MATERIA PRIMA ES INCORRECTO !");
     }
@@ -129,11 +136,6 @@ export class RecepmpComponent implements OnInit, OnDestroy {
     if (!this.cantidad) {
       return alertify.error("LA CANTIDAD RECIBIDA ES OBLIGATORIA !");
     }
-    let anio = new Date().getFullYear();
-    let mes = new Date().getMonth();
-    let dia = new Date().getDate();
-
-    this.fecha = `${mes}-${dia}-${anio}`;
 
     this.proveedor = this.proveedor ? this.proveedor.toUpperCase() : this.proveedor;
     this.ordenCompra = this.ordenCompra ? this.ordenCompra.toUpperCase() : this.ordenCompra;

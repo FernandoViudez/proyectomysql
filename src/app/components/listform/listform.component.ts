@@ -112,9 +112,9 @@ export class ListformComponent implements OnInit {
           let data=err.error.response;
           alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !")
           if(data.color == null) {
-            this.descripcion1 = `${data.desc}  ${data.componente}`;
+            this.descripcion1 = `${data.descripcion}  ${data.componente}`;
           } else {
-            this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
+            this.descripcion1 = `${data.descripcion}  ${data.color}  ${data.componente}`;
           }
         } else {
           alertify.error("NO EXISTE ESTE PRODUCTO TERMINADO !")
