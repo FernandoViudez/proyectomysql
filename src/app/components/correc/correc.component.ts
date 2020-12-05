@@ -47,7 +47,7 @@ export class CorrecComponent implements OnInit {
   //CAMBIAR USUARIO CUANDO SE IMPLEMENTE EL LOGIN
   finalizar() {
     if (!this.id || !this.cantidad || !this.motivo) {
-      return alertify.error("DATOS INCORRECTOS, INGRESE DATOS VÁLIDOS");
+      return alertify.error("DATOS INCOMPLETOS, COMPLETE TODOS LOS CAMPOS");
     }
 
     let data = { id: this.id, cantidad: this.cantidad, usuario: localStorage.getItem("username"), motivo: this.motivo.toUpperCase() }
@@ -78,6 +78,7 @@ export class CorrecComponent implements OnInit {
         console.log(err);
         if (err.error.response) {
           let item = err.error.response;
+          return alertify.error("MATERIA PRIMA CON PE = 0 !")
         } else {
           this.id = null;
           this.resetear(); // puse esto por si borra el codigo de MP
