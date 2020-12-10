@@ -254,7 +254,8 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           "FECHA",
           "PROVEEDOR",
           "MOTIVO",
-          "LOTE"
+          "LOTE",
+          "MODIFICO"
         ],
         tb: [
           "id",
@@ -265,7 +266,8 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           "fecha",
           "proveedor",
           "motivo",
-          "numeroLoteInt"
+          "numeroLoteInt",
+          "usuario"
         ]
       }
     } else {
