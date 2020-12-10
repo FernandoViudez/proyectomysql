@@ -92,13 +92,12 @@ export class PlanifiComponent implements OnInit {
 
   generarClases(data: any) {
     for (let item of data) {
-      console.log(item);
-      if (item.proceso == "ENVASADO") {
+      if(item.fechafin) {
+        item.isOragne = true;
+      } else if (item.proceso == "ENVASADO") {
         item.isGreen = true;
       } else if (item.proceso == "FALTANTE") {
         item.isRed = true;
-      } else if (item.fechafin) {
-        item.isOrange = true;
       } else if (item.fechacomienzo) {
         item.isYellow = true;
       }
@@ -275,6 +274,8 @@ export class PlanifiComponent implements OnInit {
       this.correccion = 'color + viscosidad'
     } else if (this.proceso == 'AJUSTE DE VISCOSIDAD' && this.correccion == 'color') {
       this.correccion = 'color + viscosidad'
+    } else if (this.proceso == 'TINTURADO') {
+      this.correccion = 'tint'
     }
 
     function cargar(codpt: number, cantidad: number, formaenv: string,
