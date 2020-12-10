@@ -93,7 +93,7 @@ export class PlanifiComponent implements OnInit {
   generarClases(data: any) {
     for (let item of data) {
       if(item.fechafin) {
-        item.isOragne = true;
+        item.isOrange = true;
       } else if (item.proceso == "ENVASADO") {
         item.isGreen = true;
       } else if (item.proceso == "FALTANTE") {
