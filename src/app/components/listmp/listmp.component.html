@@ -1,4 +1,4 @@
-<div class="notPrint">
+<div class="notPrint" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
     <div class="p-0 mt-1" style="background-color:rgb(190, 171, 131)">
         <h5 class="text-center font-weight-bold">VISUALIZACION DE MATERIAS PRIMAS</h5>
     </div>
@@ -100,26 +100,26 @@
             <tbody>
                 <tr *ngFor="let item of array" class="hoverFila text-center" (click)="traerFisicos(item.id)"
                     style="cursor: pointer;">
-                    <td>{{item.id}}</td>
-                    <td>{{item.descripcion}}</td>
-                    <td>{{item.tipo}}</td>
-                    <td>{{item.ubicacion}}</td>
-                    <td>{{item.fechaultimarecepcion | datePipe}}</td>
-                    <td>{{item.stock}}</td>
-                    <td>{{item.stockminimo}}</td>
-                    <td>{{item.unidadmedidacompra}}</td>
-                    <td>{{item.riesgo}}</td>
-                    <td>{{item.proteccion}}</td>
-                    <td>{{item.codpt}}</td>
-                    <td>{{item.condaprob1}}</td>
-                    <td>{{item.condaprob2}}</td>
-                    <td>{{item.condaprob3}}</td>
-                    <td>{{item.condaprob4}}</td>
-                    <td>{{item.info1}}</td>
-                    <td>{{item.info2}}</td>
-                    <td>{{item.info3}}</td>
-                    <td>{{item.cobarras}}</td>
-                    <td>{{item.precio}}</td>
+                    <td style="font-size: 16px;">{{item.id}}</td>
+                    <td style="font-size: 16px;">{{item.descripcion}}</td>
+                    <td style="font-size: 16px;">{{item.tipo}}</td>
+                    <td style="font-size: 16px;">{{item.ubicacion}}</td>
+                    <td style="font-size: 16px;">{{item.fechaultimarecepcion | datePipe}}</td>
+                    <td style="font-size: 16px;">{{item.stock}}</td>
+                    <td style="font-size: 16px;">{{item.stockminimo}}</td>
+                    <td style="font-size: 16px;">{{item.unidadmedidacompra}}</td>
+                    <td style="font-size: 16px;">{{item.riesgo}}</td>
+                    <td style="font-size: 16px;">{{item.proteccion}}</td>
+                    <td style="font-size: 16px;">{{item.codpt}}</td>
+                    <td style="font-size: 16px;">{{item.condaprob1}}</td>
+                    <td style="font-size: 16px;">{{item.condaprob2}}</td>
+                    <td style="font-size: 16px;">{{item.condaprob3}}</td>
+                    <td style="font-size: 16px;">{{item.condaprob4}}</td>
+                    <td style="font-size: 16px;">{{item.info1}}</td>
+                    <td style="font-size: 16px;">{{item.info2}}</td>
+                    <td style="font-size: 16px;">{{item.info3}}</td>
+                    <td style="font-size: 16px;">{{item.cobarras}}</td>
+                    <td style="font-size: 16px;">{{item.precio}}</td>
                 </tr>
             </tbody>
 

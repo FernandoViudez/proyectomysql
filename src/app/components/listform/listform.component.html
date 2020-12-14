@@ -4,7 +4,7 @@
     <h5 class="text-center font-weight-bold">VISUALIZACION DE FORMULAS</h5>
   </div>
 
-  <div class="jumbotron p-2 mt-1" style="background-color:rgb(180, 138, 21); font-size: 11px;">
+  <div class="jumbotron p-2 mt-1" style="background-color:rgb(180, 138, 21); font-size: 11px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
     <div class="row text-white">
       <div class="col-3 boldText mt-2">
         <div class="m-auto" style="width: 100%; ">
@@ -85,7 +85,7 @@
   </div>
 
   <div style="overflow: scroll; height:420px; width: 90%;" class="m-auto">
-    <table class="w-100">
+    <table class="w-100" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
       <tr class="text-center" *ngIf="array.length==0">
         <th></th>
       </tr>
@@ -100,15 +100,15 @@
         <th>CANTIDAD</th>
       </tr>
       <tr *ngFor="let item of array" class="hoverFila">
-        <td>{{item.idprod}}</td>
-        <td>{{item.tintoformoalt}}</td>
-        <td>{{item.orden}}</td>
-        <td>{{item.mpi}}</td>
-        <td>{{item.codmp}}</td>
-        <td>{{item.codpt}}</td>
-        <td>{{item.descripcion}}</td>
-        <td *ngIf="item.cantidad" class="text-right">{{item.cantidad | numeralPipe}}</td>
-        <td *ngIf="!item.cantidad"> </td>
+        <td style="font-size: 18px;">{{item.idprod}}</td>
+        <td style="font-size: 18px;">{{item.tintoformoalt}}</td>
+        <td style="font-size: 18px;">{{item.orden}}</td>
+        <td style="font-size: 18px;">{{item.mpi}}</td>
+        <td style="font-size: 18px;">{{item.codmp}}</td>
+        <td style="font-size: 18px;">{{item.codpt}}</td>
+        <td style="font-size: 18px;">{{item.descripcion}}</td>
+        <td style="font-size: 18px;" *ngIf="item.cantidad" class="text-right">{{item.cantidad | numeralPipe}}</td>
+        <td style="font-size: 18px;" *ngIf="!item.cantidad"> </td>
       </tr>
 
       <tr class="bg-primary">
@@ -142,7 +142,7 @@
   </div>
 
   <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+    aria-hidden="true" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -187,7 +187,7 @@
           </div>
 
           <div style="overflow: scroll; height: 200px; width: 100%;">
-            <table class="table table-hover">
+            <table class="table table-hover" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
               <tr>
                 <th>CODIGO</th>
                 <th>DESCRIPCIÓN</th>
@@ -195,7 +195,7 @@
                 <th>COMPONENTE</th>
               </tr>
               <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
-                (click)="seleccionarIdPt(item2.id)" style="cursor: pointer;">
+                (click)="seleccionarIdPt(item2.id)" style="cursor: pointer; ">
                 <td>{{item2.id}}</td>
                 <td>{{item2.descripcion}}</td>
                 <td>{{item2.color}}</td>

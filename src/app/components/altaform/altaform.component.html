@@ -1,8 +1,7 @@
-
-<div class= "p-1 mt-2">
-        <h5 class="bg-info text-white text-center font-weight-bold">FORMULAS</h5>
+<div class="p-1 mt-2">
+  <h5 class="bg-info text-white text-center font-weight-bold">FORMULAS</h5>
 </div>
-<div class="row mt-2 ml-2">       
+<div class="row mt-2 ml-2">
   <div class="col-1">
     <div class="m-auto" style="width: 100%; ">
       <label for="idp"><b> INGRESE CODIGO P.T.</b></label>
@@ -13,15 +12,14 @@
   </div>
   <div class="col-1">
     <svg (click)="resetear1()" *ngIf="array.length==0" data-toggle="modal" style="cursor: pointer;"
-    data-target="#exampleModal3" class="bi bi-search" width="2em" height="2em"
-    viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd"
-      d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-      clip-rule="evenodd" />
-    <path fill-rule="evenodd"
-      d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
-      clip-rule="evenodd" />
-  </svg>
+      data-target="#exampleModal3" class="bi bi-search" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd"
+        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+        clip-rule="evenodd" />
+      <path fill-rule="evenodd"
+        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd" />
+    </svg>
   </div>
   <div class="col-4">
     <div class="m-auto">
@@ -40,62 +38,70 @@
     <span class="badge badge-primary ml-3" style="font-size: 23px;">{{tintoformoalt}}</span>
   </div>
   <div class="col-1 m-auto">
-	  <svg *ngIf="idprod" data-toggle="modal" data-target="#exampleModal" class="material-icons"
-	  class="float-left bi-plus-circle-fill" width="50px" height="50px" style="cursor: pointer;" viewBox="0 0 16 16"
-	  fill="blue" xmlns="http://www.w3.org/2000/svg">
-	  <path fill-rule="evenodd"
-	    d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
-	    clip-rule="evenodd" />
-	  </svg>
+    <svg *ngIf="idprod" data-toggle="modal" data-target="#exampleModal" class="material-icons"
+      class="float-left bi-plus-circle-fill" width="50px" height="50px" style="cursor: pointer;" viewBox="0 0 16 16"
+      fill="blue" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd"
+        d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
+        clip-rule="evenodd" />
+    </svg>
   </div>
 </div>
 <hr>
-<div class="row m-auto">
+<div class="row m-auto" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
   <div class="col-2">
     <div class="m-auto ml-2">
-      <h6 style="font-size: 12px;" id="pe"><b>Peso especifico: </b><span style="font-size: 15px; background-color: rgb(190, 171, 131);"
-          class="badge badge-success">{{pe | numeralPipe}}</span></h6>
+      <h6 style="font-size: 15px;" id="pe"><b>Peso especifico: </b><span
+          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{pe |
+          numeralPipe}}</span></h6>
     </div>
   </div>
   <div class="col-2">
     <div class="m-auto ml-2">
-      <h6 style="font-size: 12px;" id="ppp"><b>Sólidos PPP: </b><span style="font-size: 15px; background-color: rgb(190, 171, 131);"
-          class="badge badge-success">{{ppp | numeralPipe}}</span></h6>
+      <h6 style="font-size: 15px;" id="ppp"><b>Sólidos PPP: </b><span
+          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{ppp |
+          numeralPipe}}</span></h6>
     </div>
     <div class="m-auto ml-2">
-      <h6 style="font-size: 12px;" id="ppv"><b>Sólidos PPV: </b><span style="font-size: 15px; background-color: rgb(190, 171, 131);"
-          class="badge badge-success">{{ppv | numeralPipe}}</span></h6>
+      <h6 style="font-size: 15px;" id="ppv"><b>Sólidos PPV: </b><span
+          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{ppv |
+          numeralPipe}}</span></h6>
     </div>
   </div>
   <div class="col-2">
     <div class="m-auto ml-2">
-      <h6 style="font-size: 12px;" id="resi"><b>% Resina : </b><span style="font-size: 15px; background-color: rgb(190, 171, 131);"
-          class="badge badge-success">{{resi | numeralPipe}}</span></h6>
+      <h6 style="font-size: 15px;" id="resi"><b>% Resina : </b><span
+          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{resi |
+          numeralPipe}}</span></h6>
     </div>
   </div>
   <div class="col-2">
     <div class="m-auto ml-2">
-      <h6 style="font-size: 12px;" id="pig"><b>% Pigmento : </b><span style="font-size: 15px; background-color: rgb(190, 171, 131);"
-          class="badge badge-success">{{pig | numeralPipe}}</span></h6>
+      <h6 style="font-size: 15px;" id="pig"><b>% Pigmento : </b><span
+          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{pig |
+          numeralPipe}}</span></h6>
     </div>
   </div>
   <div class="col-2">
     <div class="m-auto ml-2">
-      <h6 style="font-size: 12px;" id="ppv"><b>% Solvente: </b><span style="font-size: 15px; background-color: rgb(190, 171, 131);"
-          class="badge badge-success">{{solv | numeralPipe}}</span></h6>
+      <h6 style="font-size: 15px;" id="ppv"><b>% Solvente: </b><span
+          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{solv |
+          numeralPipe}}</span></h6>
     </div>
   </div>
   <div class="col-2">
     <div class="m-auto ml-2">
-      <h6 style="font-size: 12px;" id="pr"><b>Precio: </b><span style="font-size: 15px; background-color: rgb(190, 171, 131);"
-          class="badge badge-success">{{pr | numeralPipe}}</span></h6>
+      <h6 style="font-size: 15px;" id="pr"><b>Precio: </b><span
+          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{pr |
+          numeralPipe}}</span></h6>
     </div>
   </div>
-
 </div>
 <hr>
 
-<div style="overflow: scroll; width: 90%; margin-top: 2%; height: 370px;" class="m-auto">
+<div
+  style="overflow: scroll; width: 90%; margin-top: 2%; height: 450px; font-family: Verdana, Geneva, Tahoma, sans-serif;"
+  class="m-auto">
   <ul cdkDropList class="example-list table-fixed" (cdkDropListDropped)="dropped($event)">
     <div class="row w-100">
       <div class="example-box bg-dark text-white text-center p-1">
@@ -124,26 +130,26 @@
     </div>
 
     <div class="row w-100 mt-1">
-      <div cdkDrag *ngFor="let item of array; let i = index" style="border-bottom: 0.5px solid rgb(224, 224, 224);"
+      <div cdkDrag *ngFor="let item of array; let i = index" style="border-bottom: 0.5px solid rgb(224, 224, 224); "
         class="example-box bg-ligth filaActiva">
         <div class="col-1 text-center">
-          <h6 class="">{{item.orden }}</h6>
+          <h6 class="" style="font-size: 18px;">{{item.orden }}</h6>
         </div>
         <div class="col-1 ml-3">
-          <h6 class="">{{item.mpi}}</h6>
+          <h6 class="" style="font-size: 18px;">{{item.mpi}}</h6>
         </div>
         <div class="col-1">
-          <h6 class="">{{item.codmp}}</h6>
+          <h6 class="" style="font-size: 18px;">{{item.codmp}}</h6>
         </div>
         <div class="col-1">
-          <h6 class="">{{item.codpt}}</h6>
+          <h6 class="" style="font-size: 18px;">{{item.codpt}}</h6>
         </div>
         <div class="col-4">
-          <h6 class="">{{item.descripcion}}</h6>
+          <h6 class="" style="font-size: 18px;">{{item.descripcion}}</h6>
         </div>
         <div class="col-1">
-          <h6 *ngIf="item.cantidad" class="text-right">{{item.cantidad | numeralPipe}}</h6>
-          <h6 *ngIf="!item.cantidad"> </h6>
+          <h6 style="font-size: 18px;" *ngIf="item.cantidad" class="text-right">{{item.cantidad | numeralPipe}}</h6>
+          <h6 style="font-size: 18px;" *ngIf="!item.cantidad"> </h6>
         </div>
         <div *ngIf="!mostrar" class="col-1">
           <td>
@@ -158,8 +164,8 @@
         </div>
         <div *ngIf="!mostrar" class="col-1">
           <td>
-            <button (click)="borraFila(i)" class="btn btn-outline-primary"><svg class="bi bi-trash-fill"
-                width="15px" height="15px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <button (click)="borraFila(i)" class="btn btn-outline-primary"><svg class="bi bi-trash-fill" width="15px"
+                height="15px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
                   d="M2.5 1a1 1 0 00-1 1v1a1 1 0 001 1H3v9a2 2 0 002 2h6a2 2 0 002-2V4h.5a1 1 0 001-1V2a1 1 0 00-1-1H10a1 1 0 00-1-1H7a1 1 0 00-1 1H2.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM8 5a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 018 5zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z"
                   clip-rule="evenodd" />
@@ -189,13 +195,15 @@
 
 <div class="row mt-3">
   <div style="width: 40%; margin-left: 71%;">
-    <h6 class="text-success boldText" id="sumTot" *ngIf="sumaTot<=100"><b>Suma de cantidades: {{sumaTot | numeralPipe}}</b></h6>
-    <h6 class="text-danger boldText" id="sumTot" *ngIf="sumaTot>100"><b>Suma de cantidades: {{sumaTot | numeralPipe}}</b></h6>
+    <h6 class="text-success boldText" id="sumTot" *ngIf="sumaTot<=100"><b>Suma de cantidades: {{sumaTot |
+        numeralPipe}}</b></h6>
+    <h6 class="text-danger boldText" id="sumTot" *ngIf="sumaTot>100"><b>Suma de cantidades: {{sumaTot |
+        numeralPipe}}</b></h6>
   </div>
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+  aria-hidden="true" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -208,34 +216,37 @@
 
         <div class="form-group">
           <label for="recipient-name" class="col-form-label">MPI</label>
-          <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name">
+          <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name" style="font-size: 18px;">
         </div>
         <div class="row">
           <div class="col-6">
             <div class="form-group">
               <label for="recipient-name1" class="col-form-label">Código MP</label>
-              <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name1">
+              <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name1" style="font-size: 18px;">
             </div>
           </div>
           <div class="col-6">
             <div class="form-group">
               <label for="recipient-name2" class="col-form-label">Código PT</label>
-              <input (change)="validarpt(true)" type="number" [(ngModel)]="codpt" class="form-control" id="recipient-name2">
+              <input (change)="validarpt(true)" type="number" [(ngModel)]="codpt" class="form-control"
+                id="recipient-name2" style="font-size: 18px;">
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="recipient-name3" class="col-form-label">Descripción</label>
-          <input type="text" [(ngModel)]="descripcion" class="form-control" id="recipient-name3" maxlength = "65">
+          <input type="text" [(ngModel)]="descripcion" class="form-control" id="recipient-name3" maxlength="65" style="font-size: 18px;">
         </div>
         <div class="form-group">
           <label for="recipient-name4" class="col-form-label">Cantidad</label>
-          <input step="0.01" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantidad" class="form-control" id="recipient-name4">
+          <input step="0.01" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantidad" class="form-control"
+            id="recipient-name4" style="font-size: 18px;">
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" (click)="cargar()">Cargar</button>
-        <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" (click)="resetear()">Resetear</button>
+        <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
+          (click)="resetear()">Resetear</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
@@ -243,7 +254,7 @@
 </div>
 
 <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+  aria-hidden="true" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -258,7 +269,7 @@
           <div class="col-12">
             <div class="form-group">
               <label for="recipient-name0" class="col-form-label">MPI</label>
-              <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name0">
+              <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name0" style="font-size: 18px;">
             </div>
           </div>
         </div>
@@ -268,25 +279,26 @@
             <div class="form-group">
               <label for="recipient-name01" class="col-form-label">Código MP</label>
               <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control"
-                id="recipient-name01">
+                id="recipient-name01" style="font-size: 18px;">
             </div>
           </div>
           <div class="col">
             <div class="form-group">
               <label for="recipient-name02" class="col-form-label">Código PT</label>
               <input (change)="validarpt(true)" type="number" [(ngModel)]="codpt" class="form-control"
-                id="recipient-name02">
+                id="recipient-name02" style="font-size: 18px;">
             </div>
           </div>
         </div>
 
         <div class="form-group">
           <label for="recipient-name03" class="col-form-label">Descripción</label>
-          <input type="text" [(ngModel)]="descripcion" class="form-control" id="recipient-name03">
+          <input type="text" [(ngModel)]="descripcion" class="form-control" id="recipient-name03" style="font-size: 18px;">
         </div>
         <div class="form-group">
           <label for="recipient-name04" class="col-form-label">Cantidad</label>
-          <input step="0.01" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantidad" class="form-control" id="recipient-name04">
+          <input step="0.01" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantidad" class="form-control"
+            id="recipient-name04" style="font-size: 18px;">
         </div>
 
       </div>
@@ -294,12 +306,12 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-success" data-dismiss="modal" (click)="editar()">Cargar!</button>
       </div>
-    </div> 
+    </div>
   </div>
 </div>
 
 <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+  aria-hidden="true" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content" style="width: 90%;">
       <div class="modal-header">
@@ -349,7 +361,7 @@
               <th>COMPONENTE</th>
             </tr>
             <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
-              (click)="seleccionarId(item2.id)" style="cursor: pointer;">
+              (click)="seleccionarId(item2.id)">
               <td>{{item2.id}}</td>
               <td>{{item2.descripcion}}</td>
               <td>{{item2.color}}</td>
@@ -360,7 +372,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" (click)="resetear()">Resetear</button>
+        <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
+          (click)="resetear()">Resetear</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>

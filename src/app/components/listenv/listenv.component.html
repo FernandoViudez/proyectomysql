@@ -1,4 +1,4 @@
-<div class="notPrint">
+<div class="notPrint" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
     <div class="p-0 mt-1" style="background-color:rgb(190, 171, 131)">
         <h5 class="text-center font-weight-bold">VISUALIZACION DE ENVASADOS</h5>
     </div>
@@ -46,11 +46,11 @@
                 <th>CODIGO DE BARRAS</th>
             </tr>
             <tr class="hoverFila" *ngFor="let item of array">
-                <td>{{item.id}}</td>
-                <td class="text-right">{{item.envasado | numeralPipe}}</td>
-                <td class="text-center">{{item.codmp}}</td>
-                <td>{{item.descripcion}}</td>
-                <td>{{item.cobarras}}</td>
+                <td style="font-size: 18px;">{{item.id}}</td>
+                <td style="font-size: 18px;" class="text-right">{{item.envasado | numeralPipe}}</td>
+                <td style="font-size: 18px;" class="text-center">{{item.codmp}}</td>
+                <td style="font-size: 18px;">{{item.descripcion}}</td>
+                <td style="font-size: 18px;">{{item.cobarras}}</td>
             </tr>
             <tr class="bg-primary">
                 <h6 class="text-white p-3" *ngIf="array.length==0"> NO HEMOS ENCONTRADO PRODUCTOS CON ESOS PARAMETROS :(

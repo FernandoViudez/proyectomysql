@@ -1,4 +1,4 @@
-<div class="notPrint">
+<div class="notPrint" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
     <div class="p-0 mt-1" style="background-color:rgb(190, 171, 131)">
         <h5 class="text-center font-weight-bold">VISUALIZACION DE PRODUCTOS TERMINADOS</h5>
     </div>
@@ -139,18 +139,18 @@
             </tr>
             <tr *ngFor="let item of array" (click)="traerDf(item.id)" style="cursor: pointer;"
                 class="hoverFila text-center">
-                <td>{{item.id}}</td>
-                <td>{{item.descripcion}}</td>
-                <td>{{item.color}}</td>
-                <td>{{item.colorigual}}</td>
-                <td>{{item.componente}}</td>
-                <td>{{item.formaconjunto}}</td>
-                <td>{{item.relaciondemezcla}}</td>
-                <td>{{item.fechaultimaelaboracion | datePipe}}</td>
-                <td>{{item.ultimamodificacion | datePipe}}</td>
-                <td>{{item.unidadmedida}}</td>
-                <td>{{item.stock | numeralPipe}}</td>
-                <td>{{item.precio | numeralPipe}}</td>
+                <td style="font-size: 16px;">{{item.id}}</td>
+                <td style="font-size: 16px;">{{item.descripcion}}</td>
+                <td style="font-size: 16px;">{{item.color}}</td>
+                <td style="font-size: 16px;">{{item.colorigual}}</td>
+                <td style="font-size: 16px;">{{item.componente}}</td>
+                <td style="font-size: 16px;">{{item.formaconjunto}}</td>
+                <td style="font-size: 16px;">{{item.relaciondemezcla}}</td>
+                <td style="font-size: 16px;">{{item.fechaultimaelaboracion | datePipe}}</td>
+                <td style="font-size: 16px;">{{item.ultimamodificacion | datePipe}}</td>
+                <td style="font-size: 16px;">{{item.unidadmedida}}</td>
+                <td style="font-size: 16px;">{{item.stock | numeralPipe}}</td>
+                <td style="font-size: 16px;">{{item.precio | numeralPipe}}</td>
             </tr>
 
             <tr class="bg-primary">
