@@ -30,6 +30,7 @@ export class ControlptComponent implements OnInit {
   observaciones: string;
   aprobado: string;
   descripcionPt: string;
+  descripcionOrigen: string;  //para comparar si se modifico o no para imprimir el certificado
 
   public colorPt: string;
   public componente: string;
@@ -176,6 +177,7 @@ export class ControlptComponent implements OnInit {
     this.termino1 = null;
     this.termino2 = null;
     this.arrayCtp = [];
+    this.descripcionOrigen = null;
   }
 
   //DEVUELVE DATOS DEL CERTIFICADO Y DEL CONTROL DE CALIDAD
@@ -208,6 +210,7 @@ export class ControlptComponent implements OnInit {
         this.curado = item.curado;
         this.observaciones = item.observaciones;
         this.aprobado = item.aprobado;
+        this.descripcionOrigen = this.descripcion;
 
         //TRAEMOS DATA DE CERTIFICADO (SI ENCUENTRA)
         this.descripcionInfo = item2.descripcion;

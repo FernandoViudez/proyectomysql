@@ -28,7 +28,7 @@
             </div>
             <div class="col-6">
                 <span>Descripción</span>
-                <input disabled class="form-control boldText" type="text" [(ngModel)]="descripcion">
+                <input class="form-control boldText" type="text" [(ngModel)]="descripcion">
             </div>
             <div class="col-2">
                 <span>Nro. Partida (Lote)</span>
@@ -279,10 +279,11 @@
                 </div>
                 <hr class="new3">
                 <div>
-                    <span class="tab2"></span> Producto : {{descripcionPt}}<br>
-                    <span class="tab2"></span> Color : {{colorPt}}<br>
-                    <span class="tab2"></span> Componente : {{componente}}<br>
-                    <span class="tab2"></span> Tipo generico : {{tipo}}<br>
+                    <span *ngIf="descripcion === descripcionOrigen" class="tab2"> Producto : {{descripcionPt}}</span>
+                    <span *ngIf="descripcion != descripcionOrigen" class="tab2"> Producto : {{descripcion}}</span><br>
+                    <span class="tab2">Color : {{colorPt}}</span><br>
+                    <span class="tab2">Componente : {{componente}}</span> <br>
+                    <span class="tab2">Tipo generico : {{tipo}}</span><br>
                 </div>
                 <hr class="new3">
                 <div>
