@@ -48,51 +48,58 @@
   </div>
 </div>
 <hr>
-<div class="row m-auto" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
+<div class="row m-auto">
   <div class="col-2">
     <div class="m-auto ml-2">
       <h6 style="font-size: 15px;" id="pe"><b>Peso especifico: </b><span
-          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{pe |
+          style="font-size: 18px; background-color: rgb(190, 171, 131); font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';"
+          class="badge badge-success">{{pe |
           numeralPipe}}</span></h6>
     </div>
   </div>
   <div class="col-2">
     <div class="m-auto ml-2">
       <h6 style="font-size: 15px;" id="ppp"><b>Sólidos PPP: </b><span
-          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{ppp |
+          style="font-size: 18px; background-color: rgb(190, 171, 131); font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';"
+          class="badge badge-success">{{ppp |
           numeralPipe}}</span></h6>
     </div>
     <div class="m-auto ml-2">
       <h6 style="font-size: 15px;" id="ppv"><b>Sólidos PPV: </b><span
-          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{ppv |
+          style="font-size: 18px; background-color: rgb(190, 171, 131); font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';"
+          class="badge badge-success">{{ppv |
           numeralPipe}}</span></h6>
     </div>
   </div>
   <div class="col-2">
     <div class="m-auto ml-2">
       <h6 style="font-size: 15px;" id="resi"><b>% Resina : </b><span
-          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{resi |
+          style="font-size: 18px; background-color: rgb(190, 171, 131); font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';"
+          class="badge badge-success">{{resi |
           numeralPipe}}</span></h6>
     </div>
   </div>
   <div class="col-2">
     <div class="m-auto ml-2">
       <h6 style="font-size: 15px;" id="pig"><b>% Pigmento : </b><span
-          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{pig |
+          style="font-size: 18px; background-color: rgb(190, 171, 131); font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';"
+          class="badge badge-success">{{pig |
           numeralPipe}}</span></h6>
     </div>
   </div>
   <div class="col-2">
     <div class="m-auto ml-2">
       <h6 style="font-size: 15px;" id="ppv"><b>% Solvente: </b><span
-          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{solv |
+          style="font-size: 18px; background-color: rgb(190, 171, 131); font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';"
+          class="badge badge-success">{{solv |
           numeralPipe}}</span></h6>
     </div>
   </div>
   <div class="col-2">
     <div class="m-auto ml-2">
       <h6 style="font-size: 15px;" id="pr"><b>Precio: </b><span
-          style="font-size: 18px; background-color: rgb(190, 171, 131);" class="badge badge-success">{{pr |
+          style="font-size: 18px; background-color: rgb(190, 171, 131); font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';"
+          class="badge badge-success">{{pr |
           numeralPipe}}</span></h6>
     </div>
   </div>
@@ -100,7 +107,7 @@
 <hr>
 
 <div
-  style="overflow: scroll; width: 90%; margin-top: 2%; height: 450px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"
+  style="overflow: scroll; width: 90%; margin-top: 2%; height: 450px; font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';"
   class="m-auto">
   <ul cdkDropList class="example-list table-fixed" (cdkDropListDropped)="dropped($event)">
     <div class="row w-100">
@@ -203,7 +210,7 @@
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+  aria-hidden="true" style="font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif'">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -222,7 +229,8 @@
           <div class="col-6">
             <div class="form-group">
               <label for="recipient-name1" class="col-form-label">Código MP</label>
-              <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name1" style="font-size: 18px;">
+              <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name1"
+                style="font-size: 18px;">
             </div>
           </div>
           <div class="col-6">
@@ -235,7 +243,8 @@
         </div>
         <div class="form-group">
           <label for="recipient-name3" class="col-form-label">Descripción</label>
-          <input type="text" [(ngModel)]="descripcion" class="form-control" id="recipient-name3" maxlength="65" style="font-size: 18px;">
+          <input type="text" [(ngModel)]="descripcion" class="form-control" id="recipient-name3" maxlength="65"
+            style="font-size: 18px;">
         </div>
         <div class="form-group">
           <label for="recipient-name4" class="col-form-label">Cantidad</label>
@@ -254,7 +263,7 @@
 </div>
 
 <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+  aria-hidden="true" style="font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -278,8 +287,8 @@
           <div class="col">
             <div class="form-group">
               <label for="recipient-name01" class="col-form-label">Código MP</label>
-              <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control"
-                id="recipient-name01" style="font-size: 18px;">
+              <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name01"
+                style="font-size: 18px;">
             </div>
           </div>
           <div class="col">
@@ -293,7 +302,8 @@
 
         <div class="form-group">
           <label for="recipient-name03" class="col-form-label">Descripción</label>
-          <input type="text" [(ngModel)]="descripcion" class="form-control" id="recipient-name03" style="font-size: 18px;">
+          <input type="text" [(ngModel)]="descripcion" class="form-control" id="recipient-name03"
+            style="font-size: 18px;">
         </div>
         <div class="form-group">
           <label for="recipient-name04" class="col-form-label">Cantidad</label>
@@ -311,7 +321,7 @@
 </div>
 
 <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+  aria-hidden="true" style="font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content" style="width: 90%;">
       <div class="modal-header">

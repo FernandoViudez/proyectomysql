@@ -23,17 +23,17 @@
 
         <div class="row mt-2">
             <div class="col-2">
+                <span>Nro. Partida (Lote)</span>
+                <input (change)="onLoteChange()" class="form-control boldText" type="number"
+                    [(ngModel)]="numeroPartida">
+            </div>
+            <div class="col-2">
                 <span>Código</span>
                 <input disabled class="form-control boldText" type="number" [(ngModel)]="codpt">
             </div>
             <div class="col-6">
                 <span>Descripción</span>
-                <input class="form-control boldText" type="text" [(ngModel)]="descripcion">
-            </div>
-            <div class="col-2">
-                <span>Nro. Partida (Lote)</span>
-                <input (change)="onLoteChange()" class="form-control boldText" type="number"
-                    [(ngModel)]="numeroPartida">
+                <input [disabled]="!numeroPartida" class="form-control boldText" type="text" [(ngModel)]="descripcion">
             </div>
             <div class="col-2">
                 <span>Fecha de aprobación</span>

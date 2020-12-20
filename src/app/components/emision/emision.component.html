@@ -218,11 +218,11 @@
                                     <td>{{item.orden}}</td>
                                     <td>{{item.codmp}}</td>
                                     <td>{{item.codpt}}</td>
-                                    <td>{{item.descripcion}}</td>
+                                    <td style="font-family: Arial, Helvetica, sans-serif;">{{item.descripcion}}</td>
                                     <td class="text-primary boldText" style="font-size: 15px;" *ngIf="item.ind[0] < 0">
                                         {{item.ind[0] | numeralPipe}}
                                         KG </td>
-                                    <td class="text-success" *ngIf="item.ind[0] >= 0">HAY STOCK</td>
+                                    <td style="font-family: Arial, Helvetica, sans-serif;" class="text-success" *ngIf="item.ind[0] >= 0">HAY STOCK</td>
                                 </tr>
                             </table>
                         </div>
@@ -277,8 +277,13 @@
             margin-left: 80px;
         }
 
+        .tab3 {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
         table {
-            font-family: arial, helvetica, sans-serif;
+            font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';
             border-collapse: collapse;
             width: 100%;
             padding: 0.1px;
@@ -294,8 +299,10 @@
         td {
             border: 0.5px solid #dddddd;
             text-align: left;
-            padding: 2.5px;
-            font-size: 13px;
+            padding: 0.5px;
+            font-size: 17px;
+            font-weight: bold;
+            line-height: 22px;
         }
 
         tr:nth-child(even) {
@@ -305,9 +312,8 @@
         pre {
             border: 0.5px solid #dddddd;
             padding: 0.5px;
-            font-size: 13px;
-            font-family: arial, helvetica, sans-serif;
-            line-height: 20pt;
+            font-size: 17px;
+            line-height: 22px;
         }
     </style>
 
@@ -322,12 +328,12 @@
         <h6>
             <b>
                 <pre>
-            CUBA Nro _____ <span class="tab1"></span> CODIGO: {{id}} <span class="tab1"></span> PRODUCTO: {{descripcion}} {{componente}} {{color}}
-            CANTIDAD: {{cantidadPlani | numeralPipe: 'true'}} {{unidadmedida}} - (<span *ngIf="unidadmedida=='LT'"> {{(cantidadPlani * pesoespecifico) | numeralPipe: 'true'}} Kg</span><span *ngIf="unidadmedida=='KG'"> {{cantidadPlani | numeralPipe}} Kg</span>) <span class="tab1"></span> FECHA EMISION: {{fechaDelDia}} <span class="tab1"></span> FECHA INICIO PRODUCCION: ___/___/ ___ <span class="tab1"></span> HORA INICIO: _________
-            OPERARIO: ___________________ <span class="tab1"></span> NRO.CUBA UTILIZADA: _________ <span class="tab1"></span> PESO CUBA: _________
-            DISPERSORA NRO: _____ <span class="tab1"></span>CON DISCO: PLANO / CONN / MULTILAMINAR <span class="tab1"></span>MOLINO NRO: ______
-            PESO FINAL ____________ Kg <span class="tab1"></span>CONTROLO ______________ <span class="tab1"></span> COMIENZO ENVASADO ___/___/___<span class="tab1"></span> FILTRO UTILIZADO # _______
-            ETIQUETADO COMO: {{descripcionEtiquetas}} - {{colorEtiquetas}} **** FECHA VENCIMIENTO: {{calcularFechaVencimiento()}}
+CUBA Nro _____ <span class="tab1"></span> CODIGO: {{id}} <span class="tab1"></span> PRODUCTO: {{descripcion}} {{componente}} {{color}}
+CANTIDAD: {{cantidadPlani | numeralPipe: 'true'}} {{unidadmedida}} - (<span *ngIf="unidadmedida=='LT'"> {{(cantidadPlani * pesoespecifico) | numeralPipe: 'true'}} Kg</span><span *ngIf="unidadmedida=='KG'"> {{cantidadPlani | numeralPipe}} Kg</span>) <span class="tab3"></span> FECHA EMISION: {{fechaDelDia}} <span class="tab3"></span> FECHA INICIO PRODUCCION: ___/___/ ___
+OPERARIO: _______________ <span class="tab3"></span> NRO.CUBA UTILIZADA: ______ <span class="tab3"></span> PESO CUBA: ______ <span class="tab1"></span> HORA INICIO: _______
+DISPERSORA NRO: _____ <span class="tab1"></span>CON DISCO: PLANO / CONN / MULTILAMINAR <span class="tab1"></span>MOLINO NRO: ______
+PESO FINAL ________ Kg <span class="tab1"></span>CONTROLO __________ <span class="tab1"></span> COMIENZO ENVASADO ___/___/___<span class="tab1"></span> FILTRO # _______
+ETIQUETADO COMO: {{descripcionEtiquetas}} - {{colorEtiquetas}} **** FECHA VENCIMIENTO: {{calcularFechaVencimiento()}}
             </pre>
             </b>
             <div class="w-100" *ngIf="tfa=='T'"> :
@@ -379,34 +385,26 @@
                     </tr>
                     <tr *ngFor="let item of arrayAsoc; let i = index;">
                         <td>{{item.orden}}</td>
-                        <td style="font-size: 18px; font-weight:bold">{{item.codmp}}</td>
-                        <td style="font-size: 18px; font-weight:bold">{{item.codpt}}</td>
-                        <td style="font-size: 18px; ">{{item.descripcion}}</td>
-                        <td *ngIf="unidadmedida == 'KG' && item.cantidad" class="text-right"
-                            style="font-size: 18px; font-weight:bold">
+                        <td>{{item.codmp}}</td>
+                        <td>{{item.codpt}}</td>
+                        <td style="font-family: Arial, Helvetica, sans-serif; font-weight: normal;">{{item.descripcion}}</td>
+                        <td *ngIf=" unidadmedida=='KG' && item.cantidad" class="text-right">
                             {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0</td>
-                        <td *ngIf="unidadmedida == 'LT' && item.cantidad" class="text-right"
-                            style="font-size: 18px; font-weight:bold">
+                        <td *ngIf="unidadmedida == 'LT' && item.cantidad" class="text-right">
                             {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0</td>
-                        <td *ngIf="!item.cantidad" style="font-size: 18px; font-weight:bold"> </td>
+                        <td *ngIf="!item.cantidad"></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="text-center" style="font-size: 18px;">{{item.ind[1]}}</td>
+                        <td style="font-weight: normal;" class="text-center">{{item.ind[1]}}</td>
                     </tr>
                 </table>
-                <span>
-                    __. _________
-                    ___________________________________________________________________________________
-                    _______+_______+_______ _____ ______ __________<br><br>
-                    __. _________
-                    ___________________________________________________________________________________
-                    _______+_______+_______ _____ ______ __________<br><br>
-                    __. _________
-                    ___________________________________________________________________________________
-                    _______+_______+_______ _____ ______ __________<br>
-                </span>
-            </td>
+                <pre>
+__._____ _____ ____________________________________________________ __________+__________+__________
+__._____ _____ ____________________________________________________ __________+__________+__________
+__._____ _____ ____________________________________________________ __________+__________+__________
+                </pre>
+            </td>_
 
             <br>
             <h5>
@@ -480,33 +478,33 @@
             <div>
                 <table>
                     <tr>
-                        <th>CODMP</th>
+                        <th>COD.MP</th>
                         <th>FRACCIONAMIENTO SOLICITADO</th>
                         <th>ENVASADO</th>
                         <th>CANTIDAD</th>
                         <th></th>
-                        <th>Ttl.KG x ENV.</th>
+                        <th>TOTAL KG x ENV.</th>
                         <th>Ttl.{{unidadmedida}}</th>
                     </tr>
                     <tr *ngFor="let item of arrayConj">
                         <td>{{item.codmp}}</td>
-                        <td>{{item.descripcion}}</td>
+                        <td style="font-weight: normal; font-family: Arial, Helvetica, sans-serif; ">{{item.descripcion}}</td>
                         <td class="text-right">{{item.envasado | numeralPipe}}</td>
-                        <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}
-                        </td>
+                        <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}</td>
                         <td *ngIf="item.indice == 0 || item.indice == ''" class="text-right">0</td>
-                        <td>_______</td>
-                        <td *ngIf="unidadmedida=='LT'" class="text-right">
-                            {{(item.envasado * pesoespecifico) | numeralPipe}}
-                        </td>
+                        <td style="font-weight: normal;">___________</td>
+                        <td *ngIf="unidadmedida=='LT'" class="text-right">{{(item.envasado * pesoespecifico) |
+                            numeralPipe}}</td>
                         <td *ngIf="unidadmedida=='KG'" class="text-right">{{item.envasado | numeralPipe}}</td>
-                        <td class="text-right">{{(item.envasado * item.indice) | numeralPipe}}</td>
+                        <td style="font-weight: normal;font-family: Arial, Helvetica, sans-serif; " class="text-right">
+                            {{(item.envasado * item.indice) | numeralPipe}}</td>
                     </tr>
                 </table>
                 <hr>
                 <h6> Correcciones de STOCK Materia Prima ___/___/___ <span class="tab2"></span>STOCK Envases
                     ___/___/___
-                    <span class="tab2"></span>STOCK Producto Terminado ___/___/___</h6>
+                    <span class="tab2"></span>STOCK Producto Terminado ___/___/___
+                </h6>
             </div>
         </b>
     </div>
@@ -521,14 +519,14 @@
         </h2>
         <br><br>
         <pre>
-        CODIGO: {{id}} <span class="tab2"></span><span class="tab2"></span> PRODUCTO: {{descripcion}} {{componente}} {{color}}
-        ETIQUETADO COMO: {{descripcionEtiquetas}} - {{colorEtiquetas}}
-        CANTIDAD: {{cantidadPlani | numeralPipe: 'true'}} {{unidadmedida}} - (<span *ngIf="unidadmedida=='LT'"> {{(cantidadPlani * pesoespecifico) | numeralPipe: 'true'}} Kg</span><span *ngIf="unidadmedida=='KG'"> {{cantidadPlani | numeralPipe}} Kg</span>) <span class="tab1"></span> FECHA EMISION: {{fechaDelDia}} 
-        OPERARIO: ___________________ <span class="tab1"></span> FECHA PREPARADO PREPESADO: ___/___/ ___ <br>
-        RECIBIO Y CONTROLO: ___________________ <span class="tab1"></span>FECHA: ___/___/ ___  <span class="tab1"></span>HORA: _________
+CODIGO: {{id}} <span class="tab2"></span><span class="tab2"></span> PRODUCTO: {{descripcion}} {{componente}} {{color}}
+ETIQUETADO COMO: {{descripcionEtiquetas}} - {{colorEtiquetas}}
+CANTIDAD: {{cantidadPlani | numeralPipe: 'true'}} {{unidadmedida}} - (<span *ngIf="unidadmedida=='LT'"> {{(cantidadPlani * pesoespecifico) | numeralPipe: 'true'}} Kg</span><span *ngIf="unidadmedida=='KG'"> {{cantidadPlani | numeralPipe}} Kg</span>) <span class="tab1"></span> FECHA EMISION: {{fechaDelDia}} 
+OPERARIO: ___________________ <span class="tab1"></span> FECHA PREPARADO PREPESADO: ___/___/ ___ <br>
+RECIBIO Y CONTROLO: ___________________ <span class="tab1"></span>FECHA: ___/___/ ___  <span class="tab1"></span>HORA: _________
         </pre>
         <td *ngIf="tfa != 'T'">
-            <table>
+            <table class="table table-sm">
                 <tr>
                     <th></th>
                     <th>MP</th>
@@ -540,14 +538,14 @@
                     <th>RGO/PROT</th>
                 </tr>
                 <tr *ngFor="let item of arrayAsoc; let i = index;">
-                    <ng-container layout="row" *ngIf="item.mpi != 'I' && item.ind[2] != 'SOLVENTE'">;
+                    <ng-container layout="row" *ngIf="item.mpi != 'I' && item.ind[2] != 'SOLVENTE'">
                         <td>{{item.orden}}</td>
                         <td>{{item.codmp}}</td>
                         <td>{{item.codpt}}</td>
-                        <td>{{item.descripcion}}</td>
+                        <td style="font-family: Arial, Helvetica, sans-serif;">{{item.descripcion}}</td>
                         <td *ngIf="unidadmedida == 'KG' && item.cantidad" class="text-right">
                             {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0</td>
-                        <td *ngIf="unidadmedida == 'LT' && item.cantidad" class="text-right">
+                        <td *ngIf="unidadmedida == 'LT' && item.cantidad" lass="text-right">
                             {{(item.cantidad*cantidadPlani*pesoespecifico)/100 | numeralPipe: 'true'}}0</td>
                         <td *ngIf="!item.cantidad"> </td>
                         <td></td>
@@ -575,7 +573,7 @@
                 <tr *ngFor="let item of arrayConj">
                     <ng-container layout="row" *ngIf="item.indice != ''">
                         <td>{{item.codmp}}</td>
-                        <td>{{item.descripcion}}</td>
+                        <td style="font-family: Arial, Helvetica, sans-serif;">{{item.descripcion}}</td>
                         <td class="text-right">{{item.envasado | numeralPipe}}</td>
                         <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}
                         </td>
@@ -593,13 +591,13 @@
             <div *ngFor="let item of arrayAsoc; let i = index;">
                 <ng-container layout="row" *ngIf="item.mpi != 'I' && item.ind[2] != 'SOLVENTE'">
                     --------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8<
-                        -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8<
-                        -------- 8< -------- <div style="font-size: 15px; font-weight: bold; ">Batch: {{proximoBatch}}
+                        -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< <div
+                        style="font-size: 15px; font-weight: bold; ">Batch: {{proximoBatch}}
                         <span class="tab1"></span>
                         CODIGO: {{id}}
             </div><br>
             Item : {{item.orden}} <br>
-            <div style="font-size: 25px; font-weight: bold; text-align: center;"> {{item.codmp}}{{item.codpt}} -
+            <div style="font-size: 25px; font-weight: bold; text-align: center;font-family: Arial, Helvetica, sans-serif;"> {{item.codmp}}{{item.codpt}} -
                 {{item.descripcion}}</div>
             <div style="font-size: 25px; font-weight: bold; text-align: right;"
                 *ngIf="unidadmedida == 'KG' && item.cantidad">
@@ -680,13 +678,19 @@
                         </tr>
                         <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayB"
                             (click)="traerDatos(item2.id, item2.codpt)" style="cursor: pointer;">
-                            <td>{{item2.codpt}}</td>
-                            <td>{{item2.descripcion}}</td>
-                            <td>{{item2.cantidad}}</td>
-                            <td>{{item2.formaenv}}</td>
-                            <td>{{item2.cliente}}</td>
+                            <td style="font-weight: normal; font-size: 16px; padding: 2.5px;">{{item2.codpt}}</td>
+                            <td
+                                style="font-weight: normal; font-size: 16px; padding: 2.5px; font-family: Arial, Helvetica, sans-serif;">
+                                {{item2.descripcion}}
+                            </td>
+                            <td style="font-weight: normal; font-size: 16px; padding: 2.5px;">{{item2.cantidad}}</td>
+                            <td style="font-weight: normal; font-size: 16px; padding: 2.5px;">{{item2.formaenv}}</td>
+                            <td
+                                style="font-weight: normal; font-size: 16px; padding: 2.5px; font-family: Arial, Helvetica, sans-serif;">
+                                {{item2.cliente}}</td>
                             <!-- <td>{{item2.lote}}</td> -->
-                            <td>{{item2.fechacompr | datePipe}}</td>
+                            <td style="font-weight: normal; font-size: 16px; padding: 2.5px;">{{item2.fechacompr |
+                                datePipe}}</td>
                             <!-- <td>{{item2.operario}}</td>
                             <td>{{item2.proceso}}</td>
                             <td>{{item2.dispersora}}</td>

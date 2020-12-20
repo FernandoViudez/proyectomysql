@@ -228,7 +228,7 @@ export class PlanifiComponent implements OnInit {
         return false;
       } else if (MesFecha < MesHoy && AnyoFecha > AnyoHoy) { 
         return true; // Si el mes es menor pero el año mayor, lo dejamos
-      } else if (MesFecha < MesHoy && AnyoFecha < AnyoHoy) { 
+      } else if (MesFecha < MesHoy && AnyoFecha <= AnyoHoy) { 
         return false; // Si el mes es menor y el año tambien, no lo dejamos
       } else if (MesFecha === MesHoy && DiaFecha < DiaHoy) {
         return false;

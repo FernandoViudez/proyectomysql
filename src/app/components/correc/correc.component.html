@@ -62,15 +62,27 @@
 
         <div class="row mt-5">
             <div class="col-12 text-center">
+                <div *ngIf="cantidad>stock*0.05" class="mt-5 alert alert-info boldText">
+                    <h1>Holy guacamole !! </h1>
+                    <h1>
+                        <p>ESTÁ AGREGANDO MAS DEL 5% DEL STOCK.  VERIFICAR ANTES DE PROSEGUIR !!</p>
+                    </h1>
+                </div>
                 <div *ngIf="cantidad>0" class="mt-5 alert alert-success boldText">
                     <h1>Recuerda</h1>
                     <p>ESTÁS SUMANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
                     <h1>Nuevo stock: {{stock + cantidad}}</h1>
                 </div>
+                <div *ngIf="-cantidad>stock*0.05" class="mt-5 alert alert-info boldText">
+                    <h1>Holy guacamole !! </h1>
+                    <h1>
+                        <p>ESTÁ SUSTRAYENDO MAS DEL 5% DEL STOCK.  VERIFICAR ANTES DE PROSEGUIR !!</p>
+                    </h1>
+                </div>
                 <div *ngIf="cantidad<0" class="mt-5 alert alert-danger boldText">
                     <h1>Atencion !! </h1>
-                    <p>ESTÁS RESTANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
-                    <h1>Nuevo stock: {{stock + cantidad}}</h1>
+                    <p>ESTA RESTANDO {{cantidad}} Kg(s) a la Materia Prima {{descripcion}}</p>
+                    <h1>NUEVO STOCK: {{stock + cantidad}}</h1>
                 </div>
             </div>
         </div>
