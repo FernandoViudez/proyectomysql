@@ -20,7 +20,6 @@ export class EliminarDatosComponent implements OnInit {
 
     this.genericService.eliminarDatos(this.fecha)
     .subscribe( data => {
-      console.log(data);
     }, e => {
       console.log(e);
     })

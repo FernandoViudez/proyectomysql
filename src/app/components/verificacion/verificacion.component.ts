@@ -81,7 +81,6 @@ export class VerificacionComponent implements OnInit {
 
     this.genericService.agregarVerificacion(data)
       .subscribe((data: any) => {
-        console.log(data);
 
         if (data.ok == "false") {
           Swal.fire({
@@ -111,7 +110,6 @@ export class VerificacionComponent implements OnInit {
           }).then((result) => {
             /* Read more about handling dismissals below */
             if (result.dismiss === Swal.DismissReason.timer) {
-              console.log('I was closed by the timer')
             }
           })
         }

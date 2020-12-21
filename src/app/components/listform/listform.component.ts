@@ -100,7 +100,6 @@ export class ListformComponent implements OnInit {
     this.service.validarIdProd(this.idprod).
       subscribe((data: any) => {
         alertify.success("ESTE PRODUCTO TERMINADO EXISTE... SIGUE ADELANTE !")
-        console.log(data.color)
         if(data.color == null) {
           this.descripcion1 = `${data.desc}  ${data.componente}`;
         } else {

@@ -116,7 +116,6 @@ export class CertificadosComponent implements OnInit {
   addCertificado(data) {
     this.certificadosService.addCertificado(data)
       .subscribe(data => {
-        console.log(data);
       }, err => {
         console.log(err);
       })
@@ -125,7 +124,6 @@ export class CertificadosComponent implements OnInit {
   editarCertificado(data) {
     this.certificadosService.updateCertificado(data)
       .subscribe(data => {
-        console.log(data);
       }, err => {
         console.log(err);
       })

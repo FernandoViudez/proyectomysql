@@ -66,7 +66,6 @@ export class RolodexComponent implements OnInit {
   onSubmit() {
     this.sb$ = this.listadosService.rolodex(this.desde, this.hasta, this.inicio, this.fin)
       .subscribe((data: any)=>{
-        console.log(data);
         /** La data aca viene ya con todos los datos resueltos por el back */
         Swal.showLoading();
         let response = this.setearEn0([...data.response]);
@@ -128,7 +127,6 @@ export class RolodexComponent implements OnInit {
   
         } else {
           /** Al agregar uno seteamos las sumas y restas del mismo para ya tenerlo en el temporal */
-          console.log(items[index]);
           if (items[index].tipo == "SUMA") {
             items[index].sumas = items[index].cantidad;
           } else {

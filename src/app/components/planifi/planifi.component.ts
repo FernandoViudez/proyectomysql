@@ -470,7 +470,6 @@ export class PlanifiComponent implements OnInit {
     this.pendientes = true;
     this.http.get(`${obtenerPath()}traerPendientes`).
       subscribe((data: any) => {
-        console.log(data)
         this.generarClases(data.response);
         this.arrayB = data.response;
         this.recorrerYAplicarPipes();

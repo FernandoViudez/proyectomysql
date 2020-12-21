@@ -41,7 +41,6 @@ export class ControlService {
   }
 
   traerPorRango(desde: number, hasta: number){
-    console.log("listarFichas");
     return this.httpClient.get(`${this.url}listarFichas/${desde}/${hasta}`);
   }
 

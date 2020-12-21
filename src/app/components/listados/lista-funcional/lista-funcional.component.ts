@@ -172,7 +172,6 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
             item.componente = item.descripcion?.split("-")[1];
           }
         }
-        console.log(data);
         this.saldoInicial = data?.saldoInicial
 
         if (data.orderByDesc) {
@@ -206,7 +205,6 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   //cuando se genera el excel
   onExcel() { // no permito que otro que no se administrador mande estadistica produccion a excel
     if (this.operacion == "RANGOFECHAS") {
-      console.log(this.operacion);
       let user_role = localStorage.getItem("user_role");
       if (user_role != "ADMIN_ROL") {
         alert("No autorizado - Realizar impresion !")
@@ -464,7 +462,6 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           break
       }
     }
-    console.log(this.subtotales);
 
   }
 

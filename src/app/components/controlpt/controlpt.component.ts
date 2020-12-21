@@ -3,6 +3,7 @@ import { ControlService } from '../control/services/control.service';
 import Swal from 'sweetalert2';
 import { ProdtermService } from '../../services/prodterm.service';
 import { Router } from '@angular/router';
+import { GenericService } from 'src/app/services/generic.service';
 declare let alertify: any;
 
 @Component({
@@ -68,7 +69,12 @@ export class ControlptComponent implements OnInit {
   termino2: string; //COLOR
   arrayCtp = []; //Array del control de calidad del producto
 
-  constructor(private servicioControl: ControlService, private prodtermService: ProdtermService, private route: Router) {
+  constructor(
+    private servicioControl: ControlService, 
+    private prodtermService: ProdtermService, 
+    private route: Router,
+    private genericService: GenericService,
+    ) {
     let user_role = localStorage.getItem("user_role");
     if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
       alert("Acceso no autorizado !")
@@ -127,10 +133,12 @@ export class ControlptComponent implements OnInit {
     this.servicioControl.postearDataPt(data).
       subscribe((response: any) => {
         if (this.aprobado != "RECHAZADO") {
+          this.genericService.changeTittle.emit(data.numeroPartida);
           window.print();
         }
         this.resetearInputs();
         alertify.success("DATOS CARGADOS CORRECTAMENTE !");
+        this.genericService.changeTittle.emit("Revesta");
       }, (err) => {
         console.log(err);
         alertify.error(err.error.message);
@@ -186,7 +194,6 @@ export class ControlptComponent implements OnInit {
       .subscribe((data: any) => {
         let item = data.response; //Data del controlpt
         let item2 = data.certificado; //Data del certificado
-        console.log(data);
         //TRAEMOS DATA DEL CONTROL
         this.codpt = item.codpt;
         this.descripcion = item.descripcion;

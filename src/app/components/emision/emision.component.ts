@@ -269,7 +269,6 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
       this.totCantidadEnvasar += Number(item.indice1);
     }
-    console.log("totcantenv", this.totCantidadEnvasar);
   }
 
   calcularFaltantes() {
@@ -413,7 +412,6 @@ export class EmisionComponent implements OnInit, OnDestroy {
     for (let item of this.arrayConj) { //RECORRER ARREGLO QUE LLEGA Y VALIDAR SI ESTAS MODIFICANDO ENVASES
       if (item.codmp == codmp && item.envasado == envasado) {
         let envases = input / item.envasado;
-        console.log(envases);
         item.indice = envases;
       }
     }

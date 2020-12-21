@@ -504,10 +504,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
       subscribe((data: any) => {
 
         this.existept = "existe";
-        console.log(esProductoDentroDeFormula);
         if(esProductoDentroDeFormula) {
           this.descripcion = `${data.desc}`;
-          console.log(this.descripcion);
           return;
         }
         this.descripcion1 = `${data.desc}  ${data.color || ''} ${data.componente}`;

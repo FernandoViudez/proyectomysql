@@ -164,8 +164,6 @@ export class LoggedComponent implements OnInit {
     numero = numero * .5;
     numero = Math.round(numero);
 
-    console.log("entro");
-
     let arreglo = this.arrayFraseDia[numero].split(".");
     this.frase = arreglo[0]
     this.autor = arreglo[1]

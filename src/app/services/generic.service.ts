@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { obtenerPath } from '../_utils/generarBackPath';
@@ -9,6 +9,7 @@ import { obtenerPath } from '../_utils/generarBackPath';
 export class GenericService {
 
   private url: string = obtenerPath();
+  public changeTittle = new EventEmitter<any>();
 
   constructor(private http: HttpClient) { }
 

@@ -54,7 +54,6 @@ export class FichasComponent implements OnInit {
   obtenerPorRango() {
     this.controlService.traerPorRango(this.desde, this.hasta)
       .subscribe((data: any) => {
-        console.log(data);
         this.items = data.response;
         for (let item of data.response) { //Aplicamos los pipes necesarios
           item.fecha = item.fecha ? this.aplicarDatePipe(item.fecha) : undefined;

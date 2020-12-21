@@ -100,7 +100,6 @@ export class ListmpComponent implements OnInit {
   traerFisicos(id) {
     this.servicioMp.validarMp(id).
       subscribe((dato: any) => {
-        console.log(dato);
         let data= dato.response;
         this.pesoespecifico = data.pesoespecifico;
         this.ppp = data.solidosppp;

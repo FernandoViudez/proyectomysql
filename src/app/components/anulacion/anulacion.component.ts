@@ -51,7 +51,6 @@ export class AnulacionComponent implements OnInit {
         this.http.get(`${this.url}anularBatch/${this.batch}`)
           .subscribe(data => {
             Swal.close();
-            console.log(data);
             this.batch=null;
             this.descripcion=null;
             this.codpt = null;
@@ -72,10 +71,8 @@ export class AnulacionComponent implements OnInit {
   }
 
   onBatchChange(){
-    console.log("ENTRO")
     this.http.get(`${this.url}obtenerBatch/${this.batch}`)
     .subscribe((data : any) => {
-      console.log(data);
         //TRAEMOS DATA DEL CONTROL
         this.codpt = data.response.codpt;
         this.descripcion = data.response.descripcion;
