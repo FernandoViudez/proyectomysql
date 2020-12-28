@@ -40,6 +40,8 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     { titulo: "POLVO", subtotal: 0 },
     { titulo: "RESINA", subtotal: 0 },
     { titulo: "SEMIELABORADO", subtotal: 0 },
+    { titulo: "TINTURADO", subtotal: 0 },
+    { titulo: "TOTAL", subtotal: 0 },
   ];
   saldoInicial: number;
   saldoFinal: number;
@@ -187,8 +189,8 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           });
         }
 
-        if(data.mpDescription) {
-          this.mpDescription = data.mpDescription; 
+        if (data.mpDescription) {
+          this.mpDescription = data.mpDescription;
         }
 
         // igualacion de los datos 
@@ -377,51 +379,56 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     this.items = [];
 
     for (let item of arrayTemporal) {
-      switch (item.componente?.trim()) {
-        case "AGENTE DE CURA":
-          item.bgA = true;
-          this.items.push(item);
-          break;
-        case "DILUYENTE":
-          item.bgD = true;
-          this.items.push(item);
-          break;
-        case "ENDURECEDOR":
-          item.bgE = true;
-          this.items.push(item);
-          break;
-        case "INERTES":
-          item.bgI = true;
-          this.items.push(item);
-          break;
-        case "LÍQUIDO":
-          item.bgL = true;
-          this.items.push(item);
-          break;
-        case "MONOCOMPONENTE":
-          item.bgM = true;
-          this.items.push(item);
-          break;
-        case "POLVO":
-          item.bgP = true;
-          this.items.push(item);
-          break;
-        case "RESINA":
-          item.bgR = true;
-          this.items.push(item);
-          break;
-        case 'SEMIELABORADO':
-          item.bgS = true;
-          this.items.push(item);
-          break
+      if (item.proceso == "TINTURADO") {
+        item.bgT = true;
+        this.items.push(item);
+      } else {
+        switch (item.componente?.trim()) {
+          case "AGENTE DE CURA":
+            item.bgA = true;
+            this.items.push(item);
+            break;
+          case "DILUYENTE":
+            item.bgD = true;
+            this.items.push(item);
+            break;
+          case "ENDURECEDOR":
+            item.bgE = true;
+            this.items.push(item);
+            break;
+          case "INERTES":
+            item.bgI = true;
+            this.items.push(item);
+            break;
+          case "LÍQUIDO":
+            item.bgL = true;
+            this.items.push(item);
+            break;
+          case "MONOCOMPONENTE":
+            item.bgM = true;
+            this.items.push(item);
+            break;
+          case "POLVO":
+            item.bgP = true;
+            this.items.push(item);
+            break;
+          case "RESINA":
+            item.bgR = true;
+            this.items.push(item);
+            break;
+          case 'SEMIELABORADO':
+            item.bgS = true;
+            this.items.push(item);
+            break
+        }
       }
     }
 
     this.items.sort(function (a, b) {
-      if (a.componente > b.componente) {
+      if (a.descripcion > b.descripcion) {
         return 1;
       }
-      if (a.componente < b.componente) {
+      if (a.descripcion < b.descripcion) {
         return -1;
       }
       // a must be equal to b
@@ -432,35 +439,40 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
     /** Calculo subtotales */
     for (let item of this.items) {
-      switch (item.componente.trim()) {
-        case "AGENTE DE CURA":
-          this.subtotales[0].subtotal += item.cantidad;
-          break;
-        case "DILUYENTE":
-          this.subtotales[1].subtotal += item.cantidad;
-          break;
-        case "ENDURECEDOR":
-          this.subtotales[2].subtotal += item.cantidad;
-          break;
-        case "INERTES":
-          this.subtotales[3].subtotal += item.cantidad;
-          break;
-        case "LÍQUIDO":
-          this.subtotales[4].subtotal += item.cantidad;
-          break;
-        case "MONOCOMPONENTE":
-          this.subtotales[5].subtotal += item.cantidad;
-          break;
-        case "POLVO":
-          this.subtotales[6].subtotal += item.cantidad;
-          break;
-        case "RESINA":
-          this.subtotales[7].subtotal += item.cantidad;
-          break;
-        case 'SEMIELABORADO':
-          this.subtotales[8].subtotal += item.cantidad;
-          break
+      if (item.proceso.trim() == "TINTURADO"){      //  para sumar los TINTURADOS
+          this.subtotales[9].subtotal += item.cantidad;
+      } else {
+        switch (item.componente.trim()) {
+          case "AGENTE DE CURA":
+            this.subtotales[0].subtotal += item.cantidad;
+            break;
+          case "DILUYENTE":
+            this.subtotales[1].subtotal += item.cantidad;
+            break;
+          case "ENDURECEDOR":
+            this.subtotales[2].subtotal += item.cantidad;
+            break;
+          case "INERTES":
+            this.subtotales[3].subtotal += item.cantidad;
+            break;
+          case "LÍQUIDO":
+            this.subtotales[4].subtotal += item.cantidad;
+            break;
+          case "MONOCOMPONENTE":
+            this.subtotales[5].subtotal += item.cantidad;
+            break;
+          case "POLVO":
+            this.subtotales[6].subtotal += item.cantidad;
+            break;
+          case "RESINA":
+            this.subtotales[7].subtotal += item.cantidad;
+            break;
+          case 'SEMIELABORADO':
+            this.subtotales[8].subtotal += item.cantidad;
+            break
+        }
       }
+      this.subtotales[10].subtotal += item.cantidad;
     }
 
   }
