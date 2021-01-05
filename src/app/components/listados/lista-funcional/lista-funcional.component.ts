@@ -187,8 +187,8 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           });
         }
 
-        if(data.mpDescription) {
-          this.mpDescription = data.mpDescription; 
+        if (data.mpDescription) {
+          this.mpDescription = data.mpDescription;
         }
 
         // igualacion de los datos 
@@ -204,11 +204,9 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
   //cuando se genera el excel
   onExcel() { // no permito que otro que no se administrador mande estadistica produccion a excel
-    if (this.operacion == "RANGOFECHAS") {
-      let user_role = localStorage.getItem("user_role");
-      if (user_role != "ADMIN_ROL") {
-        alert("No autorizado - Realizar impresion !")
-      }
+    let user_role = localStorage.getItem("user_role");
+    if (this.operacion == "RANGOFECHAS" && user_role != "ADMIN_ROL") {
+      alert("No autorizado - Realizar impresion !")
     } else {
       this.sb$ = this.listadosService.generarExcel(this.items, this.nombreArchivo, this.nombreHoja, this.propiedades.tb).subscribe
         ((data: any) => {
@@ -414,6 +412,16 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           item.bgS = true;
           this.items.push(item);
           break
+        default:
+          alert(`
+          Componente desconocido!! A continuacion los detalles del producto \n
+          --> Descripcion del item ${item.descripcion} \n 
+          --> Component del item ${item.componente} \n
+          --> Cantidad del item ${item.cantidad} \n
+          Es posible que sea un error con respecto al nombre del componente. \n
+          Verificar!!
+          `)
+          break;
       }
     }
 
@@ -459,6 +467,16 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           break;
         case 'SEMIELABORADO':
           this.subtotales[8].subtotal += item.cantidad;
+          break
+        default:
+          alert(`
+          Componente desconocido!! A continuacion los detalles del producto \n
+          --> Descripcion del item ${item.descripcion} \n
+          --> Component del item ${item.componente} \n
+          --> Cantidad del item ${item.cantidad} \n
+          Es posible que sea un error con respecto al nombre del componente. \n
+          Verificar!!
+          `)
           break
       }
     }
