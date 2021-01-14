@@ -37,6 +37,7 @@ import { VerificacionComponent } from './components/verificacion/verificacion.co
 import { VerificacionListadosComponent } from './components/verificacion-listados/verificacion-listados.component';
 import { TimePipe } from './pipes/time.pipe';
 import { EliminarDatosComponent } from './components/eliminar-datos/eliminar-datos.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 
@@ -87,6 +88,7 @@ import { EliminarDatosComponent } from './components/eliminar-datos/eliminar-dat
 
   ],
   providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
