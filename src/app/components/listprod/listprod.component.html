@@ -135,7 +135,7 @@
                 <th>FECHA ULTIMA MODIFICACIÓN</th>
                 <th>UNIDAD DE MEDIDA</th>
                 <th>STOCK</th>
-                <th>PRECIO</th>
+                <th *ngIf="user_role == 'ADMIN_ROL'">PRECIO</th>
             </tr>
             <tr *ngFor="let item of array" (click)="traerDf(item.id)" style="cursor: pointer;"
                 class="hoverFila text-center">
@@ -150,7 +150,7 @@
                 <td style="font-size: 16px;">{{item.ultimamodificacion | datePipe}}</td>
                 <td style="font-size: 16px;">{{item.unidadmedida}}</td>
                 <td style="font-size: 16px;">{{item.stock | numeralPipe}}</td>
-                <td style="font-size: 16px;">{{item.precio | numeralPipe}}</td>
+                <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio | numeralPipe}}</td>
             </tr>
 
             <tr class="bg-primary">

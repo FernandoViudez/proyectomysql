@@ -38,6 +38,9 @@ import { VerificacionListadosComponent } from './components/verificacion-listado
 import { TimePipe } from './pipes/time.pipe';
 import { EliminarDatosComponent } from './components/eliminar-datos/eliminar-datos.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CostosComponent } from './components/costos/costos.component';
+import { ModificarPreciosComponent } from './components/costos/modificar-precios/modificar-precios.component';
+import { RealizarCalculosComponent } from './components/costos/realizar-calculos/realizar-calculos.component';
 
 
 
@@ -76,6 +79,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     VerificacionComponent,
     VerificacionListadosComponent,
     EliminarDatosComponent,
+    CostosComponent,
+    ModificarPreciosComponent,
+    RealizarCalculosComponent,
   ],
   imports: [
     BrowserModule,

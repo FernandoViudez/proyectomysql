@@ -184,7 +184,7 @@
                 <label>Información 3</label>
                 <input type="text" [(ngModel)]="info3" class="form-control boldText">
             </div>
-            <div class="col-2">
+            <div *ngIf="user_role == 'ADMIN_ROL'" class="col-2">
                 <label>Precio</label>
                 <input type="text" [(ngModel)]="precio" class="form-control boldText">
             </div>

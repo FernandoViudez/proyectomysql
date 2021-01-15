@@ -43,10 +43,12 @@ export class ListmpComponent implements OnInit {
   dfpi: number;
   dfso: number;
   descripcion1: string;
+  user_role: string
 
   constructor(private servicioMp: MatprimService, private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.user_role = localStorage.getItem("user_role")
   }
 
   imprimirBusqueda(){

@@ -13,7 +13,7 @@ declare let alertify: any;
   styles: []
 })
 export class AltaprodComponent implements OnInit {
-
+  public user_role: string;
   id: number;
   descripcion: string;
   color: string;
@@ -59,6 +59,7 @@ export class AltaprodComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.user_role = localStorage.getItem("user_role")
   }
 
   buscarP() {

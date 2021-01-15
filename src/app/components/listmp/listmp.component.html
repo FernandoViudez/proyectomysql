@@ -93,7 +93,7 @@
                     <th>INFO 2</th>
                     <th>INFO 3</th>
                     <th>CODIGO BARRAS</th>
-                    <th>PRECIO</th>
+                    <th *ngIf="user_role == 'ADMIN_ROL'">PRECIO</th>
 
                 </tr>
             </thead>
@@ -119,7 +119,7 @@
                     <td style="font-size: 16px;">{{item.info2}}</td>
                     <td style="font-size: 16px;">{{item.info3}}</td>
                     <td style="font-size: 16px;">{{item.cobarras}}</td>
-                    <td style="font-size: 16px;">{{item.precio}}</td>
+                    <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio}}</td>
                 </tr>
             </tbody>
 

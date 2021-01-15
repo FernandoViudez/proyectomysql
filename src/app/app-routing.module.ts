@@ -24,6 +24,9 @@ import { RolodexComponent } from './components/listados/rolodex/rolodex.componen
 import { VerificacionComponent } from './components/verificacion/verificacion.component';
 import { VerificacionListadosComponent } from './components/verificacion-listados/verificacion-listados.component';
 import { EliminarDatosComponent } from './components/eliminar-datos/eliminar-datos.component';
+import { ModificarPreciosComponent } from './components/costos/modificar-precios/modificar-precios.component';
+import { RealizarCalculosComponent } from './components/costos/realizar-calculos/realizar-calculos.component';
+import { CostosComponent } from './components/costos/costos.component';
 
 
 
@@ -70,7 +73,24 @@ const routes: Routes = [
     ]
   },
 
+  // Costos
+  {
+    path: 'costos',
+    component: CostosComponent,
+    canActivate: [UserGuard],
+    children: [
+      {
+        path: "modificarPrecios",
+        component: ModificarPreciosComponent,
+      },
+      {
+        path: "realizarCalculos",
+        component: RealizarCalculosComponent,
+      },
+    ]
+  },
 
+  // Any
   { path: "", redirectTo: "inicio", pathMatch: "full" },
   { path: "**", redirectTo: "inicio", pathMatch: "full" },
 

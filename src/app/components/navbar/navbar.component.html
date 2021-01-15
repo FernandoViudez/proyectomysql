@@ -116,6 +116,18 @@
         </div>
       </li>
 
+      <li *ngIf="user_role == 'ADMIN_ROL'" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          COSTOS
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['../costos/modificarPrecios']">MODIFICAR PRECIOS</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['../costos/realizarCalculos']">REALIZAR CALCULOS</a>
+        </div>
+      </li>
+
     </ul>
     <div class="form-inline my-2 my-lg-0">
       <button class="btn btn-primary my-2 my-sm-0" type="button" (click)="salir()">Salir</button>

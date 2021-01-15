@@ -54,5 +54,16 @@ export class FormService {
     let data = { idPt };
     return this.http.post(`${this.url}detectIdPt`, data).pipe(data => data);
   }
+  
+  obtenerFormulasPorRango(
+    atributos: {
+          atributoAComparar: string, 
+          tabla: string,
+          mayorQue?: number,
+          menorQue?: number,
+      }
+  ) {
+    return this.http.post(`${this.url}obtenerFormulasPorRango`, { atributos })
+  }
 
 }

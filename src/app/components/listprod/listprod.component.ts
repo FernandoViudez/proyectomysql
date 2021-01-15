@@ -27,11 +27,12 @@ export class ListprodComponent implements OnInit {
   descripcion: string;
   color: string;
   componente: string;
-
+  user_role: string
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.user_role = localStorage.getItem("user_role")
   }
 
   resetear() {

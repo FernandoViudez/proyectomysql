@@ -8,16 +8,16 @@ import { obtenerPath } from '../_utils/generarBackPath';
 })
 export class MatprimService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  private url: string = obtenerPath(); 
+  private url: string = obtenerPath();
 
   validarMp(id) {
-    return this.http.post(`${this.url}validarMp`, { id }).pipe(data=>data)
+    return this.http.post(`${this.url}validarMp`, { id }).pipe(data => data)
   }
 
-  buscar(id, descripcion){
-    return this.http.post(`${this.url}getMatPri`, {id, descripcion}).pipe(map(data=>data))
+  buscar(id, descripcion) {
+    return this.http.post(`${this.url}getMatPri`, { id, descripcion }).pipe(map(data => data))
   }
 
   // buscarSinLlamadaBD(terminos, arrayAFiltrar: Array<any>){
@@ -25,8 +25,12 @@ export class MatprimService {
   //   arrayAFiltrar.filter(item=>item.id.match(`/${id}/i`) || item.descripcion.match(`/${descripcion}/i`))
   // }
 
-  traer(){ 
-    return this.http.get(`${this.url}getMp`).pipe(map(data=>data))
+  traer() {
+    return this.http.get(`${this.url}getMp`).pipe(map(data => data))
+  }
+
+  modificarAlgo(atributos: { tabla: string, atributo: string, nuevoValor: any }, mpid: number) {
+    return this.http.put(`${this.url}putAny/${mpid}`, { atributos })
   }
 
 }

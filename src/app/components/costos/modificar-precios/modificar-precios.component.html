@@ -1,0 +1,23 @@
+<table *ngIf="_arrayMp" class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col" align="center">ID</th>
+      <th scope="col" align="center">DESCRIPCION</th>
+      <th scope="col" align="center">PRECIO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mp of _arrayMp">
+      <th scope="row" align="center">{{mp.id}}</th>
+      <td align="center">{{mp.descripcion}}</td>
+      <td><input class="form-control" type="text" (change)="modifySpecificMp(input.value, mp.id)" #input
+          [value]="mp.precio"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!_arrayMp" class="d-flex justify-content-center mt-5">
+  <div class="spinner-border" style="height: 200px; width: 200px;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
