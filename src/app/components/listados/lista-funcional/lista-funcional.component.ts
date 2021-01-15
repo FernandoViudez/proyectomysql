@@ -398,7 +398,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
             item.bgI = true;
             this.items.push(item);
             break;
-          case "LÍQUIDO":
+          case "LIQUIDO":
             item.bgL = true;
             this.items.push(item);
             break;
@@ -463,7 +463,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           case "INERTES":
             this.subtotales[3].subtotal += item.cantidad;
             break;
-          case "LÍQUIDO":
+          case "LIQUIDO":
             this.subtotales[4].subtotal += item.cantidad;
             break;
           case "MONOCOMPONENTE":
