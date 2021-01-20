@@ -36,8 +36,8 @@ export class FormService {
     return this.http.post(`${this.url}operations`, data)
   }
 
-  realizarCalculos() {
-    return this.http.get(`${this.url}realizarCalculos`)
+  realizarCalculos(data: any) {
+    return this.http.post(`${this.url}realizarCalculos`, { data })
   }
 
   finalizar(tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array) {
