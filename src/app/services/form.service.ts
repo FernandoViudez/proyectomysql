@@ -31,9 +31,8 @@ export class FormService {
     return this.http.get(`${this.url}getAllProv`).pipe(map(data => data))
   }
 
-  calcular(totCant: number, dato) {
-    let data = { totCant, data: dato };
-    return this.http.post(`${this.url}operations`, data)
+  calcular(data) {
+    return this.http.post(`${this.url}operations`, { data })
   }
 
   realizarCalculos(data: any) {

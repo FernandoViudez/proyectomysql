@@ -274,11 +274,22 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
   }
 
-  calcular(data) {
-    this.service.calcular(this.sumaTot, data).subscribe((data: any) => {
+  calcular(formulas: any[]) {
+    if(formulas.length == 0) {
+      this.pe = 0;
+      this.pig = 0,
+      this.ppp = 0;
+      this.ppv = 0;
+      this.pr = 0;
+      this.resi = 0;
+      this.solv = 0;
+      return
+    } 
+
+    this.service.calcular(formulas).subscribe((data: any) => {
       this.pe = data.pe;
       this.pig = data.tpig,
-        this.ppp = data.tppp;
+      this.ppp = data.tppp;
       this.ppv = data.ttppv;
       this.pr = data.tpr;
       this.resi = data.tres;
