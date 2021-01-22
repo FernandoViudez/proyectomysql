@@ -20,6 +20,7 @@ export class RealizarCalculosComponent implements OnInit {
   ) { }
 
 
+  public isLoading: boolean
   public mayorQue: number
   public menorQue: number
   public descripcion: string
@@ -51,7 +52,13 @@ export class RealizarCalculosComponent implements OnInit {
       }
     })
 
+    if(JSON.stringify(data) == "{}") {
+      this._hideSpinner()
+      return alertify.error("Ingrese al menos un dato")
+    }
+    
     if (this.mayorQue && !this.menorQue || !this.mayorQue && this.menorQue) {
+      this._hideSpinner()
       return alertify.error("Rango invalido")
     }
 
@@ -62,14 +69,15 @@ export class RealizarCalculosComponent implements OnInit {
   }
 
   private _showSpinner(): void {
-    console.log("Showing spinner");
+    this.isLoading = true
   }
-
+  
   private _hideSpinner(): void {
-    console.log("Hidding spinner");
+    this.isLoading = false
   }
 
   public _enviarAExcel() {
+    this._showSpinner()
     // Obtener todos los productos terminados
     this.prodTermService.obtenerTodosLosProductos()
       .subscribe((data: { response: any }) => {
@@ -82,6 +90,7 @@ export class RealizarCalculosComponent implements OnInit {
         ])
           .subscribe((data: any) => {
             this.genericService.downloadExcel(data.url)
+            this._hideSpinner()
           })
       })
   }

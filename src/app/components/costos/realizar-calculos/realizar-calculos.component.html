@@ -1,7 +1,15 @@
-<button (click)="_btnClick()">Actualizar costos</button>
-<button (click)="_enviarAExcel()">Download excel</button>
-<input type="number" placeholder="Mayor que..." [(ngModel)]="mayorQue">
-<input type="number" placeholder="Menor que..." [(ngModel)]="menorQue">
-<input type="text" placeholder="Descripcion" [(ngModel)]="descripcion">
-<input type="text" placeholder="Color" [(ngModel)]="color">
-<input type="text" placeholder="Componente" [(ngModel)]="componente">
+<div *ngIf="!isLoading">
+    <button (click)="_btnClick()">Actualizar costos</button>
+    <button (click)="_enviarAExcel()">Download excel</button>
+    <input type="number" placeholder="Mayor que..." [(ngModel)]="mayorQue">
+    <input type="number" placeholder="Menor que..." [(ngModel)]="menorQue">
+    <input type="text" placeholder="Descripcion" [(ngModel)]="descripcion">
+    <input type="text" placeholder="Color" [(ngModel)]="color">
+    <input type="text" placeholder="Componente" [(ngModel)]="componente">
+</div>
+
+<div *ngIf="isLoading" class="d-flex justify-content-center mt-5">
+    <div class="spinner-border" style="height: 200px; width: 200px;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
