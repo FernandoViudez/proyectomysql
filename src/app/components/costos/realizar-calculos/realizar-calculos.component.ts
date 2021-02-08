@@ -43,7 +43,6 @@ export class RealizarCalculosComponent implements OnInit {
         if (item == "mayorQue" || item == "menorQue") {
           data[item] = this[item]
         } else {
-          console.log(this[item]);
           data = {
             atributo: item,
             info: this[item],
