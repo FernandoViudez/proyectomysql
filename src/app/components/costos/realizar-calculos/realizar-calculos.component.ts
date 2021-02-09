@@ -64,6 +64,9 @@ export class RealizarCalculosComponent implements OnInit {
     this.formService.realizarCalculos(data)
       .subscribe(data => {
         this._hideSpinner()
+      }, err => {
+        this._hideSpinner()
+        alertify.error(err.error.message)
       })
   }
 
