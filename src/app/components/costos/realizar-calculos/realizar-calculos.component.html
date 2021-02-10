@@ -1,15 +1,98 @@
-<div *ngIf="!isLoading">
-    <button (click)="_btnClick()">Actualizar costos</button>
-    <button (click)="_enviarAExcel()">Download excel</button>
-    <input type="number" placeholder="Mayor que..." [(ngModel)]="mayorQue">
-    <input type="number" placeholder="Menor que..." [(ngModel)]="menorQue">
-    <input type="text" placeholder="Descripcion" [(ngModel)]="descripcion">
-    <input type="text" placeholder="Color" [(ngModel)]="color">
-    <input type="text" placeholder="Componente" [(ngModel)]="componente">
-</div>
+<div class="notPrint" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+    <div class="p-0 mt-1" style="background-color:rgb(196, 189, 175)">
+        <h5 class="text-center font-weight-bold">CALCULO DE COSTO DE PRODUCTOS</h5>
+    </div>
 
-<div *ngIf="isLoading" class="d-flex justify-content-center mt-5">
-    <div class="spinner-border" style="height: 200px; width: 200px;" role="status">
-        <span class="sr-only">Loading...</span>
+    <div *ngIf="!isLoading">
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col-5">
+                    <h4>
+                        <span>OPCION 1: Seleccione RANGO DE PRODUCTOS a recalcular</span>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <input type="number" placeholder="Desde ..." class="form-control w-50 boldText"
+                        [(ngModel)]="mayorQue">
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-5">
+
+                    <input type="number" placeholder="Hasta ..." class="form-control w-50 boldText"
+                        [(ngModel)]="menorQue">
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-5">
+                    <h4>
+                        <span>OPCION 2: Seleccione UN PRODUCTO en especifico a recalcular</span>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <input type="text" placeholder="Descripcion" class="form-control w-50 boldText"
+                        [(ngModel)]="descripcion">
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-5">
+                    <h4>
+                        <span>OPCION 3: Seleccione UN COLOR en especifico a recalcular</span>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <input type="text" placeholder="Color" class="form-control w-50 boldText" [(ngModel)]="color">
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-5">
+                    <h4>
+                        <span>OPCION 4: Seleccione UN COMPONENTE en especifico a recalcular</span>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group col-3">
+                    <select class="w-50 custom-select boldText" [(ngModel)]="componente" id="componente">
+                        <option value="AGENTE DE CURA">Agente de cura</option>
+                        <option value="DILUYENTE">Diluyente</option>
+                        <option value="ENDURECEDOR">Endurecedor</option>
+                        <option value="INERTES">Inertes</option>
+                        <option value="LÍQUIDO">Liquido</option>
+                        <option value="MONOCOMPONENTE">Monocomponente</option>
+                        <option value="POLVO">Polvo</option>
+                        <option value="RESINA">Resina</option>
+                        <option value="SEMIELABORADO">Semi-elaborado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-7">
+                <button type="button" class="btn float-lg-right" style="background-color: rgb(190, 171, 131);"
+                    (click)="resetear()">Resetear</button>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-warning float-lg-right" data-toggle="modal" (click)="_enviarAExcel()">Bajar
+                    listado a
+                    Excel</button>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-success" (click)="_btnClick()">Actualizar costos</button>
+            </div>
+        </div>
+        
+        <div *ngIf=" isLoading" class="d-flex justify-content-center mt-5">
+            <div class="spinner-border" style="height: 200px; width: 200px;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
     </div>
 </div>

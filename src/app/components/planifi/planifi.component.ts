@@ -92,12 +92,14 @@ export class PlanifiComponent implements OnInit {
 
   generarClases(data: any) {
     for (let item of data) {
-      if(item.fechafin) {
+      if (item.fechafin) {
         item.isOrange = true;
       } else if (item.proceso == "ENVASADO") {
         item.isGreen = true;
       } else if (item.proceso == "FALTANTE") {
         item.isRed = true;
+      } else if (item.proceso == "TINTURADO") {
+        item.isLightYellow = true;
       } else if (item.fechacomienzo) {
         item.isYellow = true;
       }
@@ -226,9 +228,9 @@ export class PlanifiComponent implements OnInit {
 
       if (AnyoFecha < AnyoHoy) {
         return false;
-      } else if (MesFecha < MesHoy && AnyoFecha > AnyoHoy) { 
+      } else if (MesFecha < MesHoy && AnyoFecha > AnyoHoy) {
         return true; // Si el mes es menor pero el año mayor, lo dejamos
-      } else if (MesFecha < MesHoy && AnyoFecha <= AnyoHoy) { 
+      } else if (MesFecha < MesHoy && AnyoFecha <= AnyoHoy) {
         return false; // Si el mes es menor y el año tambien, no lo dejamos
       } else if (MesFecha === MesHoy && DiaFecha < DiaHoy) {
         return false;
@@ -348,7 +350,7 @@ export class PlanifiComponent implements OnInit {
         this.proceso, this.lote, this.operario, this.operarioenv, this.dispersora, this.molino,
         this.descripcion, this.editar, this.planifiService, this.id, this.correccion)
       this.resetear()
-    } 
+    }
 
 
 

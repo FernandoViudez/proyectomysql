@@ -76,6 +76,7 @@ export class RealizarCalculosComponent implements OnInit {
   
   private _hideSpinner(): void {
     this.isLoading = false
+    this.resetear()
   }
 
   public _enviarAExcel() {
@@ -95,6 +96,15 @@ export class RealizarCalculosComponent implements OnInit {
             this._hideSpinner()
           })
       })
+  }
+
+  resetear() {
+    this.isLoading = null;
+    this.mayorQue = null;
+    this.menorQue = null;
+    this.descripcion = null;
+    this.color = null;
+    this.componente = null;
   }
 
 }

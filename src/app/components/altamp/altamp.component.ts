@@ -15,7 +15,7 @@ declare let alertify: any;
   styles: []
 })
 export class AltampComponent implements OnInit, OnDestroy {
-
+  public user_role: string;
   mp: Subscription;
 
   id: number;
@@ -53,15 +53,16 @@ export class AltampComponent implements OnInit, OnDestroy {
   constructor(private http: HttpClient,
     private service: FormService,
     private servicioMp: MatprimService,
-    private altampService: AltampService, private route: Router) { 
-      let user_role = localStorage.getItem("user_role");
-      if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
-        alert("Acceso no autorizado !")
-        route.navigate(['inicio'])
-      }
+    private altampService: AltampService, private route: Router) {
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
     }
+  }
 
   ngOnInit(): void {
+    this.user_role = localStorage.getItem("user_role")
   }
 
 
@@ -83,7 +84,7 @@ export class AltampComponent implements OnInit, OnDestroy {
 
     this.servicioMp.validarMp(this.id).
       subscribe((data: any) => {
-        let dato : AltaMp = data.response;
+        let dato: AltaMp = data.response;
         Swal.fire({
           title: "M.P. existente",
           text: "¿ Desea editar la materia prima ?",
@@ -121,7 +122,7 @@ export class AltampComponent implements OnInit, OnDestroy {
             this.info3 = dato.info3;
             this.cobarras = dato.cobarras;
             this.editar = true;
-            document.getElementById("id").setAttribute("disabled","");
+            document.getElementById("id").setAttribute("disabled", "");
             this.validarIdProd();
           } else {
             this.id = null;
@@ -132,7 +133,7 @@ export class AltampComponent implements OnInit, OnDestroy {
         alertify.success(err.error.message);
 
         if (err.error.response) {
-          let dato : AltaMp = err.error.response;
+          let dato: AltaMp = err.error.response;
           Swal.fire({
             title: "M.P. existente",
             text: "¿ Desea editar la materia prima ?",
@@ -170,7 +171,7 @@ export class AltampComponent implements OnInit, OnDestroy {
               this.info3 = dato.info3;
               this.cobarras = dato.cobarras;
               this.editar = true;
-              document.getElementById("id").setAttribute("disabled","");
+              document.getElementById("id").setAttribute("disabled", "");
               this.validarIdProd();
             } else {
               this.id = null;
@@ -267,13 +268,13 @@ export class AltampComponent implements OnInit, OnDestroy {
     Swal.showLoading();
     if (!this.editar) {
       this.mp = this.altampService.postMp(data).subscribe((data: any) => {
-          Swal.close();
-          this.resetear();
-          this.editar = false;
-          return alertify.success("¡ Materia Prima cargada correctamente !");
-        }, (err) => {
-          console.log(err);
-        })
+        Swal.close();
+        this.resetear();
+        this.editar = false;
+        return alertify.success("¡ Materia Prima cargada correctamente !");
+      }, (err) => {
+        console.log(err);
+      })
     } else {
       this.mp = this.altampService.putMp(data).
         subscribe((data: any) => {
@@ -314,16 +315,16 @@ export class AltampComponent implements OnInit, OnDestroy {
     this.pesoespecifico = 0; this.ppp = 0; this.ppv = 0; this.resina = 0; this.pigmento = 0; this.solvente = 0;
     this.stock = 0; this.stockminimo = datos; this.unidadmedidacompra = datos; this.codpt = datos; this.condaprob1 = datos; this.condaprob2 = datos;
     this.condaprob3 = datos; this.condaprob4 = datos; this.info1 = datos; this.info2 = datos; this.info3 = datos; this.cobarras = datos;
-    this.termino1=null;
-    this.termino2=null;
+    this.termino1 = null;
+    this.termino2 = null;
     this.arrayBusqueda = [];
     let id = document.getElementById("id");
     id.removeAttribute("disabled");
   }
 
-  resetearBusqueda(){
-    this.termino1=null;
-    this.termino2=null;
+  resetearBusqueda() {
+    this.termino1 = null;
+    this.termino2 = null;
     this.arrayBusqueda = [];
   }
 
@@ -346,7 +347,7 @@ export class AltampComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
   }
 
 }

@@ -157,8 +157,8 @@
                 <span>Código de Barras</span>
                 <input type="text" class="mt-1 form-control boldText" [(ngModel)]="cobarras">
             </div>
-            <div class="col-4">
-                <span>Precio</span>
+            <div *ngIf="user_role == 'ADMIN_ROL'" class="col-4">
+                <span>Costo</span>
                 <input type="number" class="mt-1 form-control boldText" [(ngModel)]="precio">
             </div>
         </div>

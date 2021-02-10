@@ -133,9 +133,9 @@
                 <th>RELACION DE MEZCLADO</th>
                 <th>FECHA ULTIMA ELABORACIÓN</th>
                 <th>FECHA ULTIMA MODIFICACIÓN</th>
+                <th *ngIf="user_role == 'ADMIN_ROL'">COSTO POR</th>
                 <th>UNIDAD DE MEDIDA</th>
                 <th>STOCK</th>
-                <th *ngIf="user_role == 'ADMIN_ROL'">PRECIO</th>
             </tr>
             <tr *ngFor="let item of array" (click)="traerDf(item.id)" style="cursor: pointer;"
                 class="hoverFila text-center">
@@ -148,9 +148,9 @@
                 <td style="font-size: 16px;">{{item.relaciondemezcla}}</td>
                 <td style="font-size: 16px;">{{item.fechaultimaelaboracion | datePipe}}</td>
                 <td style="font-size: 16px;">{{item.ultimamodificacion | datePipe}}</td>
+                <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio | numeralPipe: 'true'}}</td>
                 <td style="font-size: 16px;">{{item.unidadmedida}}</td>
-                <td style="font-size: 16px;">{{item.stock | numeralPipe}}</td>
-                <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio | numeralPipe}}</td>
+                <td style="font-size: 16px;">{{item.stock | numeralPipe: 'true'}}</td>
             </tr>
 
             <tr class="bg-primary">
@@ -188,7 +188,7 @@
             <th>FECHA ULTIMA MODIFICACIÓN</th>
             <th>UNIDAD DE MEDIDA</th>
             <th>STOCK</th>
-            <th>PRECIO</th>
+            <th>COSTO</th>
         </tr>
         <tr *ngFor="let item of array" class="text-center">
             <td>{{item.id}}</td>

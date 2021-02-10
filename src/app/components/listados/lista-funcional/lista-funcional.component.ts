@@ -170,6 +170,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           item.fechacomienzo = item.fechacomienzo ? this.aplicarDatePipe(item.fechacomienzo) : undefined;
           item.fechafin = item.fechafin ? this.aplicarDatePipe(item.fechafin) : undefined;
           item.fecha = item.fecha ? this.aplicarDatePipe(item.fecha) : undefined;
+          item.fechaultimarecepcion = item.fechaultimarecepcion ? this.aplicarDatePipe(item.fechaultimarecepcion) : undefined;
           if (item.fechacompr) {
             item.componente = item.descripcion?.split("-")[1];
           }
@@ -227,13 +228,15 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         "ID",
         "DESCRIPCION",
         "STOCK",
-        "STOCK MINIMO"
+        "STOCK MINIMO",
+        "ULTIMA COMPRA"
       ],
       tb: [
         "id",
         "descripcion",
         "stock",
-        "stockminimo"
+        "stockminimo",
+        "fechaultimarecepcion"
       ]
 
     }

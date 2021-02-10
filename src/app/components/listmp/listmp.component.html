@@ -28,7 +28,8 @@
             <div class="col-2">
                 <div class="m-auto ml-2">
                     <h6 style="font-size: 14px;" id="pe"><b>Peso especifico: </b><span class="badge"
-                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pesoespecifico | numeralPipe}}</span>
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pesoespecifico |
+                            numeralPipe}}</span>
                     </h6>
                 </div>
             </div>
@@ -49,14 +50,16 @@
             <div class="col-2">
                 <div class="m-auto ml-2">
                     <h6 style="font-size: 14px;" id="resi"><b>% Resina: </b><span class="badge"
-                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{resina | numeralPipe}}</span>
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{resina |
+                            numeralPipe}}</span>
                     </h6>
                 </div>
             </div>
             <div class="col-2">
                 <div class="m-auto ml-2">
                     <h6 style="font-size: 14px;" id="pig"><b>% Pigmento: </b><span class="badge"
-                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pigmento | numeralPipe}}</span>
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pigmento |
+                            numeralPipe}}</span>
                     </h6>
                 </div>
             </div>
@@ -93,8 +96,7 @@
                     <th>INFO 2</th>
                     <th>INFO 3</th>
                     <th>CODIGO BARRAS</th>
-                    <th *ngIf="user_role == 'ADMIN_ROL'">PRECIO</th>
-
+                    <th *ngIf="user_role == 'ADMIN_ROL'">COSTO</th>
                 </tr>
             </thead>
             <tbody>
@@ -119,7 +121,7 @@
                     <td style="font-size: 16px;">{{item.info2}}</td>
                     <td style="font-size: 16px;">{{item.info3}}</td>
                     <td style="font-size: 16px;">{{item.cobarras}}</td>
-                    <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio}}</td>
+                    <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio | numeralPipe: 'true'}}</td>
                 </tr>
             </tbody>
 
@@ -135,7 +137,8 @@
             <button class="btn float-right" style="margin-right: 6%; background-color: rgb(190, 171, 131);"
                 (click)="resetearBusqueda()">RESETEAR
                 BUSQUEDA</button>
-            <button [disabled]="array.length==0" class="btn btn-warning float-lg-right" style="margin-right: 7%" (click)="imprimirBusqueda()">IMPRIMIR
+            <button [disabled]="array.length==0" class="btn btn-warning float-lg-right" style="margin-right: 7%"
+                (click)="imprimirBusqueda()">IMPRIMIR
                 BUSQUEDA</button>
         </div>
     </div>
