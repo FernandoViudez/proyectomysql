@@ -15,12 +15,13 @@ export class AnulacionComponent implements OnInit {
   codpt: number;
   descripcion: string;
   batch: number;
+  usuario: string;
   
   private url: string = obtenerPath();
 
   constructor(private http: HttpClient, private route: Router) { 
-    let user_role = localStorage.getItem("user_role");
-    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+    this.usuario = localStorage.getItem("user_role");
+    if (this.usuario != "ADMIN_ROL" && this.usuario != "LABORATORIO") {
       alert("Acceso no autorizado !")
       route.navigate(['inicio'])
     }
@@ -48,7 +49,7 @@ export class AnulacionComponent implements OnInit {
     }).then(res => {
       if (res.value) {
         Swal.showLoading();
-        this.http.get(`${this.url}anularBatch/${this.batch}`)
+        this.http.post(`${this.url}anularBatch/${this.batch}`, { usuario: this.usuario })
           .subscribe(data => {
             Swal.close();
             this.batch=null;
