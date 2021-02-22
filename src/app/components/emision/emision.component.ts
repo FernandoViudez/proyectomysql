@@ -357,11 +357,11 @@ export class EmisionComponent implements OnInit, OnDestroy {
           descripcionEtiquetas: this.descripcionEtiquetas,
           colorEtiquetas: this.colorEtiquetas,
           tipogenerico: this.tipogenerico,
-          usuario: localStorage.getItem("username")
+          usuario: localStorage.getItem("username"),
+          proceso: this.tfa == 'T' ? 'TINTURADO' : this.proceso,
         }
 
-
-        /** DEJAMOS TIMEPO A QUE SE GUARDE LA DATA Y SE HAGA EL CAMBIO DE HTMLS POR ATRAS */
+        /** DEJAMOS TIEMPO A QUE SE GUARDE LA DATA Y SE HAGA EL CAMBIO DE HTMLS POR ATRAS */
         setTimeout(() => {
           Swal.close();
           this.imprimir();
