@@ -502,6 +502,14 @@ export class AltaformComponent implements OnInit, OnDestroy {
   validarmp() {
     this.MatPrimService.validarMp(this.codmp).subscribe((data: any) => {
       this.descripcion = data.response.descripcion;
+      const ubicacion = data.response.ubicacion;   // en este campo se indica si la MP es obsoleta o no
+
+      if(ubicacion == "SI") {
+        alertify.error('MATERIA PRIMA OBSOLETA'); 
+        alertify.error('MATERIA PRIMA OBSOLETA');
+        return alertify.error('MATERIA PRIMA OBSOLETA');
+      }
+
       this.existemp = "existe";
 
     }, (err) => {

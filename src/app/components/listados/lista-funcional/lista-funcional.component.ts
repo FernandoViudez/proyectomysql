@@ -328,12 +328,14 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         "DESCRIPCION",
         "COLOR",
         "CODMP",
+        "CANTIDAD"
       ],
       tb: [
         "idprod",
         "descripcion",
         "color",
         "codmp",
+        "cantidad",
       ]
 
     }
@@ -352,14 +354,14 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     let arrayTemporal: any = [];
     for (let index = 0; index < this.items.length; index++) {
       this.sumaTotal += this.items[index].cantidad;
-
       if (arrayTemporal.length != 0) {
-
-        if (arrayTemporal.find(item => item.codpt == this.items[index].codpt)) {
-
+        
+        if (arrayTemporal.find(item => item.codpt == this.items[index].codpt && item.proceso == this.items[index].proceso)) {
+          
           arrayTemporal.map(item => {
 
-            if (item.codpt == this.items[index].codpt) {
+            if (item.codpt == this.items[index].codpt && 
+              item.proceso == this.items[index].proceso) {
               item.cantidad += this.items[index].cantidad
 
             }
@@ -450,7 +452,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
     /** Calculo subtotales */
     for (let item of this.items) {
-      if (item.proceso.trim() == "TINTURADO") {      //  para sumar los TINTURADOS
+      if (item.proceso.trim() == "TINTURADO") { //  para sumar los TINTURADOS
         this.subtotales[9].subtotal += item.cantidad;
       } else {
         switch (item.componente.trim()) {
