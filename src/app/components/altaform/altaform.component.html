@@ -217,38 +217,38 @@
         <h5 class="modal-title" id="exampleModalLabel">NUEVA FILA</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button> 
       </div>
       <div class="modal-body">
 
         <div class="form-group">
           <label for="recipient-name" class="col-form-label">MPI</label>
-          <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name" style="font-size: 18px;">
+          <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name" style="font-size: 18px; text-transform:uppercase;">
         </div>
         <div class="row">
           <div class="col-6">
             <div class="form-group">
               <label for="recipient-name1" class="col-form-label">Código MP</label>
-              <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name1"
+              <input [disabled]="mpi == 'I' || mpi =='i' || mpi == 'P' || mpi == 'p' " (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name1"
                 style="font-size: 18px;">
             </div>
           </div>
           <div class="col-6">
             <div class="form-group">
               <label for="recipient-name2" class="col-form-label">Código PT</label>
-              <input (change)="validarpt(true)" type="number" [(ngModel)]="codpt" class="form-control"
+              <input [disabled]="mpi == 'I' || mpi =='i' || mpi == 'M' || mpi == 'm' " (change)="validarpt(true)" type="number" [(ngModel)]="codpt" class="form-control"
                 id="recipient-name2" style="font-size: 18px;">
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="recipient-name3" class="col-form-label">Descripción</label>
-          <input type="text" [(ngModel)]="descripcion" class="form-control" id="recipient-name3" maxlength="65"
+          <input type="text" [disabled]="mpi == 'P' || mpi =='p' || mpi == 'M' || mpi == 'm' " [(ngModel)]="descripcion" class="form-control" id="recipient-name3" maxlength="65"
             style="font-size: 18px;">
         </div>
         <div class="form-group">
           <label for="recipient-name4" class="col-form-label">Cantidad</label>
-          <input step="0.01" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantidad" class="form-control"
+          <input step="0.01" type="number" (keypress)="omit_number($event)" [disabled]="mpi == 'I' || mpi =='i'" [(ngModel)]="cantidad" class="form-control"
             id="recipient-name4" style="font-size: 18px;">
         </div>
       </div>
@@ -278,7 +278,7 @@
           <div class="col-12">
             <div class="form-group">
               <label for="recipient-name0" class="col-form-label">MPI</label>
-              <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name0" style="font-size: 18px;">
+              <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name0" style="font-size: 18px; text-transform:uppercase;">
             </div>
           </div>
         </div>
@@ -287,14 +287,14 @@
           <div class="col">
             <div class="form-group">
               <label for="recipient-name01" class="col-form-label">Código MP</label>
-              <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name01"
+              <input [disabled]="mpi == 'I' || mpi =='i' || mpi == 'P' || mpi == 'p' " (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name01"
                 style="font-size: 18px;">
             </div>
           </div>
           <div class="col">
             <div class="form-group">
               <label for="recipient-name02" class="col-form-label">Código PT</label>
-              <input (change)="validarpt(true)" type="number" [(ngModel)]="codpt" class="form-control"
+              <input [disabled]="mpi == 'I' || mpi =='i' || mpi == 'M' || mpi == 'm' " (change)="validarpt(true)" type="number" [(ngModel)]="codpt" class="form-control"
                 id="recipient-name02" style="font-size: 18px;">
             </div>
           </div>
@@ -302,12 +302,12 @@
 
         <div class="form-group">
           <label for="recipient-name03" class="col-form-label">Descripción</label>
-          <input type="text" [(ngModel)]="descripcion" class="form-control" id="recipient-name03"
+          <input type="text" [disabled]="mpi == 'P' || mpi =='p' || mpi == 'M' || mpi == 'm' " [(ngModel)]="descripcion" class="form-control" id="recipient-name03"
             style="font-size: 18px;">
         </div>
         <div class="form-group">
           <label for="recipient-name04" class="col-form-label">Cantidad</label>
-          <input step="0.01" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantidad" class="form-control"
+          <input step="0.01" type="number" (keypress)="omit_number($event)" [disabled]="mpi == 'I' || mpi =='i'" [(ngModel)]="cantidad" class="form-control"
             id="recipient-name04" style="font-size: 18px;">
         </div>
 

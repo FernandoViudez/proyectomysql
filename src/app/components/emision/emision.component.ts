@@ -76,6 +76,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
   fechafin: any;
   fechacomienzo: any;
   motivo: string;
+  contemplar: string;
 
   //ENVASADO
   cobarras: string;
@@ -498,6 +499,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
     this.arrayCantidadesRestadas = [];
     this.arrayCodMp = [];
     this.fechaDelDia = undefined;
+    this.contemplar = undefined;
 
     // FLAG BUTTON
     this.botonCancelado = false;

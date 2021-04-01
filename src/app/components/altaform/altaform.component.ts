@@ -118,6 +118,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
     this.mpi = this.mpi.toUpperCase()
     if (this.mpi == "M" || this.mpi == "P" || this.mpi == "I") {
+
       if (this.mpi == "M" && !this.codmp || this.mpi == "M" && this.codpt || this.mpi == "P" && !this.codpt || this.mpi == "P" && this.codmp) {
         return alertify.error("NO PUEDES ASIGNAR 'M' SELECCIONANDO UN PT O 'P' SELECCIONANDO UNA MP")
       }
@@ -129,9 +130,6 @@ export class AltaformComponent implements OnInit, OnDestroy {
       }
       if (this.mpi == "I" && !this.descripcion) {
         return alertify.error("ES NECESARIO INGRESAR UNA DESCRIPCION PARA LA INSTRUCCIÓN !")
-      }
-      if (this.mpi == "I" && this.cantidad) {
-        return alertify.error("NO PUEDES INGRESAR UNA CANTIDAD EN UNA INSTRUCCIÓN !")
       }
 
       // this.service.cargar(this.idprod, this.tintoformoalt.toUpperCase(), this.mpi, this.codmp, this.codpt, this.descripcion, this.cantidad)
@@ -359,6 +357,40 @@ export class AltaformComponent implements OnInit, OnDestroy {
   }
 
   editar() {
+    
+    if (this.idprod == this.codpt) {
+      return alertify.error(" NO SE PUEDE CARGAR ESTE PRODUCTO TERMINADO !")
+    }
+    if (this.existemp == "noexiste") {
+      return alertify.error("NO EXISTE CODIGO DE MATERIA PRIMA !")
+    }
+    if (this.existept == "noexiste") {
+      return alertify.error("CORREGIR CODIGO DE PRODUCTO TERMINADO !")
+    }
+    if (!this.idprod || !this.tintoformoalt) {
+      return alertify.error("ES NECESARIO INGRESAR UN CODIGO PRODUCTO Y TIPO 'F' o 'T' o 'A'")
+    }
+    if (!this.mpi) {
+      return alertify.error("MPI INCORRECTO !")
+    }
+
+    this.mpi = this.mpi.toUpperCase()
+    if (this.mpi == "M" || this.mpi == "P" || this.mpi == "I") {
+
+      if (this.mpi == "M" && !this.codmp || this.mpi == "M" && this.codpt || this.mpi == "P" && !this.codpt || this.mpi == "P" && this.codmp) {
+        return alertify.error("NO PUEDES ASIGNAR 'M' SELECCIONANDO UN PT O 'P' SELECCIONANDO UNA MP")
+      }
+      if (this.mpi == "M" && !this.descripcion || this.mpi == "P" && !this.descripcion) {
+        return alertify.error("NO PUEDES ASIGNAR UNA DESCRIPCION NULA")
+      }
+      if (!this.cantidad && this.mpi == "M" || !this.cantidad && this.mpi == "P") {
+        return alertify.error("ES NECESARIO INGRESAR UNA CANTIDAD !")
+      }
+      if (this.mpi == "I" && !this.descripcion) {
+        return alertify.error("ES NECESARIO INGRESAR UNA DESCRIPCION PARA LA INSTRUCCIÓN !")
+      }
+    }
+
 
     /** Encontramos el item con ind:  this.ind   */
     let index = this.array.map(item => item.ind).indexOf(this.ind);

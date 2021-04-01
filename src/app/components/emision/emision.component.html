@@ -82,6 +82,14 @@
                         <input type="text" class="form-control w-50 boldText" [(ngModel)]="colorEtiquetas">
                     </div>
                 </div>
+                <div class="row mt-2">
+                    <div class="col-3">
+                        <label style="margin-left:50%;">Observaciones a tener en cuenta</label>
+                    </div>
+                    <div class="col-5">
+                        <input type="text" class="form-control w-50 boldText" [(ngModel)]="contemplar">
+                    </div>
+                </div>
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="m-auto" style="width:80%">
@@ -334,6 +342,7 @@ OPERARIO: _______________ <span class="tab3"></span> NRO.CUBA UTILIZADA: ______ 
 DISPERSORA NRO: _____ <span class="tab1"></span>CON DISCO: PLANO / CONN / MULTILAMINAR <span class="tab1"></span>MOLINO NRO: ______
 PESO FINAL ________ Kg <span class="tab1"></span>CONTROLO __________ <span class="tab1"></span> COMIENZO ENVASADO ___/___/___<span class="tab1"></span> FILTRO # _______
 ETIQUETADO COMO: {{descripcionEtiquetas}} - {{colorEtiquetas}} **** FECHA VENCIMIENTO: {{calcularFechaVencimiento()}}
+OBSERVACION: {{contemplar}}<span class="tab1"></span> CLIENTE: {{cliente}}
             </pre>
             </b>
             <div class="w-100" *ngIf="tfa=='T'"> :
