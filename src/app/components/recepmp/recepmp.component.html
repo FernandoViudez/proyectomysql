@@ -21,10 +21,11 @@
     </div>
 
     <div class="container">
-        <div class="row mt-2" >
+        <div class="row mt-2">
             <div class="col-3">
                 <label>Ingrese el Código de Materia Prima</label>
-                <input id="id" (change)="traerDatosMp()" class="form-control boldText" type="number" [(ngModel)]="id" required>
+                <input id="id" (change)="traerDatosMp()" class="form-control boldText" type="number" [(ngModel)]="id"
+                    required>
             </div>
             <div class="col-6">
                 <label>Descripción</label>
@@ -50,19 +51,20 @@
                 <div class="input-group">
                     <input class="form-control boldText text-right" disabled type="number" [(ngModel)]="stock">
                     <div class="input-group-append">
-                                <span class="input-group-text boldText" id="basic-addon2">{{unidadRecibo}}</span>
+                        <span class="input-group-text boldText" id="basic-addon2">{{unidadRecibo}}</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row mt-2">               
+        <div class="row mt-2">
             <div class="col-3">
                 <label>Orden de compra</label>
                 <input class="form-control boldText" type="text" [(ngModel)]="ordenCompra">
             </div>
             <div class="col-3">
                 <label>Número de Remito</label>
-                <input class="form-control boldText" type="number" (keypress)="omit_number($event)" [(ngModel)]="nroRemito">
+                <input class="form-control boldText" type="number" (keypress)="omit_number($event)"
+                    [(ngModel)]="nroRemito">
             </div>
             <div class="col-3">
                 <label>Proveedor</label>
@@ -76,11 +78,13 @@
             </div>
             <div class="col-4">
                 <label>Cantidad recibida en {{unidadRecibo}}</label>
-                <input class="form-control boldText" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantidad">
+                <input class="form-control boldText" type="number" (keypress)="omit_number($event)"
+                    [(ngModel)]="cantidad">
             </div>
             <div class="col-4">
                 <label>Cantidad de etiquetas a generar</label>
-                <input class="form-control boldText" type="number" (keypress)="omit_number($event)" [(ngModel)]="cantEtiquetas">
+                <input class="form-control boldText" type="number" (keypress)="omit_number($event)"
+                    [(ngModel)]="cantEtiquetas">
             </div>
         </div>
         <div class="row" mt-2>
@@ -138,7 +142,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" (click)="resetear()">Resetear</button>
+                    <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
+                        (click)="resetear()">Resetear</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -148,12 +153,12 @@
 
 <div class="yesPrint">
 
-	<style>
-	.no-gutters {
-	  margin-right: 0;
-	  margin-left: 1;
-	}
-	</style>
+    <style>
+        .no-gutters {
+            margin-right: 0;
+            margin-left: 1;
+        }
+    </style>
 
     <h3>
         <b style="text-align:center">
@@ -166,7 +171,10 @@
         <div class="row mb-5 no-gutters">
             <div class="column left" style="background-color:#aaa;">
                 <p>Producto : {{descripcion}}</p>
-                <p>Proveedor : {{proveedor}}</p>
+                <h3><b>
+                        <p>Proveedor : {{proveedor}}</p>
+                    </b>
+                </h3>
                 <p>O/C Nro. : {{ordenCompra}}</p>
                 <p>Remito Nro. : {{nroRemito}}</p>
                 <p></p>
@@ -176,7 +184,8 @@
                 <p>Nro. Part.Prov. : {{nroPart}}</p>
                 <p>Nro. Lote : {{lotePrint}}</p>
                 <p *ngIf="unidadRecibo=='Kg'">Cantidad recibida {{unidadRecibo}}: {{cantidad}}</p>
-                <p *ngIf="unidadRecibo=='Lt'">Cantidad recibida {{unidadRecibo}}: {{(cantidad / pesoespecifico)}} = {{cantidad}} Kg</p>                
+                <p *ngIf="unidadRecibo=='Lt'">Cantidad recibida {{unidadRecibo}}: {{(cantidad / pesoespecifico)}} =
+                    {{cantidad}} Kg</p>
                 <p *ngIf="unidadRecibo=='Un'">Cantidad recibida {{unidadRecibo}}: {{cantidad}}</p>
                 <p *ngIf="unidadRecibo=='Mt'">Cantidad recibida {{unidadRecibo}}: {{cantidad}}</p>
                 <p>Fecha recepcion : {{fecha}}</p>

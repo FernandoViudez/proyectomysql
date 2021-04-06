@@ -342,7 +342,7 @@ OPERARIO: _______________ <span class="tab3"></span> NRO.CUBA UTILIZADA: ______ 
 DISPERSORA NRO: _____ <span class="tab1"></span>CON DISCO: PLANO / CONN / MULTILAMINAR <span class="tab1"></span>MOLINO NRO: ______
 PESO FINAL ________ Kg <span class="tab1"></span>CONTROLO __________ <span class="tab1"></span> COMIENZO ENVASADO ___/___/___<span class="tab1"></span> FILTRO # _______
 ETIQUETADO COMO: {{descripcionEtiquetas}} - {{colorEtiquetas}} **** FECHA VENCIMIENTO: {{calcularFechaVencimiento()}}
-OBSERVACION: {{contemplar}}<span class="tab1"></span> CLIENTE: {{cliente}}
+OBSERVACION: {{contemplar}}<span class="tab1"></span> CLIENTE: {{cliente}}<span class="tab1"></span> PROMETIDO PARA: {{fechacompr | datePipe}}
             </pre>
             </b>
             <div class="w-100" *ngIf="tfa=='T'"> :
