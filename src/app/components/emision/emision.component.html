@@ -230,7 +230,8 @@
                                     <td class="text-primary boldText" style="font-size: 15px;" *ngIf="item.ind[0] < 0">
                                         {{item.ind[0] | numeralPipe}}
                                         KG </td>
-                                    <td style="font-family: Arial, Helvetica, sans-serif;" class="text-success" *ngIf="item.ind[0] >= 0">HAY STOCK</td>
+                                    <td style="font-family: Arial, Helvetica, sans-serif;" class="text-success"
+                                        *ngIf="item.ind[0] >= 0">HAY STOCK</td>
                                 </tr>
                             </table>
                         </div>
@@ -396,7 +397,7 @@ OBSERVACION: {{contemplar}}<span class="tab1"></span> CLIENTE: {{cliente}}<span 
                         <td>{{item.orden}}</td>
                         <td>{{item.codmp}}</td>
                         <td>{{item.codpt}}</td>
-                        <td style="font-family: Arial, Helvetica, sans-serif; font-weight: normal;">{{item.descripcion}}</td>
+                        <td style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">{{item.descripcion}}</td>
                         <td *ngIf=" unidadmedida=='KG' && item.cantidad" class="text-right">
                             {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0</td>
                         <td *ngIf="unidadmedida == 'LT' && item.cantidad" class="text-right">
@@ -409,9 +410,9 @@ OBSERVACION: {{contemplar}}<span class="tab1"></span> CLIENTE: {{cliente}}<span 
                     </tr>
                 </table>
                 <pre>
-__._____ _____ ____________________________________________________ __________+__________+__________
-__._____ _____ ____________________________________________________ __________+__________+__________
-__._____ _____ ____________________________________________________ __________+__________+__________
+__._____ _____ _______________________________________________________________________________ __________+__________+__________
+__._____ _____ _______________________________________________________________________________ __________+__________+__________
+__._____ _____ _______________________________________________________________________________ __________+__________+__________
                 </pre>
             </td>_
 
@@ -479,10 +480,12 @@ __._____ _____ ____________________________________________________ __________+_
                 </tr>
             </table><br>
         </h6>
-        <h5>
-            == 8<=={{id}} {{descripcion}} {{componente}} {{color}} {{proximoBatch}}==8<===FECHA DE APROBACION FINAL ___/
-                ___ /___ HORA _____<br>
+        <hr>
+        <h5> <b>
+                {{id}} {{descripcion}} {{componente}} {{color}} {{proximoBatch}}</b><span class="tab1"></span>FECHA APROB.FINAL
+                    ___/ ___ /___ <span class="tab1"></span>HORA _____ <span class="tab1"></span><b *ngIf="contemplar">OBSERVACION: {{contemplar}}</b> <br>
         </h5>
+
         <b>
             <div>
                 <table>
@@ -497,7 +500,8 @@ __._____ _____ ____________________________________________________ __________+_
                     </tr>
                     <tr *ngFor="let item of arrayConj">
                         <td>{{item.codmp}}</td>
-                        <td style="font-weight: normal; font-family: Arial, Helvetica, sans-serif; ">{{item.descripcion}}</td>
+                        <td style="font-weight: normal; font-family: Arial, Helvetica, sans-serif; ">
+                            {{item.descripcion}}</td>
                         <td class="text-right">{{item.envasado | numeralPipe}}</td>
                         <td *ngIf="item.indice != 0 && item.indice != ''" class="text-right">{{item.indice}}</td>
                         <td *ngIf="item.indice == 0 || item.indice == ''" class="text-right">0</td>
@@ -606,7 +610,9 @@ RECIBIO Y CONTROLO: ___________________ <span class="tab1"></span>FECHA: ___/___
                         CODIGO: {{id}}
             </div><br>
             Item : {{item.orden}} <br>
-            <div style="font-size: 25px; font-weight: bold; text-align: center;font-family: Arial, Helvetica, sans-serif;"> {{item.codmp}}{{item.codpt}} -
+            <div
+                style="font-size: 25px; font-weight: bold; text-align: center;font-family: Arial, Helvetica, sans-serif;">
+                {{item.codmp}}{{item.codpt}} -
                 {{item.descripcion}}</div>
             <div style="font-size: 25px; font-weight: bold; text-align: right;"
                 *ngIf="unidadmedida == 'KG' && item.cantidad">

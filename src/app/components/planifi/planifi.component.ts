@@ -243,19 +243,19 @@ export class PlanifiComponent implements OnInit {
       return alertify.error("Código del producto incorrecto");
     }
     if (!this.cantidad || this.cantidad < 0) {
-      return alertify.error("La cantidad es incorrecta");
+      return alertify.error("La cantidad es incorrecta !!");
     }
     if (!this.formaenv) {
-      return alertify.error("La forma de envasado es incorrecta");
+      return alertify.error("La forma de envasado es incorrecta !!");
     }
     if (!this.cliente) {
-      return alertify.error("El cliente es obligatorio!!");
+      return alertify.error("El cliente es obligatorio !!");
     }
     if (!this.motivo) {
-      return alertify.error("El motivo es obligatorio!!")
+      return alertify.error("El motivo es obligatorio !!")
     }
     if (!this.fechacompr) {
-      return alertify.error("La fecha comprometida es obligatoria!!")
+      return alertify.error("La fecha comprometida es obligatoria !!")
     }
 
     if (!calcularFecha(this.fechacompr) || (this.fechafin && !calcularFecha(this.fechafin, true))) {
