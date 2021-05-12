@@ -133,6 +133,7 @@
                 <th>RELACION DE MEZCLADO</th>
                 <th>FECHA ULTIMA ELABORACIÓN</th>
                 <th>FECHA ULTIMA MODIFICACIÓN</th>
+                <th>MODIFICADO POR</th> 
                 <th *ngIf="user_role == 'ADMIN_ROL'">COSTO POR</th>
                 <th>UNIDAD DE MEDIDA</th>
                 <th>STOCK</th>
@@ -148,6 +149,7 @@
                 <td style="font-size: 16px;">{{item.relaciondemezcla}}</td>
                 <td style="font-size: 16px;">{{item.fechaultimaelaboracion | datePipe}}</td>
                 <td style="font-size: 16px;">{{item.ultimamodificacion | datePipe}}</td>
+                <td style="font-size: 16px;">{{item.modifico}}</td>
                 <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio | numeralPipe: 'true'}}</td>
                 <td style="font-size: 16px;">{{item.unidadmedida}}</td>
                 <td style="font-size: 16px;">{{item.stock | numeralPipe: 'true'}}</td>
@@ -186,9 +188,10 @@
             <th>RELACION DE MEZCLADO</th>
             <th>FECHA ULTIMA ELABORACIÓN</th>
             <th>FECHA ULTIMA MODIFICACIÓN</th>
+            <th>MODIFICADO POR</th>
             <th>UNIDAD DE MEDIDA</th>
             <th>STOCK</th>
-            <th>COSTO</th>
+            <th *ngIf="user_role == 'ADMIN_ROL'">COSTO</th>
         </tr>
         <tr *ngFor="let item of array" class="text-center">
             <td>{{item.id}}</td>
@@ -200,9 +203,10 @@
             <td>{{item.relaciondemezcla}}</td>
             <td>{{item.fechaultimaelaboracion | datePipe}}</td>
             <td>{{item.ultimamodificacion | datePipe}}</td>
+            <td>{{item.modifico}}</td>
             <td>{{item.unidadmedida}}</td>
             <td>{{item.stock | numeralPipe}}</td>
-            <td>{{item.precio | numeralPipe}}</td>
+            <td *ngIf="user_role == 'ADMIN_ROL'">{{item.precio | numeralPipe}}</td>
         </tr>
     </table>
 </div>

@@ -27,7 +27,8 @@ export class ListprodComponent implements OnInit {
   descripcion: string;
   color: string;
   componente: string;
-  user_role: string
+  user_role: string;
+  modifico: string;
 
   constructor(private http: HttpClient) { }
 
@@ -49,6 +50,7 @@ export class ListprodComponent implements OnInit {
     this.pigmento = null;
     this.solvente = null;
     this.precio = null;
+    this.modifico = null;
   }
 
   resetearBusqueda() {
@@ -96,6 +98,7 @@ export class ListprodComponent implements OnInit {
         this.spindlenumero = datos.spindlenumero;
         this.molienda = datos.molienda;
         this.brillo = datos.brillo;
+        this.modifico = datos.modifico;
       }
       this.array = data.response;
     }, (err) => {

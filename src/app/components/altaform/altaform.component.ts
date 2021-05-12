@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AltaformComponent implements OnInit, OnDestroy {
 
+  public username: string;
   texto = "CAMBIAR EL ORDEN";
   mostrar = false;
   idprod: number;
@@ -46,7 +47,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
   ind: number;
   idImport: number;
   componente: string;
-
+  usuario: string;
 
   constructor(private service: FormService,
     private route: Router,
@@ -206,10 +207,10 @@ export class AltaformComponent implements OnInit, OnDestroy {
     if (this.tintoformoalt != "F" && this.tintoformoalt != "T" && this.tintoformoalt != "A") {
       return alertify.error("¡ EL DATO EN TFA ES INCORRECTO !")
     }
-    
-    if(this.array.length == 0){
+
+    if (this.array.length == 0) {
       return alertify.error("¡ NO HA CARGADO NINGUN RENGLON PARA LAS FORMULAS !")
-    } 
+    }
 
     function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array) {
       return new Promise((resolve, reject) => {
@@ -273,21 +274,21 @@ export class AltaformComponent implements OnInit, OnDestroy {
   }
 
   calcular(formulas: any[]) {
-    if(formulas.length == 0) {
+    if (formulas.length == 0) {
       this.pe = 0;
       this.pig = 0,
-      this.ppp = 0;
+        this.ppp = 0;
       this.ppv = 0;
       this.pr = 0;
       this.resi = 0;
       this.solv = 0;
       return
-    } 
+    }
 
     this.service.calcular(formulas).subscribe((data: any) => {
       this.pe = data.pe;
       this.pig = data.tpig,
-      this.ppp = data.tppp;
+        this.ppp = data.tppp;
       this.ppv = data.ttppv;
       this.pr = data.tpr;
       this.resi = data.tres;
@@ -357,7 +358,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
   }
 
   editar() {
-    
+
     if (this.idprod == this.codpt) {
       return alertify.error(" NO SE PUEDE CARGAR ESTE PRODUCTO TERMINADO !")
     }
@@ -452,6 +453,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
     this.descripcion1 = null;
     this.solv = null;
     this.array = [];
+    this.usuario = null;
     document?.getElementById("idp")?.removeAttribute("disabled");
     document?.getElementById("TFA")?.removeAttribute("disabled");
 
@@ -467,8 +469,11 @@ export class AltaformComponent implements OnInit, OnDestroy {
       return alertify.error("¡ EL DATO EN TFA ES INCORRECTO !");
     }
 
+    let data = {
+      idprod: this.idprod,
+      tintoformoalt: this.tintoformoalt,
+    };
 
-    let data = { idprod: this.idprod, tintoformoalt: this.tintoformoalt };
     fetch(`${environment.backend}detect`, {
       method: "POST",
       body: JSON.stringify(data),
@@ -480,8 +485,6 @@ export class AltaformComponent implements OnInit, OnDestroy {
         document.getElementById("TFA").setAttribute("disabled", "");
         if (data1.message == "genial") {
           alertify.success("¡ NO EXISTE, SIGUE ADELANTE !");
-
-
 
           let sweet = async () => {
             const { value: idImport } = await Swal.fire({
@@ -536,8 +539,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
       this.descripcion = data.response.descripcion;
       const ubicacion = data.response.ubicacion;   // en este campo se indica si la MP es obsoleta o no
 
-      if(ubicacion == "SI") {
-        alertify.error('MATERIA PRIMA OBSOLETA'); 
+      if (ubicacion == "SI") {
+        alertify.error('MATERIA PRIMA OBSOLETA');
         alertify.error('MATERIA PRIMA OBSOLETA');
         return alertify.error('MATERIA PRIMA OBSOLETA');
       }
@@ -555,7 +558,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       subscribe((data: any) => {
 
         this.existept = "existe";
-        if(esProductoDentroDeFormula) {
+        if (esProductoDentroDeFormula) {
           this.descripcion = `${data.desc}`;
           return;
         }
@@ -592,8 +595,6 @@ export class AltaformComponent implements OnInit, OnDestroy {
         }
 
       })
-
-
 
   }
 
@@ -634,5 +635,5 @@ export class AltaformComponent implements OnInit, OnDestroy {
     key = event.keyCode;  //         key = event.charCode;  (Both can be used)   key == 45  // allows minus(-)
     return ((key > 47 && key < 58) || key == 46);
   }
-  
+
 }

@@ -46,7 +46,6 @@ export class InicioComponent implements OnInit {
       Swal.close();
       alertify.error(err.error.message);
     })
-
   }
 
   guardarDatos(datoAguardar, data){
