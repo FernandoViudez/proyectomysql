@@ -58,6 +58,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       alert("Acceso no autorizado !")
       route.navigate(['inicio'])
     }
+    this.usuario = localStorage.getItem("username");
   }
 
   cambiarTexto() {
@@ -212,7 +213,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       return alertify.error("¡ NO HA CARGADO NINGUN RENGLON PARA LAS FORMULAS !")
     }
 
-    function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array) {
+    function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario) {
       return new Promise((resolve, reject) => {
         Swal.fire({
           title: "¡¡Atención!!",
@@ -231,7 +232,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
             })
             Swal.showLoading()
             service.finalizar(tintoformoalt, idprod, pe, ppp, ppv, resi,
-              pig, pr, array).subscribe((data: any) => {
+              pig, pr, array, usuario).subscribe((data: any) => {
                 Swal.close()
                 Swal.fire({
                   title: "GENIAL",
@@ -250,7 +251,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
     if (this.tintoformoalt == "T") {
       let response = finalizar(0, this.service, this.tintoformoalt, this.idprod, this.pe, this.ppp, this.ppv,
-        this.resi, this.pig, this.pr, this.array);
+        this.resi, this.pig, this.pr, this.array, this.usuario);
       response.then(data => {
         this.resetear();
         this.resetear1();
@@ -259,7 +260,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       })
     } else if (this.sumaTot) {
       let response = finalizar(this.sumaTot, this.service, this.tintoformoalt, this.idprod, this.pe, this.ppp, this.ppv,
-        this.resi, this.pig, this.pr, this.array);
+        this.resi, this.pig, this.pr, this.array, this.usuario);
       response.then(data => {
         this.resetear();
         this.resetear1();
