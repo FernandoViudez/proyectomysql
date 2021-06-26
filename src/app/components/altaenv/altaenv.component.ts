@@ -159,13 +159,13 @@ export class AltaenvComponent implements OnInit, OnDestroy {
       })
     }
     Swal.fire({
-      title: "¿ DESEA BORRAR TODO LO CARGADO ?",
+      title: "¿ DESEA BORRAR TODO LO MODIFICADO ?",
       icon: "question",
       showCancelButton: true,
-      cancelButtonText: "CANCELAR",
+      cancelButtonText: "CONTINUAR MODIFICANDO",
       confirmButtonText: "BORRAR",
-      confirmButtonColor: "green",
-      cancelButtonColor: "red"
+      confirmButtonColor: "red",
+      cancelButtonColor: "green"
     }).then(res => {
       if (!res.value) {
         return;

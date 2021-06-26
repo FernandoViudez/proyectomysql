@@ -92,11 +92,39 @@
             </div>
             <div class="col-3">
                 <label>Operario producción</label>
-                <input type="string" [(ngModel)]="operario" class="form-control boldText" id="operario">
+                <div class="input-group">
+                    <select class="mt-2 custom-select boldText" [(ngModel)]="operario" id="operario">
+                        <option value="CALIVA">Caliva</option>
+                        <option value="CORTEZ">Cortez</option>
+                        <option value="ESTAMATTI">Estamatti</option>
+                        <option value="GALANTE">Galante</option>
+                        <option value="GIORGI">Giorgi</option>
+                        <option value="GUEVARA">Guevara</option>
+                        <option value="MACIEL">Maciel</option>
+                        <option value="DARIO">Parisi</option>
+                        <option value="PORTILLO">Portillo</option>
+                        <option value="SANDOVAL">Sandoval</option>
+                        <option value="VIVAS">Vivas</option>
+                    </select>
+                </div>
             </div>
             <div class="col-3">
                 <label>Operario envasado</label>
-                <input type="string" [(ngModel)]="operarioenv" class="form-control boldText" id="operarioenv">
+                <div class="input-group">
+                    <select class="mt-2 custom-select boldText" [(ngModel)]="operarioenv" id="operarioenv">
+                        <option value="CALIVA">Caliva</option>
+                        <option value="CORTEZ">Cortez</option>
+                        <option value="ESTAMATTI">Estamatti</option>
+                        <option value="GALANTE">Galante</option>
+                        <option value="GIORGI">Giorgi</option>
+                        <option value="GUEVARA">Guevara</option>
+                        <option value="MACIEL">Maciel</option>
+                        <option value="DARIO">Parisi</option>
+                        <option value="PORTILLO">Portillo</option>
+                        <option value="SANDOVAL">Sandoval</option>
+                        <option value="VIVAS">Vivas</option>
+                    </select>
+                </div>
             </div>
         </div>
 
@@ -134,6 +162,8 @@
                         <option value="Dispersora 11 2500 Lt">11 - 2500 Lt</option>
                         <option value="Dispersora 12 2500 Lt">12 - 2500 Lt</option>
                         <option value="Dispersora 13 2500 Lt">13 - 2500 Lt</option>
+                        <option value="Dispersora 14 2500 Lt">14 - 2500 Lt</option>
+                        <option value="Homomixer">Homomixer</option>
                     </select>
                 </div>
             </div>
@@ -144,7 +174,9 @@
                         <option value="Molino 1 WAB 5 Lt"> 1 - WAB 5L</option>
                         <option value="Molino 2 LONGLY 20 Lt">2 - Longly 20L</option>
                         <option value="Molino 3 WAB 25 Lt">3 - WAB 25L</option>
-                        <option value="Molino Canasto LONGLY">4 - Molino Canasto</option>
+                        <option value="Molino 4 FARFLY 25 Lt">4 - Farfly FSZ 25L</option>
+                        <option value="Molino Canasto LONGLY">Molino Canasto</option>
+                        <option value="Molino 5 FARFLY 5 Lt">5 - Farfly FSZ 5L</option>
                     </select>
                 </div>
             </div>

@@ -174,7 +174,7 @@
 </div>
 
 <div class="yesPrint">
-    <table class="w-100">
+    <table class="w-130">
         <tr class="text-center" *ngIf="array.length==0">
             <th></th>
         </tr>
@@ -184,6 +184,7 @@
             <th>COLOR</th>
             <th>COLOR IGUAL</th>
             <th>COMPONENTE</th>
+            <th>P.E.</th>
             <th>FORMA CONJUNTO</th>
             <th>RELACION DE MEZCLADO</th>
             <th>FECHA ULTIMA ELABORACIÓN</th>
@@ -191,6 +192,10 @@
             <th>MODIFICADO POR</th>
             <th>UNIDAD DE MEDIDA</th>
             <th>STOCK</th>
+            <th>SOLIDOS PPP</th>
+            <th>SOLIDOS PPV</th>
+            <th>% RESINA</th>
+            <th>% PIGMENTO</th>
             <th *ngIf="user_role == 'ADMIN_ROL'">COSTO</th>
         </tr>
         <tr *ngFor="let item of array" class="text-center">
@@ -199,6 +204,7 @@
             <td>{{item.color}}</td>
             <td>{{item.colorigual}}</td>
             <td>{{item.componente}}</td>
+            <td>{{item.pesoespecifico | numeralPipe}}</td>
             <td>{{item.formaconjunto}}</td>
             <td>{{item.relaciondemezcla}}</td>
             <td>{{item.fechaultimaelaboracion | datePipe}}</td>
@@ -206,6 +212,10 @@
             <td>{{item.modifico}}</td>
             <td>{{item.unidadmedida}}</td>
             <td>{{item.stock | numeralPipe}}</td>
+            <td>{{item.solidosppp | numeralPipe}}</td>
+            <td>{{item.solidosppv | numeralPipe}}</td>
+            <td>{{item.resina | numeralPipe}}</td>
+            <td>{{item.pigmento | numeralPipe}}</td>
             <td *ngIf="user_role == 'ADMIN_ROL'">{{item.precio | numeralPipe}}</td>
         </tr>
     </table>
