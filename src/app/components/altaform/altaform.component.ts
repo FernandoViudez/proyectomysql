@@ -179,6 +179,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
         text: "¿ ESTAS SEGURO QUE QUIERE CANCELAR LA OPERACIÓN ?",
         cancelButtonColor: "red",
         confirmButtonColor: "green",
+        cancelButtonText: "CANCELAR",
         showCancelButton: true,
       }).then(res => {
         if (res.value) {

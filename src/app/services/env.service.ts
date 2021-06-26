@@ -27,8 +27,8 @@ export class EnvService {
     return this.http.post(`${this.url}detectIdPt`, data).pipe(map(data=>data))
   } 
 
-  cargar(id, descripcion, codmp, envasado){
-    let data={id, descripcion, codmp, envasado};
+  cargar(id, descripcion, codmp, envasado, nombreProducto){
+    let data={id, descripcion, codmp, envasado, nombreProducto};
     return this.http.post(`${this.url}postRowEnv`, data).pipe(map(data=>data))
   }
 

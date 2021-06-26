@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EnvService } from 'src/app/services/env.service';
 import Swal from 'sweetalert2';
-import { subscribeOn } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { MatprimService } from 'src/app/services/matprim.service';
 import { Router } from '@angular/router';
@@ -28,6 +27,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
   codmp: number;
   envasado: string;
   indice: number;
+  nombreProducto: string;
 
   constructor(private service: EnvService,
     private http: HttpClient,
@@ -78,15 +78,17 @@ export class AltaenvComponent implements OnInit, OnDestroy {
   seleccionarIdPt(id: number) {
     this.service.detectarIdPt(id).subscribe((data: any) => {
       document.getElementById("idp").setAttribute("disabled", "");
-      this.idprod = id
+      this.idprod = id;
       this.descripcion1 = `${data.desc} ${data.color || ''} ${data.componente}`;
+      this.nombreProducto = data.desc;
       this.detectarId()
     }, (err) => {
       if (err.error.response) {
         document.getElementById("idp").setAttribute("disabled", "");
         let data=err.error.response;
-        this.idprod = id
+        this.idprod = id;
         this.descripcion1 = `${data.descripcion} ${data.color || ''} ${data.componente}`;
+        this.nombreProducto = data.descripcion;
         this.detectarId()
       }else{
         this.resetear();
@@ -100,6 +102,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
     document.getElementById("idp").removeAttribute("disabled");
     this.idprod = null;
     this.descripcion1 = null;
+    this.nombreProducto = null;
   }
 
   resetear() {
@@ -139,7 +142,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
     if (this.envasado == null) {
       return alertify.error("¡ INGRESE UN ENVASAMIENTO VALIDO !")
     }
-    this.service.cargar(this.idprod, this.descripcion, this.codmp, this.envasado)
+    this.service.cargar(this.idprod, this.descripcion, this.codmp, this.envasado, this.nombreProducto)
       .subscribe((data: any) => {
         this.array = data.response;
         alertify.success("¡RENGLON AGREGADO!")
