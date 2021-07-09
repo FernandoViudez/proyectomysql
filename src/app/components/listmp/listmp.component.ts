@@ -71,7 +71,7 @@ export class ListmpComponent implements OnInit {
   }
 
   buscar() {
-    this.servicioMp.buscar(this.id, this.descripcion).subscribe((data: any) => {
+    this.servicioMp.buscar(this.id, this.descripcion, this.tipo,).subscribe((data: any) => {
       this.pesoespecifico = 0;
       this.ppp = 0;
       this.ppv = 0;

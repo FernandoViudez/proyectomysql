@@ -47,6 +47,7 @@ export class AltampComponent implements OnInit, OnDestroy {
   descripcion1: string;
   termino1: number;
   termino2: string;
+  termino3: string;
   arrayBusqueda = [];
   fechaultimarecepcion: string;
 
@@ -67,7 +68,7 @@ export class AltampComponent implements OnInit, OnDestroy {
 
 
   buscarMp() {
-    this.servicioMp.buscar(this.termino1, this.termino2).
+    this.servicioMp.buscar(this.termino1, this.termino2, this.termino3).
       subscribe((data: any) => {
         this.arrayBusqueda = data.response;
       }, (err) => {
@@ -86,7 +87,7 @@ export class AltampComponent implements OnInit, OnDestroy {
       subscribe((data: any) => {
         let dato: AltaMp = data.response;
         Swal.fire({
-          title: "M.P. existente",
+          title: "MATERIA PRIMA existente",
           text: "¿ Desea editar la materia prima ?",
           cancelButtonColor: "red",
           confirmButtonColor: "green",
@@ -135,7 +136,7 @@ export class AltampComponent implements OnInit, OnDestroy {
         if (err.error.response) {
           let dato: AltaMp = err.error.response;
           Swal.fire({
-            title: "M.P. existente",
+            title: "MATERIA PRIMA EXISTENTE",
             text: "¿ Desea editar la materia prima ?",
             cancelButtonColor: "red",
             confirmButtonColor: "green",
@@ -290,7 +291,7 @@ export class AltampComponent implements OnInit, OnDestroy {
 
   cancelar() {
     Swal.fire({
-      title: "Cancelar Operación",
+      title: "CANCELAR OPERACION",
       text: "¿ Está seguro que desea cancelar la operación ?",
       cancelButtonColor: "red",
       confirmButtonColor: "green",

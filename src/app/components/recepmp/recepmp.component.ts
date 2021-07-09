@@ -35,6 +35,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
   arrayBusqueda = [];
   termino1: number;
   termino2: string;
+  termino3: string;
 
   constructor(private http: HttpClient,
     private servicioMp: MatprimService,
@@ -177,6 +178,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
     this.arrayBusqueda = [];
     this.termino1 = null;
     this.termino2 = null;
+    this.termino3 = null;
     this.fechaultimarecepcion = null;
     this.pesoespecifico = null;
     let id = document.getElementById("id");
@@ -188,7 +190,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
   }
 
   buscarMp() {
-    this.servicioMp.buscar(this.termino1, this.termino2).
+    this.servicioMp.buscar(this.termino1, this.termino2, this.termino3).
       subscribe((data: any) => {
         this.arrayBusqueda = data.response;
       }, (err) => {

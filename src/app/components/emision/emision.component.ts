@@ -396,7 +396,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
   guardarEnvases(input: any, codmp, envasado) {
     input = Number(input);
-    
+
     if (!Number.isInteger(input / envasado)) {
       return Swal.fire({
         title: "Error!",
@@ -469,9 +469,13 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
     let diaActual = new Date();
 
-    // dias a sumar segun el producto.  thiokol tiene 6 meses resto 1 anio
+    // dias a sumar segun el producto.  thiokol tiene 6 meses, vinilesters 3 meses, resto 1 anio
+
     if (this.id == 10565 || this.id == 10572 || this.id == 30644 || this.id == 30645) {
       var dias = 180;
+    }
+    if (this.tipogenerico.includes('VINIL ESTER') || this.tipogenerico.includes('VINILESTER')) {
+      var dias = 90;
     } else {
       var dias = 365; // si quisiera agregar a mano dias usaria parseInt(numero.value);
     }
@@ -562,7 +566,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
     // Change to the next page
     document.getElementById("hiddenButton").click();
-    
+
     // Get the new batch
     this.generarProximoBatch();
 

@@ -176,10 +176,11 @@ export class AltaformComponent implements OnInit, OnDestroy {
       }
       Swal.fire({
         title: "CANCELAR",
-        text: "¿ ESTAS SEGURO QUE QUIERE CANCELAR LA OPERACIÓN ?",
+        text: "¿ Esta seguro que desea cancelar la operación ?",
         cancelButtonColor: "red",
         confirmButtonColor: "green",
-        cancelButtonText: "CANCELAR",
+        confirmButtonText: "SI",
+        cancelButtonText: "NO",
         showCancelButton: true,
       }).then(res => {
         if (res.value) {
@@ -217,14 +218,15 @@ export class AltaformComponent implements OnInit, OnDestroy {
     function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario) {
       return new Promise((resolve, reject) => {
         Swal.fire({
-          title: "¡¡Atención!!",
+          title: "¡¡ ATENCION !!",
           text: `El total de la suma es ${sumaTot}`,
           icon: "info",
           showCancelButton: true,
+          showConfirmButton: true,
           cancelButtonColor: "red",
-          cancelButtonText: "Corregir",
+          cancelButtonText: "CORREGIR",
           confirmButtonColor: "green",
-          confirmButtonText: "Seguir"
+          confirmButtonText: "CARGAR FORMULA"
         }).then(res => {
           if (res.value) {
             Swal.fire({
@@ -302,9 +304,11 @@ export class AltaformComponent implements OnInit, OnDestroy {
   borraFila(index) {
     Swal.fire({
       title: "ELIMINACIÓN DE FILA",
-      text: "¿ ESTA SEGURO QUE DESEA ELIMINAR ESTA FILA ?",
+      text: "¿ Esta seguro que desea eliminar esta fila ?",
       cancelButtonColor: "red",
       confirmButtonColor: "green",
+      cancelButtonText: "NO",
+      confirmButtonText: "SI",
       showCancelButton: true,
     }).then((data) => {
 
@@ -490,7 +494,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
           let sweet = async () => {
             const { value: idImport } = await Swal.fire({
-              title: '¿Desea importar una formula existente?',
+              title: '¿ DESEA IMPORTAR UNA FORMULA EXISTENTE ?',
               text: "Si desea importar desde otro producto, ingrese el código y oprima 'SI', sino oprima 'CANCELAR':",
               input: 'number',
               showCancelButton: true,
@@ -513,14 +517,14 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
         } else {
           Swal.fire({
-            title: "Formula Existente",
-            text: "¿Desea editarla?",
+            title: "FORMULA existente",
+            text: "¿ Desea editarla ?",
             showCancelButton: true,
             showConfirmButton: true,
             confirmButtonColor: "green",
             cancelButtonColor: "red",
-            confirmButtonText: "Si",
-            cancelButtonText: "No"
+            confirmButtonText: "SI",
+            cancelButtonText: "NO"
           }).then((data) => {
             if (data.value) {
               this.traerEditar();

@@ -5,21 +5,29 @@
 
     <div class="jumbotron p-2 mt-1" style="background-color:rgb(180, 138, 21); ">
         <div class="row text-white">
-            <div class="col-4 mt-2">
-                <div class="m-auto boldText">
+            <div class="col-3 mt-2">
+                <div class="m-auto boldText" style="width: 100%; ">
                     <label style="font-size:15px"><b>CODIGO M.P.</b></label>
-                    <input (keyup)="buscar()" [(ngModel)]="id" type="number" class="ml-1 boldText">
+                    <input (keyup)="buscar()" [(ngModel)]="id" type="number" class="ml-1 boldText" style="width: 20%;">
                     <span class="badge ml-5"
                         style="font-size: 25px; background-color: rgb(190, 171, 131);">{{id}}</span>
                 </div>
             </div>
 
-            <div class="col-8 mt-2">
+            <div class="col-6 mt-2">
                 <div class="m-auto boldText">
                     <label style="font-size:15px"><b>INGRESE DESCRIPCIÓN</b></label>
-                    <input (keyup)="buscar()" [(ngModel)]="descripcion" type="text" class="ml-1 boldText">
+                    <input (keyup)="buscar()" [(ngModel)]="descripcion" type="text" class="ml-1 boldText" style="width: 30%;">
                     <span class="badge ml-5"
                         style="font-size: 25px; background-color: rgb(190, 171, 131);">{{descripcion}}</span>
+                </div>
+            </div>
+            <div class="col-3 mt-2">
+                <div class="m-auto boldText">
+                    <label style="font-size:15px"><b>INGRESE TIPO</b></label>
+                    <input (keyup)="buscar()" [(ngModel)]="tipo" type="text" class="ml-1 boldText" style="width: 30%;">
+                    <span class="badge ml-5"
+                        style="font-size: 25px; background-color: rgb(190, 171, 131);">{{tipo}}</span>
                 </div>
             </div>
         </div>

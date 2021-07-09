@@ -24,20 +24,27 @@ export class ListenvComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   validarId(){
     this.service.validarIdProd(this.idprod).
     subscribe((data:any)=>{
 
         alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !")
-        this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
+        if(data.color == null) {
+          this.descripcion1 = `${data.desc}  ${data.componente}`;
+        } else {
+          this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
+        }
         this.traerEnv();
       
     },(err)=>{
       if(err.error.response){
         let data=err.error.response;
         alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !")
-        this.descripcion1 = `${data.descripcion}  ${data.color}  ${data.componente}`;
+        if(data.color == null) {
+          this.descripcion1 = `${data.descripcion}  ${data.componente}`;
+        } else {
+          this.descripcion1 = `${data.descripcion}  ${data.color}  ${data.componente}`;
+        }
         this.traerEnv();
       }else{
         alertify.error("NO EXISTE ESTE PRODUCTO TERMINADO !")

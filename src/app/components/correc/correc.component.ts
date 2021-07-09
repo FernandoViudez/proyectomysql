@@ -22,6 +22,7 @@ export class CorrecComponent implements OnInit {
   motivo: string;
   termino1: string;
   termino2: string;
+  termino3: string;
   arrayBusqueda = [];
 
   constructor(private http: HttpClient,
@@ -31,7 +32,7 @@ export class CorrecComponent implements OnInit {
   }
 
   buscarMp() {
-    this.serviceMp.buscar(this.termino1, this.termino2).
+    this.serviceMp.buscar(this.termino1, this.termino2, this.termino3).
       subscribe((data: any) => {
         this.arrayBusqueda = data.response;
       }, (err) => {
@@ -99,6 +100,7 @@ export class CorrecComponent implements OnInit {
     this.arrayBusqueda = [];
     this.termino1 = null;
     this.termino2 = null;
+    this.termino3 = null;
     let id = document.getElementById("id");
     id.removeAttribute("disabled");
   }

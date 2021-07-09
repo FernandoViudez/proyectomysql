@@ -148,16 +148,24 @@
     </div> <br> <br>
     <table class="table table-hover">
         <tr>
-            <th>CODIGO ENVASE</th>
-            <th>DESCRIPCIÓN ENVASE</th>
-            <th>CANTIDAD ENVASADA</th>
-            <th>CODIGO DE BARRAS</th>
+            <th style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14pt;">CODIGO ENVASE
+            </th>
+            <th style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14pt;">DESCRIPCIÓN
+                ENVASE</th>
+            <th style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14pt;">CANTIDAD ENVASADA
+            </th>
+            <th style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14pt;">CODIGO DE BARRAS
+            </th>
         </tr>
         <tr *ngFor="let item2 of array">
-            <td>{{item2.codmp}}</td>
-            <td>{{item2.descripcion}}</td>
-            <td class="text-right">{{item2.envasado | numeralPipe}} </td>
-            <td>{{item2.cobarras}}</td>
+            <td style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14pt;">{{item2.codmp}}
+            </td>
+            <td style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14pt;">
+                {{item2.descripcion}}</td>
+            <td style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14pt;"
+                class="text-right">{{item2.envasado | numeralPipe}} </td>
+            <td style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14pt;">
+                {{item2.cobarras}}</td>
         </tr>
     </table>
 </div>

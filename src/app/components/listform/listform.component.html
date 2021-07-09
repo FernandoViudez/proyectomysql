@@ -4,7 +4,8 @@
     <h5 class="text-center font-weight-bold">VISUALIZACION DE FORMULAS</h5>
   </div>
 
-  <div class="jumbotron p-2 mt-1" style="background-color:rgb(180, 138, 21); font-size: 11px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+  <div class="jumbotron p-2 mt-1"
+    style="background-color:rgb(180, 138, 21); font-size: 11px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
     <div class="row text-white">
       <div class="col-3 boldText mt-2">
         <div class="m-auto" style="width: 100%; ">
@@ -112,7 +113,7 @@
       </tr>
 
       <tr class="bg-primary">
-        <h6 class="text-white p-3" *ngIf="array.length==0"> NO HEMOS ENCONTRADO FILAS CON ESOS PARAMETROS :( </h6>
+        <h6 class="text-white p-3" *ngIf="array.length==0"> NO HEMOS ENCONTRADO DATOS CON ESOS PARAMETROS :( </h6>
       </tr>
     </table>
   </div>
@@ -123,7 +124,8 @@
         (click)="imprimirBusqueda()">IMPRIMIR FICHA DE FORMULACION</button>
     </div>
     <div class="col-1">
-      <button class="btn btn-warning float-lg-right" [disabled]="!tintoformoalt" (click)="onExcel()" >Generar Excel</button>
+      <button class="btn btn-warning float-lg-right" [disabled]="!tintoformoalt" (click)="onExcel()">Generar
+        Excel</button>
     </div>
     <div class="col-7">
       <div style="width: 100%; text-align: right;">
@@ -187,7 +189,8 @@
           </div>
 
           <div style="overflow: scroll; height: 200px; width: 100%;">
-            <table class="table table-hover" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
+            <table class="table table-hover"
+              style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
               <tr>
                 <th>CODIGO</th>
                 <th>DESCRIPCIÓN</th>
@@ -222,14 +225,17 @@
 
     .tab2 {
       display: inline-block;
-      margin-left: 80px;
+      margin-left: 260px;
     }
 
     table {
+      border: 0.5px solid #dddddd;
       font-family: arial, helvetica, sans-serif;
       border-collapse: collapse;
       width: 100%;
       padding: 0.1px;
+      font-weight: bold;
+      font-size: 15pt;
     }
 
     th {
@@ -242,8 +248,9 @@
     td {
       border: 0.5px solid #dddddd;
       text-align: left;
-      padding: 2.5px;
-      font-size: 13px;
+      padding: 2px;
+      font-size: 13pt;
+      font-weight: bold;
     }
 
     tr:nth-child(even) {
@@ -253,31 +260,58 @@
     pre {
       border: 0.5px solid #dddddd;
       padding: 0.5px;
-      font-size: 13px;
+      font-size: 16pt;
       font-family: arial, helvetica, sans-serif;
-      line-height: 20pt;
+      line-height: 12pt;
+      font-weight: bold;
+    }
+
+    hr.new3 {
+      border-top: 1px dotted blue;
+    }
+
+    h5 {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 18pt;
     }
   </style>
 
+  <div class="row">
+    <div class="col-4">
+      <a class="navbar-brand">
+        <img src="./assets/Logo_Revesta.jpg" width="100" height="50" alt="" loading="lazy">
+      </a>
+    </div>
+    <div class="col-8">
+      <span align="right">REVESTA S.A.I.C. </span><br>
+      <span align="right">Av. Mitre 1249 - Florida</span><br>
+      <span align="right">Buenos Aires - Argentina</span><br>
+    </div>
+  </div>
+
+  <hr class="new3">
   <div>
     <b>
-      <h4 class="text-center">FICHA DE FORMULACION
-        <span *ngIf="tintoformoalt == 'T' || tintoformoalt == 't'"> FORMULA PARA TINTURADO </span>
-        <span *ngIf="tintoformoalt == 'F' || tintoformoalt == 'f'"> FORMULA PRINCIPAL </span>
-        <span *ngIf="tintoformoalt == 'A' || tintoformoalt == 'a'"> FORMULA ALTERNATIVA </span>
+      <h4 class="text-center" style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 18pt;">
+        FICHA DE FORMULACION
+        <span *ngIf="tintoformoalt == 'T' || tintoformoalt == 't'"> 'FORMULA PARA TINTURADO' </span>
+        <span *ngIf="tintoformoalt == 'F' || tintoformoalt == 'f'"> 'FORMULA PRINCIPAL' </span>
+        <span *ngIf="tintoformoalt == 'A' || tintoformoalt == 'a'"> 'FORMULA ALTERNATIVA' </span>
       </h4>
     </b>
   </div>
+  <hr class="new3">
   <pre>
   Codigo: {{idprod}} <span class="tab1"></span> Producto: {{descripcion1}} <span *ngIf="colorigual != null "> (tambien color {{colorigual}}) </span>  <br>
-  Fecha ultima modificacion: {{ultimamodificacion | datePipe}} <span class="tab1"></span> Reemplaza a ___ / ___ / ___  <span class="tab1"></span> Motivo del cambio: _________________________ <br>
+  Fecha ultima modificacion: {{ultimamodificacion | datePipe}} <span class="tab1"></span> Reemplaza a __ / __ / __  <span class="tab1"></span> Motivo del cambio: _________________________ <br>
   Relacion de la mezcla: {{relaciondemezcla}} <span class="tab1"></span> <span *ngIf="formaconjunto != null "> Forma conjunto con: {{formaconjunto}} </span>   
   </pre>
-  <br>
+  <hr class="new3">
   <b>
-    <h5 class="text-center">FORMULA</h5>
+    <h5>FORMULA</h5>
   </b>
-  <br>
   <table class="w-100">
     <tr class="text-center" *ngIf="array.length==0">
       <th></th>
@@ -299,11 +333,10 @@
     </tr>
   </table>
   <br>
-  <hr>
+  <hr class="new3">
   <b>
-    <h5 class="text-center">DATOS FISICOS</h5>
+    <h5>DATOS FISICOS</h5>
   </b>
-  <br>
   <table>
     <tr>
       <td>Peso Especifico : {{pesoespecifico | numeralPipe}} g/cm3</td>
@@ -329,7 +362,9 @@
       <td>Relacion mezcla: {{relaciondemezcla}}</td>
       <td *ngIf="formaconjunto != null ">con COMP. {{formaconjunto}}</td>
     </tr>
-  </table><br><br><br><br><br><br>
+  </table><br>
+  <hr class="new3">
+  <br>
   <h5>Aprobo:<span class="tab2"></span>Controlo:<span class="tab2"></span>Autorizo:</h5>
 
 </div>

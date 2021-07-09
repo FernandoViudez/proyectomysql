@@ -16,8 +16,8 @@ export class MatprimService {
     return this.http.post(`${this.url}validarMp`, { id }).pipe(data => data)
   }
 
-  buscar(id, descripcion) {
-    return this.http.post(`${this.url}getMatPri`, { id, descripcion }).pipe(map(data => data))
+  buscar(id, descripcion, tipo) {
+    return this.http.post(`${this.url}getMatPri`, { id, descripcion, tipo}).pipe(map(data => data))
   }
 
   // buscarSinLlamadaBD(terminos, arrayAFiltrar: Array<any>){

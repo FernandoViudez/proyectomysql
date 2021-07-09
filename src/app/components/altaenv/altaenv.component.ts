@@ -44,8 +44,8 @@ export class AltaenvComponent implements OnInit, OnDestroy {
     this.service.traerTodo().subscribe((data: any) => {
       if (data.response.length !== 0) {
         Swal.fire({
-          title: "Base de datos en uso!!",
-          text: "La base de datos está siendo usada, vaya a tomar un mate y vuelva...",
+          title: " ATENCION - BASE DE DATOS EN USO !!",
+          text: "La base de datos está siendo usada por otro usuario, vaya a tomar un mate y vuelva...",
           icon: "warning",
           allowEnterKey: false,
           allowEscapeKey: false,
@@ -162,11 +162,11 @@ export class AltaenvComponent implements OnInit, OnDestroy {
       })
     }
     Swal.fire({
-      title: "¿ DESEA BORRAR TODO LO MODIFICADO ?",
+      title: "¿ DESEA CANCELAR TODO LO MODIFICADO ?",
       icon: "question",
       showCancelButton: true,
-      cancelButtonText: "CONTINUAR MODIFICANDO",
-      confirmButtonText: "BORRAR",
+      cancelButtonText: "NO",
+      confirmButtonText: "SI",
       confirmButtonColor: "red",
       cancelButtonColor: "green"
     }).then(res => {
@@ -217,13 +217,13 @@ export class AltaenvComponent implements OnInit, OnDestroy {
         return alertify.success("Sigue adelante!");
       }
       Swal.fire({
-        title: "¿EDITAR?",
-        text: "¿ Desea editar el envase ?",
+        title: "ENVASADO DE PRODUCTO TERMINADO",
+        text: "¿ Desea editar la forma de envasado ?",
         cancelButtonColor: "red",
         showCancelButton: true,
-        cancelButtonText: "CANCELAR",
+        cancelButtonText: "NO",
         confirmButtonColor: "green",
-        confirmButtonText: "ACEPTAR"
+        confirmButtonText: "SI"
       }).then(res => {
         if (res.value) {
           return this.traerPostearEnv()
@@ -239,12 +239,12 @@ export class AltaenvComponent implements OnInit, OnDestroy {
   eliminarFila(indice) {
 
     Swal.fire({
-      title: "¿SEGURO?",
-      text: "¿ Esta seguro que desea eliminar una fila ?",
+      title: "ELIMINACION DE FILA",
+      text: "¿ Esta seguro que desea eliminar esta fila ?",
       icon: "question",
       showCancelButton: true,
-      confirmButtonText: "ACEPTAR",
-      cancelButtonText: "CANCELAR",
+      confirmButtonText: "SI",
+      cancelButtonText: "NO",
       cancelButtonColor: "red",
       confirmButtonColor: "green"
     }).then(res => {

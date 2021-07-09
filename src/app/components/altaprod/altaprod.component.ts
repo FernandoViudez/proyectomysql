@@ -80,7 +80,7 @@ export class AltaprodComponent implements OnInit {
     this.service.validarIdProd(this.id).
       subscribe((data: any) => {
         Swal.fire({
-          title: "P.T. existente",
+          title: "PRODUCTO TERMINADO existente",
           text: "¿ Desea editar el Producto Terminado ?",
           cancelButtonColor: "red",
           confirmButtonColor: "green",
