@@ -156,14 +156,14 @@ export class EmisionComponent implements OnInit, OnDestroy {
   //CANCELAR TODO
   cancelar() {
     Swal.fire({
-      title: "¿ Cancelar operación ?",
+      title: "CANCELAR OPERACION",
       text: "¿ Está seguro que desea cancelar la operación ?",
       cancelButtonText: "No",
       cancelButtonColor: "red",
       showCancelButton: true,
       confirmButtonColor: "green",
       confirmButtonText: "Si",
-      icon: "question"
+      icon: "warning"
     }).then(res => {
       if (res.value) {
         this.resetearTodo();
@@ -324,7 +324,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
   finalizar() {
     Swal.fire({
-      title: "¿ Seguro ?",
+      title: "¿ CONFIRMA ?",
       text: "¿ Está seguro que quiere emitir el Batch Ticket ?",
       showCancelButton: true,
       cancelButtonColor: "red",

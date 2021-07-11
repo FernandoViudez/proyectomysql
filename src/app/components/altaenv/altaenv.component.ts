@@ -168,13 +168,14 @@ export class AltaenvComponent implements OnInit, OnDestroy {
       cancelButtonText: "NO",
       confirmButtonText: "SI",
       confirmButtonColor: "red",
-      cancelButtonColor: "green"
+      cancelButtonColor: "green",
+      allowEnterKey: false,
     }).then(res => {
       if (!res.value) {
         return;
       }
       this.service.eliminarTodo(this.idprod).subscribe((data: any) => {
-        alertify.success("HAS BORRADO TODAS LAS FILAS CON EXITO");
+        alertify.success("HAS CANCELADO TODO LO MODIFICADO CON EXITO");
         this.resetear();
         this.resetear1();
         this.array = [];
@@ -239,14 +240,15 @@ export class AltaenvComponent implements OnInit, OnDestroy {
   eliminarFila(indice) {
 
     Swal.fire({
-      title: "ELIMINACION DE FILA",
+      title: "ELIMINACION DE ENVASADO",
       text: "¿ Esta seguro que desea eliminar esta fila ?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "SI",
       cancelButtonText: "NO",
       cancelButtonColor: "red",
-      confirmButtonColor: "green"
+      confirmButtonColor: "green",
+      allowEnterKey: false,
     }).then(res => {
       if (res.value) {
         this.service.eliminarFila(indice).

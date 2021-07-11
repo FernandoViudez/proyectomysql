@@ -676,7 +676,7 @@ RECIBIO Y CONTROLO: ___________________ <span class="tab1"></span>FECHA: ___/___
                     </div>
                 </div>
 
-                <div style="overflow: scroll; height: 300px; width: 100%;">
+                <div style="overflow: scroll; height: 350px; width: 100%;">
                     <table class="table table-hover">
                         <tr>
                             <th>CODIGO</th>
@@ -717,15 +717,15 @@ RECIBIO Y CONTROLO: ___________________ <span class="tab1"></span>FECHA: ___/___
             <div class="row mt-2 mb-2">
                 <div class="col-6">
                     <button type="button" class="btn-warning ml-5 btn" (click)="calcularPlanProduccion()"
-                        [disabled]="!pendientes && arrayB.length == 0">Imprimir planificación de
-                        produccion</button>
+                        [disabled]="!pendientes && arrayB.length == 0">Listado a excel de Materias Primas necesarias para
+                        produccion de estos Productos seleccionados</button>
                 </div>
                 <div class="col-6 text-right">
                     <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
                         (click)="resetear1()">Resetear</button>
                     <button type="button" class="btn btn-info ml-2 mr-2" (click)="listarPendientes()">Listar
                         Pendientes</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary mr-2" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

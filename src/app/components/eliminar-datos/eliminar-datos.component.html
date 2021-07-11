@@ -9,11 +9,11 @@
 
 <div class="container mt-5 boldText">
     <div class="row">
-        <div class="col-4 mt-2" style="text-align: right;">
-            <span>Eliminar datos anteriores a </span>
+        <div class="col-4 mt-2" style="text-align: right; font-size: 30px;">
+            <span>Eliminar datos de verificaciones anteriores a </span>
         </div>
-        <div class="col-3">
-            <input class="form-control w-60 m-auto boldText" type="date" [(ngModel)]="fecha">
+        <div class="col-3 mt-5">
+            <input class="form-control boldText" type="date" [(ngModel)]="fecha">
         </div>
     </div>
 </div>
@@ -24,6 +24,6 @@
             (click)="resetear()">Resetear</button>
     </div>
     <div class="col-2">
-        <button [disabled]="!fecha" class="btn btn-outline-primary" (click)="eliminar()">Eliminar datos</button>
+        <button [disabled]="!fecha" class="btn btn-outline-primary" (click)="cancelar()">Eliminar datos</button>
     </div>
 </div>

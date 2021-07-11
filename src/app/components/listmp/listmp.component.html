@@ -191,7 +191,7 @@
                     <th>INFO 3</th>
                     <th>CODIGO BARRAS</th> -->
                 <th>OBSL.</th>
-                <!-- <th>PRECIO</th> -->
+                <th *ngIf="user_role == 'ADMIN_ROL'">COSTO</th>
             </tr>
         </thead>
         <tbody>
@@ -220,7 +220,7 @@
                 <td>{{item.info3}}</td>
                 <td>{{item.cobarras}}</td> -->
                 <td>{{item.ubicacion}}</td>
-                <!-- <td>{{item.precio | numeralPipe}}</td> -->
+                <td *ngIf="user_role == 'ADMIN_ROL'">{{item.precio | numeralPipe}}</td>
             </tr>
         </tbody>
     </table>

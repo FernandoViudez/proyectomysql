@@ -147,13 +147,14 @@ export class ControlptComponent implements OnInit {
 
   cancelar() {
     Swal.fire({
-      title: "¿ Seguro ?",
+      title: "CANCELAR CARGA DATOS",
       text: "¿ Está seguro que desea cancelar la operación ?",
       showCancelButton: true,
       cancelButtonColor: "red",
       confirmButtonColor: "green",
       confirmButtonText: "SI",
-      cancelButtonText: "NO"
+      cancelButtonText: "NO",
+      allowEnterKey: false,
     }).then((res) => {
       if (res.value) {
         this.resetearInputs();

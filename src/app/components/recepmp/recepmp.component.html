@@ -108,22 +108,29 @@
                 <div class="modal-body">
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for="recipient-name9" class="col-form-label">Código</label>
                                 <input (keyup)="buscarMp()" [(ngModel)]="termino1" type="number" class="form-control"
                                     id="recipient-name40">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for="recipient-name9" class="col-form-label">Descripción</label>
                                 <input (keyup)="buscarMp()" [(ngModel)]="termino2" type="text" class="form-control"
                                     id="recipient-name40">
                             </div>
                         </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="recipient-name9" class="col-form-label">Tipo de Producto</label>
+                                <input (keyup)="buscarMp()" [(ngModel)]="termino3" type="text" class="form-control"
+                                    id="recipient-name40">
+                            </div>
+                        </div>
                     </div>
-                    <div style="overflow: scroll; height: 200px; width: 100%;">
+                    <div style="overflow: scroll; height: 350px; width: 100%;">
                         <table class="table table-hover">
                             <tr>
                                 <th>CODIGO</th>
@@ -158,23 +165,88 @@
             margin-right: 0;
             margin-left: 1;
         }
+
+        .tab1 {
+            display: inline-block;
+            margin-left: 40px;
+        }
+
+        .tab2 {
+            display: inline-block;
+            margin-left: 260px;
+        }
+
+        table {
+            border: 4.5px solid #dddddd;
+            font-family: arial, helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            padding: 0.1px;
+            font-weight: bold;
+            font-size: 20pt;
+        }
+
+        th {
+            border: 2.5px solid #dddddd;
+            text-align: center;
+            padding: 2.5px;
+            font-size: 13px;
+        }
+
+        td {
+            border: 2.5px solid #dddddd;
+            text-align: left;
+            padding: 2px;
+            font-size: 13pt;
+            font-weight: bold;
+        }
+
+        pre {
+            border: 0.5px solid #dddddd;
+            padding: 0.5px;
+            font-size: 16pt;
+            font-family: arial, helvetica, sans-serif;
+            line-height: 12pt;
+            font-weight: bold;
+        }
+
+        hr.new3 {
+            border-top: 1px dotted blue;
+        }
+
+        h3 {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 18pt;
+        }
     </style>
 
-    <h3>
-        <b style="text-align:center">
-            INFORME DE RECEPCIÓN NUMERO {{lotePrint}}
-        </b>
-    </h3>
-    <hr>
+    <div class="row">
+        <div class="col-4">
+            <a class="navbar-brand">
+                <img src="./assets/Logo_Revesta.jpg" width="100" height="50" alt="" loading="lazy">
+            </a>
+        </div>
+        <div class="col-8">
+            <span align="right">REVESTA S.A.I.C. </span><br>
+            <span align="right">Av. Mitre 1249 - Florida</span><br>
+            <span align="right">Buenos Aires - Argentina</span><br>
+        </div>
+    </div>
 
+    <h3>
+            INFORME DE RECEPCIÓN NUMERO {{lotePrint}}
+    </h3>
+    <hr class="new3">
     <h4>
         <div class="row mb-5 no-gutters">
             <div class="column left" style="background-color:#aaa;">
                 <p>Producto : {{descripcion}}</p>
-                <h3><b>
+                <h2><b>
                         <p>Proveedor : {{proveedor}}</p>
                     </b>
-                </h3>
+                </h2>
                 <p>O/C Nro. : {{ordenCompra}}</p>
                 <p>Remito Nro. : {{nroRemito}}</p>
                 <p></p>
@@ -193,49 +265,51 @@
         </div>
     </h4>
     <br>
-
-    <table style="font-size: 20px;" class="mt-3">
+    <hr class="new3"><br><br><br>
+    <table class="mt-3">
         <tr>
             <th>COMPROBACIONES</th>
-            <th>INDICAR SI - NO - N/A</th>
+            <th>- SI -</th>
+            <th>-NO-</th>
+            <th>N/A</th>
         </tr>
         <tr>
             <td>1. El material recibido es el correspondiente a la O/C ?</td>
-            <td></td>
+            <td></td><td></td><td></td>
         </tr>
         <tr>
-            <td>2. El peso real coincide con el indicado en el Remito ? SI NO COINCIDE, anotar la diferencia y avisar a
-                COMPRAS</td>
-            <td></td>
+            <td>2. El peso real coincide con el indicado en el Remito ? 
+                <tr><b>SI NO COINCIDE, anotar la diferencia y avisar a COMPRAS</b></tr></td>
+            <td></td><td></td><td></td>
         </tr>
         <tr>
             <td>3. Se aprobo en Control de Calidad de REVESTA S.A.I.C. ?</td>
-            <td></td>
+            <td></td><td></td><td></td>
         </tr>
         <tr>
-            <td>4. La cantidad recibida coincide con la cantidad de la O/C ? SI NO COINCIDE, anotar la diferencia y
-                avisar a COMPRAS.</td>
-            <td></td>
+            <td>4. La cantidad recibida coincide con la cantidad de la O/C ? 
+                <tr><b>SI NO COINCIDE, anotar la diferencia y avisar a COMPRAS</b></tr></td>
+            <td></td><td></td><td></td>
         </tr>
         <tr>
             <td>5. El material tiene numero de lote o partida ? </td>
-            <td></td>
+            <td></td><td></td><td></td>
         </tr>
         <tr>
             <td>6. Estan dañados los envases ? SI ES ASI, obtener la aprobacion de Control de Calidad antes de proceder.
-                SI NO ES ACEPTADO, avisar a COMPRAS.</td>
-            <td></td>
+                <tr><b>SI NO ES ACEPTADO, avisar a COMPRAS.</b></tr></td>
+            <td></td><td></td><td></td>
         </tr>
         <tr>
             <td>7. Se recibio certificado de analisis del proveedor ?</td>
-            <td></td>
+            <td></td><td></td><td></td>
         </tr>
         <tr>
             <td>8. Se colocaron las tarjetas de identificacion ?</td>
-            <td></td>
+            <td></td><td></td><td></td>
         </tr>
     </table>
-
+    <br><br><br><br><hr class="new3"><br><br>
     <div class="mt-4">
         <h4>
             <b>Borrador de datos de Aprobacion (CC) {{lotePrint}} ( {{descripcion}} )</b>

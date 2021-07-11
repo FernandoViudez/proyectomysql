@@ -164,6 +164,25 @@ export class CertificadosComponent implements OnInit {
     this.reset();
   }
 
+  cancelar() {
+    Swal.fire({
+      title: "CANCELAR CARGA DATOS",
+      text: "¿ Está seguro que desea cancelar la operación ?",
+      showCancelButton: true,
+      cancelButtonColor: "red",
+      confirmButtonColor: "green",
+      confirmButtonText: "SI",
+      cancelButtonText: "NO",
+      allowEnterKey: false,
+    }).then((res) => {
+      if (res.value) {
+        this.reset();
+      } else {
+        return;
+      }
+    })
+  }
+
   reset() {
     this.descripcion = null;
     this.tipo = null;

@@ -182,6 +182,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
         confirmButtonText: "SI",
         cancelButtonText: "NO",
         showCancelButton: true,
+        allowEnterKey: false,
       }).then(res => {
         if (res.value) {
           alertify.success("¡OPERACIÓN CANCELADA!")
@@ -310,6 +311,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       cancelButtonText: "NO",
       confirmButtonText: "SI",
       showCancelButton: true,
+      allowEnterKey: false,
     }).then((data) => {
 
       if (!data.value) {

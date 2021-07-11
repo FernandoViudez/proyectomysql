@@ -102,22 +102,29 @@
                 <div class="modal-body">
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label for="recipient-name9" class="col-form-label">CODIGO DE LA MATERIA PRIMA:</label>
+                                <label for="recipient-name9" class="col-form-label">Código</label>
                                 <input (keyup)="buscarMp()" [(ngModel)]="termino1" type="number" class="form-control"
                                     id="recipient-name40">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
+                                <label for="recipient-name9" class="col-form-label">Descripción</label>
                                 <input (keyup)="buscarMp()" [(ngModel)]="termino2" type="text" class="form-control"
                                     id="recipient-name40">
                             </div>
                         </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="recipient-name9" class="col-form-label">Tipo de Producto</label>
+                                <input (keyup)="buscarMp()" [(ngModel)]="termino3" type="text" class="form-control"
+                                    id="recipient-name40">
+                            </div>
+                        </div>
                     </div>
-                    <div style="overflow: scroll; height: 200px; width: 100%;">
+                    <div style="overflow: scroll; height: 300px; width: 100%;">
                         <table class="table table-hover">
                             <tr>
                                 <th>COD</th>

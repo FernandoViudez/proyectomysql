@@ -133,7 +133,7 @@ export class AltaprodComponent implements OnInit {
       }, (err) => {
         if (err.error.response) {
           Swal.fire({
-            title: "P.T. existente",
+            title: "PRODUCTO TERMINADO existente",
             text: "¿ Desea editar el Producto Terminado ?",
             cancelButtonColor: "red",
             confirmButtonColor: "green",
@@ -309,6 +309,7 @@ export class AltaprodComponent implements OnInit {
       confirmButtonText: "SI",
       cancelButtonText: "NO",
       showCancelButton: true,
+      allowEnterKey: false,
       icon: "question"
     }).then(res => {
       if (res.value) {

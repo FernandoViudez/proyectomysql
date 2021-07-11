@@ -38,14 +38,15 @@ export class AnulacionComponent implements OnInit {
     }
 
     Swal.fire({ 
-      title:"¿ ANULAR BT ?",
+      title:"ANULAR UN BATCH TICKET ES IRREVERSIBLE",
       text:"¿ Esta seguro de que desea anular el batch ?",
       icon:'error',
       showCancelButton:true,
       cancelButtonColor:"red",
       cancelButtonText:"Cancelar",
       confirmButtonColor:"green",
-      confirmButtonText:"Anular BT"
+      confirmButtonText:"Anular BT",
+      allowEnterKey: false,
     }).then(res => {
       if (res.value) {
         Swal.showLoading();

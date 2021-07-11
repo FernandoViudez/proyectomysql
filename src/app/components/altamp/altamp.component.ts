@@ -298,6 +298,7 @@ export class AltampComponent implements OnInit, OnDestroy {
       confirmButtonText: "SI",
       cancelButtonText: "NO",
       showCancelButton: true,
+      allowEnterKey: false,
       icon: "question"
     }).then(res => {
       if (res.value) {
