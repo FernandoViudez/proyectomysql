@@ -196,8 +196,8 @@
                                 d="M2.5 1a1 1 0 00-1 1v1a1 1 0 001 1H3v9a2 2 0 002 2h6a2 2 0 002-2V4h.5a1 1 0 001-1V2a1 1 0 00-1-1H10a1 1 0 00-1-1H7a1 1 0 00-1 1H2.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM8 5a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 018 5zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z"
                                 clip-rule="evenodd" />
                         </svg></button>
-                    <button class="btn btn-primary mr-5" (click)="cancelar()">Cancelar Operación</button>
-                    <button class="btn btn-success" (click)="finalizar()">Cargar Planificación</button>
+                    <button [disabled]="!codpt" class="btn btn-primary mr-5" (click)="cancelar()">Cancelar Operación</button>
+                    <button [disabled]="!codpt" class="btn btn-success" (click)="finalizar()">Cargar Planificación</button>
                 </div>
             </div>
         </div>
@@ -364,13 +364,11 @@
                     </div>
                     <div class="row">
                         <div class="col-5">
-                            <button *ngIf="pendientes" type="button" class="btn btn-warning ml-3"
-                                (click)="imprimir()">Imprimir
-                                Pendientes</button>
-                            <button *ngIf="!pendientes" type="button" class="btn btn-warning ml-3"
-                                (click)="imprimir()">Imprimir
-                                Busqueda</button>
-                            <button class="btn btn-warning ml-3" (click)="onExcel()">Generar Excel</button>
+                            <button [disabled]="arrayB.length==0" *ngIf="pendientes" type="button" class="btn btn-warning ml-3"
+                                (click)="imprimir()">Imprimir Pendientes</button>
+                            <button [disabled]="arrayB.length==0" *ngIf="!pendientes" type="button" class="btn btn-warning ml-3"
+                                (click)="imprimir()">Imprimir Busqueda</button>
+                            <button [disabled]="arrayB.length==0" class="btn btn-warning ml-3" (click)="onExcel()">Generar Excel</button>
                         </div>
                         <div class="col-3">
                         </div>

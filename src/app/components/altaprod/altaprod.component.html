@@ -195,8 +195,8 @@
     <div class="row mt-5">
         <div class="col-12">
             <div class="float-right mr-5">
-                <button class="btn btn-primary mr-5" (click)="cancelar()">Cancelar</button>
-                <button class="btn btn-success" (click)="finalizar()">Cargar Producto</button>
+                <button [disabled]="!id" class="btn btn-primary mr-5" (click)="cancelar()">Cancelar</button>
+                <button [disabled]="!id" class="btn btn-success" (click)="finalizar()">Cargar Producto</button>
             </div>
         </div>
     </div>

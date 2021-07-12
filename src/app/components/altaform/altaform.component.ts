@@ -304,7 +304,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
   borraFila(index) {
     Swal.fire({
-      title: "ELIMINACIÓN DE FILA",
+      title: "ELIMINAR FILA",
       text: "¿ Esta seguro que desea eliminar esta fila ?",
       cancelButtonColor: "red",
       confirmButtonColor: "green",

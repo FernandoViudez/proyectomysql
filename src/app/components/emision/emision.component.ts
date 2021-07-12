@@ -107,14 +107,15 @@ export class EmisionComponent implements OnInit, OnDestroy {
     this.generarProximoBatch();
     if (!localStorage.getItem("activo")) {
       Swal.fire({
-        title: "¿Eliminar?",
-        text: "¿Desea eliminar las etiquetas generadas en el archivo .txt etilatas?",
+        title: "VACIAR ARCHIVO PARA ETIQUETAS ETILATAS",
+        text: "¿ Desea eliminar las etiquetas generadas en el archivo etilatas.txt ?",
         icon: "question",
         cancelButtonColor: "red",
         confirmButtonColor: "green",
         cancelButtonText: "NO",
         confirmButtonText: "SI",
-        showCancelButton: true
+        showCancelButton: true,
+        allowEnterKey: false,
       }).then(res => {
         if (res.value) {
           this.http.delete(`${obtenerPath()}eliminarEtiquetasEmision`).

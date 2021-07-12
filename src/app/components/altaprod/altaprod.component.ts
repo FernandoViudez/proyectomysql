@@ -302,8 +302,8 @@ export class AltaprodComponent implements OnInit {
 
   cancelar() {
     Swal.fire({
-      title: "Cancelar Operación",
-      text: "¿ Está seguro que desea cancelar la operación ?",
+      title: "CANCELAR",
+      text: "¿ Está seguro que desea cancelar la carga/modificación ?",
       cancelButtonColor: "red",
       confirmButtonColor: "green",
       confirmButtonText: "SI",

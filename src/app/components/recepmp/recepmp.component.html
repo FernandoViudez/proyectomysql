@@ -34,10 +34,6 @@
         </div>
         <div class="row mt-2">
             <div class="col-3">
-                <label>MP obsoleta ?</label>
-                <input class="form-control boldText" disabled type="text" [(ngModel)]="ubicacion">
-            </div>
-            <div class="col-3">
                 <label class="text-center">Última recepción</label>
                 <div class="bg-light">
                     <div class="w-100 badge badge-pill text-center"
@@ -54,6 +50,11 @@
                         <span class="input-group-text boldText" id="basic-addon2">{{unidadRecibo}}</span>
                     </div>
                 </div>
+            </div>
+            <div *ngIf="ubicacion=='SI'" class="col-3">
+                <label>MP obsoleta ?</label>
+                <input class="form-control boldText" disabled type="text" [(ngModel)]="ubicacion"
+                style="background-color: rgb(255, 148, 77)">
             </div>
         </div>
         <div class="row mt-2">
@@ -89,8 +90,10 @@
         </div>
         <div class="row" mt-2>
             <div class="col-12">
-                <button class="float-right btn btn-success mt-5" (click)="finalizar()">Cargar Recepción</button>
-                <button class="float-right btn btn-primary mt-5 mr-3" (click)="cancelar()">Cancelar Recepción</button>
+                <button [disabled]="!id" class="float-right btn btn-success mt-5" (click)="finalizar()">Cargar
+                    Recepción</button>
+                <button [disabled]="!id" class="float-right btn btn-primary mt-5 mr-3" (click)="cancelar()">Cancelar
+                    Recepción</button>
             </div>
         </div>
     </div>
@@ -236,7 +239,7 @@
     </div>
 
     <h3>
-            INFORME DE RECEPCIÓN NUMERO {{lotePrint}}
+        INFORME DE RECEPCIÓN NUMERO {{lotePrint}}
     </h3>
     <hr class="new3">
     <h4>
@@ -275,41 +278,61 @@
         </tr>
         <tr>
             <td>1. El material recibido es el correspondiente a la O/C ?</td>
-            <td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td>2. El peso real coincide con el indicado en el Remito ? 
-                <tr><b>SI NO COINCIDE, anotar la diferencia y avisar a COMPRAS</b></tr></td>
-            <td></td><td></td><td></td>
+            <td>2. El peso real coincide con el indicado en el Remito ?
+        <tr><b>SI NO COINCIDE, anotar la diferencia y avisar a COMPRAS</b></tr>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
         </tr>
         <tr>
             <td>3. Se aprobo en Control de Calidad de REVESTA S.A.I.C. ?</td>
-            <td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td>4. La cantidad recibida coincide con la cantidad de la O/C ? 
-                <tr><b>SI NO COINCIDE, anotar la diferencia y avisar a COMPRAS</b></tr></td>
-            <td></td><td></td><td></td>
+            <td>4. La cantidad recibida coincide con la cantidad de la O/C ?
+        <tr><b>SI NO COINCIDE, anotar la diferencia y avisar a COMPRAS</b></tr>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
         </tr>
         <tr>
             <td>5. El material tiene numero de lote o partida ? </td>
-            <td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td>6. Estan dañados los envases ? SI ES ASI, obtener la aprobacion de Control de Calidad antes de proceder.
-                <tr><b>SI NO ES ACEPTADO, avisar a COMPRAS.</b></tr></td>
-            <td></td><td></td><td></td>
+        <tr><b>SI NO ES ACEPTADO, avisar a COMPRAS.</b></tr>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
         </tr>
         <tr>
             <td>7. Se recibio certificado de analisis del proveedor ?</td>
-            <td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td>8. Se colocaron las tarjetas de identificacion ?</td>
-            <td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     </table>
-    <br><br><br><br><hr class="new3"><br><br>
+    <br><br><br><br>
+    <hr class="new3"><br><br>
     <div class="mt-4">
         <h4>
             <b>Borrador de datos de Aprobacion (CC) {{lotePrint}} ( {{descripcion}} )</b>

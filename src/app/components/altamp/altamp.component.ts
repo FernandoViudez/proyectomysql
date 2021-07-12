@@ -291,8 +291,8 @@ export class AltampComponent implements OnInit, OnDestroy {
 
   cancelar() {
     Swal.fire({
-      title: "CANCELAR OPERACION",
-      text: "¿ Está seguro que desea cancelar la operación ?",
+      title: "CANCELAR",
+      text: "¿ Está seguro que desea cancelar la carga/modificación ?",
       cancelButtonColor: "red",
       confirmButtonColor: "green",
       confirmButtonText: "SI",

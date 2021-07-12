@@ -325,14 +325,15 @@ export class PlanifiComponent implements OnInit {
 
     if (this.fechafin) {
       Swal.fire({
-        title: "Atención!!",
+        title: "ATENCION !!",
         icon: "info",
         text: "Si completa FECHA FIN, no podrá realizar más cambios.",
         cancelButtonText: "Cancelar",
         confirmButtonText: "Aceptar",
         cancelButtonColor: "red",
         confirmButtonColor: "green",
-        showCancelButton: true
+        showCancelButton: true,
+        allowEnterKey: false,
       }).then(res => {
         if (res.value) {
           cargar(this.codpt, this.cantidad, this.formaenv,
@@ -359,14 +360,15 @@ export class PlanifiComponent implements OnInit {
   //BORRAR FILA
   borrarFila() {
     Swal.fire({
-      title: "¿Borrar?",
+      title: "ELIMINAR PRODUCTO DE PLANIFICACION",
       text: "¿ Seguro que quiere eliminar esta planificacion ?",
       showCancelButton: true,
       cancelButtonColor: "red",
       cancelButtonText: "NO",
       confirmButtonColor: "green",
       confirmButtonText: "SI",
-      icon: "question"
+      icon: "question",
+      allowEnterKey: false,
     }).then(res => {
       if (res.value) {
         this.http.delete(`${obtenerPath()}deletePlani/${this.id}`).
@@ -384,14 +386,15 @@ export class PlanifiComponent implements OnInit {
   //CANCELAR OPERACION
   cancelar() {
     Swal.fire({
-      title: "¿Cancelar?",
-      text: "¿ Seguro de que quiere cancelar esta operacion ?",
+      title: "IGNORAR CAMBIOS",
+      text: "¿ Seguro de que quiere cancelar los cambios que hizo ?",
       showCancelButton: true,
       cancelButtonColor: "red",
       cancelButtonText: "NO",
       confirmButtonColor: "green",
       confirmButtonText: "SI",
-      icon: "question"
+      icon: "warning",
+      allowEnterKey: false,
     }).then(res => {
       if (res.value) {
         this.resetear();

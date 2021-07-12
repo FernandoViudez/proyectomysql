@@ -44,14 +44,15 @@ export class RecepmpComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     Swal.fire({
-      title: "Eliminar etiquetas",
-      text: "¿ Desea eliminar las etiquetas del archivo txt ?",
+      title: "VACIAR ARCHIVO PARA ETIQUETAS RECEPCIONMP",
+      text: "¿Desea eliminar las etiquetas del archivo recepcionmp.txt?",
       cancelButtonColor: "red",
       showCancelButton: true,
       confirmButtonColor: "green",
       cancelButtonText: "NO",
       confirmButtonText: "SI",
-      icon: "question"
+      icon: "question",
+      allowEnterKey: false,
     }).then(res => {
       if (res.value) {
         this.eliminarEtiquetas();

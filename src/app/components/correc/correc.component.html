@@ -56,8 +56,8 @@
         </div>
 
         <div class="mt-4">
-            <button class="float-right btn btn-success mt-1" (click)="finalizar()">Corregir Stock</button>
-            <button class="float-right btn btn-primary mt-1 mr-2" (click)="resetear()">Cancelar operación</button>
+            <button [disabled]="!id" class="float-right btn btn-success mt-1" (click)="finalizar()">Corregir Stock</button>
+            <button [disabled]="!id" class="float-right btn btn-primary mt-1 mr-2" (click)="resetear()">Cancelar operación</button>
         </div>
 
         <div class="row mt-5">

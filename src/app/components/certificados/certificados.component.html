@@ -110,8 +110,8 @@
     <div class="row mt-4">
         <div class="col-12">
             <div class="float-right">
-                <button class="btn btn-primary mr-2" (click)="cancelar()">Cancelar</button>
-                <button class="btn btn-success" (click)="onSubmit()">Cargar datos</button>
+                <button [disabled]="!descripcion" class="btn btn-primary mr-2" (click)="cancelar()">Cancelar</button>
+                <button [disabled]="!descripcion" class="btn btn-success" (click)="onSubmit()">Cargar datos</button>
             </div>
         </div>
     </div>

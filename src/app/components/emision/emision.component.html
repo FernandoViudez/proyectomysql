@@ -93,13 +93,15 @@
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="m-auto" style="width:80%">
-                            <h3 class="alert text-white text-center" style="background-color: darkblue;"
-                                *ngIf="tfa=='F'">
-                                FORMULA </h3>
-                            <h3 class="alert text-white text-center" style="background-color: orange;" *ngIf="tfa=='T'">
+                            <h3 class="alert text-white text-center"
+                                style="background-color: darkblue; font-weight: bold; font-size: 34px;"
+                                *ngIf="tfa=='F'">FORMULA</h3>
+                            <h3 class="alert text-white text-center"
+                                style="background-color: rgb(255, 0, 43);  font-weight: bold; font-size: 34px;" *ngIf="tfa=='T'">
                                 TINTURADO</h3>
-                            <h3 class="alert text-center" style="background-color: yellow;" *ngIf="tfa=='A'">FORMULA
-                                ALTERNATIVA</h3>
+                            <h3 class="alert text-center"
+                                style="background-color: yellow;  font-weight: bold; font-size: 34px;" *ngIf="tfa=='A'">
+                                FORMULA ALTERNATIVA *** FORMULA ALTERNATIVA</h3>
                         </div>
                     </div>
                 </div>
@@ -397,7 +399,8 @@ OBSERVACION: {{contemplar}}<span class="tab1"></span> CLIENTE: {{cliente}}<span 
                         <td>{{item.orden}}</td>
                         <td>{{item.codmp}}</td>
                         <td>{{item.codpt}}</td>
-                        <td style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">{{item.descripcion}}</td>
+                        <td style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">{{item.descripcion}}
+                        </td>
                         <td *ngIf=" unidadmedida=='KG' && item.cantidad" class="text-right">
                             {{(item.cantidad*cantidadPlani)/100 | numeralPipe: 'true'}}0</td>
                         <td *ngIf="unidadmedida == 'LT' && item.cantidad" class="text-right">
@@ -482,8 +485,10 @@ __._____ _____ _________________________________________________________________
         </h6>
         <hr>
         <h5> <b>
-                {{id}} {{descripcion}} {{componente}} {{color}} {{proximoBatch}}</b><span class="tab1"></span>FECHA APROB.FINAL
-                    ___/ ___ /___ <span class="tab1"></span>HORA _____ <span class="tab1"></span><b *ngIf="contemplar">OBSERVACION: {{contemplar}}</b> <br>
+                {{id}} {{descripcion}} {{componente}} {{color}} {{proximoBatch}}</b><span class="tab1"></span>FECHA
+            APROB.FINAL
+            ___/ ___ /___ <span class="tab1"></span>HORA _____ <span class="tab1"></span><b
+                *ngIf="contemplar">OBSERVACION: {{contemplar}}</b> <br>
         </h5>
 
         <b>
@@ -717,8 +722,8 @@ RECIBIO Y CONTROLO: ___________________ <span class="tab1"></span>FECHA: ___/___
             <div class="row mt-2 mb-2">
                 <div class="col-6">
                     <button type="button" class="btn-warning ml-5 btn" (click)="calcularPlanProduccion()"
-                        [disabled]="!pendientes && arrayB.length == 0">Listado a excel de Materias Primas necesarias para
-                        produccion de estos Productos seleccionados</button>
+                        [disabled]="!pendientes && arrayB.length == 0">Excel de Materias Primas necesarias para
+                        producción de estos Productos seleccionados</button>
                 </div>
                 <div class="col-6 text-right">
                     <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
