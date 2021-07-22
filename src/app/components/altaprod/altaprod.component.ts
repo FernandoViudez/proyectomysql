@@ -252,6 +252,9 @@ export class AltaprodComponent implements OnInit {
     if (this.descripcion.trim() == "") {
       return alertify.error("LA DESCRIPCION ES INVÁLIDA !")
     }
+    if (!this.tipogenerico || this.tipogenerico.trim() == "") {
+      return alertify.error("INGRESE UN TIPO GENERICO CORRECTO !");
+    }
     if (this.formaconjunto == this.id) {
       return alertify.error("¡ ATENCION !, CODIGO DEL CONJUNTO ES IDÉNTICO AL CODIGO DEL PRODUCTO")
     }

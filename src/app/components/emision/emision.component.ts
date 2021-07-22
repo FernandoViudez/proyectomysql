@@ -475,7 +475,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
     if (this.id == 10565 || this.id == 10572 || this.id == 30644 || this.id == 30645) {
       var dias = 180;
     }
-    if (this.tipogenerico.includes('VINIL ESTER') || this.tipogenerico.includes('VINILESTER')) {
+    if (this.tipogenerico?.includes('VINIL ESTER') || this.tipogenerico?.includes('VINILESTER')) {
       var dias = 90;
     } else {
       var dias = 365; // si quisiera agregar a mano dias usaria parseInt(numero.value);
