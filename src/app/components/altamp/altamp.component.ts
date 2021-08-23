@@ -314,7 +314,7 @@ export class AltampComponent implements OnInit, OnDestroy {
     this.id = null;
     this.descripcion1 = null;
     this.descripcion = datos; this.tipo = datos; this.ubicacion = datos; this.riesgo = datos; this.proteccion = datos; this.precio = datos;
-    this.pesoespecifico = 0; this.ppp = 0; this.ppv = 0; this.resina = 0; this.pigmento = 0; this.solvente = 0;
+    this.pesoespecifico = 0; this.ppp = 0; this.ppv = 0; this.resina = 0; this.pigmento = 0; this.solvente = 0; this.fechaultimarecepcion = datos;
     this.stock = 0; this.stockminimo = datos; this.unidadmedidacompra = datos; this.codpt = datos; this.condaprob1 = datos; this.condaprob2 = datos;
     this.condaprob3 = datos; this.condaprob4 = datos; this.info1 = datos; this.info2 = datos; this.info3 = datos; this.cobarras = datos;
     this.termino1 = null;
