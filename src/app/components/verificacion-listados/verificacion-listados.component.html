@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row mt-4">
         <div class="col-3" style="text-align: right;">
-            <span class="boldText">Código de materia prima:</span>
+            <span class="boldText">Código de materia prima</span>
         </div>
         <div class="col-3">
             <input type="number" class="boldText" [(ngModel)]="codigoMp" placeholder="Codigo mp">
@@ -22,12 +22,26 @@
             <input type="text" class="boldText" [(ngModel)]="partida" placeholder="Partida">
         </div>
     </div>
-    <div class="row mt-2">
-        <div class="col-3" style="text-align: right;">
+    <div class="row mt-1">
+        <div class="col-3 mt-3" style="text-align: right;">
             <span class="boldText">Operario</span>
         </div>
         <div class="col-3">
-            <input type="text" class="boldText" [(ngModel)]="operario" placeholder="Operario">
+            <div class="input-group">
+                <select class="mt-2 custom-select boldText" [(ngModel)]="operario">
+                    <option value="CALIVA">Caliva</option>
+                    <option value="CORTEZ">Cortez</option>
+                    <option value="ESTAMATTI">Estamatti</option>
+                    <option value="GALANTE">Galante</option>
+                    <option value="GIORGI">Giorgi</option>
+                    <option value="GUEVARA">Guevara</option>
+                    <option value="MACIEL">Maciel</option>
+                    <option value="DARIO">Parisi</option>
+                    <option value="PORTILLO">Portillo</option>
+                    <option value="SANDOVAL">Sandoval</option>
+                    <option value="VIVAS">Vivas</option>
+                </select>
+            </div>
         </div>
     </div>
     <div class="row mt-2">
