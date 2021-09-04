@@ -216,7 +216,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       return alertify.error("¡ NO HA CARGADO NINGUN RENGLON PARA LAS FORMULAS !")
     }
 
-    function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario) {
+    function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario, solv) {
       return new Promise((resolve, reject) => {
         Swal.fire({
           title: "¡¡ ATENCION !!",
@@ -236,7 +236,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
             })
             Swal.showLoading()
             service.finalizar(tintoformoalt, idprod, pe, ppp, ppv, resi,
-              pig, pr, array, usuario).subscribe((data: any) => {
+              pig, pr, array, usuario, solv).subscribe((data: any) => {
                 Swal.close()
                 Swal.fire({
                   title: "GENIAL",
@@ -255,7 +255,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
     if (this.tintoformoalt == "T") {
       let response = finalizar(0, this.service, this.tintoformoalt, this.idprod, this.pe, this.ppp, this.ppv,
-        this.resi, this.pig, this.pr, this.array, this.usuario);
+        this.resi, this.pig, this.pr, this.array, this.usuario, this.solv);
       response.then(data => {
         this.resetear();
         this.resetear1();
@@ -264,7 +264,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       })
     } else if (this.sumaTot) {
       let response = finalizar(this.sumaTot, this.service, this.tintoformoalt, this.idprod, this.pe, this.ppp, this.ppv,
-        this.resi, this.pig, this.pr, this.array, this.usuario);
+        this.resi, this.pig, this.pr, this.array, this.usuario, this.solv);
       response.then(data => {
         this.resetear();
         this.resetear1();

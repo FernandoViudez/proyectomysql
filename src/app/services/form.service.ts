@@ -39,8 +39,8 @@ export class FormService {
     return this.http.post(`${this.url}realizarCalculos`, { data })
   }
 
-  finalizar(tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario) {
-    let data = { tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario };
+  finalizar(tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario, solv) {
+    let data = { tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario, solv };
     return this.http.post(`${this.url}postFor`, data).pipe(map(data => data))
   }
 
