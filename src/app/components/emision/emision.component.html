@@ -145,12 +145,15 @@
                                 <tr>
                                     <th>Código de envasado</th>
                                     <th>Descripción</th>
+                                    <th>Stock envases</th>
                                     <th>Total a Envasar</th>
                                     <th>Envases</th>
                                 </tr>
                                 <tr *ngFor="let item of arrayConj; let i = index" class="boldText">
-                                    <td>{{item.codmp}}</td>
-                                    <td>{{item.envasado | numeralPipe}} {{unidadmedida}} en {{item.descripcion}}</td>
+                                    <td class="boldText">{{item.codmp}}</td>
+                                    <td class="boldText">{{item.envasado | numeralPipe}} {{unidadmedida}} en {{item.descripcion}}</td>
+                                    <td *ngIf="item.stock > '0'" class="boldText" style="text-align: center; color: mediumblue;">{{item.stock}}</td>
+                                    <td *ngIf="item.stock <= '0'" class="boldText" style="text-align: center; color: red;">{{item.stock}}</td>
                                     <td><input type="number" class="form-control boldText" #in
                                             (keyup)="in.value=in.value; calcular(in.value, i)"
                                             (change)="guardarEnvases(in.value, item.codmp, item.envasado)">
@@ -417,7 +420,7 @@ __._____ _____ _________________________________________________________________
 __._____ _____ _______________________________________________________________________________ __________+__________+__________
 __._____ _____ _______________________________________________________________________________ __________+__________+__________
                 </pre>
-            </td>_
+            </td>
 
             <br>
             <h5>
