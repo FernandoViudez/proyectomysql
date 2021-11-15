@@ -20,11 +20,11 @@ export class AnulacionComponent implements OnInit {
   private url: string = obtenerPath();
 
   constructor(private http: HttpClient, private route: Router) { 
-    this.usuario = localStorage.getItem("user_role");
-    if (this.usuario != "ADMIN_ROL" && this.usuario != "LABORATORIO") {
-      alert("Acceso no autorizado !")
-      route.navigate(['inicio'])
-    }
+    this.usuario = localStorage.getItem("username");  //en navbar solo autorizo estos 2 roles
+    //if (this.usuario != "ADMIN_ROL" && this.usuario != "LABORATORIO") {
+    //  alert("Acceso no autorizado !")
+    //  route.navigate(['inicio'])
+    //}
    }
 
   ngOnInit(): void {
