@@ -360,7 +360,7 @@
             <b>
                 <pre>
 CUBA Nro _____ <span class="tab1"></span> CODIGO: {{id}} <span class="tab1"></span> PRODUCTO: {{descripcion}} {{componente}} {{color}}
-CANTIDAD: {{cantidadPlani | numeralPipe: 'true'}} {{unidadmedida}} - (<span *ngIf="unidadmedida=='LT'"> {{(cantidadPlani * pesoespecifico) | numeralPipe: 'true'}} Kg</span><span *ngIf="unidadmedida=='KG'"> {{cantidadPlani | numeralPipe}} Kg</span>) <span class="tab3"></span> FECHA EMISION: {{fechaDelDia}} <span class="tab3"></span> FECHA INICIO PRODUCCION: ___/___/ ___
+CANTIDAD: {{cantidadPlani | numeralPipe: 'true'}} {{unidadmedida}} - (<span *ngIf="unidadmedida=='LT'"> {{(cantidadPlani * pesoespecifico) | numeralPipe: 'true'}} Kg</span><span *ngIf="unidadmedida=='KG'"> {{cantidadPlani | numeralPipe}} Kg</span>) <span class="tab3"></span> FECHA EMISION: {{fechaDelDia}} <span class="tab3"></span> FECHA INICIO: ___/___/ ___
 OPERARIO: _______________ <span class="tab3"></span> NRO.CUBA UTILIZADA: ______ <span class="tab3"></span> PESO CUBA: ______ <span class="tab1"></span> HORA INICIO: _______
 DISPERSORA NRO: _____ <span class="tab1"></span>CON DISCO: PLANO / CONN / MULTILAMINAR <span class="tab1"></span>MOLINO NRO: ______
 PESO FINAL ________ Kg <span class="tab1"></span>CONTROLO __________ <span class="tab1"></span> COMIENZO ENVASADO ___/___/___<span class="tab1"></span> FILTRO # _______
@@ -408,13 +408,13 @@ OBSERVACION: {{contemplar}}<span class="tab1"></span> CLIENTE: {{cliente}}<span 
                     <table>
                         <tr>
                             <th></th>
-                            <th>*** MP ***</th>
-                            <th>*** PT ***</th>
-                            <th>*** DESCRIPCION ***</th>
-                            <th>*** CANTIDAD ***</th>
-                            <th>*** LOTE Nro. ***</th>
-                            <th>*** PREPESADO ***</th>
-                            <th>*** AGREGADO ***</th>
+                            <th>MP</th>
+                            <th>PT</th>
+                            <th>DESCRIPCION</th>
+                            <th>CANTIDAD</th>
+                            <th>LOTE Nro.</th>
+                            <th>PREPESADO</th>
+                            <th>AGREGADO</th>
                             <th>RIESGO/PROTECCION</th>
                         </tr>
                         <tr *ngFor="let item of arrayAsoc; let i = index;">
@@ -436,17 +436,13 @@ OBSERVACION: {{contemplar}}<span class="tab1"></span> CLIENTE: {{cliente}}<span 
                         </tr>
                     </table>
                 </div>
-                <br>
                 <pre>
-___. ________________________________________________  _________ Lote _________ Prep ___ Agregado ___                 
-___. ________________________________________________  _________ Lote _________ Prep ___ Agregado ___                 
-___. ________________________________________________  _________ Lote _________ Prep ___ Agregado ___                 
-                    
+___. __________________________________________  _________ Lote _________ Prep ___ Agregado ___
+___. __________________________________________  _________ Lote _________ Prep ___ Agregado ___
+___. __________________________________________  _________ Lote _________ Prep ___ Agregado ___
                 </pre>
             </td>
-
             <hr class="new3">
-
             <h5>
                 <p class="text-center"> <b> DATOS DE APROBACION FINAL <span class="tab2"></span>ENTREGA ____ HORAS
                         ___ C ___
@@ -511,12 +507,11 @@ ___. ________________________________________________  _________ Lote _________ 
             </table><br>
         </h6>
         <hr class="new3">
-        <h3> <b>
+        <h4> <b>
                 {{id}} {{descripcion}} {{componente}} {{color}} {{proximoBatch}}</b><span class="tab1"></span>FECHA
-            APROB.FINAL
-            ___/ ___ /___ <span class="tab1"></span>HORA _____ <span class="tab1"></span><b
+            APROB.FINAL ___/ ___ /___ <span class="tab1"></span>HORA _____ <span class="tab1"></span><b
                 *ngIf="contemplar">OBSERVACION: {{contemplar}}</b> <br>
-        </h3>
+        </h4>
 
         <b>
             <div>
