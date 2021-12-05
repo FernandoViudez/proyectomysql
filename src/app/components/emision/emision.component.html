@@ -408,19 +408,19 @@ OBSERVACION: {{contemplar}}<span class="tab1"></span> CLIENTE: {{cliente}}<span 
                     <table>
                         <tr>
                             <th></th>
-                            <th>MP</th>
-                            <th>PT</th>
+                            <th>CODIGO MP</th>
+                            <th>CODIGO PT</th>
                             <th>DESCRIPCION</th>
                             <th>CANTIDAD</th>
-                            <th>LOTE Nro.</th>
-                            <th>PREPESADO</th>
+                            <th>LOTE NUMERO</th>
+                            <th>PESADO</th>
                             <th>AGREGADO</th>
-                            <th>RIESGO/PROTECCION</th>
+                            <th>RIESGO/PROTECC.</th>
                         </tr>
                         <tr *ngFor="let item of arrayAsoc; let i = index;">
                             <td>{{item.orden}}</td>
-                            <td>{{item.codmp}}</td>
-                            <td>{{item.codpt}}</td>
+                            <td style="text-align: right;">{{item.codmp}}</td>
+                            <td style="text-align: right;">{{item.codpt}}</td>
                             <td style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">
                                 {{item.descripcion}}
                             </td>
@@ -437,9 +437,9 @@ OBSERVACION: {{contemplar}}<span class="tab1"></span> CLIENTE: {{cliente}}<span 
                     </table>
                 </div>
                 <pre>
-___. __________________________________________  _________ Lote _________ Prep ___ Agregado ___
-___. __________________________________________  _________ Lote _________ Prep ___ Agregado ___
-___. __________________________________________  _________ Lote _________ Prep ___ Agregado ___
+___. __________________________________________  _________ Lote _________ Pesado __ Agregado __
+___. __________________________________________  _________ Lote _________ Pesado __ Agregado __
+___. __________________________________________  _________ Lote _________ Pesado __ Agregado __
                 </pre>
             </td>
             <hr class="new3">
