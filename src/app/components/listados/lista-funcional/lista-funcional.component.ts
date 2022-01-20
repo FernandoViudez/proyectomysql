@@ -5,6 +5,8 @@ import { filter, map } from 'rxjs/operators';
 import { DatePipe } from '../../../pipes/date.pipe';
 import { Router } from '@angular/router';
 import { GenericService } from 'src/app/services/generic.service';
+import { MatprimService } from 'src/app/services/matprim.service';
+declare let alertify: any;
 
 @Component({
   selector: 'app-lista-funcional',
@@ -58,9 +60,17 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   //Date Pipe
   datePipe = new DatePipe();
 
-  constructor(private listadosService: ListadosService, private route: Router,
-    private genericService: GenericService) { }
+  //busqueda MP
+  id: number;
+  termino1: number;
+  termino2: string;
+  termino3: string;
+  arrayBusqueda = [];
 
+  constructor(private listadosService: ListadosService, private route: Router,
+    private servicioMp: MatprimService,
+    private genericService: GenericService) { }
+    
   get isValid() {
     switch (this.operacion) {
 
@@ -115,6 +125,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         this.sonFechas = false;
         this.esPlani = false;
         this.esMp = true;
+        this.codmp = this.desde;
         if (this.codmp) {
           return false;
         } else {
@@ -530,4 +541,22 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     }
   }
 
+  buscarMp() {
+    this.servicioMp.buscar(this.termino1, this.termino2, this.termino3).
+      subscribe((data: any) => {
+        this.arrayBusqueda = data.response;
+      }, (err) => {
+        console.log(err);
+      })
+  }
+
+  seleccionarId(desde) {
+    this.desde = desde;
+  }
+
+  resetearBusqueda() {
+    this.termino1 = null;
+    this.termino2 = null;
+    this.arrayBusqueda = [];
+  }
 }

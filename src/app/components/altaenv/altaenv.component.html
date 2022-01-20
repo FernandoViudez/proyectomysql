@@ -1,242 +1,258 @@
-
-
-    <div class= "p-1 mt-2">
-        <h5 class="bg-info text-white text-center font-weight-bold">ENVASADO</h5>
-        <div class="row">
-            <div class="col-1">
-            </div>        
-            <div class="col-2">
-                <label>Código del producto</label>
-                <input (change)="seleccionarIdPt(idprod)" id="idp" type="number" [(ngModel)]="idprod" class="ml-1 form-control boldText">
-            </div>
-	    <div class="col-1">
-	      <svg (click)="resetear1()" *ngIf="array.length==0" data-toggle="modal" style="cursor: pointer;"
-		data-target="#exampleModal3" class="mt-4 bi bi-search" width="2em" height="2em" viewBox="0 0 16 16"
-		fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-		<path fill-rule="evenodd"
-		  d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-		  clip-rule="evenodd" />
-		<path fill-rule="evenodd"
-		  d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd" />
-	      </svg>
-	    </div>         
-	    <div class="col-4">
-	      <div class="mt-4">
-		<span class="badge badge-primary" style="font-size: 25px;">{{descripcion1}}</span>
-	      </div>
-	    </div>
-	    <div class="col-2">
-		<svg *ngIf="idprod" data-toggle="modal" data-target="#exampleModal" class="material-icons"
-	 	  class="float-right bi bi-plus-circle-fill" width="5em" height="5em" style="cursor: pointer;" viewBox="0 0 18 18"
-		  fill="blue" xmlns="http://www.w3.org/2000/svg">
-		  <path fill-rule="evenodd"
-		    d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
-		    clip-rule="evenodd" />
-		</svg>
-    </div>    
-
-
-</div>
-<hr>
-<div style="overflow: scroll; width: 90%; margin-top: 5%; height: 390px;" class="zoom m-auto">
-  <table class="table table-fixed w-100" style="font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';">
-    <tr class="bg-dark text-white text-center">
-      <th>ENVASADO</th>
-      <th>CODIGO ENVASE</th>
-      <th>DESCRIPCION</th>
-      <th>CODIGO DE BARRAS</th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let item of array" style="border-bottom: 0.5px solid rgb(224, 224, 224);">
-      <td class=" text-center" style="font-size: 18px;">{{item.envasado | numeralPipe}}</td>
-      <td class=" text-center" style="font-size: 18px;">{{item.codmp}}</td>
-      <td class="" style="font-size: 18px;">{{item.descripcion}}</td>
-      <td class=" text-center" style="font-size: 18px;">{{item.cobarras}}</td>
-
-      <td>
-        <button (click)="traerPorProps(item.indice)" data-toggle="modal" data-target="#exampleModal1"
-          class="btn btn-outline-danger"><svg class="bi bi-brush" width="15px" height="15px" viewBox="0 0 16 16"
-            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M15.213 1.018a.572.572 0 01.756.05.57.57 0 01.057.746C15.085 3.082 12.044 7.107 9.6 9.55c-.71.71-1.42 1.243-1.952 1.596-.508.339-1.167.234-1.599-.197-.416-.416-.53-1.047-.212-1.543.346-.542.887-1.273 1.642-1.977 2.521-2.35 6.476-5.44 7.734-6.411z" />
-            <path d="M7 12a2 2 0 01-2 2c-1 0-2 0-3.5-.5s.5-1 1-1.5 1.395-2 2.5-2a2 2 0 012 2z" />
-          </svg></button>
-      </td>
-
-      <td>
-        <button (click)="eliminarFila(item.indice)" class="btn btn-outline-primary"><svg class="bi bi-trash-fill"
-            width="15px" height="15px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-              d="M2.5 1a1 1 0 00-1 1v1a1 1 0 001 1H3v9a2 2 0 002 2h6a2 2 0 002-2V4h.5a1 1 0 001-1V2a1 1 0 00-1-1H10a1 1 0 00-1-1H7a1 1 0 00-1 1H2.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM8 5a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 018 5zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z"
-              clip-rule="evenodd" />
-          </svg></button>
-      </td>
-
-    </tr>
-  </table>
-</div>
-
-<div class="float-right mt-5 mb-5" style="margin-right: 6%;">
-  <button [disabled]="!descripcion1" class="mr-5 btn btn-primary" (click)="eliminarTodo(false)">Cancelar</button>
-  <button [disabled]="!descripcion1" class="btn btn-success" (click)="finalizar()">Finalizar</button>
-</div>
-
-<div class="modal fade w-100" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">NUEVO ENVASAMIENTO</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="recipient-name1" class="col-form-label">Cantidad a envasar</label>
-          <input [(ngModel)]="envasado" type="number" class="form-control" id="recipient-name1" style="font-size: 16px;">
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <div class="form-group">
-              <label for="recipient-name1" class="col-form-label">Código envase</label>
-              <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name1" style="font-size: 16px;">
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="form-group">
-              <label for="recipient-name3" class="col-form-label">Descripción</label>
-              <input type="text" disabled [(ngModel)]="descripcion" class="form-control" id="recipient-name3" style="font-size: 16px;">
-            </div>
-          </div>
+<div class="p-1 mt-2">
+  <h5 class="bg-info text-white text-center font-weight-bold">ENVASADO</h5>
+  <div class="row">
+    <div class="col-1">
+    </div>
+    <div class="col-2">
+      <label>Código del producto</label>
+      <div class="input-group">
+        <input (change)="seleccionarIdPt(idprod)" id="idp" type="number" [(ngModel)]="idprod"
+          class="ml-1 form-control boldText">
+        <div class="input-group-append">
+          <span class="input-group-text boldText" id="basic-addon2">
+            <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3" width="1em" height="1em"
+              viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                clip-rule="evenodd" />
+              <path fill-rule="evenodd"
+                d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </span>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="cargar()">Cargar</button>
-        <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" (click)="resetear()">Resetear</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+    </div>
+    <div class="col-4">
+      <div class="mt-4">
+        <span class="badge badge-primary" style="font-size: 25px;">{{descripcion1}}</span>
+      </div>
+    </div>
+    <div class="col-2">
+      <svg *ngIf="idprod" data-toggle="modal" data-target="#exampleModal" class="material-icons"
+        class="float-right bi bi-plus-circle-fill" width="5em" height="5em" style="cursor: pointer;" viewBox="0 0 18 18"
+        fill="blue" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
+          clip-rule="evenodd" />
+      </svg>
+    </div>
+
+
+  </div>
+  <hr>
+  <div style="overflow: scroll; width: 90%; margin-top: 5%; height: 390px;" class="zoom m-auto">
+    <table class="table table-fixed w-100"
+      style="font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';">
+      <tr class="bg-dark text-white text-center">
+        <th>ENVASADO</th>
+        <th>CODIGO ENVASE</th>
+        <th>DESCRIPCION</th>
+        <th>CODIGO DE BARRAS</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let item of array" style="border-bottom: 0.5px solid rgb(224, 224, 224);">
+        <td class=" text-center" style="font-size: 18px;">{{item.envasado | numeralPipe}}</td>
+        <td class=" text-center" style="font-size: 18px;">{{item.codmp}}</td>
+        <td class="" style="font-size: 18px;">{{item.descripcion}}</td>
+        <td class=" text-center" style="font-size: 18px;">{{item.cobarras}}</td>
+
+        <td>
+          <button (click)="traerPorProps(item.indice)" data-toggle="modal" data-target="#exampleModal1"
+            class="btn btn-outline-danger"><svg class="bi bi-brush" width="15px" height="15px" viewBox="0 0 16 16"
+              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.213 1.018a.572.572 0 01.756.05.57.57 0 01.057.746C15.085 3.082 12.044 7.107 9.6 9.55c-.71.71-1.42 1.243-1.952 1.596-.508.339-1.167.234-1.599-.197-.416-.416-.53-1.047-.212-1.543.346-.542.887-1.273 1.642-1.977 2.521-2.35 6.476-5.44 7.734-6.411z" />
+              <path d="M7 12a2 2 0 01-2 2c-1 0-2 0-3.5-.5s.5-1 1-1.5 1.395-2 2.5-2a2 2 0 012 2z" />
+            </svg></button>
+        </td>
+
+        <td>
+          <button (click)="eliminarFila(item.indice)" class="btn btn-outline-primary"><svg class="bi bi-trash-fill"
+              width="15px" height="15px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M2.5 1a1 1 0 00-1 1v1a1 1 0 001 1H3v9a2 2 0 002 2h6a2 2 0 002-2V4h.5a1 1 0 001-1V2a1 1 0 00-1-1H10a1 1 0 00-1-1H7a1 1 0 00-1 1H2.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM8 5a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 018 5zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z"
+                clip-rule="evenodd" />
+            </svg></button>
+        </td>
+
+      </tr>
+    </table>
+  </div>
+
+  <div class="float-right mt-5 mb-5" style="margin-right: 6%;">
+    <button [disabled]="!descripcion1" class="mr-5 btn btn-primary" (click)="eliminarTodo(false)">Cancelar</button>
+    <button [disabled]="!descripcion1" class="btn btn-success" (click)="finalizar()">Finalizar</button>
+  </div>
+
+  <div class="modal fade w-100" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">NUEVO ENVASAMIENTO</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="recipient-name1" class="col-form-label">Cantidad a envasar</label>
+            <input [(ngModel)]="envasado" type="number" class="form-control" id="recipient-name1"
+              style="font-size: 16px;">
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="recipient-name1" class="col-form-label">Código envase</label>
+                <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control"
+                  id="recipient-name1" style="font-size: 16px;">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="recipient-name3" class="col-form-label">Descripción</label>
+                <input type="text" disabled [(ngModel)]="descripcion" class="form-control" id="recipient-name3"
+                  style="font-size: 16px;">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="cargar()">Cargar</button>
+          <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
+            (click)="resetear()">Resetear</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="modal fade w-100" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true" style="font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">EDITAR FILA</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+  <div class="modal fade w-100" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">EDITAR FILA</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
 
-        <div class="row">
-          <div class="col-6">
-            <div class="form-group">
-              <label for="recipient-name0" class="col-form-label">Envasado</label>
-              <input [(ngModel)]="envasado" type="number" class="form-control" id="recipient-name0" style="font-size: 16px;">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="recipient-name0" class="col-form-label">Envasado</label>
+                <input [(ngModel)]="envasado" type="number" class="form-control" id="recipient-name0"
+                  style="font-size: 16px;">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="recipient-name0" class="col-form-label">Código de barras</label>
+                <input [(ngModel)]="cobarras" type="text" class="form-control" id="recipient-name0"
+                  style="font-size: 16px;">
+              </div>
             </div>
           </div>
-          <div class="col-6">
-            <div class="form-group">
-              <label for="recipient-name0" class="col-form-label">Código de barras</label>
-              <input [(ngModel)]="cobarras" type="text" class="form-control" id="recipient-name0" style="font-size: 16px;">
+
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="recipient-name01" class="col-form-label">Código Envase</label>
+                <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control"
+                  style="font-size: 16px;" id="recipient-name01">
+              </div>
             </div>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name03" class="col-form-label">Descripción</label>
+            <input type="text" disabled [(ngModel)]="descripcion" class="form-control" id="recipient-name03"
+              style="font-size: 16px;">
           </div>
         </div>
-
-
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="recipient-name01" class="col-form-label">Código Envase</label>
-              <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control"  style="font-size: 16px;"
-                id="recipient-name01">
-            </div>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" data-dismiss="modal"
+            (click)="resetear()">Cerrar</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="editar()">Cargar!</button>
         </div>
-
-        <div class="form-group">
-          <label for="recipient-name03" class="col-form-label">Descripción</label>
-          <input type="text" disabled [(ngModel)]="descripcion" class="form-control" id="recipient-name03" style="font-size: 16px;">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" data-dismiss="modal" (click)="resetear()">Cerrar</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="editar()">Cargar!</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PRODUCTOS TERMINADOS</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-        <div class="row">
-          <div class="col-4">
-            <div class="form-group">
-              <label for="recipient-name9" class="col-form-label">Código</label>
-              <input (keyup)="buscarP()" [(ngModel)]="idbus" type="number" class="form-control" id="recipient-name40">
-            </div>
-          </div>
-          <div class="col-8">
-            <div class="form-group">
-              <label for="recipient-name9" class="col-form-label">Descripción</label>
-              <input (keyup)="buscarP()" [(ngModel)]="termino1" type="text" class="form-control" id="recipient-name40">
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="recipient-name010" class="col-form-label">Color</label>
-              <input (keyup)="buscarP()" [(ngModel)]="termino2" type="text" class="form-control" id="recipient-name01">
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <label for="recipient-name012" class="col-form-label">Componente</label>
-              <input (keyup)="buscarP()" type="text" [(ngModel)]="termino3" class="form-control" id="recipient-name02">
-            </div>
-          </div>
-        </div>
-
-        <div style="overflow: scroll; height: 300px; width: 100%;">
-          <table class="table table-hover">
-            <tr>
-              <th>CODIGO</th>
-              <th>DESCRIPCIÓN</th>
-              <th>COLOR</th>
-              <th>COMPONENTE</th>
-            </tr>
-            <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arraypt" (click)="seleccionarIdPt(item2.id)"
-              style="cursor: pointer;">
-              <td>{{item2.id}}</td>
-              <td>{{item2.descripcion}}</td>
-              <td>{{item2.color}}</td>
-              <td>{{item2.componente}}</td>
-            </tr>
-          </table>
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" (click)="resetear()">Resetear</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PRODUCTOS TERMINADOS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="recipient-name9" class="col-form-label">Código</label>
+                <input (keyup)="buscarP()" [(ngModel)]="idbus" type="number" class="form-control" id="recipient-name40">
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="form-group">
+                <label for="recipient-name9" class="col-form-label">Descripción</label>
+                <input (keyup)="buscarP()" [(ngModel)]="termino1" type="text" class="form-control"
+                  id="recipient-name40">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="recipient-name010" class="col-form-label">Color</label>
+                <input (keyup)="buscarP()" [(ngModel)]="termino2" type="text" class="form-control"
+                  id="recipient-name01">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="recipient-name012" class="col-form-label">Componente</label>
+                <input (keyup)="buscarP()" type="text" [(ngModel)]="termino3" class="form-control"
+                  id="recipient-name02">
+              </div>
+            </div>
+          </div>
+
+          <div style="overflow: scroll; height: 300px; width: 100%;">
+            <table class="table table-hover">
+              <tr>
+                <th>CODIGO</th>
+                <th>DESCRIPCIÓN</th>
+                <th>COLOR</th>
+                <th>COMPONENTE</th>
+              </tr>
+              <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arraypt"
+                (click)="seleccionarIdPt(item2.id)" style="cursor: pointer;">
+                <td>{{item2.id}}</td>
+                <td>{{item2.descripcion}}</td>
+                <td>{{item2.color}}</td>
+                <td>{{item2.componente}}</td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
+            (click)="resetear()">Resetear</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

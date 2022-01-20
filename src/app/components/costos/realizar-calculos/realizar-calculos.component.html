@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-5">
                     <input type="text" placeholder="Descripcion" class="form-control w-50 boldText"
-                        [(ngModel)]="descripcion">
+                        style="text-transform: uppercase;" [(ngModel)]="descripcion">
                 </div>
             </div>
             <div class="row mt-5">
@@ -46,7 +46,8 @@
             </div>
             <div class="row">
                 <div class="col-5">
-                    <input type="text" placeholder="Color" class="form-control w-50 boldText" [(ngModel)]="color">
+                    <input type="text" placeholder="Color" class="form-control w-50 boldText" [(ngModel)]="color"
+                        style="text-transform: uppercase;">
                 </div>
             </div>
             <div class="row mt-5">
@@ -59,15 +60,15 @@
             <div class="row">
                 <div class="input-group col-3">
                     <select class="w-50 custom-select boldText" [(ngModel)]="componente" id="componente">
+                        <option value="SEMIELABORADO">Semi-elaborado</option>
                         <option value="AGENTE DE CURA">Agente de cura</option>
-                        <option value="DILUYENTE">Diluyente</option>
-                        <option value="ENDURECEDOR">Endurecedor</option>
                         <option value="INERTES">Inertes</option>
                         <option value="LÍQUIDO">Liquido</option>
-                        <option value="MONOCOMPONENTE">Monocomponente</option>
                         <option value="POLVO">Polvo</option>
+                        <option value="DILUYENTE">Diluyente</option>
+                        <option value="ENDURECEDOR">Endurecedor</option>
+                        <option value="MONOCOMPONENTE">Monocomponente</option>
                         <option value="RESINA">Resina</option>
-                        <option value="SEMIELABORADO">Semi-elaborado</option>
                     </select>
                 </div>
             </div>
@@ -87,7 +88,7 @@
                 <button class="btn btn-success" (click)="_btnClick()">Actualizar costos</button>
             </div>
         </div>
-        
+
     </div>
     <div *ngIf=" isLoading" class="d-flex justify-content-center mt-5">
         <div class="spinner-border" style="height: 200px; width: 200px;" role="status">
