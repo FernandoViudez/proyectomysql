@@ -1,21 +1,9 @@
 <div class="notPrint">
     <div class="bg rounded p-3 mt-1 text-white" style="background-color:rgb(137,145,21)">
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
                 <h2>Corrección de Stock de Materia Prima</h2>
                 <hr>
-            </div>
-            <div class="col-6">
-                <svg data-toggle="modal" style="cursor: pointer; " data-target="#exampleModal3"
-                    class="float-right bi bi-search mr-5" width="3em" height="3em" viewBox="0 0 16 16"
-                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-                        clip-rule="evenodd" />
-                    <path fill-rule="evenodd"
-                        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
-                        clip-rule="evenodd" />
-                </svg>
             </div>
         </div>
     </div>
@@ -23,9 +11,25 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-3">
-                <label for="">Ingrese el código de la Materia Prima</label>
-                <input (change)="validarMp()" type="number" [(ngModel)]="id" class="form-control boldText" id="id">
+                <span for="">Ingrese el Código de Materia Prima</span>
+                <div class="input-group mt-2">
+                    <input (change)="validarMp()" type="number" [(ngModel)]="id" class="form-control boldText" id="id">
+                    <div class="input-group-append">
+                        <span class="input-group-text boldText" id="basic-addon2">
+                            <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3" width="2em"
+                                height="1em" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                                    clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                    d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
             </div>
+
             <div class="col-6">
                 <label for="">Descripción</label>
                 <input type="string" disabled [(ngModel)]="descripcion" class="form-control boldText">
@@ -56,8 +60,10 @@
         </div>
 
         <div class="mt-4">
-            <button [disabled]="!id" class="float-right btn btn-success mt-1" (click)="finalizar()">Corregir Stock</button>
-            <button [disabled]="!id" class="float-right btn btn-primary mt-1 mr-2" (click)="resetear()">Cancelar operación</button>
+            <button [disabled]="!id" class="float-right btn btn-success mt-1" (click)="finalizar()">Corregir
+                Stock</button>
+            <button [disabled]="!id" class="float-right btn btn-primary mt-1 mr-2" (click)="resetear()">Cancelar
+                operación</button>
         </div>
 
         <div class="row mt-5">
@@ -65,7 +71,7 @@
                 <div *ngIf="cantidad>stock*0.05" class="mt-5 alert alert-info boldText">
                     <h1>Holy guacamole !! </h1>
                     <h1>
-                        <p>ESTÁ AGREGANDO MAS DEL 5% DEL STOCK.  VERIFICAR ANTES DE PROSEGUIR !!</p>
+                        <p>ESTÁ AGREGANDO MAS DEL 5% DEL STOCK. VERIFICAR ANTES DE PROSEGUIR !!</p>
                     </h1>
                 </div>
                 <div *ngIf="cantidad>0" class="mt-5 alert alert-success boldText">
@@ -76,7 +82,7 @@
                 <div *ngIf="-cantidad>stock*0.05" class="mt-5 alert alert-info boldText">
                     <h1>Holy guacamole !! </h1>
                     <h1>
-                        <p>ESTÁ SUSTRAYENDO MAS DEL 5% DEL STOCK.  VERIFICAR ANTES DE PROSEGUIR !!</p>
+                        <p>ESTÁ SUSTRAYENDO MAS DEL 5% DEL STOCK. VERIFICAR ANTES DE PROSEGUIR !!</p>
                     </h1>
                 </div>
                 <div *ngIf="cantidad<0" class="mt-5 alert alert-danger boldText">
@@ -102,21 +108,21 @@
                 <div class="modal-body">
 
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label for="recipient-name9" class="col-form-label">Código</label>
                                 <input (keyup)="buscarMp()" [(ngModel)]="termino1" type="number" class="form-control"
                                     id="recipient-name40">
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="form-group">
                                 <label for="recipient-name9" class="col-form-label">Descripción</label>
                                 <input (keyup)="buscarMp()" [(ngModel)]="termino2" type="text" class="form-control"
                                     id="recipient-name40">
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label for="recipient-name9" class="col-form-label">Tipo de Producto</label>
                                 <input (keyup)="buscarMp()" [(ngModel)]="termino3" type="text" class="form-control"

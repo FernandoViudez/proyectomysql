@@ -137,6 +137,7 @@ export class ControlptComponent implements OnInit {
           window.print();
         }
         this.resetearInputs();
+        this.resetearBusqueda();
         alertify.success("DATOS CARGADOS CORRECTAMENTE !");
         this.genericService.changeTittle.emit("Revesta");
       }, (err) => {
@@ -158,6 +159,7 @@ export class ControlptComponent implements OnInit {
     }).then((res) => {
       if (res.value) {
         this.resetearInputs();
+        this.resetearBusqueda();
       } else {
         return;
       }
@@ -201,6 +203,7 @@ export class ControlptComponent implements OnInit {
         if (this.descripcion == "ANULADO") {
           setTimeout(() => {
             this.resetearInputs();
+            this.resetearBusqueda();
             return alertify.error("BATCH TICKET ANULADO !");
           }, 2000)
         }
@@ -248,8 +251,16 @@ export class ControlptComponent implements OnInit {
       }, (err) => {
         console.log(err);
         this.resetearInputs();
+        this.resetearBusqueda();
         alertify.error(err.error.message)
       })
+  }
+
+  resetearBusqueda() {
+    this.termino1 = null;
+    this.termino2 = null;
+    this.idBus = null;
+    this.arrayCtp = [];
   }
 
   //VALIDIDPT (DEVUELVA UNICAMENTE DATOS DLE PRODUCTO)

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CertificadosService } from '../../services/certificados.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 declare let alertify: any;
 
 @Component({
@@ -98,7 +99,8 @@ export class CertificadosComponent implements OnInit {
             this.editar = true;
             document.getElementById("descripcion").setAttribute("disabled","");
           } else {
-            this.reset()
+            this.reset();
+            this.resetearBusqueda();
           }
         })
 
@@ -162,6 +164,7 @@ export class CertificadosComponent implements OnInit {
       this.addCertificado(data);
     }
     this.reset();
+    this.resetearBusqueda();
   }
 
   cancelar() {
@@ -177,6 +180,7 @@ export class CertificadosComponent implements OnInit {
     }).then((res) => {
       if (res.value) {
         this.reset();
+        this.resetearBusqueda();
       } else {
         return;
       }
@@ -210,6 +214,11 @@ export class CertificadosComponent implements OnInit {
     this.editar = false;
     let id = document.getElementById("descripcion");
     id.removeAttribute("disabled");
+  }
+
+  resetearBusqueda() {
+    this.arrayB = null;
+    this.descripcionB = null;
   }
 
   buscarCertificado(){

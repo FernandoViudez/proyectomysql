@@ -146,6 +146,13 @@ export class ControlComponent implements OnInit {
 
   }
 
+  resetearBusqueda() {
+    this.termino1 = null;
+    this.termino2 = null;
+    this.idBus = null;
+    this.arrayCt = [];
+  }
+
   cancelar() {
     Swal.fire({
       title: "CANCELAR CARGA DATOS",
@@ -159,6 +166,7 @@ export class ControlComponent implements OnInit {
     }).then((res) => {
       if (res.value) {
         this.resetearInputs();
+        this.resetearBusqueda();
       } else {
         return;
       }
@@ -189,6 +197,5 @@ export class ControlComponent implements OnInit {
       alertify.error(err.error.message)
     })
   }
-
 
 }

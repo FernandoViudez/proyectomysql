@@ -1,20 +1,9 @@
 <div class="notPrint">
     <div class="bg rounded p-3 mt-1 text-white" style="background-color:rgb(86,169,97)">
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
                 <h2>Control de Calidad de Productos Terminados</h2>
                 <hr>
-            </div>
-            <div class="col-4 text-center">
-                <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal1" class="mt-2 bi bi-search"
-                    width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-                        clip-rule="evenodd" />
-                    <path fill-rule="evenodd"
-                        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
-                        clip-rule="evenodd" />
-                </svg>
             </div>
         </div>
     </div>
@@ -24,8 +13,23 @@
         <div class="row mt-2">
             <div class="col-2">
                 <span>Nro. Partida (Lote)</span>
-                <input (change)="onLoteChange()" class="form-control boldText" type="number"
-                    [(ngModel)]="numeroPartida">
+                <div class="input-group">
+                    <input (change)="onLoteChange()" class="form-control boldText" type="number"
+                        [(ngModel)]="numeroPartida">
+                    <div class="input-group-append">
+                        <span class="input-group-text boldText" id="basic-addon2">
+                            <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal1" class="bi bi-search"
+                            width="2em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                                clip-rule="evenodd" />
+                            <path fill-rule="evenodd"
+                                d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        </span>
+                    </div>
+                </div>
             </div>
             <div class="col-2">
                 <span>Código</span>
@@ -154,7 +158,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PRODUCTO</h5>
+                <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PRODUCTO POR PARTIDA (LOTE)</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -198,6 +202,8 @@
 
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn" style="background-color: rgb(190, 171, 131); "
+                (click)="resetearBusqueda()">Resetear</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

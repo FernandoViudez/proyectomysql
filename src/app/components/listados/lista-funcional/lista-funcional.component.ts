@@ -229,7 +229,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           console.log(err);
         })
     }
-    this.resetear()
+    this.resetear();
   }
 
   //Propiedades para la tabla listado de materias primas y bajo minimo materias primas
@@ -530,6 +530,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     this.operacion = null;
     this.sumaTotal = null;
     this.resetearSubtotales();
+    this.resetearBusqueda();
     this.esMp = null;
     this.mpDescription = null;
     this.codmp = null;
@@ -540,6 +541,14 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       this.subtotales[i].subtotal = 0;
     }
   }
+
+  resetearBusqueda() {
+    this.termino1 = null;
+    this.termino2 = null;
+    this.termino3 = null;
+    this.arrayBusqueda = [];
+  }
+
 
   buscarMp() {
     this.servicioMp.buscar(this.termino1, this.termino2, this.termino3).
@@ -554,9 +563,4 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     this.desde = desde;
   }
 
-  resetearBusqueda() {
-    this.termino1 = null;
-    this.termino2 = null;
-    this.arrayBusqueda = [];
-  }
 }
