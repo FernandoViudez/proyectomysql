@@ -149,7 +149,7 @@ export class ListformComponent implements OnInit {
     this.molienda = null;
     this.brillo = null;
     this.descripcion1 = null;
-
+    this.sumaTot = null;
   }
 
   buscarP() {

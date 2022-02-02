@@ -7,24 +7,27 @@
   <div class="jumbotron p-2 mt-1"
     style="background-color:rgb(180, 138, 21); font-size: 11px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
     <div class="row text-white">
-      <div class="col-3 boldText mt-2">
+      <div class="col-4">
         <div class="m-auto" style="width: 100%; ">
-          <label for="idp">INGRESE CODIGO P.T.</label>
-          <input (change)="validarId()" (keyup)="buscar()" id="idp" [(ngModel)]="idprod" type="number"
-            class="ml-1 boldText" style="width: 30%;">
+          <span class="ml-2" for="idp">INGRESE CODIGO PRODUCTO</span>
+          <div class="input-group">
+            <input (change)="validarId()" (keyup)="buscar()" id="idp" [(ngModel)]="idprod" type="number"
+              class="ml-1 boldText" style="width: 20%;">
+            <div class="input-group-append">
+              <span class="input-group-text boldText" id="basic-addon2">
+                <svg (click)="resetear1()" data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3"
+                  class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                    clip-rule="evenodd" />
+                  <path fill-rule="evenodd"
+                    d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                    clip-rule="evenodd" />
+                </svg>
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-1 mt-2">
-        <svg (click)="resetear1()" data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3"
-          class="bi bi-search" width="2.5em" height="2.5em" viewBox="0 0 16 16" fill="white"
-          xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd"
-            d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-            clip-rule="evenodd" />
-          <path fill-rule="evenodd"
-            d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
-            clip-rule="evenodd" />
-        </svg>
       </div>
       <div class="col-4 mt-2">
         <div class="">
@@ -138,7 +141,7 @@
       </div>
     </div>
     <div class="col-2">
-      <button class="btn" style="margin-right: 7%; background-color: rgb(190, 171, 131);"
+      <button class="btn" [disabled]="!tintoformoalt" style="margin-right: 7%; background-color: rgb(190, 171, 131);"
         (click)="resetearBusqueda()">RESETEAR BUSQUEDA</button>
     </div>
   </div>
@@ -189,8 +192,7 @@
           </div>
 
           <div style="overflow: scroll; height: 200px; width: 100%;">
-            <table class="table table-hover"
-              style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
+            <table class="table table-hover">
               <tr>
                 <th>CODIGO</th>
                 <th>DESCRIPCIÓN</th>
@@ -199,10 +201,14 @@
               </tr>
               <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
                 (click)="seleccionarIdPt(item2.id)" style="cursor: pointer; ">
-                <td>{{item2.id}}</td>
-                <td>{{item2.descripcion}}</td>
-                <td>{{item2.color}}</td>
-                <td>{{item2.componente}}</td>
+                <td style="font-weight: normal; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'">
+                  {{item2.id}}</td>
+                <td style="font-weight: normal; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'">
+                  {{item2.descripcion}}</td>
+                <td style="font-weight: normal; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'">
+                  {{item2.color}}</td>
+                <td style="font-weight: normal; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'">
+                  {{item2.componente}}</td>
               </tr>
             </table>
           </div>
@@ -270,7 +276,7 @@
       border-top: 1px dotted blue;
     }
 
-    h5 {
+    h4 {
       text-align: center;
       font-family: Arial, Helvetica, sans-serif;
       font-weight: bold;
@@ -310,7 +316,7 @@
   </pre>
   <hr class="new3">
   <b>
-    <h5>FORMULA</h5>
+    <h4>FORMULA</h4>
   </b>
   <table class="w-100">
     <tr class="text-center" *ngIf="array.length==0">
@@ -335,7 +341,7 @@
   <br>
   <hr class="new3">
   <b>
-    <h5>DATOS FISICOS</h5>
+    <h4>DATOS FISICOS</h4>
   </b>
   <table>
     <tr>
@@ -365,6 +371,6 @@
   </table><br>
   <hr class="new3">
   <br>
-  <h5>Aprobo:<span class="tab2"></span>Controlo:<span class="tab2"></span>Autorizo:</h5>
+  <h4>Aprobo:<span class="tab2"></span>Controlo:<span class="tab2"></span>Autorizo:</h4>
 
 </div>
