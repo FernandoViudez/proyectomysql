@@ -260,6 +260,7 @@ export class AltampComponent implements OnInit, OnDestroy {
     this.info2 = this.info2 ? this.info2.toUpperCase() : this.info2;
     this.info3 = this.info3 ? this.info3.toUpperCase() : this.info3;
     this.proteccion = this.proteccion ? this.proteccion.toUpperCase() : this.proteccion;
+    this.fechaultimarecepcion = this.fechaultimarecepcion;
     let data = {
       id: this.id, descripcion: this.descripcion.toUpperCase(), tipo: this.tipo, riesgo: this.riesgo, proteccion: this.proteccion, precio: this.precio, pesoespecifico: this.pesoespecifico, ubicacion: this.ubicacion,
       solidosppp: this.ppp, solidosppv: this.ppv, resina: this.resina, pigmento: this.pigmento, solvente: this.solvente, stock: this.stock, stockminimo: this.stockminimo,

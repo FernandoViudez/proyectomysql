@@ -8,6 +8,7 @@ import { ProdtermService } from 'src/app/services/prodterm.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
+
 @Component({
   selector: 'app-altaform',
   templateUrl: './altaform.component.html',
@@ -48,10 +49,12 @@ export class AltaformComponent implements OnInit, OnDestroy {
   idImport: number;
   componente: string;
   usuario: string;
+  id: number;
 
   constructor(private service: FormService,
     private route: Router,
     private MatPrimService: MatprimService,
+    private servicioMp: MatprimService,
     private prodTermService: ProdtermService) {
     let user_role = localStorage.getItem("user_role");
     if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
@@ -176,7 +179,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       }
       Swal.fire({
         title: "CANCELAR",
-        text: "¿ Esta seguro que desea cancelar la operación ?",
+        text: "¿ Esta seguro que desea cancelar las modificaciones ?",
         cancelButtonColor: "red",
         confirmButtonColor: "green",
         confirmButtonText: "SI",
@@ -543,7 +546,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
   }
 
   validarmp() {
-    this.MatPrimService.validarMp(this.codmp).subscribe((data: any) => {
+    this.MatPrimService.validarMp(this.id).subscribe((data: any) => {
       this.descripcion = data.response.descripcion;
       const ubicacion = data.response.ubicacion;   // en este campo se indica si la MP es obsoleta o no
 
@@ -567,7 +570,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
         this.existept = "existe";
         if (esProductoDentroDeFormula) {
-          this.descripcion = `${data.desc}`;
+          this.descripcion = `${data.desc} ${data.color || ''} ${data.componente}`;
           return;
         }
         this.descripcion1 = `${data.desc}  ${data.color || ''} ${data.componente}`;
@@ -642,6 +645,21 @@ export class AltaformComponent implements OnInit, OnDestroy {
     let key;
     key = event.keyCode;  //         key = event.charCode;  (Both can be used)   key == 45  // allows minus(-)
     return ((key > 47 && key < 58) || key == 46);
+  }
+
+  buscarMp() {
+    this.servicioMp.buscar(this.termino1, this.termino2, this.termino3).
+      subscribe((data: any) => {
+        this.arrayBusqueda = data.response;
+      }, (err) => {
+        console.log(err);
+      })
+  }
+
+  resetearBusqueda() {
+    this.termino1 = null;
+    this.termino2 = null;
+    this.arrayBusqueda = [];
   }
 
 }

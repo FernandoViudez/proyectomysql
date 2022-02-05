@@ -226,172 +226,262 @@
       <div class="modal-body">
 
         <div class="form-group">
-          <label for="recipient-name" class="col-form-label">MPI</label>
+          <label for="recipient-name" class="col-form-label">Seleccione <b>M</b>(ateria prima) <b>P</b>(roducto
+            terminado) o <b>I</b>(nstrucción)</label>
           <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name"
             style="font-size: 18px; text-transform:uppercase;">
         </div>
         <div class="row">
           <div class="col-6">
-            <div class="form-group">
-              <label for="recipient-name1" class="col-form-label">Código MP</label>
-              <input [disabled]="mpi == 'I' || mpi =='i' || mpi == 'P' || mpi == 'p' " (change)="validarmp()"
-                [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name1" style="font-size: 18px;">
+            <label for="recipient-name1" class="col-form-label">Código MP</label>
+            <div class="input-group">
+              <input [disabled]="! mpi || mpi == 'I' || mpi =='i' || mpi == 'P' || mpi == 'p' " (change)="validarmp()"
+                [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name1" style="font-size: 18px;"
+                id="codmp">
+              <div class="input-group-append">
+                <span class="input-group-text boldText" id="basic-addon2">
+                  <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal4" width="1em"
+                    height="1em" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                      clip-rule="evenodd" />
+                    <path fill-rule="evenodd"
+                      d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
           <div class="col-6">
-            <div class="form-group">
-              <label for="recipient-name2" class="col-form-label">Código PT</label>
-              <input [disabled]="mpi == 'I' || mpi =='i' || mpi == 'M' || mpi == 'm' " (change)="validarpt(true)"
-                type="number" [(ngModel)]="codpt" class="form-control" id="recipient-name2" style="font-size: 18px;">
+            <label for="recipient-name2" class="col-form-label">Código PT</label>
+            <div class="input-group">
+              <input [disabled]="!mpi || mpi == 'I' || mpi =='i' || mpi == 'M' || mpi == 'm' "
+                (change)="validarpt(true)" type="number" [(ngModel)]="codpt" class="form-control" id="recipient-name2"
+                style="font-size: 18px;">
+              <div class="input-group-append">
+                <span class="input-group-text boldText" id="basic-addon2">
+                  <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal4" width="1em"
+                    height="1em" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                      clip-rule="evenodd" />
+                    <path fill-rule="evenodd"
+                      d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="recipient-name3" class="col-form-label">Descripción</label>
-          <input type="text" [disabled]="mpi == 'P' || mpi =='p' || mpi == 'M' || mpi == 'm' " [(ngModel)]="descripcion"
-            class="form-control" id="recipient-name3" maxlength="65" style="font-size: 18px;">
-        </div>
-        <div class="form-group">
-          <label for="recipient-name4" class="col-form-label">Cantidad</label>
-          <input step="0.01" type="number" (keypress)="omit_number($event)" [disabled]="mpi == 'I' || mpi =='i'"
-            [(ngModel)]="cantidad" class="form-control" id="recipient-name4" style="font-size: 18px;">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="cargar()">Cargar</button>
-        <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
-          (click)="resetear()">Resetear</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true" style="font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">EDITAR FILA</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
 
-        <div class="row">
-          <div class="col-12">
-            <div class="form-group">
-              <label for="recipient-name0" class="col-form-label">MPI</label>
-              <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name0"
-                style="font-size: 18px; text-transform:uppercase;">
-            </div>
+          <div class="form-group">
+            <label for="recipient-name3" class="col-form-label">Descripción</label>
+            <input type="text" [disabled]="!mpi || mpi == 'P' || mpi =='p' || mpi == 'M' || mpi == 'm' "
+              [(ngModel)]="descripcion" class="form-control" id="recipient-name3" maxlength="65"
+              style="font-size: 18px;">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name4" class="col-form-label">Cantidad</label>
+            <input step="0.01" type="number" (keypress)="omit_number($event)"
+              [disabled]="!mpi || mpi == 'I' || mpi =='i'" [(ngModel)]="cantidad" class="form-control"
+              id="recipient-name4" style="font-size: 18px;">
           </div>
         </div>
-
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="recipient-name01" class="col-form-label">Código MP</label>
-              <input [disabled]="mpi == 'I' || mpi =='i' || mpi == 'P' || mpi == 'p' " (change)="validarmp()"
-                [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name01" style="font-size: 18px;">
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <label for="recipient-name02" class="col-form-label">Código PT</label>
-              <input [disabled]="mpi == 'I' || mpi =='i' || mpi == 'M' || mpi == 'm' " (change)="validarpt(true)"
-                type="number" [(ngModel)]="codpt" class="form-control" id="recipient-name02" style="font-size: 18px;">
-            </div>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="cargar()">Cargar</button>
+          <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
+            (click)="resetear()">Resetear</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         </div>
-
-        <div class="form-group">
-          <label for="recipient-name03" class="col-form-label">Descripción</label>
-          <input type="text" [disabled]="mpi == 'P' || mpi =='p' || mpi == 'M' || mpi == 'm' " [(ngModel)]="descripcion"
-            class="form-control" id="recipient-name03" style="font-size: 18px;">
-        </div>
-        <div class="form-group">
-          <label for="recipient-name04" class="col-form-label">Cantidad</label>
-          <input step="0.01" type="number" (keypress)="omit_number($event)" [disabled]="mpi == 'I' || mpi =='i'"
-            [(ngModel)]="cantidad" class="form-control" id="recipient-name04" style="font-size: 18px;">
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="editar()">Aceptar</button>
       </div>
     </div>
   </div>
-</div>
 
-<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true" style="font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content" style="width: 90%;">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PRODUCTOS TERMINADOS</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-        <div class="row">
-          <div class="col-6">
-            <div class="form-group">
-              <label for="recipient-name9" class="col-form-label">Código</label>
-              <input (keyup)="buscarP()" [(ngModel)]="idBus" type="number" class="form-control" id="recipient-name40">
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="form-group">
-              <label for="recipient-name9" class="col-form-label">Descripción</label>
-              <input (keyup)="buscarP()" [(ngModel)]="termino1" type="text" class="form-control" id="recipient-name40">
-            </div>
-          </div>
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">EDITAR FILA</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
 
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="recipient-name010" class="col-form-label">Color</label>
-              <input (keyup)="buscarP()" [(ngModel)]="termino2" type="text" class="form-control" id="recipient-name01">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="recipient-name0" class="col-form-label">MPI</label>
+                <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name0"
+                  style="font-size: 18px; text-transform:uppercase;">
+              </div>
             </div>
           </div>
-          <div class="col">
-            <div class="form-group">
-              <label for="recipient-name012" class="col-form-label">Componente</label>
-              <input (keyup)="buscarP()" type="text" [(ngModel)]="termino3" class="form-control" id="recipient-name02">
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="recipient-name01" class="col-form-label">Código MP</label>
+                <input [disabled]="mpi == 'I' || mpi =='i' || mpi == 'P' || mpi == 'p' " (change)="validarmp()"
+                  [(ngModel)]="codmp" type="number" class="form-control" id="recipient-name01" style="font-size: 18px;">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="recipient-name02" class="col-form-label">Código PT</label>
+                <input [disabled]="mpi == 'I' || mpi =='i' || mpi == 'M' || mpi == 'm' " (change)="validarpt(true)"
+                  type="number" [(ngModel)]="codpt" class="form-control" id="recipient-name02" style="font-size: 18px;">
+              </div>
             </div>
           </div>
-        </div>
 
-        <div style="overflow: scroll; height: 300px; width: 100%;">
-          <table class="table table-hover">
-            <tr>
-              <th>CODIGO</th>
-              <th>DESCRIPCIÓN</th>
-              <th>COLOR</th>
-              <th>COMPONENTE</th>
-            </tr>
-            <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
-              (click)="seleccionarId(item2.id)">
-              <td>{{item2.id}}</td>
-              <td>{{item2.descripcion}}</td>
-              <td>{{item2.color}}</td>
-              <td>{{item2.componente}}</td>
-            </tr>
-          </table>
-        </div>
+          <div class="form-group">
+            <label for="recipient-name03" class="col-form-label">Descripción</label>
+            <input type="text" [disabled]="mpi == 'P' || mpi =='p' || mpi == 'M' || mpi == 'm' "
+              [(ngModel)]="descripcion" class="form-control" id="recipient-name03" style="font-size: 18px;">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name04" class="col-form-label">Cantidad</label>
+            <input step="0.01" type="number" (keypress)="omit_number($event)" [disabled]="mpi == 'I' || mpi =='i'"
+              [(ngModel)]="cantidad" class="form-control" id="recipient-name04" style="font-size: 18px;">
+          </div>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
-          (click)="resetear()">Resetear</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="editar()">Aceptar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="width: 90%;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PRODUCTOS TERMINADOS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="recipient-name9" class="col-form-label">Código</label>
+                <input (keyup)="buscarP()" [(ngModel)]="idBus" type="number" class="form-control" id="recipient-name40">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="recipient-name9" class="col-form-label">Descripción</label>
+                <input (keyup)="buscarP()" [(ngModel)]="termino1" type="text" class="form-control"
+                  id="recipient-name40">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="recipient-name010" class="col-form-label">Color</label>
+                <input (keyup)="buscarP()" [(ngModel)]="termino2" type="text" class="form-control"
+                  id="recipient-name01">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="recipient-name012" class="col-form-label">Componente</label>
+                <input (keyup)="buscarP()" type="text" [(ngModel)]="termino3" class="form-control"
+                  id="recipient-name02">
+              </div>
+            </div>
+          </div>
+
+          <div style="overflow: scroll; height: 300px; width: 100%;">
+            <table class="table table-hover">
+              <tr>
+                <th>CODIGO</th>
+                <th>DESCRIPCIÓN</th>
+                <th>COLOR</th>
+                <th>COMPONENTE</th>
+              </tr>
+              <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
+                (click)="seleccionarId(item2.id)">
+                <td>{{item2.id}}</td>
+                <td>{{item2.descripcion}}</td>
+                <td>{{item2.color}}</td>
+                <td>{{item2.componente}}</td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" style="background-color: rgb(190, 171, 131);"
+            (click)="resetear()">Resetear</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="width: 90%;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE MATERIAS PRIMAS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="recipient-name9" class="col-form-label">CODIGO DE LA MATERIA PRIMA:</label>
+                <input (keyup)="buscarMp()" [(ngModel)]="termino1" type="number" class="form-control"
+                  id="recipient-name40">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
+                <input (keyup)="buscarMp()" [(ngModel)]="termino2" type="text" class="form-control"
+                  id="recipient-name40">
+              </div>
+            </div>
+          </div>
+          <div style="overflow: scroll; height: 300px; width: 100%;">
+            <table class="table table-hover">
+              <tr>
+                <th>COD</th>
+                <th>DESCRIPCIÓN</th>
+                <th>TIPO</th>
+                <th>UNIDAD DE MEDIDA</th>
+              </tr>
+              <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
+                (click)="seleccionarId(item2.id)" style="cursor: pointer;">
+                <td>{{item2.id}}</td>
+                <td>{{item2.descripcion}}</td>
+                <td>{{item2.tipo}}</td>
+                <td>{{item2.unidadmedidacompra}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" style="background-color: rgb(190, 171, 131); "
+            (click)="resetearBusqueda()">Resetear</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
