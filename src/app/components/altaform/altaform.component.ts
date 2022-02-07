@@ -545,7 +545,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       })
   }
 
-  validarmp() {
+  validarMp() {
     this.MatPrimService.validarMp(this.codmp).subscribe((data: any) => {
       this.descripcion = data.response.descripcion;
       const ubicacion = data.response.ubicacion;   // en este campo se indica si la MP es obsoleta o no
@@ -564,22 +564,19 @@ export class AltaformComponent implements OnInit, OnDestroy {
     })
   }
 
-  validarpt(esProductoDentroDeFormula: boolean) {
-    this.prodTermService.validarPt(this.codpt).
-      subscribe((data: any) => {
+  validarPt() {
+    this.prodTermService.validarPt(this.codpt).subscribe((data: any) => {
 
-        this.existept = "existe";
-        if (esProductoDentroDeFormula) {
-          this.descripcion = `${data.desc} ${data.color || ''} ${data.componente}`;
-          return;
-        }
-        this.descripcion1 = `${data.desc}  ${data.color || ''} ${data.componente}`;
-      }, (err) => {
-        this.existept = "noexiste";
-        return alertify.error(err.error.message);
-      })
+      this.existept = "existe";
 
+      this.descripcion = `${data.desc} ${data.color || ''} ${data.componente}`;
+      return;
 
+      this.descripcion1 = `${data.desc}  ${data.color || ''} ${data.componente}`;
+    }, (err) => {
+      this.existept = "noexiste";
+      return alertify.error(err.error.message);
+    })
   }
 
   validarIdprod() {
@@ -590,6 +587,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
         alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !");
         this.descripcion1 = `${data.desc}  ${data.color || ''}  ${data.componente}`;
         this.componente = data.componente;
+        this.resetear();
 
       }, (err) => {
 
@@ -599,6 +597,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
           this.descripcion1 = `${data.descripcion}  ${data.color || ''}  ${data.componente}`;
           this.componente = data.componente;
           alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !");
+          this.resetear();
         } else {
           this.resetear();
           this.resetear1();
@@ -664,7 +663,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
   onMatPriSelected(matPriId: number) {
     this.codmp = matPriId;
-    this.validarmp();
+    this.validarMp();
   }
 
 }
