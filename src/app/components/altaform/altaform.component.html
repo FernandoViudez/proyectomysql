@@ -468,7 +468,7 @@
                 <th>UNIDAD DE MEDIDA</th>
               </tr>
               <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
-                (click)="seleccionarId(item2.id)" style="cursor: pointer;">
+                (click)="onMatPriSelected(item2.id)" style="cursor: pointer;">
                 <td>{{item2.id}}</td>
                 <td>{{item2.descripcion}}</td>
                 <td>{{item2.tipo}}</td>

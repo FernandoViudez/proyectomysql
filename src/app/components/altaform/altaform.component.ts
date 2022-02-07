@@ -546,7 +546,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
   }
 
   validarmp() {
-    this.MatPrimService.validarMp(this.id).subscribe((data: any) => {
+    this.MatPrimService.validarMp(this.codmp).subscribe((data: any) => {
       this.descripcion = data.response.descripcion;
       const ubicacion = data.response.ubicacion;   // en este campo se indica si la MP es obsoleta o no
 
@@ -660,6 +660,11 @@ export class AltaformComponent implements OnInit, OnDestroy {
     this.termino1 = null;
     this.termino2 = null;
     this.arrayBusqueda = [];
+  }
+
+  onMatPriSelected(matPriId: number) {
+    this.codmp = matPriId;
+    this.validarmp();
   }
 
 }
