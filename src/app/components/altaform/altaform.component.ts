@@ -564,20 +564,22 @@ export class AltaformComponent implements OnInit, OnDestroy {
     })
   }
 
-  validarPt() {
-    this.prodTermService.validarPt(this.codpt).subscribe((data: any) => {
+  validarpt(esProductoDentroDeFormula: boolean) {
+    this.prodTermService.validarPt(this.codpt).
+      subscribe((data: any) => {
 
-      this.existept = "existe";
-
-      this.descripcion = `${data.desc} ${data.color || ''} ${data.componente}`;
-      return;
-
-      this.descripcion1 = `${data.desc}  ${data.color || ''} ${data.componente}`;
-    }, (err) => {
-      this.existept = "noexiste";
-      return alertify.error(err.error.message);
-    })
+        this.existept = "existe";
+        if (esProductoDentroDeFormula) {
+          this.descripcion = `${data.desc} ${data.color || ''} ${data.componente}`;
+          return;
+        }
+        this.descripcion1 = `${data.desc}  ${data.color || ''} ${data.componente}`;
+      }, (err) => {
+        this.existept = "noexiste";
+        return alertify.error(err.error.message);
+      })
   }
+
 
   validarIdprod() {
     document.getElementById("idp").setAttribute("disabled", "");
