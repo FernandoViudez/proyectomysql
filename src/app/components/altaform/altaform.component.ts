@@ -570,7 +570,11 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
         this.existept = "existe";
 
-        if (this.componente != data.componente) {
+        if (this.idprod == this.codpt) {
+          this.resetear();
+          return alertify.error('NOO AUTORIZADO - Es el mismo codigo que se esta modificando');
+        }
+        if (this.componente != data.componente && this.codpt < 50000 || this.idprod == this.codpt) {
           this.resetear();
           return alertify.error('El COMPONENTE de este PT DIFIERE DEL COMPONENTE del producto a cargar');
         }
