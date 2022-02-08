@@ -180,8 +180,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
       Swal.fire({
         title: "CANCELAR",
         text: "¿ Esta seguro que desea cancelar las modificaciones ?",
-        cancelButtonColor: "red",
-        confirmButtonColor: "green",
+        cancelButtonColor: "green",
+        confirmButtonColor: "red",
         confirmButtonText: "SI",
         cancelButtonText: "NO",
         showCancelButton: true,
@@ -569,6 +569,11 @@ export class AltaformComponent implements OnInit, OnDestroy {
       subscribe((data: any) => {
 
         this.existept = "existe";
+
+        if (this.componente != data.componente) {
+          this.resetear();
+          return alertify.error('El COMPONENTE de este PT DIFIERE DEL COMPONENTE del producto a cargar');
+        }
         if (esProductoDentroDeFormula) {
           this.descripcion = `${data.desc} ${data.color || ''} ${data.componente}`;
           return;
