@@ -228,8 +228,14 @@
         <div class="form-group">
           <label for="recipient-name" class="col-form-label">Seleccione <b>M</b>(ateria prima) <b>P</b>(roducto
             terminado) o <b>I</b>(nstrucción)</label>
-          <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name"
-            style="font-size: 18px; text-transform:uppercase;">
+          <div class="input-group">
+            <select class="mt-2 custom-select boldText" [(ngModel)]="mpi" id="recipient-name"
+              style="font-size: 18px; text-transform:uppercase;">
+              <option value="M">M</option>
+              <option value="P">P</option>
+              <option value="I">I</option>
+            </select>
+          </div>
         </div>
         <div class="row">
           <div class="col-6">
@@ -309,18 +315,24 @@
         </button>
       </div>
       <div class="modal-body">
-
         <div class="row">
           <div class="col-12">
             <div class="form-group">
-              <label for="recipient-name0" class="col-form-label">MPI</label>
-              <input [(ngModel)]="mpi" type="text" class="form-control" id="recipient-name0"
-                style="font-size: 18px; text-transform:uppercase;">
+              <label for="recipient-name0" class="col-form-label">Seleccione <b>M</b>(ateria prima) <b>P</b>(roducto
+                terminado) o <b>I</b>(nstrucción)</label>
+              <div class="input-group">
+                <select class="mt-2 custom-select boldText" [(ngModel)]="mpi" id="recipient-name0"
+                  style="font-size: 18px; text-transform:uppercase;">
+                  <option value="M">M</option>
+                  <option value="P">P</option>
+                  <option value="I">I</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="row">
+        <div class=" row">
           <div class="col">
             <div class="form-group">
               <label for="recipient-name01" class="col-form-label">Código MP</label>

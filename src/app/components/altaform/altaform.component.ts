@@ -133,6 +133,9 @@ export class AltaformComponent implements OnInit, OnDestroy {
       if (!this.cantidad && this.mpi == "M" || !this.cantidad && this.mpi == "P") {
         return alertify.error("ES NECESARIO INGRESAR UNA CANTIDAD !")
       }
+      if (this.mpi == "I" && this.cantidad) {
+        return alertify.error("NO PUEDES ASIGNAR 'I' CONTENIENTO UNA CANTIDAD !")
+      }
       if (this.mpi == "I" && !this.descripcion) {
         return alertify.error("ES NECESARIO INGRESAR UNA DESCRIPCION PARA LA INSTRUCCIÓN !")
       }
@@ -337,9 +340,6 @@ export class AltaformComponent implements OnInit, OnDestroy {
       alertify.success("¡ FILA BORRADA CORRECTAMENTE !")
 
     })
-
-
-
   }
 
   traerFilas(ind) {
@@ -398,9 +398,15 @@ export class AltaformComponent implements OnInit, OnDestroy {
       if (!this.cantidad && this.mpi == "M" || !this.cantidad && this.mpi == "P") {
         return alertify.error("ES NECESARIO INGRESAR UNA CANTIDAD !")
       }
+      if (this.mpi == "I" && this.cantidad) {
+        return alertify.error("NO PUEDES ASIGNAR 'I' CONTENIENTO UNA CANTIDAD !")
+      }
       if (this.mpi == "I" && !this.descripcion) {
         return alertify.error("ES NECESARIO INGRESAR UNA DESCRIPCION PARA LA INSTRUCCIÓN !")
       }
+    } else {
+      this.resetear();
+      return alertify.error("¡ MPI INCORRECTO !")
     }
 
 
@@ -417,13 +423,6 @@ export class AltaformComponent implements OnInit, OnDestroy {
     this.calcular(this.array);
     this.resetear();
 
-    // this.service.editar(this.mpi, this.codmp, this.codpt, this.descripcion, this.cantidad, this.ind)
-    //   .subscribe((data: any) => {
-    //     this.array = data.response;
-    //     this.sumarTotal(data.response);
-    //     this.calcular(data.response);
-    //     this.resetear();
-    //   })
   }
 
   traerEditar() {
@@ -515,10 +514,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
               }
               this.importarForm(idImport)
             }
-
           }
           sweet()
-
 
         } else {
           Swal.fire({
@@ -572,7 +569,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
         if (this.idprod == this.codpt) {
           this.resetear();
-          return alertify.error('NOO AUTORIZADO - Es el mismo codigo que se esta modificando');
+          return alertify.error('NO AUTORIZADO - Es el mismo codigo que se esta modificando');
         }
         if (this.componente != data.componente && this.codpt < 50000 || this.idprod == this.codpt) {
           this.resetear();
