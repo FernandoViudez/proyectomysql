@@ -233,7 +233,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
           cancelButtonColor: "red",
           cancelButtonText: "CORREGIR",
           confirmButtonColor: "green",
-          confirmButtonText: "CARGAR FORMULA"
+          confirmButtonText: "CARGAR FORMULA",
+          allowEnterKey: false,
         }).then(res => {
           if (res.value) {
             Swal.fire({
@@ -540,6 +541,29 @@ export class AltaformComponent implements OnInit, OnDestroy {
       }).catch((err) => {
         console.log(err);
       })
+  }
+
+  importarFormula() {
+    let sweet = async () => {
+      const { value: idImport } = await Swal.fire({
+        title: '¿ DESEA IMPORTAR UNA FORMULA EXISTENTE ?',
+        text: "Si desea importar desde otro producto, ingrese el código y oprima 'SI', sino oprima 'CANCELAR':",
+        input: 'number',
+        showCancelButton: true,
+        cancelButtonColor: "red",
+        confirmButtonColor: "green",
+        confirmButtonText: "SI",
+        cancelButtonText: "CANCELAR"
+      })
+
+      if (idImport) {
+        if (this.idprod == idImport) {
+          return alertify.error("¡ CODIGO DE PRODUCTO INCORRECTO !")
+        }
+        this.importarForm(idImport)
+      }
+    }
+    sweet()
   }
 
   validarMp() {

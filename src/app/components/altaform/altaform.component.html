@@ -199,17 +199,20 @@
   </ul>
 </div>
 
-<div class="float-right mt-3 mb-3" style="margin-right: 6%;">
-  <button [disabled]="!descripcion1" class="mr-5 btn btn-primary" (click)="eliminarTodo(false)">Cancelar</button>
-  <button [disabled]="!descripcion1" class="btn btn-success" (click)="finalizar()">Aceptar</button>
-</div>
-
 <div class="row mt-3">
-  <div style="width: 40%; margin-left: 71%;">
-    <h6 class="text-success boldText" id="sumTot" *ngIf="sumaTot<=100"><b>Suma de cantidades: {{sumaTot |
-        numeralPipe}}</b></h6>
-    <h6 class="text-danger boldText" id="sumTot" *ngIf="sumaTot>100"><b>Suma de cantidades: {{sumaTot |
-        numeralPipe}}</b></h6>
+  <div class="col-12">
+    <button [disabled]="pe || !tintoformoalt || tintoformoalt == 'T' " class="btn btn-primary float-left"
+      data-dismiss="modal" style="margin-left: 8%" (click)="importarFormula()">Importar Formula</button>
+    <button [disabled]="!descripcion1" class="btn btn-primary float-right" style="margin-right: 6%; "
+      (click)="eliminarTodo(false)">Cancelar</button>
+    <button [disabled]="!tintoformoalt" class="btn btn-success float-right" style="margin-right: 2% "
+      (click)="finalizar()">Aceptar</button>
+    <div style="text-align: right; ">
+      <h6 class="text-success boldText" id="sumTot" style="margin-right: 24%;" *ngIf="sumaTot<=100"><b>Suma de
+          cantidades: {{sumaTot | numeralPipe}}</b></h6>
+      <h6 class="boldText" id="sumTot" style="margin-right: 24%; color: red; " *ngIf="sumaTot>100"><b> ATENCION ! Suma de cantidades:
+          {{sumaTot | numeralPipe}}</b></h6>
+    </div>
   </div>
 </div>
 
