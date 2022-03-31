@@ -560,6 +560,9 @@ export class AltaformComponent implements OnInit, OnDestroy {
         if (this.idprod == idImport) {
           return alertify.error("¡ CODIGO DE PRODUCTO INCORRECTO !")
         }
+        if (this.tintoformoalt == 'T' && idImport != 99500) {
+          return alertify.error("¡ SOLO SE PUEDE IMPORTAR EL CODIGO 99500 !")
+        }
         this.importarForm(idImport)
       }
     }
