@@ -288,8 +288,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
   calcular(formulas: any[]) {
     if (formulas.length == 0) {
       this.pe = 0;
-      this.pig = 0,
-        this.ppp = 0;
+      this.pig = 0;
+      this.ppp = 0;
       this.ppv = 0;
       this.pr = 0;
       this.resi = 0;
@@ -299,12 +299,12 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
     this.service.calcular(formulas).subscribe((data: any) => {
       this.pe = data.pe;
-      this.pig = data.tpig,
-        this.ppp = data.tppp;
-      this.ppv = data.ttppv;
+      this.pig = data.tpig / this.sumaTot * 100;  // divido por total parcial para que lleve a 100
+      this.ppp = data.tppp / this.sumaTot * 100;  // aun cuando en el total no es 100.  hace mas 
+      this.ppv = data.ttppv / this.sumaTot * 100; // facil la interpretacion 
       this.pr = data.tpr;
-      this.resi = data.tres;
-      this.solv = data.solvente;
+      this.resi = data.tres / this.sumaTot * 100;
+      this.solv = data.tsol / this.sumaTot * 100;
     })
 
   }
