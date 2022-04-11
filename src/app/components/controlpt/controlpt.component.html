@@ -14,7 +14,7 @@
             <div class="col-2">
                 <span>Nro. Partida (Lote)</span>
                 <div class="input-group">
-                    <input (change)="onLoteChange()" class="form-control boldText" type="number"
+                    <input [disabled]="numeroPartida" (change)="onLoteChange()" class="form-control boldText" type="number"
                         [(ngModel)]="numeroPartida">
                     <div class="input-group-append">
                         <span *ngIf="!descripcion" visibility="hidden" class="input-group-text boldText" id="basic-addon2">

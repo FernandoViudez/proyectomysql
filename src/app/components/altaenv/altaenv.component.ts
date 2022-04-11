@@ -116,6 +116,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
   }
 
   resetear() {
+    this.idbus = null;
     this.termino1 = null;
     this.termino2 = null;
     this.termino3 = null;
@@ -123,9 +124,11 @@ export class AltaenvComponent implements OnInit, OnDestroy {
     this.descripcion = null;
     this.codmp = null;
     this.envasado = null;
+    this.arraypt = [];
   }
 
   resetearBusqueda() {
+    this.idbus = null;
     this.termino1 = null;
     this.termino2 = null;
     this.termino3 = null;
@@ -172,7 +175,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
     this.service.cargar(this.idprod, this.descripcion, this.codmp, this.envasado, this.nombreProducto)
       .subscribe((data: any) => {
         this.array = data.response;
-        alertify.success("¡RENGLON AGREGADO!")
+        alertify.success("¡ ENVASAMIENTO AGREGADO !")
         this.resetear();
         this.resetearBusqueda();
       })
@@ -203,7 +206,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
         return;
       }
       this.service.eliminarTodo(this.idprod).subscribe((data: any) => {
-        alertify.success("HAS CANCELADO TODO LO MODIFICADO CON EXITO");
+        alertify.success("¡ NO SE HAN GRABADO MODIFICACIONES !");
         this.resetear();
         this.resetear1();
       }, (err) => {
@@ -221,7 +224,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
     this.service.finalizar(this.idprod).
       subscribe((data: any) => {
         Swal.close();
-        alertify.success("ENVASES CARGADOS !");
+        alertify.success("¡ ENVASAMIENTOS CARGADOS CORRECTAMENTE !");
         this.array = data.response;
         this.resetear()
         this.resetear1()
@@ -281,7 +284,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
         this.service.eliminarFila(indice).
           subscribe((data: any) => {
             this.array = data.response;
-            alertify.success("¡ Has eliminado una fila !");
+            alertify.success("¡ HAS ELIMINADO UN TIPO DE ENVASAMIENTO !");
           }, (err) => {
             console.log(err);
           })
