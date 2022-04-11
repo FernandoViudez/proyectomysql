@@ -17,7 +17,7 @@
                     <input (change)="onLoteChange()" class="form-control boldText" type="number"
                         [(ngModel)]="numeroPartida">
                     <div class="input-group-append">
-                        <span class="input-group-text boldText" id="basic-addon2">
+                        <span *ngIf="!descripcion" visibility="hidden" class="input-group-text boldText" id="basic-addon2">
                             <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal1" class="bi bi-search"
                             width="2em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"

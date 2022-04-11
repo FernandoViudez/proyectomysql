@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { MatprimService } from 'src/app/services/matprim.service';
 import { Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { convertPropertyBinding } from '@angular/compiler/src/compiler_util/expression_converter';
 declare let alertify: any;
 
 
@@ -18,6 +20,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
   array = [];
   arraypt = [];
   idprod: number;
+  componente: string;
   termino1: string;
   termino2: string;
   termino3: string;
@@ -28,6 +31,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
   envasado: string;
   indice: number;
   nombreProducto: string;
+  arrayBusqueda = [];
 
   constructor(private service: EnvService,
     private http: HttpClient,
@@ -81,6 +85,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
       this.idprod = id;
       this.descripcion1 = `${data.desc} ${data.color || ''} ${data.componente}`;
       this.nombreProducto = data.desc;
+      this.componente = data.componente;
       this.detectarId()
     }, (err) => {
       if (err.error.response) {
@@ -89,11 +94,13 @@ export class AltaenvComponent implements OnInit, OnDestroy {
         this.idprod = id;
         this.descripcion1 = `${data.descripcion} ${data.color || ''} ${data.componente}`;
         this.nombreProducto = data.descripcion;
+        this.componente = data.componente;
+        this.resetearBusqueda();
         this.detectarId()
       }else{
         this.resetear();
         this.resetear1();
-        return alertify.error("No existe ese envasado!!");
+        return alertify.error("No existe ese producto terminado !!");
       }
     })
   }
@@ -103,6 +110,9 @@ export class AltaenvComponent implements OnInit, OnDestroy {
     this.idprod = null;
     this.descripcion1 = null;
     this.nombreProducto = null;
+    this.componente = null;
+    this.array = [];
+    this.arraypt = [];
   }
 
   resetear() {
@@ -115,7 +125,14 @@ export class AltaenvComponent implements OnInit, OnDestroy {
     this.envasado = null;
   }
 
-  validarmp() {
+  resetearBusqueda() {
+    this.termino1 = null;
+    this.termino2 = null;
+    this.termino3 = null;
+    this.arrayBusqueda = [];
+  }
+
+  validarMp() {
     this.servicioMp.validarMp(this.codmp).subscribe((data: any) => {
       this.descripcion = data.response.descripcion;
     }, (err) => {
@@ -123,10 +140,18 @@ export class AltaenvComponent implements OnInit, OnDestroy {
         this.descripcion = err.error.response.descripcion;
       } else {
         this.codmp = null;
-        return alertify.error("No exite esa materia prima");
+        return alertify.error("No existe esa materia prima");
       }
     })
+  }
 
+  buscarMp() {
+    this.servicioMp.buscar(this.termino1, this.termino2, this.termino3).
+      subscribe((data: any) => {
+        this.arrayBusqueda = data.response;
+      }, (err) => {
+        console.log(err);
+      })
   }
 
   cargar() {
@@ -134,7 +159,9 @@ export class AltaenvComponent implements OnInit, OnDestroy {
       return alertify.error("¡ INGRESE UN CODIGO DE ENVASE !")
     }
     if (this.codmp < 39000) {
-      return alertify.error("¡ INGRESE UN CODIGO VALIDO !")
+      this.resetear();
+      this.resetearBusqueda();
+      return alertify.error("¡ NO ES CODIGO DE ENVASE - INGRESE UN CODIGO VALIDO !")
     }
     if (this.descripcion == null) {
       return alertify.error("¡ INGRESE UNA DESCRIPCION VALIDA !")
@@ -146,7 +173,8 @@ export class AltaenvComponent implements OnInit, OnDestroy {
       .subscribe((data: any) => {
         this.array = data.response;
         alertify.success("¡RENGLON AGREGADO!")
-        this.resetear()
+        this.resetear();
+        this.resetearBusqueda();
       })
   }
 
@@ -178,7 +206,6 @@ export class AltaenvComponent implements OnInit, OnDestroy {
         alertify.success("HAS CANCELADO TODO LO MODIFICADO CON EXITO");
         this.resetear();
         this.resetear1();
-        this.array = [];
       }, (err) => {
         console.log(err);
       })
@@ -263,8 +290,11 @@ export class AltaenvComponent implements OnInit, OnDestroy {
         return;
       }
     })
+  }
 
-
+  onMatPriSelected(matPriId: number) {
+    this.codmp = matPriId;
+    this.validarMp();
   }
 
   traerPorProps(indice) {
@@ -283,14 +313,14 @@ export class AltaenvComponent implements OnInit, OnDestroy {
 
   editar() {
     if (this.codmp < 39000) {
-      return alertify.error("ARREGLA EL CODIGO ENVASE !")
+      return alertify.error("¡¡ INCORRECTO --- ESE CODIGO NO ES DE UN ENVASE !!")
     }
-
     this.service.editar(this.descripcion, this.codmp, this.cobarras, this.indice, this.envasado)
       .subscribe((data: any) => {
         this.array = data.response;
         this.resetear();
-        alertify.success("Fila editada correctamente")
+        this.resetearBusqueda();
+        alertify.success("Fila modificada correctamente")
       }, (err) => {
         console.log(err);
       })

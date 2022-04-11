@@ -9,7 +9,7 @@
         <input (change)="seleccionarIdPt(idprod)" id="idp" type="number" [(ngModel)]="idprod"
           class="ml-1 form-control boldText">
         <div class="input-group-append">
-          <span class="input-group-text boldText" id="basic-addon2">
+          <span *ngIf="!descripcion1" visibility="hidden" class="input-group-text boldText" id="basic-addon2">
             <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal3" width="1em" height="1em"
               viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd"
@@ -104,13 +104,28 @@
           </div>
           <div class="row">
             <div class="col-6">
-              <div class="form-group">
-                <label for="recipient-name1" class="col-form-label">Código envase</label>
-                <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control"
-                  id="recipient-name1" style="font-size: 16px;">
+              <label for="recipient-name1" class="col-form-label">Código Envase</label>
+              <div class="input-group">
+                <input (change)="validarMp()" [(ngModel)]="codmp" type="number" class="form-control"
+                  id="recipient-name1" style="font-size: 18px;" id="codmp">
+                <div class="input-group-append">
+                  <span class="input-group-text boldText" id="basic-addon2">
+                    <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal4" width="1em"
+                      height="1em" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                        clip-rule="evenodd" />
+                      <path fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </div>
               </div>
             </div>
-            <div class="col-6">
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
               <div class="form-group">
                 <label for="recipient-name3" class="col-form-label">Descripción</label>
                 <input type="text" disabled [(ngModel)]="descripcion" class="form-control" id="recipient-name3"
@@ -157,28 +172,43 @@
               </div>
             </div>
           </div>
-
-
           <div class="row">
-            <div class="col">
+            <div class="col-6">
+              <label for="recipient-name01" class="col-form-label">Código Envase</label>
+              <div class="input-group">
+                <input (change)="validarMp()" [(ngModel)]="codmp" type="number" class="form-control"
+                  id="recipient-name01" style="font-size: 18px;" id="codmp">
+                <div class="input-group-append">
+                  <span class="input-group-text boldText" id="basic-addon2">
+                    <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal4" width="1em"
+                      height="1em" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                        clip-rule="evenodd" />
+                      <path fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
               <div class="form-group">
-                <label for="recipient-name01" class="col-form-label">Código Envase</label>
-                <input (change)="validarmp()" [(ngModel)]="codmp" type="number" class="form-control"
-                  style="font-size: 16px;" id="recipient-name01">
+                <label for="recipient-name03" class="col-form-label">Descripción</label>
+                <input type="text" disabled [(ngModel)]="descripcion" class="form-control" id="recipient-name03"
+                  style="font-size: 16px;">
               </div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="recipient-name03" class="col-form-label">Descripción</label>
-            <input type="text" disabled [(ngModel)]="descripcion" class="form-control" id="recipient-name03"
-              style="font-size: 16px;">
-          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" style="background-color: rgb(190, 171, 131);" data-dismiss="modal"
             (click)="resetear()">Cerrar</button>
-          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="editar()">Cargar!</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="editar()">Cargar</button>
         </div>
       </div>
     </div>
@@ -256,3 +286,58 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="width: 90%;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE ENVASES</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="recipient-name9" class="col-form-label">CODIGO DEL ENVASE:</label>
+                <input (keyup)="buscarMp()" [(ngModel)]="termino1" type="number" class="form-control"
+                  id="recipient-name40">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="recipient-name9" class="col-form-label">DESCRIPCIÓN:</label>
+                <input (keyup)="buscarMp()" [(ngModel)]="termino2" type="text" class="form-control"
+                  id="recipient-name40">
+              </div>
+            </div>
+          </div>
+          <div style="overflow: scroll; height: 300px; width: 100%;">
+            <table class="table table-hover">
+              <tr>
+                <th>COD</th>
+                <th>DESCRIPCIÓN</th>
+                <th>TIPO</th>
+                <th>UNIDAD DE MEDIDA</th>
+              </tr>
+              <tr class="hoverFila" data-dismiss="modal" *ngFor="let item2 of arrayBusqueda"
+                (click)="onMatPriSelected(item2.id)" style="cursor: pointer;">
+                <td>{{item2.id}}</td>
+                <td>{{item2.descripcion}}</td>
+                <td>{{item2.tipo}}</td>
+                <td>{{item2.unidadmedidacompra}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" style="background-color: rgb(190, 171, 131); "
+            (click)="resetearBusqueda()">Resetear</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

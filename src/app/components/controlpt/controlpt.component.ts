@@ -70,11 +70,11 @@ export class ControlptComponent implements OnInit {
   arrayCtp = []; //Array del control de calidad del producto
 
   constructor(
-    private servicioControl: ControlService, 
-    private prodtermService: ProdtermService, 
+    private servicioControl: ControlService,
+    private prodtermService: ProdtermService,
     private route: Router,
     private genericService: GenericService,
-    ) {
+  ) {
     let user_role = localStorage.getItem("user_role");
     if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
       alert("Acceso no autorizado !")
