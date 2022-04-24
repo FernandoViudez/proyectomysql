@@ -16,7 +16,7 @@ export class ControlComponent implements OnInit {
   tipo: string = null;
   pesoespecifico: number = null;
   numeroLote: number = null;
-  fecha: Date = null;
+  fecha: any = null;
   aprobado: string = null;
 
   ensayo1: string;
@@ -35,7 +35,7 @@ export class ControlComponent implements OnInit {
   termino2: string = undefined; //TIPO
 
 
-  constructor(private servicioControl: ControlService, private route: Router) { 
+  constructor(private servicioControl: ControlService, private route: Router) {
     let user_role = localStorage.getItem("user_role");
     if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
       alert("Acceso no autorizado !")
@@ -64,9 +64,9 @@ export class ControlComponent implements OnInit {
   validarMp(lote) {
     this.servicioControl.validarMp(lote).
       subscribe((data: any) => {
-        let dato=data.response;
+        let dato = data.response;
 
-        this.id=dato.codigoMp;
+        this.id = dato.codigoMp;
         this.descripcion = dato.descripcion;
         this.pesoespecifico = dato.peso;
         this.fecha = dato.fecha ? dato.fecha.split("T")[0] : dato.fecha;
@@ -109,14 +109,24 @@ export class ControlComponent implements OnInit {
     //VALIDACIONES
     //.....
     //UNA VEZ PASADAS LAS VALIDACIONES
+
+    let Hoy = new Date()                         // para que no ingresen fecha mayor al dia de trabajo
+    let Hoy2 = Hoy.toISOString().split('T')[0];   //lo pongo en el mismo formato que la fecha this.fecha
+    let DosMesesAntes = this.sumarDias(Hoy, -90);  //para que no puedan poner fecha anterior a 90 dias 
+    let DosMesesAntes2 = DosMesesAntes.toISOString().split("T")[0];
+
     if (!this.aprobado) {
       return alertify.error("SE DEBE COMPLETAR EL RESULTADO !");
-    } 
-    
+    }
+
     if (!this.fecha) {
       return alertify.error("HAY QUE CARGAR FECHA DE APROBACION !");
     }
-    	 
+
+    if (this.fecha > Hoy2 || this.fecha < DosMesesAntes2) {
+      return alertify.error("ERROR - VERIFICAR LA FECHA DE APROBACION !");
+    }
+
     let data = {
       id: this.id,
       numeroLote: this.numeroLote,
@@ -136,13 +146,13 @@ export class ControlComponent implements OnInit {
     }
 
     this.servicioControl.postearData(data).subscribe
-        ((data: any) => {
-          this.resetearInputs();
-          alertify.success(" SE ACTUALIZARON LOS RESULTADOS CORRECTAMENTE !")
-        }, (err) => {
-          console.log(err);
-          alertify.error("HA OCURRIDO UN ERROR EN EL SERVIDOR")
-        })
+      ((data: any) => {
+        this.resetearInputs();
+        alertify.success(" SE ACTUALIZARON LOS RESULTADOS CORRECTAMENTE !")
+      }, (err) => {
+        console.log(err);
+        alertify.error("HA OCURRIDO UN ERROR EN EL SERVIDOR")
+      })
 
   }
 
@@ -151,6 +161,13 @@ export class ControlComponent implements OnInit {
     this.termino2 = null;
     this.idBus = null;
     this.arrayCt = [];
+  }
+
+  /* Función que suma o resta días a una fecha, si el parámetro
+ días es negativo restará los días*/
+  sumarDias(fecha, dias) {
+    fecha.setDate(fecha.getDate() + dias);
+    return fecha;
   }
 
   cancelar() {
@@ -173,29 +190,29 @@ export class ControlComponent implements OnInit {
     })
   }
 
-  onLoteChange(){
+  onLoteChange() {
     this.servicioControl.traerporLote(this.numeroLote, "calidadmp", "numeroLote")
-    .subscribe((data:any)=>{
-      let item = data.response
-      this.id=item.codigoMp;
-      this.descripcion = item.descripcion;
-      this.pesoespecifico = item.peso;
-      this.fecha = item.fecha ? item.fecha.split("T")[0] : item.fecha;
-      this.aprobado = item.aprobado;
-      this.ensayo1 = item.ensayo1;
-      this.ensayo2 = item.ensayo2;
-      this.ensayo3 = item.ensayo3;
-      this.ensayo4 = item.ensayo4;
-      this.ensayo5 = item.ensayo5;
-      this.ensayo6 = item.ensayo6;
-      this.ensayo7 = item.ensayo7;
-      this.ensayo8 = item.ensayo8;
-      this.ensayo9 = item.ensayo9;
-      this.tipo = item.tipoProd;
-    }, (err)=>{
-      this.resetearInputs();
-      alertify.error(err.error.message)
-    })
+      .subscribe((data: any) => {
+        let item = data.response
+        this.id = item.codigoMp;
+        this.descripcion = item.descripcion;
+        this.pesoespecifico = item.peso;
+        this.fecha = item.fecha ? item.fecha.split("T")[0] : item.fecha;
+        this.aprobado = item.aprobado;
+        this.ensayo1 = item.ensayo1;
+        this.ensayo2 = item.ensayo2;
+        this.ensayo3 = item.ensayo3;
+        this.ensayo4 = item.ensayo4;
+        this.ensayo5 = item.ensayo5;
+        this.ensayo6 = item.ensayo6;
+        this.ensayo7 = item.ensayo7;
+        this.ensayo8 = item.ensayo8;
+        this.ensayo9 = item.ensayo9;
+        this.tipo = item.tipoProd;
+      }, (err) => {
+        this.resetearInputs();
+        alertify.error(err.error.message)
+      })
   }
 
 }

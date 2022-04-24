@@ -17,7 +17,7 @@ export class ControlptComponent implements OnInit {
   codpt: number;
   descripcion: string;
   pesoespecifico: number;
-  fecha: Date;
+  fecha: any;
   viscosidadcps: string;
   spindle: string;
   viscosidaduk: string;
@@ -38,7 +38,6 @@ export class ControlptComponent implements OnInit {
   public pePt: number;
   public viscosidadPt: string;
   public moliendaPt: string;
-
   public descripcionInfo: string;
   public tipo: string;
   public solidos: string;
@@ -101,15 +100,24 @@ export class ControlptComponent implements OnInit {
 
   async actualizarControl() {
 
+    let Hoy = new Date()                         // para que no ingresen fecha mayor al dia de trabajo
+    let Hoy2 = Hoy.toISOString().split('T')[0];   //lo pongo en el mismo formato que la fecha this.fecha
+    let DosMesesAntes = this.sumarDias(Hoy,-60);  //para que no puedan poner fecha anterior a 60 dias 
+    let DosMesesAntes2 = DosMesesAntes.toISOString().split("T")[0];
+
     if (!this.aprobado) {
       return alertify.error("SE DEBE COMPLETAR EL RESULTADO !");
     }
+
     if (!this.fecha) {
       return alertify.error("SE DEBE COMPLETAR FECHA DE APROBACION !");
     }
+    
+    if (this.fecha > Hoy2 || this.fecha < DosMesesAntes2) {
+      return alertify.error("ERROR - VERIFICAR LA FECHA DE APROBACION !");
+    }
 
     await this.obtainProd(this.codpt); //OBTENES DATOS DEL PRODUCTO
-
 
     let data = {
       numeroPartida: this.numeroPartida,
@@ -144,6 +152,13 @@ export class ControlptComponent implements OnInit {
         console.log(err);
         alertify.error(err.error.message);
       })
+  }
+
+  /* Función que suma o resta días a una fecha, si el parámetro
+   días es negativo restará los días*/
+  sumarDias(fecha, dias) {
+    fecha.setDate(fecha.getDate() + dias);
+    return fecha;
   }
 
   cancelar() {
