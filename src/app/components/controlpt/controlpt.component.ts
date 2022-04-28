@@ -102,8 +102,8 @@ export class ControlptComponent implements OnInit {
 
     let Hoy = new Date()                         // para que no ingresen fecha mayor al dia de trabajo
     let Hoy2 = Hoy.toISOString().split('T')[0];   //lo pongo en el mismo formato que la fecha this.fecha
-    let DosMesesAntes = this.sumarDias(Hoy,-60);  //para que no puedan poner fecha anterior a 60 dias 
-    let DosMesesAntes2 = DosMesesAntes.toISOString().split("T")[0];
+    // let DosMesesAntes = this.sumarDias(Hoy,-60);  para que no puedan poner fecha anterior a 60 dias 
+    // let DosMesesAntes2 = DosMesesAntes.toISOString().split("T")[0];
 
     if (!this.aprobado) {
       return alertify.error("SE DEBE COMPLETAR EL RESULTADO !");
@@ -113,7 +113,7 @@ export class ControlptComponent implements OnInit {
       return alertify.error("SE DEBE COMPLETAR FECHA DE APROBACION !");
     }
     
-    if (this.fecha > Hoy2 || this.fecha < DosMesesAntes2) {
+    if (this.fecha > Hoy2 /*|| this.fecha < DosMesesAntes2*/) {
       return alertify.error("ERROR - VERIFICAR LA FECHA DE APROBACION !");
     }
 
