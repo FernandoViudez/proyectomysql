@@ -82,6 +82,12 @@
           class="badge badge-success">{{resi |
           numeralPipe}}</span></h6>
     </div>
+    <div class="m-auto ml-2">
+      <h6 style="font-size: 15px; " id="pvc"><b>PVC: </b><span
+          style="font-size: 18px; background-color: rgb(190, 171, 131); font-family: 'Trebuchet MS', 'Bitstream Charter', 'FreeSerif', 'Ubuntu', 'sans-serif';"
+          class="badge badge-success">{{pvc |
+          numeralPipe}}</span></h6>
+    </div>
   </div>
   <div class="col-2">
     <div class="m-auto ml-2">
@@ -201,7 +207,7 @@
 
 <div class="row mt-3">
   <div class="col-12">
-    <button [disabled]="!descripcion1" class="btn btn-primary float-left" data-dismiss="modal" style="margin-left: 8%"
+    <button [disabled]="!descripcion1 || pe != 0 && tintoformoalt !='T'" class="btn btn-primary float-left" data-dismiss="modal" style="margin-left: 8%"
       (click)="importarFormula()">Importar Formula</button>
     <button [disabled]="!descripcion1" class="btn btn-primary float-right" style="margin-right: 6%; "
       (click)="eliminarTodo(false)">Cancelar</button>

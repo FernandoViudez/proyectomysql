@@ -33,6 +33,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
   ppv: number;
   resi: number;
   pig: number;
+  pvc: number;
   pr: number;
   solv: number;
   orden: number;
@@ -294,6 +295,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       this.pr = 0;
       this.resi = 0;
       this.solv = 0;
+      this.pvc = 0;
       return
     }
 
@@ -305,6 +307,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       this.pr = data.tpr;
       this.resi = data.tres / this.sumaTot * 100;
       this.solv = data.tsol / this.sumaTot * 100;
+      this.pvc = data.pvc;
     })
 
   }
@@ -465,6 +468,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
     this.solv = null;
     this.array = [];
     this.usuario = null;
+    this.pvc = null;
     document?.getElementById("idp")?.removeAttribute("disabled");
     document?.getElementById("TFA")?.removeAttribute("disabled");
 
