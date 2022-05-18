@@ -34,11 +34,11 @@
     </div>
     <div class="row mt-3">
         <div class="col-7">
-            <button type="button" class="btn float-lg-left" style="background-color: rgb(190, 171, 131);"
-                (click)="resetear()">Resetear</button>
+            <button type="button" class="btn float-lg-left" [disabled]="!checkInputs"
+                style="background-color: rgb(190, 171, 131);" (click)="resetear()">Resetear</button>
         </div>
         <div class="col-2">
-            <button class="btn btn-warning float-lg-right" [disabled]="!items" (click)="onPrint()">Imprimir</button>
+            <button class="btn btn-warning float-lg-right" [disabled]="!checkInputs" (click)="onPrint()">Imprimir</button>
         </div>
         <div class="col-2">
             <button class="btn btn-success float-lg-right" [disabled]="!checkInputs"

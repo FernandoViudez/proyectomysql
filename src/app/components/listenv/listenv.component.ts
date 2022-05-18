@@ -54,9 +54,11 @@ export class ListenvComponent implements OnInit {
   }
 
   resetear() {
+    this.idBus = "";
     this.termino1="";
     this.termino2="";
     this.termino3="";
+    this.arrayBusqueda = [];
   }
 
   resetear1() {

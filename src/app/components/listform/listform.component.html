@@ -185,8 +185,19 @@
             <div class="col">
               <div class="form-group">
                 <label for="recipient-name012" class="col-form-label">Componente</label>
-                <input (keyup)="buscarP()" type="text" [(ngModel)]="termino3" class="form-control"
-                  id="recipient-name02">
+                <div class="input-group">
+                  <select (click)="buscarP()" class="custom-select" [(ngModel)]="termino3" id="recipient-name02">
+                    <option value="AGENTE DE CURA">Agente de cura</option>
+                    <option value="DILUYENTE">Diluyente</option>
+                    <option value="ENDURECEDOR">Endurecedor</option>
+                    <option value="INERTES">Inertes</option>
+                    <option value="LÍQUIDO">Liquido</option>
+                    <option value="MONOCOMPONENTE">Monocomponente</option>
+                    <option value="POLVO">Polvo</option>
+                    <option value="RESINA">Resina</option>
+                    <option value="SEMIELABORADO">Semi-elaborado</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
@@ -215,6 +226,8 @@
 
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn" style="background-color: rgb(190, 171, 131); "
+          (click)="resetearBusqueda()">Resetear</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         </div>
       </div>

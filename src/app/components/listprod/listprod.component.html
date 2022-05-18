@@ -9,27 +9,38 @@
             <div class="col-3 mt-2">
                 <div class="m-auto boldText">
                     <label><b>CODIGO</b></label>
-                    <input (keyup)="buscar()" [(ngModel)]="id" type="number" class="ml-1">
+                    <input (keyup)="buscar()" style="font-size: 22px" [(ngModel)]="id" type="number" class="ml-1">
                 </div>
             </div>
 
             <div class="col-3 mt-2">
                 <div class="m-auto boldText">
                     <label><b>DESCRIPCIÓN</b></label>
-                    <input (keyup)="buscar()" [(ngModel)]="descripcion" type="text" class="ml-1">
+                    <input (keyup)="buscar()" style="font-size: 22px" [(ngModel)]="descripcion" type="text" class="ml-1">
                 </div>
             </div>
 
             <div class="col-3 mt-2">
                 <div class="m-auto boldText">
                     <label><b>COLOR</b></label>
-                    <input (keyup)="buscar()" [(ngModel)]="color" type="text" class="ml-1">
+                    <input (keyup)="buscar()" style="font-size: 22px" [(ngModel)]="color" type="text" class="ml-1">
                 </div>
             </div>
             <div class="col-3 mt-2">
-                <div class="m-auto boldText">
+                <div class="input-group boldText" style="width: 400px">
                     <label><b>COMPONENTE</b></label>
-                    <input (keyup)="buscar()" [(ngModel)]="componente" type="text" class="ml-1">
+                    <select (click)="buscar()" style="font-size: 20px" class="custom-select m-auto"
+                        [(ngModel)]="componente" id="recipient-name02">
+                        <option value="AGENTE DE CURA">Agente de cura</option>
+                        <option value="DILUYENTE">Diluyente</option>
+                        <option value="ENDURECEDOR">Endurecedor</option>
+                        <option value="INERTES">Inertes</option>
+                        <option value="LÍQUIDO">Liquido</option>
+                        <option value="MONOCOMPONENTE">Monocomponente</option>
+                        <option value="POLVO">Polvo</option>
+                        <option value="RESINA">Resina</option>
+                        <option value="SEMIELABORADO">Semi-elaborado</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -38,42 +49,48 @@
             <div class="col-2">
                 <div class="m-auto ml-2">
                     <h6 id="pe"><b>Peso Especifico: </b><span class="badge"
-                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pesoespecifico | numeralPipe}}</span>
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pesoespecifico |
+                            numeralPipe}}</span>
                     </h6>
                 </div>
             </div>
             <div class="col-2">
                 <div class="m-auto ml-2">
                     <h6 id="ppp"><b>Sólidos PPP: </b><span class="badge"
-                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solidosppp | numeralPipe}}</span>
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solidosppp |
+                            numeralPipe}}</span>
                     </h6>
                 </div>
             </div>
             <div class="col-2">
                 <div class="m-auto ml-2">
                     <h6 id="ppv"><b>Sólidos PPV: </b><span class="badge"
-                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solidosppv | numeralPipe}}</span>
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solidosppv |
+                            numeralPipe}}</span>
                     </h6>
                 </div>
             </div>
             <div class="col-2">
                 <div class="m-auto ml-2">
                     <h6 id="resi"><b>% Resina: </b><span class="badge"
-                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{resina | numeralPipe}}</span>
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{resina |
+                            numeralPipe}}</span>
                     </h6>
                 </div>
             </div>
             <div class="col-2">
                 <div class="m-auto ml-2">
                     <h6 id="pig"><b>% Pigmento: </b><span class="badge"
-                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pigmento | numeralPipe}}</span>
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pigmento |
+                            numeralPipe}}</span>
                     </h6>
                 </div>
             </div>
             <div class="col-2">
                 <div class="m-auto ml-2">
                     <h6 id="pr"><b>% Solvente: </b><span class="badge"
-                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solvente | numeralPipe}}</span>
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solvente |
+                            numeralPipe}}</span>
                     </h6>
                 </div>
             </div>
@@ -133,7 +150,7 @@
                 <th>RELACION DE MEZCLADO</th>
                 <th>FECHA ULTIMA ELABORACIÓN</th>
                 <th>FECHA ULTIMA MODIFICACIÓN</th>
-                <th>MODIFICADO POR</th> 
+                <th>MODIFICADO POR</th>
                 <th *ngIf="user_role == 'ADMIN_ROL'">COSTO POR</th>
                 <th>UNIDAD DE MEDIDA</th>
                 <th>STOCK</th>
@@ -166,8 +183,8 @@
         <div class="col-12">
             <button class="btn float-right" style="margin-right: 6%; background-color: rgb(190, 171, 131);"
                 (click)="resetearBusqueda()">RESETEAR BUSQUEDA</button>
-                <button class="btn btn-warning float-right" style="margin-right: 7%;"
-                (click)="imprimirBusqueda()">IMPRIMIR BUSQUEDA</button>
+            <button class="btn btn-warning float-right" style="margin-right: 7%;" (click)="imprimirBusqueda()">IMPRIMIR
+                BUSQUEDA</button>
         </div>
     </div>
 

@@ -123,6 +123,7 @@ export class ListformComponent implements OnInit {
   }
 
   resetear() {
+    this.idbus = null;
     this.termino1 = null;
     this.termino2 = null;
     this.termino3 = null;
