@@ -39,7 +39,7 @@ export class AltaprodComponent implements OnInit {
   ultimamodificacion: Date;
   info1: string;
   info2: string;
-  info3: string;
+  info3 = 0;                  // lo uso para grabar el dato que se calcula como PVC
   descripForma: string;
   arraypt = [];
   idbus: number;
@@ -270,7 +270,7 @@ export class AltaprodComponent implements OnInit {
     this.brillo = this.brillo ? this.brillo.toUpperCase() : this.brillo;
     this.info1 = this.info1 ? this.info1.toUpperCase() : this.info1;
     this.info2 = this.info2 ? this.info2.toUpperCase() : this.info2;
-    this.info3 = this.info3 ? this.info3.toUpperCase() : this.info3;
+    // this.info3 = this.info3 ? this.info3.toUpperCase() : this.info3;
 
     Swal.showLoading()
     let data = {
@@ -350,7 +350,7 @@ export class AltaprodComponent implements OnInit {
     this.ultimamodificacion = datos;
     this.info1 = datos;
     this.info2 = datos;
-    this.info3 = datos;
+    this.info3 = 0;
     this.stock = datos;
     this.editar = false;
     this.arraypt = [];

@@ -51,6 +51,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
   componente: string;
   usuario: string;
   id: number;
+  info3: number;      // lo agrego para grabar el dato calculado como PVC en prodterm
 
   constructor(private service: FormService,
     private route: Router,
@@ -223,7 +224,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       return alertify.error("¡ NO HA CARGADO NINGUN RENGLON PARA LAS FORMULAS !")
     }
 
-    function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario, solv) {
+    function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario, solv, info3) {
       return new Promise((resolve, reject) => {
         Swal.fire({
           title: "¡¡ ATENCION !!",
@@ -244,7 +245,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
             })
             Swal.showLoading()
             service.finalizar(tintoformoalt, idprod, pe, ppp, ppv, resi,
-              pig, pr, array, usuario, solv).subscribe((data: any) => {
+              pig, pr, array, usuario, solv, info3).subscribe((data: any) => {
                 Swal.close()
                 Swal.fire({
                   title: "GENIAL",
@@ -263,7 +264,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
     if (this.tintoformoalt == "T") {
       let response = finalizar(0, this.service, this.tintoformoalt, this.idprod, this.pe, this.ppp, this.ppv,
-        this.resi, this.pig, this.pr, this.array, this.usuario, this.solv);
+        this.resi, this.pig, this.pr, this.array, this.usuario, this.solv, this.info3);
       response.then(data => {
         this.resetear();
         this.resetear1();
@@ -272,7 +273,9 @@ export class AltaformComponent implements OnInit, OnDestroy {
       })
     } else if (this.sumaTot) {
       let response = finalizar(this.sumaTot, this.service, this.tintoformoalt, this.idprod, this.pe, this.ppp, this.ppv,
-        this.resi, this.pig, this.pr, this.array, this.usuario, this.solv);
+        this.resi, this.pig, this.pr, this.array, this.usuario, this.solv, this.info3);
+        console.log(this.pvc);
+        console.log(this.info3);
       response.then(data => {
         this.resetear();
         this.resetear1();
@@ -308,6 +311,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       this.resi = data.tres / this.sumaTot * 100;
       this.solv = data.tsol / this.sumaTot * 100;
       this.pvc = data.pvc;
+      this.info3 = data.pvc;
     })
 
   }
