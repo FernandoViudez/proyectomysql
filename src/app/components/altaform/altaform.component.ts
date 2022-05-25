@@ -274,8 +274,6 @@ export class AltaformComponent implements OnInit, OnDestroy {
     } else if (this.sumaTot) {
       let response = finalizar(this.sumaTot, this.service, this.tintoformoalt, this.idprod, this.pe, this.ppp, this.ppv,
         this.resi, this.pig, this.pr, this.array, this.usuario, this.solv, this.info3);
-        console.log(this.pvc);
-        console.log(this.info3);
       response.then(data => {
         this.resetear();
         this.resetear1();

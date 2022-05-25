@@ -13,6 +13,7 @@ declare let alertify: any;
   templateUrl: './lista-funcional.component.html',
   styleUrls: ['./lista-funcional.component.css']
 })
+
 export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
   propiedades: {
@@ -22,6 +23,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
   sb$: Subscription;
   rangomp$: Observable<any>;
+  user_role: string;
   public desde: number;
   public hasta: number;
   public inicio: number;
@@ -70,7 +72,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   constructor(private listadosService: ListadosService, private route: Router,
     private servicioMp: MatprimService,
     private genericService: GenericService) { }
-    
+
   get isValid() {
     switch (this.operacion) {
 
@@ -121,6 +123,16 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           return true
         }
 
+      case "DETPROD":
+        this.sonFechas = true;
+        this.esPlani = false;
+        this.esMp = true;
+        if (this.inicio && this.fin) {
+          return false;
+        } else {
+          return true
+        }
+
       case "MPENFORMULAS":
         this.sonFechas = false;
         this.esPlani = false;
@@ -138,6 +150,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.user_role = localStorage.getItem("user_role")
   }
 
   //Realizar operacion
@@ -165,6 +178,11 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
       case "RANGOFECHAS":
         this.asignarPropiedadesDePlan();
+        realizarOperacion ? this.rangomp$ = this.listadosService.rangoFechas(this.inicio, this.fin) : false;
+        break;
+
+      case "DETPROD":
+        this.asignarPropiedadesDeDet();
         realizarOperacion ? this.rangomp$ = this.listadosService.rangoFechas(this.inicio, this.fin) : false;
         break;
 
@@ -327,7 +345,36 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         "componente",
         "fechafin"
       ]
+    }
+  }
 
+  //Propiedades para el detalle de produccion
+  asignarPropiedadesDeDet() {
+    this.propiedades = {
+      th: [
+        "ID",
+        "DESCRIPCION",
+        "CANTIDAD",
+        "COMPONENTE",
+        "FECHA FIN",
+        "OPERARIO PRODUCCION",
+        "OPERARIO ENVASADO",
+        "DISPERSORA",
+        "MOLINO",
+        "AJUSTES"
+      ],
+      tb: [
+        "codpt",
+        "descripcion",
+        "cantidad",
+        "componente",
+        "fechafin",
+        "operario",
+        "operarioenv",
+        "dispersora",
+        "molino",
+        "correccion"
+      ]
     }
   }
 
@@ -366,12 +413,12 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     for (let index = 0; index < this.items.length; index++) {
       this.sumaTotal += this.items[index].cantidad;
       if (arrayTemporal.length != 0) {
-        
+
         if (arrayTemporal.find(item => item.codpt == this.items[index].codpt && item.proceso == this.items[index].proceso)) {
-          
+
           arrayTemporal.map(item => {
 
-            if (item.codpt == this.items[index].codpt && 
+            if (item.codpt == this.items[index].codpt &&
               item.proceso == this.items[index].proceso) {
               item.cantidad += this.items[index].cantidad
 

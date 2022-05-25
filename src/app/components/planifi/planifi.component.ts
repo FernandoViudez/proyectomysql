@@ -446,6 +446,15 @@ export class PlanifiComponent implements OnInit {
     this.loteB = null;
     this.pendientes = false;
   }
+
+  resetearBusqueda() {
+    this.idBus = null;
+    this.termino1 = null;
+    this.termino2 = null;
+    this.termino3 = null;
+    this.arraypt = [];
+  }
+
   //HABILITAR INPUTS PARA ESCRITURA
   habilitar() {
     document.getElementById("fechacomienzo").removeAttribute("disabled");
