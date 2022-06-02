@@ -28,7 +28,7 @@
             </div>
             <div class="col-3 mt-2">
                 <div class="input-group boldText" style="width: 400px">
-                    <label><b>COMPONENTE</b></label>
+                    <label class="mt-2 mr-1"><b>COMPONENTE</b></label>
                     <select (click)="buscar()" style="font-size: 20px" class="custom-select m-auto"
                         [(ngModel)]="componente" id="recipient-name02">
                         <option value="AGENTE DE CURA">Agente de cura</option>
@@ -88,49 +88,53 @@
             </div>
             <div class="col-2">
                 <div class="m-auto ml-2">
-                    <h6 id="pr"><b>% Solvente: </b><span class="badge"
+                    <h6 id="sol"><b>% Solvente: </b><span class="badge"
                             style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solvente |
                             numeralPipe}}</span>
                     </h6>
                 </div>
             </div>
-
         </div>
         <div class="row m-auto text-white">
             <div class="col-2">
                 <div class="m-auto ml-2">
-                    <h6 id="pe"><b>Viscosidad: </b><span class="badge"
+                    <h6 id="vis"><b>Viscosidad: </b><span class="badge"
                             style="font-size: 18px; background-color: rgb(190, 171, 131);">{{viscosidadspindle}}</span>
                     </h6>
                 </div>
             </div>
             <div class="col-2">
                 <div class="m-auto ml-2">
-                    <h6 id="ppv"><b>Spindle Nr.: </b><span class="badge"
+                    <h6 id="spi"><b>Spindle Nr.: </b><span class="badge"
                             style="font-size: 18px; background-color: rgb(190, 171, 131);">{{spindlenumero}}</span></h6>
                 </div>
             </div>
             <div class="col-2">
                 <div class="m-auto ml-2">
-                    <h6 id="ppp"><b>Viscosidad UK: </b><span class="badge"
+                    <h6 id="vuk"><b>Viscosidad UK: </b><span class="badge"
                             style="font-size: 18px; background-color: rgb(190, 171, 131);">{{viscosidaduk}}</span></h6>
                 </div>
             </div>
             <div class="col-2">
                 <div class="m-auto ml-2">
-                    <h6 id="resi"><b>Molienda: </b><span class="badge"
+                    <h6 id="moli"><b>Molienda: </b><span class="badge"
                             style="font-size: 18px; background-color: rgb(190, 171, 131);">{{molienda}}</span></h6>
                 </div>
             </div>
             <div class="col-2">
                 <div class="m-auto ml-2">
-                    <h6 id="pig"><b>Brillo: </b><span class="badge"
+                    <h6 id="bri"><b>Brillo: </b><span class="badge"
                             style="font-size: 18px; background-color: rgb(190, 171, 131);">{{brillo}}</span></h6>
                 </div>
             </div>
             <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 id="infpvc"><b>% PVC: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{info3 |
+                            numeralPipe}}</span>
+                    </h6>
+                </div>
             </div>
-
         </div>
         <hr class="bg-light">
     </div>

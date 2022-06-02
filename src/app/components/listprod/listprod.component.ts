@@ -23,6 +23,7 @@ export class ListprodComponent implements OnInit {
   pigmento = 0;
   solvente = 0;
   precio = 0;
+  info3 = 0;
 
   descripcion: string;
   color: string;
@@ -36,14 +37,19 @@ export class ListprodComponent implements OnInit {
     this.user_role = localStorage.getItem("user_role")
   }
 
-  resetear() {
+  resetearBusqueda() {
+    this.id=1
+    this.descripcion = "";
+    this.color = "";
+    this.componente = "";
+    this.array=[];
     this.id=null;
     this.pesoespecifico = null;
-    this.viscosidadspindle = null;
-    this.viscosidaduk = null;
-    this.spindlenumero = null;
-    this.molienda = null;
-    this.brillo = null;
+    this.viscosidadspindle = 0;
+    this.viscosidaduk = 0;
+    this.spindlenumero = 0;
+    this.molienda = 0;
+    this.brillo = 0;
     this.solidosppp = null;
     this.solidosppv = null;
     this.resina = null;
@@ -51,15 +57,7 @@ export class ListprodComponent implements OnInit {
     this.solvente = null;
     this.precio = null;
     this.modifico = null;
-  }
-
-  resetearBusqueda() {
-    this.id=1
-    this.descripcion = "";
-    this.color = "";
-    this.componente = "";
-    this.array=[];
-    this.resetear();
+    this.info3 = null;
   }
 
   imprimirBusqueda(){
@@ -80,6 +78,7 @@ export class ListprodComponent implements OnInit {
       this.spindlenumero = 0;
       this.molienda = 0;
       this.brillo = 0;
+      this.info3 = 0;
       if (data.message) {
         this.array = []
         return;
@@ -99,6 +98,7 @@ export class ListprodComponent implements OnInit {
         this.molienda = datos.molienda;
         this.brillo = datos.brillo;
         this.modifico = datos.modifico;
+        this.info3 = datos.info3;
       }
       this.array = data.response;
     }, (err) => {
@@ -121,6 +121,7 @@ export class ListprodComponent implements OnInit {
         this.molienda = data.mol;
         this.brillo = data.br;
         this.precio = data.pr;
+        this.info3 = data.dpvc;
       }, (err) => {
         console.log(err);
       })

@@ -23,7 +23,7 @@ export class ListmpComponent implements OnInit {
   ppv = 0;
   resina = 0;
   pigmento = 0;
-  solvente = 100;
+  solvente = 0;
   stock: number;
   stockminimo: number;
   unidadmedidacompra: string;

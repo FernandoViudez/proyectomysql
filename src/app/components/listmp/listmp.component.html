@@ -72,8 +72,13 @@
                 </div>
             </div>
             <div class="col-2">
+                <div class="m-auto ml-2">
+                    <h6 style="font-size: 14px;" id="pig"><b>% Solvente: </b><span class="badge"
+                            style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solvente |
+                            numeralPipe}}</span>
+                    </h6>
+                </div>
             </div>
-
         </div>
         <hr class="bg-light">
     </div>
@@ -87,6 +92,7 @@
                 <tr class="text-white text-center" *ngIf="array.length > 0">
                     <th>CODIGO</th>
                     <th>DESCRIPCION</th>
+                    <th *ngIf="user_role == 'ADMIN_ROL'" style="background-color:darkorange ">PRECIO COMPRA</th>
                     <th>TIPO</th>
                     <th>OBSOLETO</th>
                     <th>ULTIMA RECEPCIÓN</th>
@@ -104,7 +110,6 @@
                     <th>INFO 2</th>
                     <th>INFO 3</th>
                     <th>CODIGO BARRAS</th>
-                    <th *ngIf="user_role == 'ADMIN_ROL'">COSTO</th>
                 </tr>
             </thead>
             <tbody>
@@ -112,8 +117,10 @@
                     style="cursor: pointer;">
                     <td style="font-size: 16px;">{{item.id}}</td>
                     <td style="font-size: 16px;">{{item.descripcion}}</td>
+                    <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio | numeralPipe: 'true'}}</td>
                     <td style="font-size: 16px;">{{item.tipo}}</td>
-                    <td style="font-size: 16px;">{{item.ubicacion}}</td>
+                    <td *ngIf="item.ubicacion == 'SI'" style="font-size: 16px; color: darkred; background-color: fuchsia;">{{item.ubicacion}}</td>
+                    <td *ngIf="!item.ubicacion" style="font-size: 16px;">{{item.ubicacion}}</td>
                     <td style="font-size: 16px;">{{item.fechaultimarecepcion | datePipe}}</td>
                     <td style="font-size: 16px;">{{item.stock}}</td>
                     <td style="font-size: 16px;">{{item.stockminimo}}</td>
@@ -129,7 +136,6 @@
                     <td style="font-size: 16px;">{{item.info2}}</td>
                     <td style="font-size: 16px;">{{item.info3}}</td>
                     <td style="font-size: 16px;">{{item.cobarras}}</td>
-                    <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio | numeralPipe: 'true'}}</td>
                 </tr>
             </tbody>
 
