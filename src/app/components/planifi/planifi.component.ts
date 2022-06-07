@@ -8,6 +8,7 @@ import { GenericService } from 'src/app/services/generic.service';
 import { ListadosService } from '../listados/listados.service';
 import { DatePipe } from 'src/app/pipes/date.pipe';
 import { obtenerPath } from 'src/app/_utils/generarBackPath';
+import { Router } from '@angular/router';
 declare let alertify: any;
 
 interface onExcelDTO {
@@ -66,12 +67,18 @@ export class PlanifiComponent implements OnInit {
   termino3: string;
   arraypt = [];
 
-  constructor(private service: FormService,
+  constructor(private service: FormService, private route: Router,
     private http: HttpClient,
     private service1: EnvService,
     private planifiService: PlanifiService,
     private readonly genericService: GenericService,
-    private readonly listadosService: ListadosService) { }
+    private readonly listadosService: ListadosService) {
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO" && user_role != "ENCARGADO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+  }
 
   ngOnInit(): void {
     this.deshabilitar();

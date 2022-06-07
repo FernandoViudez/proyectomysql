@@ -38,7 +38,7 @@ export class AltaenvComponent implements OnInit, OnDestroy {
     private servicioMp: MatprimService,
     private route: Router) {
     let user_role = localStorage.getItem("user_role");
-    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO" && user_role != "ENCARGADO") {
       alert("Acceso no autorizado !")
       route.navigate(['inicio'])
     }

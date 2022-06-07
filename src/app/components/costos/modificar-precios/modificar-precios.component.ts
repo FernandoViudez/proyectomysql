@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatprimService } from 'src/app/services/matprim.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modificar-precios',
@@ -9,10 +10,16 @@ import { MatprimService } from 'src/app/services/matprim.service';
 export class ModificarPreciosComponent implements OnInit {
 
   public _arrayMp: any[]
+  usuario: string;
 
   constructor(
-    private readonly mpService: MatprimService
-  ) { }
+    private readonly mpService: MatprimService, private route: Router) { 
+    this.usuario = localStorage.getItem("username");
+    if (this.usuario != "ADMIN_ROL") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+  }
 
   ngOnInit(): void {
     this._getAllMp()

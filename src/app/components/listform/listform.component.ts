@@ -3,6 +3,7 @@ import { FormService } from 'src/app/services/form.service';
 import { Router } from '@angular/router';
 import { GenericService } from 'src/app/services/generic.service';
 import { ListadosService } from '../listados/listados.service';
+
 declare let alertify: any;
 
 interface onExcelDTO {
@@ -44,12 +45,20 @@ export class ListformComponent implements OnInit {
   termino2: string;
   termino3: string;
   arrayBusqueda = [];
+  user_role: string;
 
-  constructor(private service: FormService, private route: Router, 
-    private readonly genericService : GenericService,
-    private readonly listadosService: ListadosService) { }
+  constructor(private service: FormService, private route: Router,
+    private readonly genericService: GenericService,
+    private readonly listadosService: ListadosService) {
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO" && user_role != "ENCARGADO" ) {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+  }
 
   ngOnInit(): void {
+    this.user_role = localStorage.getItem("user_role")
   }
 
 
@@ -100,7 +109,7 @@ export class ListformComponent implements OnInit {
     this.service.validarIdProd(this.idprod).
       subscribe((data: any) => {
         alertify.success("ESTE PRODUCTO TERMINADO EXISTE... SIGUE ADELANTE !")
-        if(data.color == null) {
+        if (data.color == null) {
           this.descripcion1 = `${data.desc}  ${data.componente}`;
         } else {
           this.descripcion1 = `${data.desc}  ${data.color}  ${data.componente}`;
@@ -108,9 +117,9 @@ export class ListformComponent implements OnInit {
 
       }, (err) => {
         if (err.error.response) {
-          let data=err.error.response;
+          let data = err.error.response;
           alertify.success("ESTE PRODUCTO TERMINADO EXISTE, SIGUE ADELANTE !")
-          if(data.color == null) {
+          if (data.color == null) {
             this.descripcion1 = `${data.descripcion}  ${data.componente}`;
           } else {
             this.descripcion1 = `${data.descripcion}  ${data.color}  ${data.componente}`;
@@ -169,14 +178,14 @@ export class ListformComponent implements OnInit {
 
   resetearBusqueda() {
     this.arrayBusqueda = [];
-    this.array=[];
+    this.array = [];
     this.resetear1();
     this.resetear();
     this.ngOnInit()
   }
 
   imprimirBusqueda() {
-    let user_role = localStorage.getItem ("user_role");
+    let user_role = localStorage.getItem("user_role");
     if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
       alert("No autorizado !")
     } else {
@@ -184,19 +193,19 @@ export class ListformComponent implements OnInit {
     }
   }
 
-  onExcel(){
-    this.listadosService.generarExcel(this.array, 
-      'Listados_Formulas', 'Sheet1', [
-        "idprod",
-        "tintoformoalt",
-        "orden",
-        "mpi",
-        "codmp",
-        "codpt",
-        "descripcion",
-        "cantidad",
-      ] )
-      .subscribe( (data: onExcelDTO ) => {
+  onExcel() {
+    this.listadosService.generarExcel(this.array,
+      'Listados_Formulas', 'Hoja1', [
+      "idprod",
+      "tintoformoalt",
+      "orden",
+      "mpi",
+      "codmp",
+      "codpt",
+      "descripcion",
+      "cantidad",
+    ])
+      .subscribe((data: onExcelDTO) => {
         this.genericService.downloadExcel(data.url);
       })
   }

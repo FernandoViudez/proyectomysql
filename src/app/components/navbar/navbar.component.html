@@ -16,14 +16,19 @@
           <a class="dropdown-item" [routerLink]="['../altamp']">ALTA Y MODIFICACIÓN</a>
         </div>
       </li>
-      <li *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="nav-item dropdown">
+      <li *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO' || user_role == 'ENCARGADO'"
+        class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">PRODUCTOS TERMINADOS</a>
         <div class="dropdown-menu bg-info" aria-labelledby="navbarDropdown" style="font-size:large">
-          <a class="dropdown-item" [routerLink]="['../altaprod']">ALTA Y MODIFICACIÓN</a>
-          <div class="dropdown-divider" style="font-size:large"></div>
-          <a class="dropdown-item" [routerLink]="['../altafor']">FÓRMULAS</a>
-          <div class="dropdown-divider" style="font-size:large"></div>
+          <a class="dropdown-item" [routerLink]="['../altaprod']"
+            *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'">ALTA Y MODIFICACIÓN</a>
+          <div *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="dropdown-divider"
+            style="font-size:large"></div>
+          <a class="dropdown-item" [routerLink]="['../altafor']"
+            *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'">FÓRMULAS</a>
+          <div *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" class="dropdown-divider"
+            style="font-size:large"></div>
           <a class="dropdown-item" [routerLink]="['../altaenv']">ENVASADO</a>
         </div>
       </li>
@@ -115,9 +120,9 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">MANTENIMIENTO</a>
         <div class="dropdown-menu bg-info" aria-labelledby="navbarDropdown" style="font-size:large">
-          <a class="dropdown-item" [routerLink]="['../costos/modificarPrecios']">MODIFICAR PRECIOS</a>
+          <a class="dropdown-item" >OPERACIONES</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['../costos/realizarCalculos']">REALIZAR CALCULOS</a>
+          <a class="dropdown-item" >LISTADOS</a>
         </div>
       </li>
 

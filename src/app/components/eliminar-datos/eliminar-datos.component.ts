@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from 'src/app/services/generic.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eliminar-datos',
@@ -8,10 +9,17 @@ import Swal from 'sweetalert2';
   styleUrls: ['./eliminar-datos.component.css']
 })
 export class EliminarDatosComponent implements OnInit {
-  
-  public fecha: Date;
 
-  constructor(private readonly genericService: GenericService) { }
+  public fecha: Date;
+  usuario: string;
+
+  constructor(private readonly genericService: GenericService, private route: Router,) {
+    this.usuario = localStorage.getItem("username");
+    if (this.usuario != "ADMIN_ROL") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+  }
 
   ngOnInit(): void {
   }
@@ -36,14 +44,14 @@ export class EliminarDatosComponent implements OnInit {
     })
   }
 
-  public eliminar(): void{
-    if(!this.fecha) return;
+  public eliminar(): void {
+    if (!this.fecha) return;
 
     this.genericService.eliminarDatos(this.fecha)
-    .subscribe( data => {
-    }, e => {
-      console.log(e);
-    })
+      .subscribe(data => {
+      }, e => {
+        console.log(e);
+      })
     this.resetear()
   }
 

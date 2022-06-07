@@ -8,7 +8,6 @@ import { ProdtermService } from 'src/app/services/prodterm.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
-
 @Component({
   selector: 'app-altaform',
   templateUrl: './altaform.component.html',
@@ -200,9 +199,6 @@ export class AltaformComponent implements OnInit, OnDestroy {
         } else
           return;
       })
-
-
-
     } else {
       return alertify.error("¡ INGRESE UN CODIGO DE PRODUCTO !")
     }
@@ -259,7 +255,6 @@ export class AltaformComponent implements OnInit, OnDestroy {
           }
         })
       });
-
     }
 
     if (this.tintoformoalt == "T") {
@@ -283,8 +278,6 @@ export class AltaformComponent implements OnInit, OnDestroy {
     } else {
       return alertify.error("INGRESE BIEN LOS DATOS !");
     }
-
-
   }
 
   calcular(formulas: any[]) {

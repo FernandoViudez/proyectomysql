@@ -71,7 +71,13 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
 
   constructor(private listadosService: ListadosService, private route: Router,
     private servicioMp: MatprimService,
-    private genericService: GenericService) { }
+    private genericService: GenericService) {
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO" && user_role != "ENCARGADO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+  }
 
   get isValid() {
     switch (this.operacion) {

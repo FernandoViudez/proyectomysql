@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { window } from 'rxjs/operators';
 import { GenericService } from '../../../services/generic.service';
 import { MatprimService } from 'src/app/services/matprim.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rolodex',
@@ -23,6 +24,7 @@ export class RolodexComponent implements OnInit {
   sb$: Subscription;
   saldoFinalTotal: number;
   items: any[];
+  usuario: string;
 
   //Numeral Pipe
   private numeralPipe = new NumeralPipe();
@@ -58,9 +60,16 @@ export class RolodexComponent implements OnInit {
     ]
   }
 
-  constructor(private listadosService: ListadosService, 
+  constructor(private listadosService: ListadosService,
     private servicioMp: MatprimService,
-    private genericService: GenericService) { }
+    private genericService: GenericService,
+    private route: Router,) {
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO" && user_role != "ENCARGADO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+  }
 
   get isValid() {
     if (this.inicio && this.desde && this.hasta && this.fin) {

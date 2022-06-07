@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { obtenerPath } from 'src/app/_utils/generarBackPath';
+import { GenericService } from 'src/app/services/generic.service';
+import { ListadosService } from '../listados/listados.service';
+
+interface onExcelDTO {
+  ok: boolean;
+  message: string;
+  url: string;
+}
 
 @Component({
   selector: 'app-listprod',
@@ -24,6 +32,7 @@ export class ListprodComponent implements OnInit {
   solvente = 0;
   precio = 0;
   info3 = 0;
+  renglones = 100;  // pongo como default 100 lineas, pero si quieren imprimir todas que lo cambien a mano
 
   descripcion: string;
   color: string;
@@ -31,19 +40,21 @@ export class ListprodComponent implements OnInit {
   user_role: string;
   modifico: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private readonly genericService : GenericService,
+    private readonly listadosService: ListadosService) { }
 
   ngOnInit(): void {
     this.user_role = localStorage.getItem("user_role")
   }
 
   resetearBusqueda() {
-    this.id=1
+    this.id = 1
     this.descripcion = "";
     this.color = "";
     this.componente = "";
-    this.array=[];
-    this.id=null;
+    this.array = [];
+    this.id = null;
     this.pesoespecifico = null;
     this.viscosidadspindle = 0;
     this.viscosidaduk = 0;
@@ -58,14 +69,18 @@ export class ListprodComponent implements OnInit {
     this.precio = null;
     this.modifico = null;
     this.info3 = null;
+    this.renglones = 100;
   }
 
-  imprimirBusqueda(){
+  imprimirBusqueda() {
     window.print();
   }
 
   buscar() {
-    this.http.post(`${obtenerPath()}buscarPt`, { id: this.id, termino1: this.descripcion, termino2: this.color, termino3: this.componente }).subscribe((data: any) => {
+    this.http.post(`${obtenerPath()}buscarPt`, {
+      id: this.id, termino1: this.descripcion, termino2: this.color,
+      termino3: this.componente, renglones: this.renglones,
+    }).subscribe((data: any) => {
       this.pesoespecifico = 0;
       this.solidosppp = 0;
       this.solidosppv = 0;
@@ -127,5 +142,31 @@ export class ListprodComponent implements OnInit {
       })
   }
 
+  onExcel() {
+    this.listadosService.generarExcel(this.array,
+      'Listados_Productos', 'Hoja1', [
+        "id",
+        "descripcion",
+        "color",
+        "colorigual",
+        "componente",
+        "pesoespecifico",
+        "formaconjunto",
+        "relaciondemezcla",
+        "fechaultimaelaboracion",
+        "ultimamodificacion",
+        "modifico",
+        "unidadmedida",
+        "stock",
+        "solidosppp",
+        "solidosppv",
+        "resina",
+        "pigmento",
+        "precio",
+    ])
+      .subscribe((data: onExcelDTO) => {
+        this.genericService.downloadExcel(data.url);
+      })
+  }
 
 }

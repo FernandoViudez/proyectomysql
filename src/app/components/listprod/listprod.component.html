@@ -16,7 +16,8 @@
             <div class="col-3 mt-2">
                 <div class="m-auto boldText">
                     <label><b>DESCRIPCIÓN</b></label>
-                    <input (keyup)="buscar()" style="font-size: 22px" [(ngModel)]="descripcion" type="text" class="ml-1">
+                    <input (keyup)="buscar()" style="font-size: 22px" [(ngModel)]="descripcion" type="text"
+                        class="ml-1">
                 </div>
             </div>
 
@@ -149,6 +150,7 @@
                 <th>DESCRIPCION</th>
                 <th>COLOR</th>
                 <th>COLOR IGUAL</th>
+                <th></th>
                 <th>COMPONENTE</th>
                 <th>FORMA CONJUNTO</th>
                 <th>RELACION DE MEZCLADO</th>
@@ -165,6 +167,8 @@
                 <td style="font-size: 16px;">{{item.descripcion}}</td>
                 <td style="font-size: 16px;">{{item.color}}</td>
                 <td style="font-size: 16px;">{{item.colorigual}}</td>
+                <td *ngIf="item.pesoespecifico == 0" style="background-color: rgb(219, 156, 39)">SIN FORMULA</td>
+                <td *ngIf="item.pesoespecifico > 0"></td>
                 <td style="font-size: 16px;">{{item.componente}}</td>
                 <td style="font-size: 16px;">{{item.formaconjunto}}</td>
                 <td style="font-size: 16px;">{{item.relaciondemezcla}}</td>
@@ -183,11 +187,20 @@
         </table>
     </div>
 
-    <div class="row mt-3">
-        <div class="col-12">
-            <button class="btn float-right" style="margin-right: 6%; background-color: rgb(190, 171, 131);"
+    <div class="row mt-2">
+        <div class="col-1 ml-5">
+            <label *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'">Renglones a imprimir</label>
+            <input *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" renglones="renglones"
+                [(ngModel)]="renglones" [disabled]="array.length==0" type="number" class="form-control boldText">
+        </div>
+        <div class="col-10 mt-4">
+            <button class="btn float-right" style="background-color: rgb(190, 171, 131);" [disabled]="array.length==0"
                 (click)="resetearBusqueda()">RESETEAR BUSQUEDA</button>
-            <button class="btn btn-warning float-right" style="margin-right: 7%;" (click)="imprimirBusqueda()">IMPRIMIR
+            <button class="btn btn-warning float-lg-left ml-3" [disabled]="array.length==0"
+                *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" renglones='renglones'
+                (click)="onExcel()">Generar Excel</button>
+            <button class="btn btn-warning float-lg-left ml-3" style="margin-right: 7%;" (click)="imprimirBusqueda()"
+                [disabled]="array.length==0" *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'">IMPRIMIR
                 BUSQUEDA</button>
         </div>
     </div>
@@ -225,6 +238,7 @@
             <td>{{item.color}}</td>
             <td>{{item.colorigual}}</td>
             <td>{{item.componente}}</td>
+            <td *ngIf="item.pesoespecifico == 0">SIN FORMULA</td>
             <td>{{item.pesoespecifico | numeralPipe}}</td>
             <td>{{item.formaconjunto}}</td>
             <td>{{item.relaciondemezcla}}</td>

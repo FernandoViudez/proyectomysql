@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlService } from '../../control/services/control.service';
 import { DatePipe } from '../../../pipes/date.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fichas',
@@ -11,6 +12,7 @@ export class FichasComponent implements OnInit {
 
   public desde: number;
   public hasta: number;
+  usuario: string;
 
   //Date Pipe
   datePipe = new DatePipe();
@@ -38,7 +40,13 @@ export class FichasComponent implements OnInit {
     ]
   }
 
-  constructor(private controlService: ControlService) { }
+  constructor(private controlService: ControlService, private route: Router) {
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+  }
 
   ngOnInit(): void {
   }
@@ -77,8 +85,8 @@ export class FichasComponent implements OnInit {
 
   validarDescripcion(noseimprime: string) {
     let items = ["DILUYENTE", "SEMIELABORADO", "ANULADO"];
-    for(let item of items){
-      if(noseimprime.includes(item)) return false;
+    for (let item of items) {
+      if (noseimprime.includes(item)) return false;
     }
     return true;
   }

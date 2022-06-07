@@ -5,6 +5,7 @@ import { MatprimService } from 'src/app/services/matprim.service';
 import numeral from 'numeral';
 import { GenericService } from 'src/app/services/generic.service';
 import { obtenerPath } from 'src/app/_utils/generarBackPath';
+import { Router } from '@angular/router';
 declare let alertify: any;
 
 @Component({
@@ -37,9 +38,15 @@ export class RecepmpComponent implements OnInit, OnDestroy {
   termino2: string;
   termino3: string;
 
-  constructor(private http: HttpClient,
+  constructor(private http: HttpClient, private route: Router,
     private servicioMp: MatprimService,
-    private genericService: GenericService) { }
+    private genericService: GenericService) {
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO" && user_role != "ENCARGADO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+  }
 
   ngOnInit(): void {
 
@@ -76,7 +83,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
         }
         this.unidadRecibo = item.unidadmedidacompra;
         this.fechaultimarecepcion = item.fechaultimarecepcion;
-        document.getElementById("id").setAttribute("disabled","");
+        document.getElementById("id").setAttribute("disabled", "");
         this.calcularLote();
         if (this.ubicacion == "SI") { // uso campo ubicacion para poner si esta obsoleto o no la MP
           setTimeout(() => {
@@ -96,7 +103,7 @@ export class RecepmpComponent implements OnInit, OnDestroy {
           }
           this.unidadRecibo = item.unidadmedidacompra;
           this.fechaultimarecepcion = item.fechaultimarecepcion;
-          document.getElementById("id").setAttribute("disabled","");
+          document.getElementById("id").setAttribute("disabled", "");
           this.calcularLote();
         } else {
           this.id = null;

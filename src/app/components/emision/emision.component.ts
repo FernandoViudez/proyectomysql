@@ -5,6 +5,7 @@ import numeral from 'numeral';
 import { GenericService } from '../../services/generic.service';
 import { ListadosService } from '../listados/listados.service';
 import { obtenerPath } from 'src/app/_utils/generarBackPath';
+import { Router } from '@angular/router';
 declare let alertify;
 
 @Component({
@@ -93,14 +94,17 @@ export class EmisionComponent implements OnInit, OnDestroy {
   arrayB = [];
 
   constructor(private http: HttpClient,
-    private genericService: GenericService,
+    private genericService: GenericService, private route: Router,
     private listadosService: ListadosService) {
     let anio = new Date().getFullYear();
     let mes = new Date().getMonth() + 1;
     let dia = new Date().getDate();
-
     this.fechaDelDia = `${dia}/${mes}/${anio}`;
-
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO" && user_role != "ENCARGADO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
   }
 
   ngOnInit(): void {

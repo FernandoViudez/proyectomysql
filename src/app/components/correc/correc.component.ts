@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatprimService } from 'src/app/services/matprim.service';
 import { obtenerPath } from 'src/app/_utils/generarBackPath';
+import { Router } from '@angular/router';
 declare let alertify: any;
 
 @Component({
@@ -25,8 +26,14 @@ export class CorrecComponent implements OnInit {
   termino3: string;
   arrayBusqueda = [];
 
-  constructor(private http: HttpClient,
-    private serviceMp: MatprimService) { }
+  constructor(private http: HttpClient, private route: Router,
+    private serviceMp: MatprimService) { 
+      let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO" && user_role != "ENCARGADO") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+    }
 
   ngOnInit(): void {
   }

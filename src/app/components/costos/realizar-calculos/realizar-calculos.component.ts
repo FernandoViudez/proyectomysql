@@ -3,6 +3,7 @@ import { FormService } from 'src/app/services/form.service';
 import { GenericService } from 'src/app/services/generic.service';
 import { ProdtermService } from 'src/app/services/prodterm.service';
 import { ListadosService } from '../../listados/listados.service';
+import { Router } from '@angular/router';
 declare let alertify
 
 @Component({
@@ -12,12 +13,21 @@ declare let alertify
 })
 export class RealizarCalculosComponent implements OnInit {
 
+  usuario: string;
+
   constructor(
     private readonly formService: FormService,
     private readonly prodTermService: ProdtermService,
     private readonly listadosService: ListadosService,
     private readonly genericService: GenericService,
-  ) { }
+    private route: Router,
+  ) {
+    this.usuario = localStorage.getItem("username");
+    if (this.usuario != "ADMIN_ROL") {
+      alert("Acceso no autorizado !")
+      route.navigate(['inicio'])
+    }
+  }
 
 
   public isLoading: boolean
@@ -51,11 +61,11 @@ export class RealizarCalculosComponent implements OnInit {
       }
     })
 
-    if(JSON.stringify(data) == "{}") {
+    if (JSON.stringify(data) == "{}") {
       this._hideSpinner()
       return alertify.error("Ingrese al menos un dato")
     }
-    
+
     if (this.mayorQue && !this.menorQue || !this.mayorQue && this.menorQue) {
       this._hideSpinner()
       return alertify.error("Rango invalido")
@@ -73,7 +83,7 @@ export class RealizarCalculosComponent implements OnInit {
   private _showSpinner(): void {
     this.isLoading = true
   }
-  
+
   private _hideSpinner(): void {
     this.isLoading = false
     this.resetear()
