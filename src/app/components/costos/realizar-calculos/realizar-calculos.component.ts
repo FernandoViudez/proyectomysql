@@ -22,8 +22,8 @@ export class RealizarCalculosComponent implements OnInit {
     private readonly genericService: GenericService,
     private route: Router,
   ) {
-    this.usuario = localStorage.getItem("username");
-    if (this.usuario != "ADMIN_ROL") {
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL") {
       alert("Acceso no autorizado !")
       route.navigate(['inicio'])
     }

@@ -278,6 +278,10 @@ export class PlanifiComponent implements OnInit {
       return alertify.error("CARGAR FECHA DE COMIENZO !");
     }
 
+    if (this.fechafin =='0000-00-00'){
+      return alertify.error("LA FECHA FINALIZACION INGRESADA ES INCORRECTA !");
+    }
+
     if (this.proceso == 'AJUSTE DE VISCOSIDAD' && !this.correccion) {
       this.correccion = 'viscosidad';
     } else if (this.proceso == 'AJUSTE DE COLOR' && !this.correccion) {

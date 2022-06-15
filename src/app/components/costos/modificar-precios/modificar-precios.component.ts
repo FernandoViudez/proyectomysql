@@ -13,9 +13,9 @@ export class ModificarPreciosComponent implements OnInit {
   usuario: string;
 
   constructor(
-    private readonly mpService: MatprimService, private route: Router) { 
-    this.usuario = localStorage.getItem("username");
-    if (this.usuario != "ADMIN_ROL") {
+    private readonly mpService: MatprimService, private route: Router) {
+    let user_role = localStorage.getItem("user_role");
+    if (user_role != "ADMIN_ROL") {
       alert("Acceso no autorizado !")
       route.navigate(['inicio'])
     }
@@ -28,9 +28,9 @@ export class ModificarPreciosComponent implements OnInit {
   // Get all mp
   private _getAllMp() {
     this.mpService.traer()
-    .subscribe( (data: any) => {
-      this._arrayMp = data.response
-    })
+      .subscribe((data: any) => {
+        this._arrayMp = data.response
+      })
   }
 
   // Modify each mp on input change
@@ -41,9 +41,9 @@ export class ModificarPreciosComponent implements OnInit {
       atributo: 'precio',
       nuevoValor: newPrice
     }, mpid)
-    .subscribe( data => {
-      console.log(data);
-    }, console.log)
+      .subscribe(data => {
+        console.log(data);
+      }, console.log)
   }
 
 }

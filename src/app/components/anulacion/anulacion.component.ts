@@ -20,8 +20,9 @@ export class AnulacionComponent implements OnInit {
   private url: string = obtenerPath();
 
   constructor(private http: HttpClient, private route: Router) {
+    let user_role = localStorage.getItem("user_role");
     this.usuario = localStorage.getItem("username");
-    if (this.usuario != "ADMIN_ROL" && this.usuario != "LABORATORIO") {
+    if (user_role != "ADMIN_ROL" && user_role != "LABORATORIO") {
       alert("Acceso no autorizado !")
       route.navigate(['inicio'])
     }
