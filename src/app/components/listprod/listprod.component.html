@@ -158,6 +158,7 @@
                 <th>FECHA ULTIMA MODIFICACIÓN</th>
                 <th>MODIFICADO POR</th>
                 <th *ngIf="user_role == 'ADMIN_ROL'">COSTO POR</th>
+                <th *ngIf="user_role == 'ADMIN_ROL'">FECHA ULTIMO CALCULO</th>
                 <th>UNIDAD DE MEDIDA</th>
                 <th>STOCK</th>
             </tr>
@@ -167,7 +168,7 @@
                 <td style="font-size: 16px;">{{item.descripcion}}</td>
                 <td style="font-size: 16px;">{{item.color}}</td>
                 <td style="font-size: 16px;">{{item.colorigual}}</td>
-                <td *ngIf="item.pesoespecifico == 0" style="background-color: rgb(219, 156, 39)">SIN FORMULA</td>
+                <td *ngIf="item.pesoespecifico == 0 || !item.pesoespecifico" style="background-color: rgb(219, 156, 39)">SIN FORMULA</td>
                 <td *ngIf="item.pesoespecifico > 0"></td>
                 <td style="font-size: 16px;">{{item.componente}}</td>
                 <td style="font-size: 16px;">{{item.formaconjunto}}</td>
@@ -176,6 +177,7 @@
                 <td style="font-size: 16px;">{{item.ultimamodificacion | datePipe}}</td>
                 <td style="font-size: 16px;">{{item.modifico}}</td>
                 <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio | numeralPipe: 'true'}}</td>
+                <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.ultimocalculo | datePipe}}</td>
                 <td style="font-size: 16px;">{{item.unidadmedida}}</td>
                 <td style="font-size: 16px;">{{item.stock | numeralPipe: 'true'}}</td>
             </tr>
@@ -231,6 +233,7 @@
             <th>% RESINA</th>
             <th>% PIGMENTO</th>
             <th *ngIf="user_role == 'ADMIN_ROL'">COSTO</th>
+            <th *ngIf="user_role == 'ADMIN_ROL'">CALCULADO EL</th>
         </tr>
         <tr *ngFor="let item of array" class="text-center">
             <td>{{item.id}}</td>
@@ -252,6 +255,7 @@
             <td>{{item.resina | numeralPipe}}</td>
             <td>{{item.pigmento | numeralPipe}}</td>
             <td *ngIf="user_role == 'ADMIN_ROL'">{{item.precio | numeralPipe}}</td>
+            <td *ngIf="user_role == 'ADMIN_ROL'">{{item.ultimocalculo | datePipe}}</td>
         </tr>
     </table>
 </div>
