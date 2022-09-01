@@ -130,7 +130,8 @@
                     style="cursor: pointer;">
                     <td style="font-size: 16px;">{{item.id}}</td>
                     <td style="font-size: 16px;">{{item.descripcion}}</td>
-                    <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio | numeralPipe: 'true'}}
+                    <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px; background-color:darkorange; ">
+                        {{item.precio | numeralPipe: 'true'}}
                     </td>
                     <td style="font-size: 16px;">{{item.tipo}}</td>
                     <td *ngIf="item.ubicacion == 'SI'"

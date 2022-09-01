@@ -102,6 +102,7 @@
         <th>CODIGO PT</th>
         <th>DESCRIPCION</th>
         <th>CANTIDAD</th>
+        <th *ngIf="user_role == 'ADMIN_ROL'" >STOCK</th>
       </tr>
       <tr *ngFor="let item of array" class="hoverFila">
         <td style="font-size: 18px;">{{item.idprod}}</td>
@@ -113,6 +114,7 @@
         <td style="font-size: 18px;">{{item.descripcion}}</td>
         <td style="font-size: 18px;" *ngIf="item.cantidad" class="text-right">{{item.cantidad | numeralPipe}}</td>
         <td style="font-size: 18px;" *ngIf="!item.cantidad"> </td>
+        <td style="font-size: 18px;" *ngIf="user_role == 'ADMIN_ROL'"><!--poner aca stock de la materia prima que se lista--></td>
       </tr>
 
       <tr class="bg-primary">

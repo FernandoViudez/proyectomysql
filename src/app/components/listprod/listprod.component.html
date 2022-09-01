@@ -176,8 +176,8 @@
                 <td style="font-size: 16px;">{{item.fechaultimaelaboracion | datePipe}}</td>
                 <td style="font-size: 16px;">{{item.ultimamodificacion | datePipe}}</td>
                 <td style="font-size: 16px;">{{item.modifico}}</td>
-                <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.precio | numeralPipe: 'true'}}</td>
-                <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px;">{{item.ultimocalculo | datePipe}}</td>
+                <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px; background-color: rgb(219, 156, 39);">{{item.precio | numeralPipe: 'true'}}</td>
+                <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px; background-color: rgb(219, 156, 39);">{{item.ultimocalculo | datePipe}}</td>
                 <td style="font-size: 16px;">{{item.unidadmedida}}</td>
                 <td style="font-size: 16px;">{{item.stock | numeralPipe: 'true'}}</td>
             </tr>
