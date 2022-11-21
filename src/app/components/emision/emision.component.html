@@ -158,7 +158,7 @@
                                         style="text-align: center; color: mediumblue;">{{item.stock}}</td>
                                     <td *ngIf="item.stock <= '0'" class="boldText"
                                         style="text-align: center; color: red;">{{item.stock}}</td>
-                                    <td><input type="number" class="form-control boldText" #in
+                                    <td><input type="float" class="form-control boldText" #in
                                             (keyup)="in.value=in.value; calcular(in.value, i)"
                                             (change)="guardarEnvases(in.value, item.codmp, item.envasado)">
                                     </td>

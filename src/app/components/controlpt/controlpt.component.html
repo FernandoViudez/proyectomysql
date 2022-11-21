@@ -278,9 +278,9 @@
                 <div class="text-center">
                     CERTIFICADO DE IDENTIDAD DEL PRODUCTO
                 </div>
-                <div class="text-right">
+                <!-- <div class="text-right">            no imprimo la fecha de emision ni de fabricacion (nov. 2022)
                     FECHA DE EMISION: {{fecha | datePipe}}
-                </div>
+                </div> -->
                 <hr class="new3">
                 <div>
                     <span *ngIf="descripcion === descripcionOrigen" class="tab2"> Producto : {{descripcionPt}}</span>
@@ -292,7 +292,7 @@
                 <hr class="new3">
                 <div>
                     <span class="tab2"></span> Numero de Partida: {{numeroPartida}}
-                    <span class="tab2"></span> Fecha de Elaboracion: {{fecha | datePipe}}
+                    <!-- <span class="tab2"></span> Fecha de Elaboracion: {{fecha | datePipe}} -->
                 </div>
             </b>
             <hr class="new3">

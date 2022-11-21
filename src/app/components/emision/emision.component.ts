@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import numeral from 'numeral';
@@ -85,6 +85,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
   codmp: number;
   envasado: string;
   indice: number;
+  cantEnvas: number;
 
   //BUSQUEDA DE PLANIFICACION
   codptB: number;
@@ -150,6 +151,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
         console.log(err);
       })
   }
+
   //RESETEAR SOLO LA BUSQUEDA DE PLANIFICACION
   resetear1() {
     this.codptB = null;
@@ -158,6 +160,7 @@ export class EmisionComponent implements OnInit, OnDestroy {
     this.arrayB = [];
     this.pendientes = false;
   }
+
   //CANCELAR TODO
   cancelar() {
     Swal.fire({
@@ -324,7 +327,6 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
     }
 
-
   }
 
   finalizar() {
@@ -401,27 +403,28 @@ export class EmisionComponent implements OnInit, OnDestroy {
 
   guardarEnvases(input: any, codmp, envasado) {
     input = Number(input);
+    this.cantEnvas = Math.round(input / envasado);
 
-    if (!Number.isInteger(input / envasado)) {
-      return Swal.fire({
-        title: "Error!",
-        text: "CORREGIR CANTIDAD A ENVASAR!!!",
-        icon: "error",
-        confirmButtonColor: "green",
+    if (!Number.isInteger(this.cantEnvas) != !Number.isInteger(input / envasado)) {
+      Swal.fire({
+        title: "Atencion !",
+        text: "Si no corrige el TOTAL A ENVASAR, el sistema redondeara los envases a utilizar",
         confirmButtonText: "Aceptar",
+        confirmButtonColor: "green",
+        showCancelButton: false,
+        icon: "warning",
         allowEnterKey: false,
         allowEscapeKey: false,
-        allowOutsideClick: false
+        allowOutsideClick: false,
       })
     }
 
     for (let item of this.arrayConj) { //RECORRER ARREGLO QUE LLEGA Y VALIDAR SI ESTAS MODIFICANDO ENVASES
       if (item.codmp == codmp && item.envasado == envasado) {
-        let envases = input / item.envasado;
+        let envases = Math.round(input / item.envasado);
         item.indice = envases;
       }
     }
-
   }
 
   listarPendientes() {
@@ -434,7 +437,6 @@ export class EmisionComponent implements OnInit, OnDestroy {
             this.arrayB.push(item);
           }
         }
-
       }, (err) => {
         console.log(err);
       })
