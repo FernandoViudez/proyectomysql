@@ -50,6 +50,7 @@ export class PlanifiComponent implements OnInit {
   molino: any;
   unidadmedida: string;
   correccion: any;
+  corregido: any;
 
   //BUSQUEDA DE PLANIFICACION
   codptB: number;
@@ -282,14 +283,16 @@ export class PlanifiComponent implements OnInit {
       return alertify.error("LA FECHA FINALIZACION INGRESADA ES INCORRECTA !");
     }
 
-    if (this.proceso == 'AJUSTE DE VISCOSIDAD' && !this.correccion) {
-      this.correccion = 'viscosidad';
-    } else if (this.proceso == 'AJUSTE DE COLOR' && !this.correccion) {
-      this.correccion = 'color';
-    } else if (this.proceso == 'AJUSTE DE COLOR' && this.correccion == 'viscosidad') {
-      this.correccion = 'color + viscosidad'
-    } else if (this.proceso == 'AJUSTE DE VISCOSIDAD' && this.correccion == 'color') {
-      this.correccion = 'color + viscosidad'
+    let corregido = this.correccion    // si esta vacio no copio nada, si tiene algo copio lo 
+    if (corregido == null) {
+      corregido = ''
+    }                                   // que se corrigio como para registrar ambos
+    if (this.proceso == 'AJUSTE DE VISCOSIDAD') {
+      this.correccion = 'viscosidad '+corregido;
+    } else if (this.proceso == 'AJUSTE DE COLOR') {
+      this.correccion = 'color '+corregido;
+    } else if (this.proceso == 'AJUSTE DE BRILLO') {
+      this.correccion = 'brillo '+corregido;
     } else if (this.proceso == 'TINTURADO') {
       this.correccion = 'tint'
     }
@@ -446,7 +449,8 @@ export class PlanifiComponent implements OnInit {
     this.arrayB = [];
     this.pendientes = false;
     this.unidadmedida = null;
-    this.deshabilitar()
+    this.deshabilitar();
+    this.corregido = null;
   }
   //RESETEAR SOLO LA BUSQUEDA DE PLANIFICACION
   resetear1() {
