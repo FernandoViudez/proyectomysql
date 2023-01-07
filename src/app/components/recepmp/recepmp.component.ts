@@ -146,6 +146,10 @@ export class RecepmpComponent implements OnInit, OnDestroy {
       return alertify.error("LA CANTIDAD RECIBIDA ES OBLIGATORIA !");
     }
 
+    if (this.cantidad == this.nroRemito) {
+      return alertify.error("SI LA CANTIDAD RECIBIDA ES IDENTICA AL NUMERO DE REMITO - JUGALO A LATERIA !");
+    }
+
     this.proveedor = this.proveedor ? this.proveedor.toUpperCase() : this.proveedor;
     this.ordenCompra = this.ordenCompra ? this.ordenCompra.toUpperCase() : this.ordenCompra;
     this.nroPart = this.nroPart ? this.nroPart.toUpperCase() : this.nroPart;
