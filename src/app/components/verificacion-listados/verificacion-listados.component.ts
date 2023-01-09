@@ -82,12 +82,17 @@ export class VerificacionListadosComponent implements OnInit {
     this.arrayBusqueda = [];
   }
 
+  imprimirBusqueda(){
+    window.print();
+  }
+
   onExcel() {
     this.listadosService.generarExcel(this.arregloVerificaciones,
       'Listados_verificacion', 'Hoja1', [
       "fecha",
       "operario",
       "codigomp",
+      "descripcion",
       "lote",
       "partida",
       "ok"

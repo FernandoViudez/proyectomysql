@@ -102,7 +102,8 @@
         <th>CODIGO PT</th>
         <th>DESCRIPCION</th>
         <th>CANTIDAD</th>
-        <th *ngIf="user_role == 'ADMIN_ROL'" >STOCK</th>
+        <th style="background-color:white; "></th>
+        <th>STOCK EN KILOS</th>
       </tr>
       <tr *ngFor="let item of array" class="hoverFila">
         <td style="font-size: 18px;">{{item.idprod}}</td>
@@ -114,7 +115,11 @@
         <td style="font-size: 18px;">{{item.descripcion}}</td>
         <td style="font-size: 18px;" *ngIf="item.cantidad" class="text-right">{{item.cantidad | numeralPipe}}</td>
         <td style="font-size: 18px;" *ngIf="!item.cantidad"> </td>
-        <td style="font-size: 18px;" *ngIf="user_role == 'ADMIN_ROL'"><!--poner aca stock de la materia prima que se lista--></td>
+        <td style="background-color:white; "></td>
+        <td style="font-size: 18px;color: rgb(0, 73, 0);background-color:rgb(105, 192, 139) ; " *ngIf="item.cantidad && item.stock > 0" class="text-right">
+          {{item.stock | number:'1.0-0'}}</td>
+        <td style="font-size: 18px;color:black ;background-color:red; " *ngIf="item.cantidad && item.stock <= 0" class="text-right">
+          {{item.stock | number:'1.0-0'}}</td>
       </tr>
 
       <tr class="bg-primary">
@@ -229,7 +234,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" style="background-color: rgb(190, 171, 131); "
-          (click)="resetearBusqueda()">Resetear</button>
+            (click)="resetearBusqueda()">Resetear</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         </div>
       </div>

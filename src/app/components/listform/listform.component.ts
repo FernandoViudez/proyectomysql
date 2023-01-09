@@ -17,8 +17,8 @@ interface onExcelDTO {
   templateUrl: './listform.component.html',
   styles: []
 })
-export class ListformComponent implements OnInit {
 
+export class ListformComponent implements OnInit {
   idprod: string;
   descripcion1: string;
   tintoformoalt: string;
@@ -46,6 +46,7 @@ export class ListformComponent implements OnInit {
   termino3: string;
   arrayBusqueda = [];
   user_role: string;
+  stock: number;
 
   constructor(private service: FormService, private route: Router,
     private readonly genericService: GenericService,
@@ -160,6 +161,7 @@ export class ListformComponent implements OnInit {
     this.brillo = null;
     this.descripcion1 = null;
     this.sumaTot = null;
+    this.stock = null;
   }
 
   buscarP() {
@@ -204,6 +206,7 @@ export class ListformComponent implements OnInit {
       "codpt",
       "descripcion",
       "cantidad",
+      "stock"
     ])
       .subscribe((data: onExcelDTO) => {
         this.genericService.downloadExcel(data.url);
