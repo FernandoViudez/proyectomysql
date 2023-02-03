@@ -32,6 +32,7 @@ export class ControlptComponent implements OnInit {
   aprobado: string;
   descripcionPt: string;
   descripcionOrigen: string;  //para comparar si se modifico o no para imprimir el certificado
+  fechadia: any;
 
   public colorPt: string;
   public componente: string;
@@ -204,6 +205,7 @@ export class ControlptComponent implements OnInit {
     this.termino2 = null;
     this.arrayCtp = [];
     this.descripcionOrigen = null;
+    this.fechadia = null;
   }
 
   //DEVUELVE DATOS DEL CERTIFICADO Y DEL CONTROL DE CALIDAD
@@ -212,6 +214,8 @@ export class ControlptComponent implements OnInit {
       .subscribe((data: any) => {
         let item = data.response; //Data del controlpt
         let item2 = data.certificado; //Data del certificado
+        let ahora = new Date()                             // hago que la fecha de emision sea la fecha del dia
+        let ahora2 = ahora.toISOString().split('T')[0];    // asi no se relaciona con la fecha de aprobacion 
         //TRAEMOS DATA DEL CONTROL
         this.codpt = item.codpt;
         this.descripcion = item.descripcion;
@@ -222,6 +226,7 @@ export class ControlptComponent implements OnInit {
             return alertify.error("BATCH TICKET ANULADO !");
           }, 2000)
         }
+        this.fechadia = ahora2;
         this.pesoespecifico = item.pesoespecifico;
         this.fecha = item.fecha ? item.fecha.split("T")[0] : item.fecha;
         this.viscosidadcps = item.viscosidadcps;

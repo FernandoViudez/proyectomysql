@@ -14,19 +14,21 @@
             <div class="col-2">
                 <span>Nro. Partida (Lote)</span>
                 <div class="input-group">
-                    <input [disabled]="descripcion" (change)="onLoteChange()" class="form-control boldText" type="number"
-                        [(ngModel)]="numeroPartida">
+                    <input [disabled]="descripcion" (change)="onLoteChange()" class="form-control boldText"
+                        type="number" [(ngModel)]="numeroPartida">
                     <div class="input-group-append">
-                        <span *ngIf="!descripcion" visibility="hidden" class="input-group-text boldText" id="basic-addon2">
-                            <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal1" class="bi bi-search"
-                            width="2em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-                                clip-rule="evenodd" />
-                            <path fill-rule="evenodd"
-                                d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
-                                clip-rule="evenodd" />
-                        </svg>
+                        <span *ngIf="!descripcion" visibility="hidden" class="input-group-text boldText"
+                            id="basic-addon2">
+                            <svg data-toggle="modal" style="cursor: pointer;" data-target="#exampleModal1"
+                                class="bi bi-search" width="2em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                                    clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                    d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
                         </span>
                     </div>
                 </div>
@@ -203,7 +205,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn" style="background-color: rgb(190, 171, 131); "
-                (click)="resetearBusqueda()">Resetear</button>
+                    (click)="resetearBusqueda()">Resetear</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
@@ -278,9 +280,9 @@
                 <div class="text-center">
                     CERTIFICADO DE IDENTIDAD DEL PRODUCTO
                 </div>
-                <!-- <div class="text-right">            no imprimo la fecha de emision ni de fabricacion (nov. 2022)
-                    FECHA DE EMISION: {{fecha | datePipe}}
-                </div> -->
+                <div class="text-right"> <!-- imprimo la fecha del dia de emision del certificado, no de aprobacion -->
+                    FECHA DE EMISION: {{fechadia | datePipe}}
+                </div>
                 <hr class="new3">
                 <div>
                     <span *ngIf="descripcion === descripcionOrigen" class="tab2"> Producto : {{descripcionPt}}</span>
@@ -292,7 +294,8 @@
                 <hr class="new3">
                 <div>
                     <span class="tab2"></span> Numero de Partida: {{numeroPartida}}
-                    <!-- <span class="tab2"></span> Fecha de Elaboracion: {{fecha | datePipe}} -->
+                    <!-- <span class="tab2"></span> Fecha de Elaboracion: {{fecha | datePipe}} 
+                                          no imprimo la fecha de fabricacion (nov. 2022)-->
                 </div>
             </b>
             <hr class="new3">

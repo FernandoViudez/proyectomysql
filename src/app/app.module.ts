@@ -41,7 +41,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CostosComponent } from './components/costos/costos.component';
 import { ModificarPreciosComponent } from './components/costos/modificar-precios/modificar-precios.component';
 import { RealizarCalculosComponent } from './components/costos/realizar-calculos/realizar-calculos.component';
-import { MentenimientoComponent } from './components/mentenimiento/mentenimiento.component';
 import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 import { OperacionesListadoComponent } from './components/operaciones-listado/operaciones-listado.component';
 
@@ -85,7 +84,6 @@ import { OperacionesListadoComponent } from './components/operaciones-listado/op
     CostosComponent,
     ModificarPreciosComponent,
     RealizarCalculosComponent,
-    MentenimientoComponent,
     MantenimientoComponent,
     OperacionesListadoComponent,
   ],

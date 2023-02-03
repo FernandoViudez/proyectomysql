@@ -33,22 +33,35 @@ export class GenericService {
   traerDescripcion(codigomp: number) {
     return this.http.get(`${this.url}traerDescripcionDeCalidadMp/${codigomp}`);
   }
-  
+
   traerLote(lote: number) {
     return this.http.get(`${this.url}traerLote/${lote}`);
   }
-   
+
   traerPartida(numeroPartida: number) {
     return this.http.get(`${this.url}traerPartida/${numeroPartida}`);
   }
 
-  listadoVerificacion(codigoMp: number, lote: number, operario: string, fecha: Date, partida: number){
+  listadoVerificacion(codigoMp: number, lote: number, operario: string, fecha: Date, partida: number) {
     return this.http.post(`${this.url}traerVerificacion`, { codigoMp, lote, operario, fecha, partida });
   }
-  
-  eliminarDatos(fecha: Date){
+
+  eliminarDatos(fecha: Date) {
     return this.http.post(`${this.url}eliminarDatosViejos`, { fecha });
   }
 
+  agregarMantenimiento(data: {
+    equipo: string, nroequipo: string, motivo: string, correas: string, limpieza: string,
+    mangueras: string, engrase: string, lubricacion: string, accesorios: string, conexiones: string, tableros: string,
+    cortes: string, observaciones: string, fecha: Date, proxrevision: Date, usuario: string }) {
+     return this.http.post(`${this.url}agregarMantenimiento`, data);
+  }
+
+  listadoMantenimiento(equipo: string, nroequipo: string, motivo: string, correas: string, limpieza: string,
+    mangueras: string, engrase: string, lubricacion: string, accesorios: string, conexiones: string, tableros: string,
+    cortes: string, observaciones: string, fecha: Date, proxrevision: Date, usuario: string) {
+    return this.http.post(`${this.url}traerMantenimiento`, { equipo, nroequipo, motivo, correas, limpieza,
+      mangueras, engrase, lubricacion, accesorios, conexiones, tableros, cortes, observaciones, fecha, proxrevision, usuario });
+  }
 
 }
