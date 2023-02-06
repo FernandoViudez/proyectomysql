@@ -42,7 +42,7 @@ import { CostosComponent } from './components/costos/costos.component';
 import { ModificarPreciosComponent } from './components/costos/modificar-precios/modificar-precios.component';
 import { RealizarCalculosComponent } from './components/costos/realizar-calculos/realizar-calculos.component';
 import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
-import { OperacionesListadoComponent } from './components/operaciones-listado/operaciones-listado.component';
+import { MantenimientoListadoComponent } from './components/mantenimiento-listado/mantenimiento-listado.component';
 
 
 
@@ -85,7 +85,7 @@ import { OperacionesListadoComponent } from './components/operaciones-listado/op
     ModificarPreciosComponent,
     RealizarCalculosComponent,
     MantenimientoComponent,
-    OperacionesListadoComponent,
+    MantenimientoListadoComponent,
   ],
   imports: [
     BrowserModule,

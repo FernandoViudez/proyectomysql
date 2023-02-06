@@ -28,7 +28,7 @@ import { ModificarPreciosComponent } from "./components/costos/modificar-precios
 import { RealizarCalculosComponent } from "./components/costos/realizar-calculos/realizar-calculos.component";
 import { CostosComponent } from "./components/costos/costos.component";
 import { MantenimientoComponent } from "./components/mantenimiento/mantenimiento.component";
-import { OperacionesListadoComponent } from "./components/operaciones-listado/operaciones-listado.component";
+import { MantenimientoListadoComponent } from "./components/mantenimiento-listado/mantenimiento-listado.component";
 
 const routes: Routes = [
   {
@@ -59,9 +59,9 @@ const routes: Routes = [
     component: MantenimientoComponent,
   },
   {
-    path: "operaciones-listados",
+    path: "mantenimiento-listado",
     canActivate: [UserGuard],
-    component: OperacionesListadoComponent,
+    component: MantenimientoListadoComponent,
   },
   { path: "correc", canActivate: [UserGuard], component: CorrecComponent },
   { path: "planifi", canActivate: [UserGuard], component: PlanifiComponent },
