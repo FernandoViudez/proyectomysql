@@ -218,6 +218,12 @@
                 </select>
             </div>
         </div>
+        <div *ngIf="equipo == 'MOLINO'" class="col-3">  <!-- aprovecho este campo para que registren horas de uso-->
+        <div>Registrar horas de uso</div>
+        <div class="input-group">
+            <input class="mt-2 custom-select boldText" input type="number" [(ngModel)]="lubricacion" id="lubricacion">
+        </div>
+    </div>
     </div>
     <div class="row mt-1 mr-5 ml-5">
         <div *ngIf="equipo == 'MOLINO' || equipo == 'ELEVADOR' || equipo == 'ZARANDA' || equipo == 'ZORRA' || equipo == 'VARIOS'"

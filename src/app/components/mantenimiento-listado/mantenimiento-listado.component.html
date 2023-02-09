@@ -179,6 +179,7 @@
 
         <table *ngIf="arregloMantenimiento.length != 0" class="table table-dark">
             <tr>
+                <th>Ultima Revision</th>
                 <th>Proxima Revision</th>
                 <th>Equipo</th>
                 <th>Numero Equipo</th>
@@ -187,16 +188,17 @@
                 <th>Verif. Correas</th>
                 <th>Verif. Mangueras</th>
                 <th>Verif. Engrase</th>
-                <th>Verif. Lubricacion</th>
+                <th *ngIf="equipo != 'MOLINO'">Verif. Lubricacion</th>
+                <th *ngIf="equipo == 'MOLINO'">Horas uso</th>
                 <th>Verif. Accesorios</th>
                 <th>Verif. Conexiones</th>
                 <th>Verif. Tableros</th>
                 <th>Verif. Cortes</th>
                 <th>Observaciones</th>
-                <th>Ultima Revision</th>
                 <th>Realizada por</th>
             </tr>
             <tr *ngFor="let item of arregloMantenimiento">
+                <td>{{item.fecha | datePipe}}</td>
                 <td>{{item.proxrevision | datePipe}}</td>
                 <td>{{item.equipo}}</td>
                 <td>{{item.nroequipo}}</td>
@@ -211,7 +213,6 @@
                 <td>{{item.tableros}}</td>
                 <td>{{item.cortes}}</td>
                 <td>{{item.observaciones}}</td>
-                <td>{{item.fecha | datePipe}}</td>
                 <td>{{item.usuario}}</td>
             </tr>
         </table>
@@ -258,24 +259,26 @@
     <table class="table" style="font-size: xx-small">
         <thead>
             <tr class="text-white text-center" *ngIf="arregloMantenimiento.length > 0">
+                <th>Ultima Revision</th>
                 <th>Proxima Revision</th>
                 <th>Motivo intervencion</th>
                 <th>Verif. Limpieza</th>
                 <th>Verif. Correas</th>
                 <th>Verif. Mangueras</th>
                 <th>Verif. Engrase</th>
-                <th>Verif. Lubricacion</th>
+                <th *ngIf="equipo != 'MOLINO'">Verif. Lubricacion</th>
+                <th *ngIf="equipo == 'MOLINO'">Horas uso</th>
                 <th>Verif. Accesorios</th>
                 <th>Verif. Conexiones</th>
                 <th>Verif. Tableros</th>
                 <th>Verif. Cortes</th>
                 <th>Observaciones</th>
-                <th>Ultima Revision</th>
                 <th>Realizado por</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of arregloMantenimiento" class="text-center" style="cursor: pointer;">
+                <td>{{item.fecha | datePipe}}</td>
                 <td>{{item.proxrevision | datePipe}}</td>
                 <td>{{item.motivo}}</td>
                 <td>{{item.limpieza}}</td>
@@ -288,7 +291,6 @@
                 <td>{{item.tableros}}</td>
                 <td>{{item.cortes}}</td>
                 <td>{{item.observaciones}}</td>
-                <td>{{item.fecha | datePipe}}</td>
                 <td>{{item.usuario}}</td>
             </tr>
         </tbody>
