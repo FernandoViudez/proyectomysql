@@ -45,4 +45,8 @@ export class ListadosService {
     return this.http.get(`${this.url}getAllMpInsideProasoc/${mp}`);
   }
 
+  rangoLotes(desde: number, hasta: number){
+    return this.http.get(`${this.url}listarPorLotePlanificacion/${desde}/${hasta}`)
+  }
+
 }

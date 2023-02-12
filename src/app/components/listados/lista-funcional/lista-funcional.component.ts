@@ -139,6 +139,16 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           return true
         }
 
+      case "DETLOTEPROD":
+        this.sonFechas = false;
+        this.esPlani = false;
+        this.esMp = true;
+        if (this.desde && this.hasta) {
+          return false;
+        } else {
+          return true
+        }
+
       case "MPENFORMULAS":
         this.sonFechas = false;
         this.esPlani = false;
@@ -190,6 +200,11 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       case "DETPROD":
         this.asignarPropiedadesDeDet();
         realizarOperacion ? this.rangomp$ = this.listadosService.rangoFechas(this.inicio, this.fin) : false;
+        break;
+
+      case "DETLOTEPROD":
+        this.asignarPropiedadesDeDet();      // uso el mismo listado de propiedades
+        realizarOperacion ? this.rangomp$ = this.listadosService.rangoLotes(this.desde, this.hasta) : false;
         break;
 
       case "MPENFORMULAS":
@@ -358,6 +373,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
   asignarPropiedadesDeDet() {
     this.propiedades = {
       th: [
+        "LOTE",
         "ID",
         "DESCRIPCION",
         "CANTIDAD",
@@ -370,6 +386,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
         "AJUSTES"
       ],
       tb: [
+        "lote",
         "codpt",
         "descripcion",
         "cantidad",

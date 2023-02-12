@@ -18,7 +18,10 @@
                     <option value="RANGOMOVD">Compras de Materias Primas por rango de fechas</option>
                     <option value="RANGOMOV">Movimientos de Materias Primas por rango de fechas</option>
                     <option value="MPENFORMULAS">Busqueda de Materias Primas en Fórmulas</option>
-                    <option *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" value="DETPROD">Detalle de producción por rango de fechas</option>
+                    <option *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" value="DETPROD">Detalle de
+                        producción por rango de fechas</option>
+                    <option *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" value="DETLOTEPROD">Detalle
+                        de producción por rango de lotes</option>
                     <option value="RANGOFECHAS">Estadística de producción por rango de fechas</option>
                 </select>
             </div>
@@ -29,7 +32,7 @@
                 MP</span>
             <span class="ml-2" *ngIf="operacion == 'MPENFORMULAS'">MP</span>
             <div class="input-group"
-                *ngIf='operacion != "MINIMO" && !esPlani && !esMp && operacion != "DETPROD" || operacion == "MPENFORMULAS"'>
+                *ngIf='operacion != "MINIMO" && !esPlani && !esMp && operacion != "DETPROD" && operacion != "DETLOTEPROD" || operacion == "MPENFORMULAS"'>
                 <input class="form-control boldText" type="number" [(ngModel)]="desde" id="desde">
                 <div class="input-group-append"
                     *ngIf='operacion != "MINIMO" && !esPlani && !esMp || operacion == "MPENFORMULAS" || operacion == "DETPROD"'>
@@ -48,8 +51,19 @@
             </div>
         </div>
 
+        <!-- pongo rango de busqueda solamente para BUSQUEDA POR LOTE-->
+        <div class="col-2 mt-2" *ngIf='operacion == "DETLOTEPROD"'>
+            <span class="ml-2">Desde lote</span>
+            <input class="form-control boldText" type="number" [(ngModel)]="desde" id="desde">
+        </div>
+
+        <div class="col-2 mt-2" *ngIf='operacion == "DETLOTEPROD"'>
+            <span class="ml-2">Hasta lote</span>
+            <input class="form-control boldText" type="number" [(ngModel)]="hasta" id="hasta">
+        </div>
+
         <div class="col-2 mt-2"
-            *ngIf='operacion != "MINIMO" && !esPlani && !esMp && operacion != "MPENFORMULAS" && operacion != "DETPROD"'>
+            *ngIf='operacion != "MINIMO" && !esPlani && !esMp && operacion != "MPENFORMULAS" && operacion != "DETPROD" && operacion != "DETLOTEPROD"'>
             <span class="ml-2" *ngIf='operacion != "MINIMO" && !esPlani && !esMp'>Hasta MP</span>
             <input class="form-control boldText" type="number" [(ngModel)]="hasta" id="hasta">
         </div>
@@ -58,11 +72,11 @@
                 <p class="badge badge-pill badge-warning">{{mpDescription}}</p>
             </h1>
         </div>
-        <div class="col-2 mt-2" *ngIf='operacion != "MINIMO" && sonFechas'>
+        <div class="col-2 mt-2" *ngIf='operacion != "MINIMO" && sonFechas && operacion != "DETLOTEPROD"'>
             <a>Desde fecha</a>
             <input class="form-control boldText" type="date" [(ngModel)]="inicio">
         </div>
-        <div class="col-2 mt-2" *ngIf='operacion != "MINIMO" && sonFechas'>
+        <div class="col-2 mt-2" *ngIf='operacion != "MINIMO" && sonFechas && operacion != "DETLOTEPROD"'>
             <a>Hasta fecha</a>
             <input class="form-control boldText" type="date" [(ngModel)]="fin">
         </div>
