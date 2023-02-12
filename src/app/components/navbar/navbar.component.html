@@ -33,8 +33,8 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">VISUALIZACIONES</a>
+        <a *ngIf="user_role != 'MANTENIMIENTO'" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">VISUALIZACIONES</a>
         <div class="dropdown-menu bg-info" aria-labelledby="navbarDropdown" style="font-size:large">
           <a class="dropdown-item" [routerLink]="['../listmp']">MATERIA PRIMA</a>
           <div *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO' || user_role == 'ENCARGADO'">
@@ -92,7 +92,7 @@
         </div>
       </li>
 
-      <li class="nav-item dropdown">
+      <li *ngIf="user_role != 'MANTENIMIENTO'" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">VERIFICACION</a>
         <div class="dropdown-menu bg-info" aria-labelledby="navbarDropdown" style="font-size:large">
@@ -116,7 +116,7 @@
         </div>
       </li>
 
-      <li *ngIf="user_role == 'ADMIN_ROL'" class="nav-item dropdown">
+      <li *ngIf="user_role == 'ADMIN_ROL' || user_role == 'MANTENIMIENTO'" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">MANTENIMIENTO</a>
         <div class="dropdown-menu bg-info" aria-labelledby="navbarDropdown" style="font-size:large">
