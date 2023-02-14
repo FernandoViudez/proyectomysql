@@ -48,20 +48,38 @@ export class MantenimientoComponent implements OnInit {
     let balanzas2 = balanzas.toISOString().split('T')[0];
     let general = this.sumarDias(Hoy, 30);                // el resto se calibra cada mes
     let general2 = general.toISOString().split('T')[0];
+    let torre = this.sumarDias(Hoy, 360);              // torre destilacion se calibran cada 12 meses
+    let torre3 = torre.toISOString().split('T')[0];
 
-    if (this.equipo == 'BALANZA') {
+    if (this.equipo == 'BAL' && this.nroequipo.includes('Bascula',0)) {
       this.proxrevision = balanzas2;
     }
 
-    if (this.equipo != 'BALANZA') {
+    if (this.equipo == 'BAL' && this.nroequipo.includes('Balanza',0)) {
       this.proxrevision = general2;
     }
 
-    if (!this.observaciones && this.equipo == 'BALANZA') {
+    if (this.equipo != 'BAL') {
+      this.proxrevision = general2;
+    }
+
+    if (this.equipo == 'VAR' && this.nroequipo == 'Extractor polvo') {
+      this.proxrevision = balanzas2;
+    }
+
+    if (this.equipo == 'VAR' && this.nroequipo == 'Paletizadora') {
+      this.proxrevision = balanzas2;
+    }
+
+    if (this.equipo == 'VAR' && this.nroequipo == 'Destilador') {
+      this.proxrevision = torre3;
+    }
+
+    if (!this.observaciones && this.equipo == 'BAL') {
       return alertify.error("HAY QUE COMPLETAR ALGUNOS DATOS");
     }
 
-    if (!this.limpieza && this.equipo != 'BALANZA') {
+    if (!this.limpieza && this.equipo != 'BAL') {
       return alertify.error("HAY QUE COMPLETAR ALGUNOS DATOS");
     }
 
