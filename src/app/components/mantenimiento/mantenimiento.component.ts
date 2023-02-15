@@ -51,13 +51,13 @@ export class MantenimientoComponent implements OnInit {
     let torre = this.sumarDias(Hoy, 360);              // torre destilacion se calibran cada 12 meses
     let torre3 = torre.toISOString().split('T')[0];
 
-    if (this.equipo == 'BAL' && this.nroequipo.includes('Bascula',0)) {
+    if (this.equipo == 'BAL') {
       this.proxrevision = balanzas2;
     }
 
-    if (this.equipo == 'BAL' && this.nroequipo.includes('Balanza',0)) {
-      this.proxrevision = general2;
-    }
+    // if (this.equipo == 'BAL' && this.nroequipo.includes('Balanza',0)) {        *** en caso de querer dividir balanzas de basculas
+    //   this.proxrevision = general2;
+    // }
 
     if (this.equipo != 'BAL') {
       this.proxrevision = general2;
@@ -66,7 +66,7 @@ export class MantenimientoComponent implements OnInit {
     if (this.equipo == 'VAR' && this.nroequipo == 'Extractor polvo') {
       this.proxrevision = balanzas2;
     }
-
+    
     if (this.equipo == 'VAR' && this.nroequipo == 'Paletizadora') {
       this.proxrevision = balanzas2;
     }

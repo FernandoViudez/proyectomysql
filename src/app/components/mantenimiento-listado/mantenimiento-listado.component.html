@@ -18,20 +18,20 @@
             <div class="col-3">
                 <div class="input-group">
                     <select class="mt-1 custom-select boldText" [(ngModel)]="equipo" id="equipo">
-                        <option value="BALANZA">Balanzas / basculas electronicas</option>
-                        <option value="DISPERSORA">Dispersora / Mezcladora</option>
-                        <option value="ELEVADOR">Elevador / Apilador</option>
-                        <option value="MOLINO">Molino a perlas / rodillos</option>
-                        <option value="ZARANDA">Zaranda</option>
-                        <option value="ZORRA">Zorra / carrito</option>
-                        <option value="VARIOS">Otros equipos Varios</option>
+                        <option value="BAL">Balanzas / basculas electronicas</option>
+                        <option value="DIS">Dispersora / Mezcladora</option>
+                        <option value="ELE">Elevador / Apilador</option>
+                        <option value="MOL">Molino a perlas / rodillos</option>
+                        <option value="ZAR">Zaranda</option>
+                        <option value="ZOR">Zorra / carrito</option>
+                        <option value="VAR">Otros equipos Varios</option>
                     </select>
                 </div>
             </div>
             <div class="col-2 mt-2" style="text-align: right;">
                 <span *ngIf="equipo" class="boldText">Numero de Equipo</span>
             </div>
-            <div *ngIf="equipo == 'DISPERSORA'" class="col-2">
+            <div *ngIf="equipo == 'DIS'" class="col-2">
                 <div class="input-group">
                     <select class="mt-1 custom-select boldText" [(ngModel)]="nroequipo" id="nroequipo">
                         <option value="Dispersora 1  300 Lt">Nro.1 - 300 Lt (10 HP)</option>
@@ -56,7 +56,7 @@
                     </select>
                 </div>
             </div>
-            <div *ngIf="equipo == 'MOLINO'" class="col-2">
+            <div *ngIf="equipo == 'MOL'" class="col-2">
                 <div class="input-group">
                     <select class="mt-1 custom-select boldText" [(ngModel)]="nroequipo" id="nroequipo">
                         <option value="Molino 1 WAB 5 Lt">Nro.1 - WAB 5L</option>
@@ -70,7 +70,7 @@
                     </select>
                 </div>
             </div>
-            <div *ngIf="equipo == 'ZARANDA'" class="col-2">
+            <div *ngIf="equipo == 'ZAR'" class="col-2">
                 <div class="input-group">
                     <select class="mt-1 custom-select boldText" [(ngModel)]="nroequipo" id="nroequipo">
                         <option value="Zaranda 1">Zaranda Nro.1</option>
@@ -81,7 +81,7 @@
                     </select>
                 </div>
             </div>
-            <div *ngIf="equipo == 'ELEVADOR'" class="col-2">
+            <div *ngIf="equipo == 'ELE'" class="col-2">
                 <div class="input-group">
                     <select class="mt-1 custom-select boldText" [(ngModel)]="nroequipo" id="nroequipo">
                         <option value="Elevador electrico 1">Nro.1 - Elevador electrico hidraulico</option>
@@ -94,7 +94,7 @@
                     </select>
                 </div>
             </div>
-            <div *ngIf="equipo == 'ZORRA'" class="col-2">
+            <div *ngIf="equipo == 'ZOR'" class="col-2">
                 <div class="input-group">
                     <select class="mt-1 custom-select boldText" [(ngModel)]="nroequipo" id="nroequipo">
                         <option value="Zorra Mecanica 10">Nro.10 - Zorra Mecanica</option>
@@ -106,7 +106,7 @@
                     </select>
                 </div>
             </div>
-            <div *ngIf="equipo == 'BALANZA'" class="col-2">
+            <div *ngIf="equipo == 'BAL'" class="col-2">
                 <div class="input-group">
                     <select class="mt-1 custom-select boldText" [(ngModel)]="nroequipo" id="nroequipo">
                         <option value="Bascula dispersora 1">FAB 037 - Bascula Dispersora 1</option>
@@ -147,7 +147,7 @@
                     </select>
                 </div>
             </div>
-            <div *ngIf="equipo == 'VARIOS'" class="col-2">
+            <div *ngIf="equipo == 'VAR'" class="col-2">
                 <div class="input-group">
                     <select class="mt-1 custom-select boldText" [(ngModel)]="nroequipo" id="nroequipo">
                         <option value="Bomba centrifuga torre">Bomba centrifuga torre</option>
@@ -185,7 +185,8 @@
                 <th>Numero Equipo</th>
                 <th>Motivo intervencion</th>
                 <th>Verif. Limpieza</th>
-                <th>Verif. Correas</th>
+                <th *ngIf="equipo != 'ELE'">Verif. Correas</th>
+                <th *ngIf="equipo == 'ELE'">Horas uso</th>
                 <th>Verif. Mangueras</th>
                 <th>Verif. Engrase</th>
                 <th *ngIf="equipo != 'MOLINO'">Verif. Lubricacion</th>
@@ -263,11 +264,12 @@
                 <th>Proxima Revision</th>
                 <th>Motivo intervencion</th>
                 <th>Verif. Limpieza</th>
-                <th>Verif. Correas</th>
+                <th *ngIf="equipo != 'ELE'">Verif. Correas</th>
+                <th *ngIf="equipo == 'ELE'">Horas uso</th>
                 <th>Verif. Mangueras</th>
                 <th>Verif. Engrase</th>
-                <th *ngIf="equipo != 'MOLINO'">Verif. Lubricacion</th>
-                <th *ngIf="equipo == 'MOLINO'">Horas uso</th>
+                <th *ngIf="equipo != 'MOL'">Verif. Lubricacion</th>
+                <th *ngIf="equipo == 'MOL'">Horas uso</th>
                 <th>Verif. Accesorios</th>
                 <th>Verif. Conexiones</th>
                 <th>Verif. Tableros</th>

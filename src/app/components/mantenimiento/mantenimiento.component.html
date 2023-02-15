@@ -203,6 +203,7 @@
             <div>Engrase</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="engrase" id="engrase">
+                    <option></option>
                     <option *ngIf="equipo != 'MOL' && equipo != 'ELE' && equipo != 'ZOR'" value="Alamites/rodamientos">
                         Alamites /
                         correderas y/o rodamientos</option>
@@ -217,6 +218,7 @@
             <div>Aceite</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="lubricacion" id="lubricacion">
+                    <option></option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ZOR' && equipo != 'ELE'" value="Aceite">Nivel aceite
                     </option>
                     <option *ngIf="equipo != 'VAR'" value="Aceite piston">Nivel aceite piston hidraulico</option>
@@ -224,6 +226,13 @@
                         aceite moto-reductor
                     </option>
                 </select>
+            </div>
+        </div>
+        <div *ngIf="equipo == 'ELE'" class="col-3"> <!-- aprovecho este campo para que registren horas de uso-->
+            <div style="font-weight: bold;">Registrar HORAS DE USO</div>
+            <div class="input-group">
+                <input class="mt-2 custom-select boldText" input type="number" [(ngModel)]="correas"
+                    id="correas">
             </div>
         </div>
         <div *ngIf="equipo == 'MOL'" class="col-3"> <!-- aprovecho este campo para que registren horas de uso-->
@@ -240,6 +249,7 @@
             <div>Accesorios</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="accesorios" id="accesorios">
+                    <option></option>
                     <option *ngIf="equipo == 'VAR'" value="Engrase pistones">Engrase de pistones</option>
                     <option *ngIf="equipo == 'VAR'" value="Vaciado bolsas">Vaciado bolsas receptoras de polvo</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE' && equipo != 'ZAR'" value="Bomba">Verificacion
@@ -262,6 +272,7 @@
             <div>Conexiones</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="conexiones" id="conexiones">
+                    <option></option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE' && equipo != 'MOL' && equipo != 'ZAR'"
                         value="Aire">Verificacion conexion aire</option>
                     <option *ngIf="equipo != 'MOL'" value="Electrica">Verificacion conexion electrica</option>
@@ -275,8 +286,9 @@
             <div>Tableros / botonera</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="tableros" id="tableros">
+                    <option></option>
+                    <option value="Ok">En perfecto estado</option>
                     <option value="Reparado">Reparado</option>
-                    <option value="Ok">Verificado - en orden</option>
                 </select>
             </div>
         </div>
@@ -284,6 +296,7 @@
             <div>Llaves de corte</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="cortes" id="cortes">
+                    <option></option>
                     <option value="LLaves">Verificacion cierre llaves esfericas</option>
                     <option *ngIf="equipo == 'VAR'" value="Corte tolva">Verificacion corte automatico</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'MOL'" value="valvulas">Verificacion valvulas y retenes
@@ -295,6 +308,7 @@
             <div>Mangueras</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="mangueras" id="mangueras">
+                    <option></option>
                     <option *ngIf="equipo != 'MOL' && equipo != 'ELE'" value="Flexibles">Verificacion flexibles</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Verificacion mangueras
                         (aire/agua/liq.refrigerante)</option>
@@ -329,21 +343,30 @@
     <div *ngIf="equipo == 'BAL' || equipo == 'ZOR'" class="col-12 text-center">
         <div class="mt-5 alert alert-success boldText">
             <h1>Recuerda</h1>
-            <p *ngIf="nroequipo.includes('Balanza')">El proximo mantenimiento de BALANZAS se programara
-                PARA DENTRO DE 1 MES</p>
-            <p *ngIf="nroequipo.includes('Bascula')">El proximo mantenimiento de BASCULAS se programara
-                PARA DENTRO DE 6 MESES</p>
+            <p>El proximo mantenimiento de se programara PARA DENTRO DE 6 MESES</p>
             <h1></h1>
         </div>
     </div>
-    <div *ngIf="equipo == 'DIS' || equipo == 'MOL' || equipo == 'ZAR' || equipo == 'ELE' || equipo == 'VAR'"
-        class="col-12 text-center">
+    <div *ngIf="equipo == 'DIS' || equipo == 'MOL' || equipo == 'ZAR' || equipo == 'ELE'" class="col-12 text-center">
         <div class="mt-5 alert alert-success boldText">
             <h1>Recuerda</h1>
             <p>El proximo mantenimiento se programara PARA DENTRO DE 1 MES</p>
-            <p *ngIf="nroequipo.includes('Destilador') || nroequipo.includes('Paletizadora') || nroequipo.includes('Extractor')">
+            <p *ngIf="nroequipo.includes('Paletizadora') || nroequipo.includes('Extractor')">
                 El proximo mantenimiento se programara PARA DENTRO DE 6 MESES</p>
+            <p *ngIf="nroequipo.includes('Destilador')">
+                El proximo mantenimiento se programara PARA DENTRO DE 12 MESES</p>
             <h1></h1>
         </div>
     </div>
-</div>
+    <div *ngIf="equipo == 'VAR'" class="col-12 text-center">
+        <div class="mt-5 alert alert-success boldText">
+            <h1>Recuerda</h1>
+            <p *ngIf="nroequipo.includes('Paletizadora') || nroequipo.includes('Extractor')">
+                El proximo mantenimiento se programara PARA DENTRO DE 6 MESES</p>
+            <p *ngIf="nroequipo.includes('Destilador')">
+                El proximo mantenimiento se programara PARA DENTRO DE 12 MESES</p>
+            <p *ngIf="!nroequipo.includes('Paletizadora') || !nroequipo.includes('Extractor') || !nroequipo.includes('Destilador')">
+                El proximo mantenimiento se programara PARA DENTRO DE 1 MES</p>
+            <h1></h1>
+        </div>
+    </div>
