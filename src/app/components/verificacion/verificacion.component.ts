@@ -19,6 +19,8 @@ export class VerificacionComponent implements OnInit {
   public descripcion: string;
   public descripcionLote: string;
   public descripcionPartida: Number;
+  public aprobado: string;
+  public partidaok = false;         // para que no se pueda poner partidas terminadas
 
   // ok(boolean) (Sending the verification, we validate the data sent by the user,
   // and we determinate the ok field seeing the repsonse)
@@ -50,12 +52,33 @@ export class VerificacionComponent implements OnInit {
   traerPartida() {  //tiene que traerlo de la base de datos calidad PT
     this.genericService.traerPartida(this.partida)
       .subscribe((data: any) => {
-        this.descripcionPartida = data.response[0].numeroPartida;
+        if (data?.response?.length) {
+          this.descripcionPartida = data.response[0].numeroPartida;
+          if (data.response[0].aprobado) {
+            alertify.error("La partida ESTA FINALIZADA");
+          } else {
+            this.partidaok = true;
+          }
+        } else {
+          alertify.error("No se encontró la partida solicitada.");
+        }
       }, err => {
-        this.partida = null;
-        alertify.error("PARTIDA INEXISTENTE");
+        alertify.error("Ocurrió un error al obtener la partida.");
       })
   }
+
+  //traerPartida() {  
+  //  this.genericService.traerPartida(this.partida)
+  //    .subscribe((data: any) => {
+  //      this.descripcionPartida = data.response[0].numeroPartida;
+  //  
+  //      console.log(this.descripcionPartida);
+  //      console.log(this.aprobado);
+  //    }, err => {
+  //      this.partida = null;
+  //      alertify.error("PARTIDA INEXISTENTE");
+  //    })
+  //}
 
   enviarData() {
     let enviar: boolean = true;
