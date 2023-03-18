@@ -61,9 +61,11 @@ export class VerificacionComponent implements OnInit {
           }
         } else {
           alertify.error("No se encontró la partida solicitada.");
+          this.partidaok = false;
         }
       }, err => {
         alertify.error("Ocurrió un error al obtener la partida.");
+        this.partidaok = false;
       })
   }
 
@@ -150,5 +152,6 @@ export class VerificacionComponent implements OnInit {
     this.descripcion = null;
     this.descripcionLote = null;
     this.descripcionPartida = null;
+    this.partidaok = false;
   }
 }
