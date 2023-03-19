@@ -180,7 +180,7 @@
         <table *ngIf="arregloMantenimiento.length != 0" class="table table-dark">
             <tr>
                 <th>Ultima Revision</th>
-                <th>Proxima Revision</th>
+                <th style="color: burlywood; font-weight: bolder;">Proxima Revision</th>
                 <th>Equipo</th>
                 <th>Numero Equipo</th>
                 <th>Motivo intervencion</th>
@@ -200,7 +200,7 @@
             </tr>
             <tr *ngFor="let item of arregloMantenimiento">
                 <td>{{item.fecha | datePipe}}</td>
-                <td>{{item.proxrevision | datePipe}}</td>
+                <td style="color: burlywood; font-weight: bolder;">{{item.proxrevision | datePipe}}</td>
                 <td>{{item.equipo}}</td>
                 <td>{{item.nroequipo}}</td>
                 <td>{{item.motivo}}</td>
@@ -261,7 +261,7 @@
         <thead>
             <tr class="text-white text-center" *ngIf="arregloMantenimiento.length > 0">
                 <th>Ultima Revision</th>
-                <th>Proxima Revision</th>
+                <th style="font-weight: bold;">Proxima Revision</th>
                 <th>Motivo intervencion</th>
                 <th>Verif. Limpieza</th>
                 <th *ngIf="equipo != 'ELE'">Verif. Correas</th>
@@ -281,7 +281,7 @@
         <tbody>
             <tr *ngFor="let item of arregloMantenimiento" class="text-center" style="cursor: pointer;">
                 <td>{{item.fecha | datePipe}}</td>
-                <td>{{item.proxrevision | datePipe}}</td>
+                <td style="font-weight: bold;">{{item.proxrevision | datePipe}}</td>
                 <td>{{item.motivo}}</td>
                 <td>{{item.limpieza}}</td>
                 <td>{{item.correas}}</td>

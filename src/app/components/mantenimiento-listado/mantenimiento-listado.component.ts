@@ -61,7 +61,7 @@ export class MantenimientoListadoComponent implements OnInit {
     // }
   }
 
-  onBusquedaProx() {                // NO ME SALE ESTO !!!!  NO PUEDO PONER QUE BUSQUE SOLAMENTE EN CAMPO PROXREVISION > A HOY !!!
+  onBusquedaProx() {
     let Hoy = new Date();                                  // para que liste los que hay que mantener a partir del dia de la fecha
     let Hoy2 = Hoy.toISOString().split('T')[0];            // basado en campo de fecha proxrevision y no en el campo de fecha
     this.proxrevision = Hoy2;

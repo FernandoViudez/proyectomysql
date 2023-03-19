@@ -55,7 +55,7 @@ export class VerificacionComponent implements OnInit {
         if (data?.response?.length) {
           this.descripcionPartida = data.response[0].numeroPartida;
           if (data.response[0].aprobado) {
-            alertify.error("La partida ESTA FINALIZADA");
+            alertify.error("La partida ESTA FINALIZADA - Verificar numero");
           } else {
             this.partidaok = true;
           }
@@ -64,23 +64,10 @@ export class VerificacionComponent implements OnInit {
           this.partidaok = false;
         }
       }, err => {
-        alertify.error("Ocurrió un error al obtener la partida.");
+        alertify.error("PARTIDA INEXISTENTE - Verificar numero");
         this.partidaok = false;
       })
   }
-
-  //traerPartida() {  
-  //  this.genericService.traerPartida(this.partida)
-  //    .subscribe((data: any) => {
-  //      this.descripcionPartida = data.response[0].numeroPartida;
-  //  
-  //      console.log(this.descripcionPartida);
-  //      console.log(this.aprobado);
-  //    }, err => {
-  //      this.partida = null;
-  //      alertify.error("PARTIDA INEXISTENTE");
-  //    })
-  //}
 
   enviarData() {
     let enviar: boolean = true;
