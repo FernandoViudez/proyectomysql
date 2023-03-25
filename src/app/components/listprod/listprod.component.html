@@ -150,7 +150,7 @@
                 <th>DESCRIPCION</th>
                 <th>COLOR</th>
                 <th>COLOR IGUAL</th>
-                <th></th>
+                <th>PESO ESPECIFICO</th>
                 <th>COMPONENTE</th>
                 <th>FORMA CONJUNTO</th>
                 <th>RELACION DE MEZCLADO</th>
@@ -169,15 +169,17 @@
                 <td style="font-size: 16px;">{{item.color}}</td>
                 <td style="font-size: 16px;">{{item.colorigual}}</td>
                 <td *ngIf="item.pesoespecifico == 0 || !item.pesoespecifico" style="background-color: rgb(219, 156, 39)">SIN FORMULA</td>
-                <td *ngIf="item.pesoespecifico > 0"></td>
+                <td *ngIf="item.pesoespecifico > 0" style="font-size: 16px;">{{item.pesoespecifico | numeralPipe}}</td>
                 <td style="font-size: 16px;">{{item.componente}}</td>
                 <td style="font-size: 16px;">{{item.formaconjunto}}</td>
                 <td style="font-size: 16px;">{{item.relaciondemezcla}}</td>
-                <td style="font-size: 16px;">{{item.fechaultimaelaboracion | datePipe}}</td>
+                <td style="font-size: 16px; font-weight: bold; ">{{item.fechaultimaelaboracion | datePipe}}</td>
                 <td style="font-size: 16px;">{{item.ultimamodificacion | datePipe}}</td>
                 <td style="font-size: 16px;">{{item.modifico}}</td>
-                <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px; background-color: rgb(219, 156, 39);">{{item.precio | numeralPipe: 'true'}}</td>
-                <td *ngIf="user_role == 'ADMIN_ROL'" style="font-size: 16px; background-color: rgb(219, 156, 39);">{{item.ultimocalculo | datePipe}}</td>
+                <td *ngIf="user_role == 'ADMIN_ROL' && item.pesoespecifico > 0" style="font-size: 16px; background-color: rgb(219, 156, 39);">{{item.precio | numeralPipe: 'true'}}</td>
+                <td *ngIf="user_role == 'ADMIN_ROL' && item.pesoespecifico == 0 || !item.pesoespecifico"></td>
+                <td *ngIf="user_role == 'ADMIN_ROL' && item.pesoespecifico > 0" style="font-size: 16px; background-color: rgb(219, 156, 39);">{{item.ultimocalculo | datePipe}}</td>
+                <td *ngIf="user_role == 'ADMIN_ROL' && item.pesoespecifico == 0 || !item.pesoespecifico"></td>
                 <td style="font-size: 16px;">{{item.unidadmedida}}</td>
                 <td style="font-size: 16px;">{{item.stock | numeralPipe: 'true'}}</td>
             </tr>
@@ -241,8 +243,8 @@
             <td>{{item.color}}</td>
             <td>{{item.colorigual}}</td>
             <td>{{item.componente}}</td>
-            <td *ngIf="item.pesoespecifico == 0">SIN FORMULA</td>
-            <td>{{item.pesoespecifico | numeralPipe}}</td>
+            <td *ngIf="item.pesoespecifico == 0 || !item.pesoespecifico">SIN FORMULA</td>
+            <td *ngIf="item.pesoespecifico > 0">{{item.pesoespecifico | numeralPipe}}</td>
             <td>{{item.formaconjunto}}</td>
             <td>{{item.relaciondemezcla}}</td>
             <td>{{item.fechaultimaelaboracion | datePipe}}</td>
@@ -254,8 +256,10 @@
             <td>{{item.solidosppv | numeralPipe}}</td>
             <td>{{item.resina | numeralPipe}}</td>
             <td>{{item.pigmento | numeralPipe}}</td>
-            <td *ngIf="user_role == 'ADMIN_ROL'">{{item.precio | numeralPipe}}</td>
-            <td *ngIf="user_role == 'ADMIN_ROL'">{{item.ultimocalculo | datePipe}}</td>
+            <td *ngIf="user_role == 'ADMIN_ROL' && item.pesoespecifico > 0">{{item.precio | numeralPipe}}</td>
+            <td *ngIf="user_role == 'ADMIN_ROL' && item.pesoespecifico == 0 || !item.pesoespecifico"></td>
+            <td *ngIf="user_role == 'ADMIN_ROL' && item.pesoespecifico > 0">{{item.ultimocalculo | datePipe}}</td>
+            <td *ngIf="user_role == 'ADMIN_ROL' && item.pesoespecifico == 0 || !item.pesoespecifico"></td>
         </tr>
     </table>
 </div>

@@ -163,6 +163,7 @@ export class ListprodComponent implements OnInit {
         "resina",
         "pigmento",
         "precio",
+        "ultimocalculo",
     ])
       .subscribe((data: onExcelDTO) => {
         this.genericService.downloadExcel(data.url);
