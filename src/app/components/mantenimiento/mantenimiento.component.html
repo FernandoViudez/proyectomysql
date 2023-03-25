@@ -109,7 +109,7 @@
             <div class="input-group">
                 <select class="mt-1 custom-select boldText" [(ngModel)]="nroequipo" id="nroequipo">
                     <option value="Bascula dispersora 1">FAB 037 - Bascula Dispersora 1</option>
-                    <option value="Bascula dispersora 2">FAB 051 - Bascula Dispersora 2</option>
+                    <option value="Bascula dispersora 2">FAB 057 - Bascula Dispersora 2</option>
                     <option value="Bascula dispersora 3">FAB 043 - Bascula Dispersora 3</option>
                     <option value="Bascula dispersora 4">FAB 036 - Bascula Dispersora 4</option>
                     <option value="Bascula dispersora 6">FAB 035 - Bascula Dispersora 6</option>
@@ -141,6 +141,7 @@
                     <option>**</option>
                     <option value="Bascula tambores FAB 011">FAB 011 - Bascula tambores</option>
                     <option value="Balanza cuna FAB 044">FAB 044 - Balanza cuna tambores</option>
+                    <option value="Balanza MP FAB 051">FAB 051 - Bascuala Materias primas</option>
                     <option value="Balanza basicos FAB 053">FAB 053 - Balanza electronica Basicos</option>
                     <option value="Balanza fraccionamiento FAB 054">FAB 055 - Balanza fraccionamiento</option>
                 </select>
@@ -157,6 +158,7 @@
                     <option value="Envasadora 3">Envasadora semiautomatica Nro.3</option>
                     <option value="Extractor polvo">Extractor polvo</option>
                     <option value="Enfriador agua">Enfriador agua (chiller)</option>
+                    <option value="Flejadora">Flejadora</option>
                     <option value="Paletizadora">Paletizadora</option>
                     <option value="Shaker COROB GCM M1372">Shaker 1 - Corob GCM D22M1372</option>
                     <option value="Shaker OPOWER HY0905039">Shaker 2 - OceanPower Nro.HY 0905039</option>
@@ -164,6 +166,8 @@
                     <option value="Shaker TECMEC">Shaker 4 - Tecmec</option>
                     <option value="Shaker COROB CLEVER D22M2653">Shaker 5 - Corob CLEVER D22M2653</option>
                     <option value="Shaker COROB FIRST D22M0439">Shaker 6 - Corob FIRST D22M0439</option>
+                    <option value="Tapadora 1 - FAB 058">Tapadora 1 - FAB 058</option>
+                    <option value="Tapadora 2 -FAB 059">Tapadora 2 - FAB 059</option>
                     <option value="Destilador">Torre destilación</option>
                 </select>
             </div>
@@ -233,8 +237,7 @@
         <div *ngIf="equipo == 'ELE'" class="col-3"> <!-- aprovecho este campo para que registren horas de uso-->
             <div style="font-weight: bold;">Registrar HORAS DE USO</div>
             <div class="input-group">
-                <input class="mt-2 custom-select boldText" input type="number" [(ngModel)]="correas"
-                    id="correas">
+                <input class="mt-2 custom-select boldText" input type="number" [(ngModel)]="correas" id="correas">
             </div>
         </div>
         <div *ngIf="equipo == 'MOL'" class="col-3"> <!-- aprovecho este campo para que registren horas de uso-->
@@ -252,6 +255,16 @@
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="accesorios" id="accesorios">
                     <option></option>
+                    <option *ngIf="equipo == 'DIS' || equipo == 'MOL'">Cambio pinzas puesta a tierra</option>
+                    <option *ngIf="equipo == 'ELE'">Cambio eslinga</option>
+                    <option *ngIf="equipo == 'ELE'">Reparacion cadena</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'MOL' && equipo != 'ELE' && equipo != 'ZAR'"
+                        value="Filtro">Cambio filtro aire</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'MOL' && equipo != 'ELE' && equipo != 'ZAR'"
+                        value="Filtro">Cambio rodamientos / engranajes</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'MOL' && equipo != 'ELE' && equipo != 'ZAR'"
+                        value="Filtro">Cambio / reparacion bomba alimentacion</option>
+                    <option>***</option>
                     <option *ngIf="equipo == 'VAR'" value="Engrase pistones">Engrase de pistones</option>
                     <option *ngIf="equipo == 'VAR'" value="Vaciado bolsas">Vaciado bolsas receptoras de polvo</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE' && equipo != 'ZAR'" value="Bomba">Verificacion
@@ -275,6 +288,9 @@
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="conexiones" id="conexiones">
                     <option></option>
+                    <option>Reparacion conexion electrica</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'ELE' && equipo != 'ZAR'">Reparacion conexion aire</option>
+                    <option>***</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE' && equipo != 'MOL' && equipo != 'ZAR'"
                         value="Aire">Verificacion conexion aire</option>
                     <option *ngIf="equipo != 'MOL'" value="Electrica">Verificacion conexion electrica</option>
@@ -299,6 +315,10 @@
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="cortes" id="cortes">
                     <option></option>
+                    <option>Cambio llave esferica</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'MOL'" value="valvulas">Cambio valvula</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'MOL'" value="valvulas">Cambio retenes</option>
+                    <option>***</option>
                     <option value="LLaves">Verificacion cierre llaves esfericas</option>
                     <option *ngIf="equipo == 'VAR'" value="Corte tolva">Verificacion corte automatico</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'MOL'" value="valvulas">Verificacion valvulas y retenes
@@ -311,6 +331,12 @@
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="mangueras" id="mangueras">
                     <option></option>
+                    <option *ngIf="equipo != 'MOL' && equipo != 'ELE'" value="Flexibles">Cambio flexibles</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'MOL'" value="Mangueras">Cambio mangueras hidraulicas</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Cambio mangueras agua</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Cambio mangueras aire</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Cambio mangueras liq.refrigerante</option>
+                    <option>***</option>
                     <option *ngIf="equipo != 'MOL' && equipo != 'ELE'" value="Flexibles">Verificacion flexibles</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Verificacion mangueras
                         (aire/agua/liq.refrigerante)</option>
@@ -367,7 +393,8 @@
                 El proximo mantenimiento se programara PARA DENTRO DE 6 MESES</p>
             <p *ngIf="nroequipo.includes('Destilador')">
                 El proximo mantenimiento se programara PARA DENTRO DE 12 MESES</p>
-            <p *ngIf="!nroequipo.includes('Paletizadora') || !nroequipo.includes('Extractor') || !nroequipo.includes('Destilador')">
+            <p
+                *ngIf="!nroequipo.includes('Paletizadora') || !nroequipo.includes('Extractor') || !nroequipo.includes('Destilador')">
                 El proximo mantenimiento se programara PARA DENTRO DE 1 MES</p>
             <h1></h1>
         </div>
