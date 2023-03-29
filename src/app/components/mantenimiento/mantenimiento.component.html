@@ -99,6 +99,12 @@
                     <option value="Zorra Mecanica 11">Nro.11 - Zorra Mecanica</option>
                     <option value="Zorra Mecanica 14">Nro.14 - Zorra Mecanica</option>
                     <option value="Zorra Mecanica 15">Nro.15 - Zorra Mecanica</option>
+                    <option value="Zorra Mecanica 16 - FAB 060">FAB 060 - Zorra Mecanica</option>
+                    <option value="Zorra Mecanica 17 - FAB 061">FAB 061 - Zorra Mecanica</option>
+                    <option value="Zorra Mecanica 18 - FAB 062">FAB 062 - Zorra Mecanica</option>
+                    <option value="Zorra Mecanica 19 - FAB 063">FAB 063 - Zorra Mecanica</option>
+                    <option value="Zorra Mecanica 20 - FAB 064">FAB 064 - Zorra Mecanica</option>
+                    <option value="Zorra Mecanica 21 - FAB 065">FAB 065 - Zorra Mecanica</option>
                     <option value="Zorra con bascula FAB 019">FAB 019 - Zorra con balanza electronica</option>
                     <option value="Zorra con bascula FAB 040">FAB 040 - Zorra con balanza electronica</option>
                 </select>
@@ -141,7 +147,7 @@
                     <option>**</option>
                     <option value="Bascula tambores FAB 011">FAB 011 - Bascula tambores</option>
                     <option value="Balanza cuna FAB 044">FAB 044 - Balanza cuna tambores</option>
-                    <option value="Balanza MP FAB 051">FAB 051 - Bascuala Materias primas</option>
+                    <option value="Balanza MP FAB 051">FAB 051 - Bascula Materias primas</option>
                     <option value="Balanza basicos FAB 053">FAB 053 - Balanza electronica Basicos</option>
                     <option value="Balanza fraccionamiento FAB 054">FAB 055 - Balanza fraccionamiento</option>
                 </select>
@@ -167,7 +173,7 @@
                     <option value="Shaker COROB CLEVER D22M2653">Shaker 5 - Corob CLEVER D22M2653</option>
                     <option value="Shaker COROB FIRST D22M0439">Shaker 6 - Corob FIRST D22M0439</option>
                     <option value="Tapadora 1 - FAB 058">Tapadora 1 - FAB 058</option>
-                    <option value="Tapadora 2 -FAB 059">Tapadora 2 - FAB 059</option>
+                    <option value="Tapadora 2 - FAB 059">Tapadora 2 - FAB 059</option>
                     <option value="Destilador">Torre destilación</option>
                 </select>
             </div>
@@ -289,7 +295,8 @@
                 <select class="mt-2 custom-select boldText" [(ngModel)]="conexiones" id="conexiones">
                     <option></option>
                     <option>Reparacion conexion electrica</option>
-                    <option *ngIf="equipo != 'DIS' && equipo != 'ELE' && equipo != 'ZAR'">Reparacion conexion aire</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'ELE' && equipo != 'ZAR'">Reparacion conexion aire
+                    </option>
                     <option>***</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE' && equipo != 'MOL' && equipo != 'ZAR'"
                         value="Aire">Verificacion conexion aire</option>
@@ -332,10 +339,12 @@
                 <select class="mt-2 custom-select boldText" [(ngModel)]="mangueras" id="mangueras">
                     <option></option>
                     <option *ngIf="equipo != 'MOL' && equipo != 'ELE'" value="Flexibles">Cambio flexibles</option>
-                    <option *ngIf="equipo != 'DIS' && equipo != 'MOL'" value="Mangueras">Cambio mangueras hidraulicas</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'MOL'" value="Mangueras">Cambio mangueras hidraulicas
+                    </option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Cambio mangueras agua</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Cambio mangueras aire</option>
-                    <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Cambio mangueras liq.refrigerante</option>
+                    <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Cambio mangueras
+                        liq.refrigerante</option>
                     <option>***</option>
                     <option *ngIf="equipo != 'MOL' && equipo != 'ELE'" value="Flexibles">Verificacion flexibles</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Verificacion mangueras
@@ -379,23 +388,18 @@
         <div class="mt-5 alert alert-success boldText">
             <h1>Recuerda</h1>
             <p>El proximo mantenimiento se programara PARA DENTRO DE 1 MES</p>
-            <p *ngIf="nroequipo.includes('Paletizadora') || nroequipo.includes('Extractor')">
-                El proximo mantenimiento se programara PARA DENTRO DE 6 MESES</p>
-            <p *ngIf="nroequipo.includes('Destilador')">
-                El proximo mantenimiento se programara PARA DENTRO DE 12 MESES</p>
-            <h1></h1>
         </div>
     </div>
     <div *ngIf="equipo == 'VAR'" class="col-12 text-center">
         <div class="mt-5 alert alert-success boldText">
             <h1>Recuerda</h1>
-            <p *ngIf="nroequipo.includes('Paletizadora') || nroequipo.includes('Extractor')">
+            <p *ngIf="nroequipo.includes('Compresor') || nroequipo.includes('Enfriador') || nroequipo.includes('Shaker')">
+                El proximo mantenimiento se programara PARA DENTRO DE 1 MES</p>
+            <p *ngIf="nroequipo.includes('Paletizadora') || nroequipo.includes('Extractor') || nroequipo.includes('Envasadora') || nroequipo.includes('Flejadora') 
+            || nroequipo.includes('Tapadora')">
                 El proximo mantenimiento se programara PARA DENTRO DE 6 MESES</p>
             <p *ngIf="nroequipo.includes('Destilador')">
                 El proximo mantenimiento se programara PARA DENTRO DE 12 MESES</p>
-            <p
-                *ngIf="!nroequipo.includes('Paletizadora') || !nroequipo.includes('Extractor') || !nroequipo.includes('Destilador')">
-                El proximo mantenimiento se programara PARA DENTRO DE 1 MES</p>
             <h1></h1>
         </div>
     </div>

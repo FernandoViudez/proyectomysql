@@ -269,31 +269,31 @@
         </div>
         <div class="col-8">
             <span align="right">REVESTA S.A.I.C. </span><br>
-            <span align="right">Av. Mitre 1249 - Florida</span><br>
+            <span align="right">Reinoso 341 - Don Torcuato</span><br>
             <span align="right">Buenos Aires - Argentina</span><br>
         </div>
+    </div>
+    <div class="text-right"> <!-- imprimo la fecha del dia de emision del certificado, no de aprobacion -->
+        FECHA DE EMISION / ISSUE DATE: {{fechadia | datePipe}}
     </div>
     <div>
         <h5>
             <b>
                 <hr class="new3">
                 <div class="text-center">
-                    CERTIFICADO DE IDENTIDAD DEL PRODUCTO
-                </div>
-                <div class="text-right"> <!-- imprimo la fecha del dia de emision del certificado, no de aprobacion -->
-                    FECHA DE EMISION: {{fechadia | datePipe}}
+                    CERTIFICADO DE IDENTIDAD DEL PRODUCTO / PRODUCT IDENTITY DATA
                 </div>
                 <hr class="new3">
                 <div>
-                    <span *ngIf="descripcion === descripcionOrigen" class="tab2"> Producto : {{descripcionPt}}</span>
-                    <span *ngIf="descripcion != descripcionOrigen" class="tab2"> Producto : {{descripcion}}</span><br>
-                    <span class="tab2">Color : {{colorPt}}</span><br>
-                    <span class="tab2">Componente : {{componente}}</span> <br>
-                    <span class="tab2">Tipo generico : {{tipo}}</span><br>
+                    <span *ngIf="descripcion === descripcionOrigen" class="tab2"> Producto / Product: {{descripcionPt}}</span>
+                    <span *ngIf="descripcion != descripcionOrigen" class="tab2"> Producto / Product: {{descripcion}}</span><br>
+                    <span class="tab2">Color / Color: {{colorPt}}</span><br>
+                    <span class="tab2">Componente / Component: {{componente}}</span> <br>
+                    <span class="tab2">Tipo generico / Generic type: {{tipo}}</span><br>
                 </div>
                 <hr class="new3">
                 <div>
-                    <span class="tab2"></span> Numero de Partida: {{numeroPartida}}
+                    <span class="tab2"></span> Numero de Partida / Batch number: {{numeroPartida}}
                     <!-- <span class="tab2"></span> Fecha de Elaboracion: {{fecha | datePipe}} 
                                           no imprimo la fecha de fabricacion (nov. 2022)-->
                 </div>
@@ -301,94 +301,96 @@
             <hr class="new3">
             <b>
                 <div class="text-center">
-                    DATOS FISICOS
+                    DATOS FISICOS / PHYSICAL DATA
                 </div>
             </b> <br>
             <table>
                 <tr>
-                    <td class="text-center ">ENSAYO</td>
-                    <td class="text-center">VALOR OBTENIDO</td>
-                    <td class="text-center">VALORES DE APROBACION</td>
+                    <td class="text-center ">ENSAYO / TEST</td>
+                    <td class="text-center">VALOR OBTENIDO / OBTAINED VALUE</td>
+                    <td class="text-center">VALORES DE APROBACION / APPROVAL VALUES</td>
                 </tr><br>
                 <tr>
-                    <td>PESO ESPECIFICO</td>
+                    <td>PESO ESPECIFICO / MASS DENSITY</td>
                     <td>{{pesoespecifico | numeralPipe}} gr/lt</td>
                     <td>{{pePt}} gr/lt</td>
                 </tr>
                 <tr>
-                    <td>VISCOSIDAD INICIAL</td>
+                    <td>VISCOSIDAD INICIAL / INITIAL VISCOSITY</td>
                     <td>{{viscosidadcps}} Cps</td>
                     <td>{{viscosidadPt}} Cps</td>
                 </tr>
                 <tr>
-                    <td>MOLIENDA</td>
+                    <td>MOLIENDA / GRINDING</td>
                     <td>{{molienda}}</td>
                     <td>{{moliendaPt}}</td>
                 </tr>
                 <tr>
-                    <td>APLICABILIDAD</td>
+                    <td>APLICABILIDAD / APPLICABILITY</td>
                     <td>{{aplicabilidad}}</td>
                     <td> </td>
                 </tr>
                 <tr>
-                    <td>COLOR</td>
+                    <td>COLOR / COLOR</td>
                     <td>{{color}} </td>
                     <td> </td>
                 </tr>
                 <tr>
-                    <td>CURADO</td>
+                    <td>CURADO / CURING</td>
                     <td>{{curado}} </td>
                     <td> </td>
                 </tr>
             </table><br>
             <div>
-                Las mediciones se tomaron a 25 grados C de acuerdo al metodo F/S 141a #4287
-            </div><br>
+                Las mediciones se tomaron a 25 grados C de acuerdo al metodo F/S 141a #4287<br>
+                Measurments were obtained at 25 Celcius according to F/S 141a #4287 method
+            </div>
             <hr class="new3">
             <b>
                 <div class="text-center">
-                    DATOS DEL PRODUCTO (mezcla si es un producto de mas de un componente)
+                    DATOS DEL PRODUCTO (mezcla si es un producto de mas de un componente)<br>
+                    PRODUCT DATA (mixture if product is pluricomponent)
                     <hr>
                 </div>
             </b>
             <div>
-                RELACION DE LA MEZCLA : {{relacionmezcla}}<br>
-                SOLIDOS POR VOLUMEN : {{solidos}}<br>
-                ESPESOR RECOMENDADO POR MANO : {{espesormano}}<br>
+                RELACION DE LA MEZCLA  / MIXING RATIO : {{relacionmezcla}}<br>
+                SOLIDOS POR VOLUMEN / VOLUME SOLIDS : {{solidos}}<br>
+                ESPESOR RECOMENDADO POR MANO (micrones) / RECOMMENDED DRY FILM THICKNESS PER COAT (microns): {{espesormano}}<br>
             </div><br>
             <table>
                 <tr>
                     <td> </td>
-                    <td class="text-center">Horas</td>
-                    <td class="text-center">Temperatura</td>
-                    <td class="text-center">H.R.A.</td>
+                    <td class="text-center">Horas / Hours</td>
+                    <td class="text-center">Temperatura / Temperature</td>
+                    <td class="text-center">H.R.A. / Humidity</td>
                 </tr>
                 <tr>
-                    <td>VIDA UTIL DE LA MEZCLA</td>
+                    <td>VIDA UTIL DE LA MEZCLA / POT LIFE</td>
                     <td class="text-center">{{vidamezcla}} </td>
                     <td class="text-center">{{temp1}} </td>
                     <td class="text-center">{{hra1}} </td>
                 </tr>
                 <tr>
-                    <td>SECO AL TACTO</td>
+                    <td>SECO AL TACTO / DRY TO TOUCH</td>
                     <td class="text-center">{{secotacto}}</td>
                     <td class="text-center">{{temp2}}</td>
                     <td class="text-center">{{hra2}} </td>
                 </tr>
                 <tr>
-                    <td>SECADO DURO</td>
+                    <td>SECADO DURO / DRY HARD</td>
                     <td class="text-center">{{secoduro}}</td>
                     <td class="text-center">{{temp3}}</td>
                     <td class="text-center">{{hra3}} </td>
                 </tr>
                 <tr>
-                    <td>TIEMPO PARA RECUBRIR</td>
+                    <td>TIEMPO PARA RECUBRIR / DRY TO RECOAT</td>
                     <td class="text-center">{{pararecubrir}}</td>
                     <td class="text-center">{{temp4}} </td>
                     <td class="text-center">{{hra4}} </td>
                 </tr>
                 <tr>
-                    <td>CURADO COMPLETO</td>
+                    <td>CURADO COMPLETO / FULL CURE</td>
                     <td class="text-center">{{curado2}} </td>
                     <td class="text-center">{{temp5}} </td>
                     <td class="text-center">{{hra5}} </td>
@@ -396,24 +398,29 @@
             </table><br>
             <hr class="new3">
             <div>
-                SOLVENTE DE DILUCION : {{dilucion}}<br>
-                SOLVENTE DE LIMPIEZA : {{limpeza}}<br>
+                SOLVENTE DE DILUCION / THINNER: {{dilucion}}<br>
+                SOLVENTE DE LIMPIEZA / CLEANING SOLVENT: {{limpeza}}<br>
             </div>
             <hr class="new3">
             <div>
-                VIDA UTIL EN CORRECTAS CONDICIONES DE ALMACENAMIENTO: {{vidaalmacen}}<br>
-                CON TEMPERATURAS ENTRE 5 Y 38 C DESDE FECHA DE ENTREGA (REFERIRSE AL REMITO)<br>
+                VIDA UTIL EN CORRECTAS CONDICIONES DE ALMACENAMIENTO: {{vidaalmacen}} CON TEMPERATURAS ENTRE 5 Y 38 C DESDE<br>
+                FECHA DE ENTREGA (REFERIRSE AL REMITO).<br>
+                SHELF LIFE UNDER CORRECT STORAGE CONDITIONS (BETWEEN 5 C AND 38 C): {{vidaalmacen}} FROM DELIVERY DATE. <br>
             </div>
             <hr class="new3">
             <div>
                 Certificamos que esta partida fue elaborada bajo nuestro programa de Garantia de Calidad de acuerdo
                 a las normas de Control de Calidad <br>y Procesos aplicables a este producto.<br>
                 Este documento forma parte, junto con el remito de envio, de la informacion necesaria y suficiente
-                para la trazabilidad del producto.<br>
+                para la trazabilidad del producto.<br><br>
+                We hereby certify that this product was manufactured under our QA program according to our QC standards
+                referred to this product.<br>
+                This document forms part -together with the proof of delivery- of the necessary and sufficient information
+                for product traceability.
             </div>
             <hr class="new3"><br>
             <div>
-                REVESTA S.A.I.C.<br>Osvaldo de Vicenzo<br>Gerente de Laboratorio<br><br>VALIDADO
+                REVESTA S.A.I.C.<br>Osvaldo de Vicenzo<br>Gerente de Laboratorio / Lab Manager<br><br>VALIDADO
                 ELECTRONICAMENTE<br>
             </div>
         </h5>

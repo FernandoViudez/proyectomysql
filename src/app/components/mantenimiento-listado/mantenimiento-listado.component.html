@@ -91,6 +91,7 @@
                         <option value="Apilador a bateria 7">Nro.7 - Apilador a bateria</option>
                         <option value="Apilador a bateria 8">Nro.8 - Apilador a bateria</option>
                         <option value="Apilador a bateria 9">Nro.9 - Apilador a bateria</option>
+                        <option value="Apilador a bateria 10">Nro.10 - Apilador a bateria</option>
                     </select>
                 </div>
             </div>
@@ -101,8 +102,14 @@
                         <option value="Zorra Mecanica 11">Nro.11 - Zorra Mecanica</option>
                         <option value="Zorra Mecanica 14">Nro.14 - Zorra Mecanica</option>
                         <option value="Zorra Mecanica 15">Nro.15 - Zorra Mecanica</option>
-                        <option value="Zorra con bascula FAB 019">FAB 019 - Zorra CON BASCULA ELECTRONICA</option>
-                        <option value="Zorra con bascula FAB 040">FAB 040 - Zorra CON BASCULA ELECTRONICA</option>
+                        <option value="Zorra Mecanica 16 - FAB 060">FAB 060 - Zorra Mecanica</option>
+                        <option value="Zorra Mecanica 17 - FAB 061">FAB 061 - Zorra Mecanica</option>
+                        <option value="Zorra Mecanica 18 - FAB 062">FAB 062 - Zorra Mecanica</option>
+                        <option value="Zorra Mecanica 19 - FAB 063">FAB 063 - Zorra Mecanica</option>
+                        <option value="Zorra Mecanica 20 - FAB 064">FAB 064 - Zorra Mecanica</option>
+                        <option value="Zorra Mecanica 21 - FAB 065">FAB 065 - Zorra Mecanica</option>
+                        <option value="Zorra con bascula FAB 019">FAB 019 - Zorra con balanza electronica</option>
+                        <option value="Zorra con bascula FAB 040">FAB 040 - Zorra con balanza electronica</option>
                     </select>
                 </div>
             </div>
@@ -110,7 +117,7 @@
                 <div class="input-group">
                     <select class="mt-1 custom-select boldText" [(ngModel)]="nroequipo" id="nroequipo">
                         <option value="Bascula dispersora 1">FAB 037 - Bascula Dispersora 1</option>
-                        <option value="Bascula dispersora 2">FAB 051 - Bascula Dispersora 2</option>
+                        <option value="Bascula dispersora 2">FAB 057 - Bascula Dispersora 2</option>
                         <option value="Bascula dispersora 3">FAB 043 - Bascula Dispersora 3</option>
                         <option value="Bascula dispersora 4">FAB 036 - Bascula Dispersora 4</option>
                         <option value="Bascula dispersora 6">FAB 035 - Bascula Dispersora 6</option>
@@ -142,6 +149,7 @@
                         <option>**</option>
                         <option value="Bascula tambores FAB 011">FAB 011 - Bascula tambores</option>
                         <option value="Balanza cuna FAB 044">FAB 044 - Balanza cuna tambores</option>
+                        <option value="Balanza MP FAB 051">FAB 051 - Bascula Materias primas</option>
                         <option value="Balanza basicos FAB 053">FAB 053 - Balanza electronica Basicos</option>
                         <option value="Balanza fraccionamiento FAB 054">FAB 055 - Balanza fraccionamiento</option>
                     </select>
@@ -150,17 +158,24 @@
             <div *ngIf="equipo == 'VAR'" class="col-2">
                 <div class="input-group">
                     <select class="mt-1 custom-select boldText" [(ngModel)]="nroequipo" id="nroequipo">
-                        <option value="Bomba centrifuga torre">Bomba centrifuga torre</option>
-                        <option value="Compresor a tornillo">Compresor a tornillo</option>
-                        <option value="Paletizador">Empaquetadora de palets</option>
-                        <option value="Envasadora 1">Envasadora semi Nro.1</option>
-                        <option value="Envasadora 2">Envasadora semi Nro.2</option>
-                        <option value="Envasadora 3">Envasadora semi Nro.3</option>
+                        <option value="Compresor 1">Compresor a tornillo 1</option>
+                        <option value="Compresor 2">Compresor a tornillo 2</option>
+                        <option value="Envasadora 1">Envasadora semiautomatica Nro.1</option>
+                        <option value="Envasadora 2">Envasadora semiautomatica Nro.2</option>
+                        <option value="Envasadora 3">Envasadora semiautomatica Nro.3</option>
                         <option value="Extractor polvo">Extractor polvo</option>
-                        <option value="Shaker giroscopico 1">Shaker Nro.1</option>
-                        <option value="Shaker giroscopico 2">Shaker Nro.2</option>
-                        <option value="Shaker giroscopico 3">Shaker Nro.3</option>
-                        <option value="Shaker giroscopico 4">Shaker Nro.4</option>
+                        <option value="Enfriador agua">Enfriador agua (chiller)</option>
+                        <option value="Flejadora">Flejadora</option>
+                        <option value="Paletizadora">Paletizadora</option>
+                        <option value="Shaker COROB GCM M1372">Shaker 1 - Corob GCM D22M1372</option>
+                        <option value="Shaker OPOWER HY0905039">Shaker 2 - OceanPower Nro.HY 0905039</option>
+                        <option value="Shaker OPOWER HY1103063">Shaker 3 - OceanPower Nro.HY 1103063</option>
+                        <option value="Shaker TECMEC">Shaker 4 - Tecmec</option>
+                        <option value="Shaker COROB CLEVER D22M2653">Shaker 5 - Corob CLEVER D22M2653</option>
+                        <option value="Shaker COROB FIRST D22M0439">Shaker 6 - Corob FIRST D22M0439</option>
+                        <option value="Tapadora 1 - FAB 058">Tapadora 1 - FAB 058</option>
+                        <option value="Tapadora 2 -FAB 059">Tapadora 2 - FAB 059</option>
+                        <option value="Destilador">Torre destilación</option>
                     </select>
                 </div>
             </div>
@@ -221,8 +236,9 @@
 
     <div>
         <div class="row mt-4">
-            <div class="col-2">
-                <button [disabled]="equipo || arregloMantenimiento.length != 0" class="btn btn-danger float-lg-right" (click)="onBusquedaProx()">Buscar proximo mantenimiento</button>
+            <div class="col-2 ml-5">
+                <button [disabled]="equipo || arregloMantenimiento.length != 0" class="btn btn-success float-lg-right"
+                    (click)="onBusquedaProx()">Buscar mantenimientos a realizar EN EL MES EN CURSO</button>
             </div>
             <div class="col-1">
                 <button [disabled]="arregloMantenimiento.length==0" class="btn btn-warning float-lg-right"
@@ -243,58 +259,107 @@
 
 <div class="yesPrint">
 
-    <div>
+    <div *ngIf="proMan == 0">
         <h3 style="font-weight: bold;" class="text-center">LISTADO MANTENIMIENTO</h3>
     </div>
+    <div *ngIf="proMan == 1">
+        <h3 style="font-weight: bold;" class="text-center">MANTENIMIENTOS A REALIZAR EN EL MES EN CURSO</h3>
+    </div>
     <h4>
-        <div class="col-3 mt-3" style="text-align: right;">
+        <div *ngIf="proMan == 0" class="col-10 mt-3" style="text-align: right;">
             <span class="boldText">Equipo: {{this.equipo}}</span>
         </div>
 
-        <div class="col-3 mt-3" style="text-align: right;">
+        <div *ngIf="proMan == 0" class="col-10 mt-3" style="text-align: right;">
             <span class="boldText">Numero Equipo: {{this.nroequipo}}</span>
         </div>
     </h4>
     <br><br>
 
-    <table class="table" style="font-size: xx-small">
-        <thead>
-            <tr class="text-white text-center" *ngIf="arregloMantenimiento.length > 0">
-                <th>Ultima Revision</th>
-                <th style="font-weight: bold;">Proxima Revision</th>
-                <th>Motivo intervencion</th>
-                <th>Verif. Limpieza</th>
-                <th *ngIf="equipo != 'ELE'">Verif. Correas</th>
-                <th *ngIf="equipo == 'ELE'">Horas uso</th>
-                <th>Verif. Mangueras</th>
-                <th>Verif. Engrase</th>
-                <th *ngIf="equipo != 'MOL'">Verif. Lubricacion</th>
-                <th *ngIf="equipo == 'MOL'">Horas uso</th>
-                <th>Verif. Accesorios</th>
-                <th>Verif. Conexiones</th>
-                <th>Verif. Tableros</th>
-                <th>Verif. Cortes</th>
-                <th>Observaciones</th>
-                <th>Realizado por</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of arregloMantenimiento" class="text-center" style="cursor: pointer;">
-                <td>{{item.fecha | datePipe}}</td>
-                <td style="font-weight: bold;">{{item.proxrevision | datePipe}}</td>
-                <td>{{item.motivo}}</td>
-                <td>{{item.limpieza}}</td>
-                <td>{{item.correas}}</td>
-                <td>{{item.mangueras}}</td>
-                <td>{{item.engrase}}</td>
-                <td>{{item.lubricacion}}</td>
-                <td>{{item.accesorios}}</td>
-                <td>{{item.conexiones}}</td>
-                <td>{{item.tableros}}</td>
-                <td>{{item.cortes}}</td>
-                <td>{{item.observaciones}}</td>
-                <td>{{item.usuario}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div *ngIf="proMan == 0">
+        <!-- divido en 2 listados, si es para informacion completo, si es para realizar mantenimiento solo equipo y fecha -->
+        <table class="table" style="font-size: large;">
+            <thead>
+                <tr class="text-white text-center" *ngIf="arregloMantenimiento.length > 0">
+                    <th>Equipo</th>
+                    <th>Numero Equipo</th>
+                    <th>Ultima Revision</th>
+                    <th style="font-weight: bold;">Proxima Revision</th>
+                    <th>Motivo intervencion</th>
+                    <th>Verif. Limpieza</th>
+                    <th *ngIf="equipo != 'ELE'">Verif. Correas</th>
+                    <th *ngIf="equipo == 'ELE'">Horas uso</th>
+                    <th>Verif. Mangueras</th>
+                    <th>Verif. Engrase</th>
+                    <th *ngIf="equipo != 'MOL'">Verif. Lubricacion</th>
+                    <th *ngIf="equipo == 'MOL'">Horas uso</th>
+                    <th>Verif. Accesorios</th>
+                    <th>Verif. Conexiones</th>
+                    <th>Verif. Tableros</th>
+                    <th>Verif. Cortes</th>
+                    <th>Observaciones</th>
+                    <th>Realizado por</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of arregloMantenimiento" class="text-center" style="cursor: pointer;">
+                    <td>{{item.equipo}}</td>
+                    <td>{{item.nroequipo}}</td>
+                    <td>{{item.fecha | datePipe}}</td>
+                    <td style="font-weight: bold;">{{item.proxrevision | datePipe}}</td>
+                    <td>{{item.motivo}}</td>
+                    <td>{{item.limpieza}}</td>
+                    <td>{{item.correas}}</td>
+                    <td>{{item.mangueras}}</td>
+                    <td>{{item.engrase}}</td>
+                    <td>{{item.lubricacion}}</td>
+                    <td>{{item.accesorios}}</td>
+                    <td>{{item.conexiones}}</td>
+                    <td>{{item.tableros}}</td>
+                    <td>{{item.cortes}}</td>
+                    <td>{{item.observaciones}}</td>
+                    <td>{{item.usuario}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="proMan == 1">                                               <!-- este es para que puedan realizar los mantenimientos -->
+        <table class="table" style="font-size: medium;">
+            <thead>
+                <tr class="text-white text-center" *ngIf="arregloMantenimiento.length > 0">
+                    <th>Equipo</th>
+                    <th>Numero Equipo</th>
+                    <th>Ultima Revision</th>
+                    <th>Motivo intervencion</th>
+                    <th>Verif. Limpieza</th>
+                    <th>Verif. Correas / Horas uso</th>
+                    <th>Verif. Mangueras</th>
+                    <th>Verif. Engrase</th>
+                    <th>Verif. Lubricacion</th>
+                    <th>Verif. Accesorios</th>
+                    <th>Verif. Conexiones</th>
+                    <th>Verif. Tableros</th>
+                    <th>Verif. Cortes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of arregloMantenimiento" class="text-center" style="cursor: pointer;">
+                    <td>{{item.equipo}}</td>
+                    <td>{{item.nroequipo}}</td>
+                    <td>{{item.fecha | datePipe}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

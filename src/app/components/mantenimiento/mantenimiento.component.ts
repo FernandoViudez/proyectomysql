@@ -44,7 +44,7 @@ export class MantenimientoComponent implements OnInit {
 
     let Hoy = new Date()                                  // para que no ingresen fecha menor al dia de trabajo
     let Hoy2 = Hoy.toISOString().split('T')[0];
-    let balanzas = this.sumarDias(Hoy, 180);              // balanzas y basculas se calibran cada 6 meses
+    let balanzas = this.sumarDias(Hoy, 180);              // balanzas, basculas, algunos varios y zorras se calibran cada 6 meses
     let balanzas2 = balanzas.toISOString().split('T')[0];
     let general = this.sumarDias(Hoy, 30);                // el resto se calibra cada mes
     let general2 = general.toISOString().split('T')[0];
@@ -68,6 +68,18 @@ export class MantenimientoComponent implements OnInit {
     }
     
     if (this.equipo == 'VAR' && this.nroequipo == 'Paletizadora') {
+      this.proxrevision = balanzas2;
+    }
+
+    if (this.equipo == 'VAR' && this.nroequipo == 'Envasadora 1' || this.nroequipo == 'Envasadora 2' || this.nroequipo == 'Envasadora 3') {
+      this.proxrevision = balanzas2;
+    }
+
+    if (this.equipo == 'VAR' && this.nroequipo == 'Flejadora') {
+      this.proxrevision = balanzas2;
+    }
+
+    if (this.equipo == 'VAR' && this.nroequipo == 'Tapadora 1 - FAB 058' || this.nroequipo == 'Tapadora 2 - FAB 059') {
       this.proxrevision = balanzas2;
     }
 

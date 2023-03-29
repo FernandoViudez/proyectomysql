@@ -35,6 +35,7 @@ export class MantenimientoListadoComponent implements OnInit {
   public proxrevision: any;
   public usuario: string;
   public arregloMantenimiento = [];
+  public proMan: number;
 
   constructor(private genericService: GenericService, private route: Router,
     private readonly listadosService: ListadosService,) {
@@ -49,27 +50,32 @@ export class MantenimientoListadoComponent implements OnInit {
   }
 
   onBusqueda() {
-    // if(this.codigoMp && this.lote ){
     this.genericService.listadoMantenimiento(this.equipo, this.nroequipo, this.motivo, this.correas, this.limpieza,
       this.mangueras, this.engrase, this.lubricacion, this.accesorios, this.conexiones, this.tableros, this.cortes, this.observaciones,
       this.fecha, this.proxrevision, this.usuario)
       .subscribe((data: any) => {
         this.arregloMantenimiento = data.response;
+        this.proMan = 0;
       }, e => {
         console.log(e);
       })
-    // }
   }
 
   onBusquedaProx() {
-    let Hoy = new Date();                                  // para que liste los que hay que mantener a partir del dia de la fecha
-    let Hoy2 = Hoy.toISOString().split('T')[0];            // basado en campo de fecha proxrevision y no en el campo de fecha
-    this.proxrevision = Hoy2;
+    let Hoy = new Date();                                  // para que liste los que hay que mantener durante el mes en curso
+    let mesActual = Hoy.getMonth() + 1;
+    let anioActual = Hoy.getFullYear();
+    let primerDiaMes = new Date(anioActual, mesActual - 1, 1);
+    let ultimoDiaMes = new Date(anioActual, mesActual, 0);
     this.genericService.listadoMantenimiento(this.equipo, this.nroequipo, this.motivo, this.correas, this.limpieza,
       this.mangueras, this.engrase, this.lubricacion, this.accesorios, this.conexiones, this.tableros, this.cortes, this.observaciones,
       this.fecha, this.proxrevision, this.usuario)
       .subscribe((data: any) => {
-        this.arregloMantenimiento = data.response;
+        this.arregloMantenimiento = data.response.filter((data: any) => {
+          const fechaMantenimiento = new Date(data.proxrevision);
+          return fechaMantenimiento >= primerDiaMes && fechaMantenimiento <= ultimoDiaMes;
+        });
+        this.proMan = 1;
       }, e => {
         console.log(e);
       })

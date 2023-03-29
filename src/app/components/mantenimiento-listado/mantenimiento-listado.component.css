@@ -1,0 +1,22 @@
+  .table-print {
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    top: 100%;
+    left: 100%;
+    transform: translate(-40%, -30%) rotate(-90deg);
+    transform-origin: top left;
+  }
+  
+  
+  .table-print td, .table-print th {
+    font-size: 0.8em;
+    padding: 0.5em;
+  }
+  
+  .table-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  
