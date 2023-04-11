@@ -136,7 +136,7 @@
                     <td style="font-size: 16px;">{{item.tipo}}</td>
                     <td *ngIf="item.ubicacion == 'SI'"
                         style="font-size: 20px; color: black; background-color: fuchsia;">{{item.ubicacion}}</td>
-                    <td *ngIf="!item.ubicacion" style="font-size: 16px;">{{item.ubicacion}}</td>
+                    <td *ngIf="item.ubicacion == 'NULL' || !item.ubicacion" style="font-size: 16px;">{{item.ubicacion}}</td>
                     <td style="font-size: 16px;">{{item.fechaultimarecepcion | datePipe}}</td>
                     <td style="font-size: 16px;">{{item.stock}}</td>
                     <td style="font-size: 16px;">{{item.stockminimo}}</td>
