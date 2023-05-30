@@ -43,57 +43,67 @@ export class MantenimientoComponent implements OnInit {
   enviarMant() {
 
     let Hoy = new Date()                                  // para que no ingresen fecha menor al dia de trabajo
-    let Hoy2 = Hoy.toISOString().split('T')[0];
-    let balanzas = this.sumarDias(Hoy, 180);              // balanzas, basculas, algunos varios y zorras se calibran cada 6 meses
-    let balanzas2 = balanzas.toISOString().split('T')[0];
-    let general = this.sumarDias(Hoy, 30);                // el resto se calibra cada mes
-    let general2 = general.toISOString().split('T')[0];
-    let torre = this.sumarDias(Hoy, 360);              // torre destilacion se calibran cada 12 meses
-    let torre3 = torre.toISOString().split('T')[0];
+    let Hoy2 = Hoy.toISOString().split('T')[0];           // armo diferentes rangos de fechas para asignar
+    let mensual = this.sumarDias(Hoy, 30);
+    let unMes = mensual.toISOString().split('T')[0];
+    let trimestre = this.sumarDias(Hoy, 90);
+    let tresMeses = trimestre.toISOString().split('T')[0];
+    let semestre = this.sumarDias(Hoy, 180);
+    let seisMeses = semestre.toISOString().split('T')[0];
+    let anual = this.sumarDias(Hoy, 360);
+    let unAnio = anual.toISOString().split('T')[0];
 
     if (this.equipo == 'BAL') {
-      this.proxrevision = balanzas2;
+      this.proxrevision = seisMeses;
     }
 
-    // if (this.equipo == 'BAL' && this.nroequipo.includes('Balanza',0)) {        *** en caso de querer dividir balanzas de basculas
-    //   this.proxrevision = general2;
-    // }
-
-    if (this.equipo != 'BAL') {
-      this.proxrevision = general2;
+    if (this.nroequipo == 'Homomixer' || this.nroequipo.includes('Doble Z', 0)) {
+      this.proxrevision = seisMeses;
+    } else if (this.equipo == 'DIS' && (this.nroequipo == 'Ponimixer' || this.nroequipo == 'Mezcladora Inertes')) {
+      this.proxrevision = unAnio;
+    } else if (this.equipo == 'DIS') {
+      this.proxrevision = tresMeses;
     }
 
-    if (this.equipo == 'VAR' && this.nroequipo == 'Extractor polvo') {
-      this.proxrevision = balanzas2;
-    }
-    
-    if (this.equipo == 'VAR' && this.nroequipo == 'Paletizadora') {
-      this.proxrevision = balanzas2;
-    }
-
-    if (this.equipo == 'VAR' && this.nroequipo == 'Envasadora 1' || this.nroequipo == 'Envasadora 2' || this.nroequipo == 'Envasadora 3') {
-      this.proxrevision = balanzas2;
+    if (this.equipo == 'ELE') {
+      if (this.nroequipo.includes('Apilador', 0)) {
+        this.proxrevision = unMes;
+      } else {
+        this.proxrevision = tresMeses;
+      }
     }
 
-    if (this.equipo == 'VAR' && this.nroequipo == 'Flejadora') {
-      this.proxrevision = balanzas2;
+    if (this.equipo == 'MOL') {
+      if (this.nroequipo.includes('rodillos', 9)) {
+        this.proxrevision = unAnio;
+      } else {
+        this.proxrevision = tresMeses;
+      }
     }
 
-    if (this.equipo == 'VAR' && this.nroequipo == 'Tapadora 1 - FAB 058' || this.nroequipo == 'Tapadora 2 - FAB 059') {
-      this.proxrevision = balanzas2;
+    if ((this.equipo == 'ZAR' || this.equipo == 'ZOR') && !this.nroequipo.includes('bascula', 10)) {
+      this.proxrevision = unAnio;
+    } else if (this.equipo == 'ZOR' && this.nroequipo.includes('bascula', 10)) {
+      this.proxrevision = seisMeses;
     }
 
-    if (this.equipo == 'VAR' && this.nroequipo == 'Destilador') {
-      this.proxrevision = torre3;
+    if (this.equipo == 'VAR') {
+      if (this.nroequipo.includes('Compresor', 0) || this.nroequipo.includes('Shaker', 0)) {
+        this.proxrevision = tresMeses;
+      } else if (this.nroequipo.includes('Envasadora', 0) || this.nroequipo.includes('Tapadora', 0) || this.nroequipo == 'Enfriador agua' ||
+        this.nroequipo.includes('Dispenser', 0)) {
+        this.proxrevision = seisMeses;
+      } else if (this.nroequipo == 'Paletizadora' || this.nroequipo == 'Flejadora' || this.nroequipo == 'Extractor polvo' || this.nroequipo == 'Destilador'
+        || this.nroequipo.includes('Termotanque', 0)) {
+        this.proxrevision = unAnio;
+      }
     }
 
-    if (!this.observaciones && this.equipo == 'BAL') {
+
+    if ((!this.observaciones && this.equipo == 'BAL') || (!this.limpieza && this.equipo != 'BAL')) {
       return alertify.error("HAY QUE COMPLETAR ALGUNOS DATOS");
     }
 
-    if (!this.limpieza && this.equipo != 'BAL') {
-      return alertify.error("HAY QUE COMPLETAR ALGUNOS DATOS");
-    }
 
     let data = {
       equipo: this.equipo,
@@ -150,7 +160,5 @@ export class MantenimientoComponent implements OnInit {
     res.setDate(res.getDate() + days);
     return res;
   }
-
-
 
 }

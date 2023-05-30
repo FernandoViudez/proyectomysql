@@ -159,6 +159,7 @@
                 <select class="mt-1 custom-select boldText" [(ngModel)]="nroequipo" id="nroequipo">
                     <option value="Compresor 1">Compresor a tornillo 1</option>
                     <option value="Compresor 2">Compresor a tornillo 2</option>
+                    <option value="Dispenser COROB">Dispenser de colores COROB</option>
                     <option value="Envasadora 1">Envasadora semiautomatica Nro.1</option>
                     <option value="Envasadora 2">Envasadora semiautomatica Nro.2</option>
                     <option value="Envasadora 3">Envasadora semiautomatica Nro.3</option>
@@ -174,6 +175,8 @@
                     <option value="Shaker COROB FIRST D22M0439">Shaker 6 - Corob FIRST D22M0439</option>
                     <option value="Tapadora 1 - FAB 058">Tapadora 1 - FAB 058</option>
                     <option value="Tapadora 2 - FAB 059">Tapadora 2 - FAB 059</option>
+                    <option value="Termotanque Longvie">Termotanque Longvie</option>
+                    <option value="Termotanque Rheem">Termotanque Rheem</option>
                     <option value="Destilador">Torre destilación</option>
                 </select>
             </div>
@@ -377,28 +380,63 @@
 </div>
 
 <div class="row">
-    <div *ngIf="equipo == 'BAL' || equipo == 'ZOR'" class="col-12 text-center">
+    <div *ngIf="equipo == 'BAL'" class="col-12 text-center">
         <div class="mt-5 alert alert-success boldText">
             <h1>Recuerda</h1>
             <p>El proximo mantenimiento de se programara PARA DENTRO DE 6 MESES</p>
             <h1></h1>
         </div>
     </div>
-    <div *ngIf="equipo == 'DIS' || equipo == 'MOL' || equipo == 'ZAR' || equipo == 'ELE'" class="col-12 text-center">
+    <div *ngIf="equipo == 'DIS'" class="col-12 text-center">
         <div class="mt-5 alert alert-success boldText">
             <h1>Recuerda</h1>
-            <p>El proximo mantenimiento se programara PARA DENTRO DE 1 MES</p>
+            <p *ngIf="nroequipo.includes('Dispersora')">
+                El proximo mantenimiento se programara PARA DENTRO DE 3 MESES</p>
+            <p *ngIf="nroequipo.includes('Homomixer') || nroequipo.includes('Doble')">
+                El proximo mantenimiento se programara PARA DENTRO DE 6 MESES</p>
+            <p *ngIf="nroequipo.includes('Mezcladora') || nroequipo.includes('Ponimixer')">
+                El proximo mantenimiento se programara PARA DENTRO DE 12 MESES</p>
+            <h1></h1>
+        </div>
+    </div>
+    <div *ngIf="equipo == 'ELE'" class="col-12 text-center">
+        <div class="mt-5 alert alert-success boldText">
+            <h1>Recuerda</h1>
+            <p *ngIf="!nroequipo.includes('electrico')">
+                El proximo mantenimiento se programara PARA DENTRO DE 1 MES</p>
+            <p *ngIf="nroequipo.includes('electrico')">
+                El proximo mantenimiento se programara PARA DENTRO DE 3 MESES</p>
+        </div>
+    </div>
+    <div *ngIf="equipo == 'MOL'" class="col-12 text-center">
+        <div *ngIf="!nroequipo.includes('rodillos')" class="mt-5 alert alert-success boldText">
+            <h1>Recuerda</h1>
+            <p>El proximo mantenimiento se programara PARA DENTRO DE 3 MESES</p>
+        </div>
+        <div *ngIf="nroequipo.includes('rodillos')" class="mt-5 alert alert-success boldText">
+            <h1>Recuerda</h1>
+            <p>El proximo mantenimiento se programara PARA DENTRO DE 12 MESES</p>
+        </div>
+    </div>
+    <div *ngIf="equipo == 'ZAR' || equipo == 'ZOR' " class="col-12 text-center">
+        <div *ngIf="nroequipo.includes('bascula')" class="mt-5 alert alert-success boldText">
+            <h1>Recuerda</h1>
+            <p>El proximo mantenimiento se programara PARA DENTRO DE 6 MESES</p>
+        </div>
+        <div *ngIf="!nroequipo.includes('bascula')" class="mt-5 alert alert-success boldText">
+            <h1>Recuerda</h1>
+            <p>El proximo mantenimiento se programara PARA DENTRO DE 12 MESES</p>
         </div>
     </div>
     <div *ngIf="equipo == 'VAR'" class="col-12 text-center">
         <div class="mt-5 alert alert-success boldText">
             <h1>Recuerda</h1>
-            <p *ngIf="nroequipo.includes('Compresor') || nroequipo.includes('Enfriador') || nroequipo.includes('Shaker')">
-                El proximo mantenimiento se programara PARA DENTRO DE 1 MES</p>
-            <p *ngIf="nroequipo.includes('Paletizadora') || nroequipo.includes('Extractor') || nroequipo.includes('Envasadora') || nroequipo.includes('Flejadora') 
-            || nroequipo.includes('Tapadora')">
+            <p *ngIf="nroequipo.includes('Compresor') || nroequipo.includes('Shaker')">
+                El proximo mantenimiento se programara PARA DENTRO DE 3 MESES</p>
+            <p *ngIf="nroequipo.includes('Envasadora') || nroequipo.includes('Tapadora') || nroequipo.includes('Dispenser') || nroequipo.includes('Enfriador') ">
                 El proximo mantenimiento se programara PARA DENTRO DE 6 MESES</p>
-            <p *ngIf="nroequipo.includes('Destilador')">
+            <p *ngIf="nroequipo.includes('Destilador') || nroequipo.includes('Termotanque') || nroequipo.includes('Extractor') || nroequipo.includes('Flejadora')
+             || nroequipo.includes('Paletizadora')">
                 El proximo mantenimiento se programara PARA DENTRO DE 12 MESES</p>
             <h1></h1>
         </div>
