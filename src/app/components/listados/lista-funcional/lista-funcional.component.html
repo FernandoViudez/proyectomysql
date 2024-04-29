@@ -13,16 +13,20 @@
             <div class="input-group">
                 <select (change)="isValid" class="custom-select boldText ml-2" [(ngModel)]="operacion"
                     id="inputGroupSelect01">
+                    <option></option>
                     <option value="RANGO">Listado de Materias Primas por rango</option>
                     <option value="MINIMO">Stock bajo mínimo de Materias Primas</option>
                     <option value="RANGOMOVD">Compras de Materias Primas por rango de fechas</option>
                     <option value="RANGOMOV">Movimientos de Materias Primas por rango de fechas</option>
-                    <option value="MPENFORMULAS">Busqueda de Materias Primas en Fórmulas</option>
+                    <option value="MPENFORMULAS">Búsqueda de Materias Primas en Fórmulas</option>
+                    <option>---------------------------------------------------------------------------------------------</option>
                     <option *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" value="DETPROD">Detalle de
                         producción por rango de fechas</option>
                     <option *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" value="DETLOTEPROD">Detalle
                         de producción por rango de lotes</option>
+                    <option>---------------------------------------------------------------------------------------------</option>
                     <option value="RANGOFECHAS">Estadística de producción por rango de fechas</option>
+                    <option></option>
                 </select>
             </div>
         </div>
@@ -202,7 +206,9 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE MATERIAS PRIMAS</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'"
+                    value="DETLOTEPROD">Detalle
+                    de producción por rango de lotes
                 </button>
             </div>
             <div class="modal-body">

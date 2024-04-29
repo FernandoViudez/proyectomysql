@@ -293,7 +293,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn" style="background-color: rgb(190, 171, 131); "
-                        (click)="resetearBusqueda()">Resetear</button>
+                            (click)="resetearBusqueda()">Resetear</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -394,8 +394,11 @@
                                 class="btn btn-warning ml-3" (click)="imprimir()">Imprimir Pendientes</button>
                             <button [disabled]="arrayB.length==0" *ngIf="!pendientes" type="button"
                                 class="btn btn-warning ml-3" (click)="imprimir()">Imprimir Busqueda</button>
-                            <button [disabled]="arrayB.length==0" class="btn btn-warning ml-3"
-                                (click)="onExcel()">Generar Excel</button>
+                            <button [disabled]="arrayB.length==0" class="btn btn-warning ml-5"
+                                (click)="onExcel()">Generar Excel del listado en pantalla</button>
+                            <button [disabled]="arrayB.length==0" class="btn-info ml-3 mt-2 btn"
+                                (click)="calcularPlanProduccion()">Generar Excel de MP necesarias para
+                                fabricar los Productos PENDIENTES a elaborar (sin importar si se emitio BT o no)</button>
                         </div>
                         <div class="col-3">
                         </div>

@@ -510,6 +510,35 @@ export class PlanifiComponent implements OnInit {
       })
   }
 
+  calcularPlanProduccion() {
+    /** Filtramos el arrayB para obtener solo aquellos productos sin fecha fin */
+    const productosSinFechaFin = this.arrayB.filter(item => !item.fechafin);
+  
+    /** Si no hay productos sin fecha fin, mostramos un mensaje al usuario */
+    if (productosSinFechaFin.length === 0) {
+      console.error('No hay productos sin fecha fin para procesar');
+      alertify.error(" ATENCION ! - No hay productos pendintes a elaborar ")
+      return;
+    }
+  
+    /** Enviamos el array filtrado al backend para el cálculo del plan de producción */
+    this.genericService.calcularPlan(productosSinFechaFin)
+      .subscribe((data: any) => {
+        this.enExcel(data.response);
+      });
+  }
+  
+
+  enExcel(items) {
+    this.listadosService.generarExcel(items, 'PREVISION MP', "MP necesaria", ['idprod', 'codmp', 'descripcion', 'stock', 'cantidad']).subscribe
+      ((data: any) => {
+        this.genericService.downloadExcel(data.url);
+      }, (err) => {
+        console.log(err);
+      })
+
+  }
+
   omit_number(event) {
     let key;
     key = event.keyCode;  //         key = event.charCode;  (Both can be used)   key == 45  // allows minus(-)
