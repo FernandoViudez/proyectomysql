@@ -58,6 +58,7 @@ export class PlanifiComponent implements OnInit {
   clienteB: string;
   loteB: number;
   pendientes = false;
+  fechafinB: any;
   arrayB = [];
   datePipeComponent: DatePipe = new DatePipe();
 
@@ -84,10 +85,15 @@ export class PlanifiComponent implements OnInit {
   ngOnInit(): void {
     this.deshabilitar();
   }
+
+  mostrarTodasLasPartidas(): void {
+    
+  }
+
   //BUSQUEDA DE PLANIFICACION
   buscarPlan() {
     this.pendientes = false;
-    let data = { codpt: this.codptB, descripcion: this.descripcionB, cliente: this.clienteB, lote: this.loteB }
+    let data = { codpt: this.codptB, descripcion: this.descripcionB, cliente: this.clienteB, lote: this.loteB, fechafin: this.fechafinB }
     this.http.post(`${obtenerPath()}getPlani`, data).
       subscribe((data: any) => {
         this.generarClases(data.response);
@@ -451,6 +457,7 @@ export class PlanifiComponent implements OnInit {
     this.unidadmedida = null;
     this.deshabilitar();
     this.corregido = null;
+    this.fechafinB = null;
   }
   //RESETEAR SOLO LA BUSQUEDA DE PLANIFICACION
   resetear1() {
@@ -460,6 +467,7 @@ export class PlanifiComponent implements OnInit {
     this.arrayB = [];
     this.loteB = null;
     this.pendientes = false;
+    this.fechafinB = null;
   }
 
   resetearBusqueda() {

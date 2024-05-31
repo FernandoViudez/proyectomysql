@@ -298,7 +298,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       this.propiedades = {
         th: [
           "ID",
-          "DESCRIPCION",
+          "DESCRIPCION MP",
           "CANTIDAD",
           "DETALLE",
           "COMPROBANTE",
@@ -306,6 +306,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           "PROVEEDOR",
           "MOTIVO",
           "LOTE",
+          "QUE PRODUCTO SE FABRICO",
           "MODIFICO"
         ],
         tb: [
@@ -318,6 +319,7 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
           "proveedor",
           "motivo",
           "numeroLoteInt",
+          "descPT",
           "usuario"
         ]
       }

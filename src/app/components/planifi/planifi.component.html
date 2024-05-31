@@ -330,7 +330,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-4">
                                 <div class="form-group">
                                     <label for="recipient-name010" class="col-form-label">Ciente</label>
                                     <input (keyup)="buscarPlan()" [(ngModel)]="clienteB" type="text"
@@ -342,6 +342,14 @@
                                     <label for="recipient-name010" class="col-form-label">Lote</label>
                                     <input (keyup)="buscarPlan()" [(ngModel)]="loteB" type="number" class="form-control"
                                         id="recipient-name00012">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="recipient-name010" class="col-form-label">INCLUIR sin fiinalizar y desde Fecha
+                                        Finalizacion</label>
+                                    <input value="2024-01-01" (keyup)="buscarPlan()" [(ngModel)]="fechafinB" type="date"
+                                        class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -398,7 +406,8 @@
                                 (click)="onExcel()">Generar Excel del listado en pantalla</button>
                             <button [disabled]="arrayB.length==0" class="btn-info ml-3 mt-2 btn"
                                 (click)="calcularPlanProduccion()">Generar Excel de MP necesarias para
-                                fabricar los Productos PENDIENTES a elaborar (sin importar si se emitio BT o no)</button>
+                                fabricar los Productos PENDIENTES a elaborar (sin importar si se emitio BT o
+                                no)</button>
                         </div>
                         <div class="col-3">
                         </div>
