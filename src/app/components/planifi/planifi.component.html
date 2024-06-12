@@ -305,7 +305,7 @@
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PLANIFICACIÓN</h5>
+                        <h5 class="modal-title" id="exampleModalLabel00">BUSQUEDA DE PLANIFICACIÓN (Se despliegan MAXIMO 500 renglones)</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -404,7 +404,7 @@
                                 class="btn btn-warning ml-3" (click)="imprimir()">Imprimir Busqueda</button>
                             <button [disabled]="arrayB.length==0" class="btn btn-warning ml-5"
                                 (click)="onExcel()">Generar Excel del listado en pantalla</button>
-                            <button [disabled]="arrayB.length==0" class="btn-info ml-3 mt-2 btn"
+                            <button [disabled]="arrayB.length==0" class="btn-info ml-3 mr-3 mt-2 btn"
                                 (click)="calcularPlanProduccion()">Generar Excel de MP necesarias para
                                 fabricar los Productos PENDIENTES a elaborar (sin importar si se emitio BT o
                                 no)</button>
@@ -423,19 +423,19 @@
                         <div class="col-2 text-right">
                         </div>
                         <div class="col-2">
-                            <img src="./assets/circulo naranja.jpeg" height="22px" width="22px" alt="*">
+                            <img src="./assets/circulo naranja.jpeg" height="32px" width="32px" alt="*">
                             Productos finalizados
                         </div>
                         <div class="col-2">
-                            <img src="./assets/circulo verde.jpeg" height="20px" width="20px" alt="*">
-                            Productos en envasado
+                            <img src="./assets/circulo verde.jpeg" height="30px" width="30px" alt="*">
+                            Productos envasado
                         </div>
                         <div class="col-2">
-                            <img src="./assets/circulo amarillo.jpeg" height="20px" width="20px" alt="*">
+                            <img src="./assets/circulo amarillo.jpeg" height="30px" width="30px" alt="*">
                             Productos en proceso
                         </div>
                         <div class="col-2">
-                            <img src="./assets/circulo rojo.jpeg" height="18px" width="18px" alt="*">
+                            <img src="./assets/circulo rojo.jpeg" height="28px" width="28px" alt="*">
                             Materia prima faltante
                         </div>
                     </div>
