@@ -346,10 +346,10 @@
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="recipient-name010" class="col-form-label">INCLUIR sin fiinalizar y desde Fecha
-                                        Finalizacion</label>
-                                    <input value="2024-01-01" (keyup)="buscarPlan()" [(ngModel)]="fechafinB" type="date"
-                                        class="form-control">
+                                    <label for="recipient-name010" class="col-form-label">INCLUIR PRODUCTOS sin finalizar y DESDE Fecha
+                                        Fin</label>
+                                    <input (keyup)="buscarPlan()" [(ngModel)]="fechafinB" type="date" class="form-control"
+                                    [disabled]="!codptB && !descripcionB && !clienteB" >
                                 </div>
                             </div>
                         </div>

@@ -92,6 +92,14 @@ export class PlanifiComponent implements OnInit {
 
   //BUSQUEDA DE PLANIFICACION
   buscarPlan() {
+
+    let Hoy = new Date()                         // para que no ingresen fecha mayor al dia de trabajo
+    let Hoy2 = Hoy.toISOString().split('T')[0];   //lo pongo en el mismo formato que la fecha this.fecha
+    let TresMesesAntes = this.sumarDias(Hoy, -90);  //para que no puedan poner fecha anterior a 90 dias 
+    let TresMesesAntes2 = TresMesesAntes.toISOString().split("T")[0];
+
+    console.log(TresMesesAntes2);
+
     this.pendientes = false;
     let data = { codpt: this.codptB, descripcion: this.descripcionB, cliente: this.clienteB, lote: this.loteB, fechafin: this.fechafinB }
     this.http.post(`${obtenerPath()}getPlani`, data).
@@ -155,6 +163,13 @@ export class PlanifiComponent implements OnInit {
 
       })
   }
+
+    /* Función que suma o resta días a una fecha, si el parámetro
+ días es negativo restará los días*/
+ sumarDias(fecha, dias) {
+  fecha.setDate(fecha.getDate() + dias);
+  return fecha;
+}
   //CUANDO LE DAS A CLICK EN LA TABLA DE LUPA EN PLANIFICACION
   traerDatos(id) {
     this.id = id;

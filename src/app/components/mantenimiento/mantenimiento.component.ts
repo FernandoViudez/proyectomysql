@@ -88,12 +88,12 @@ export class MantenimientoComponent implements OnInit {
     }
 
     if (this.equipo == 'VAR') {
-      if (this.nroequipo.includes('Compresor', 0) || this.nroequipo.includes('Shaker', 0)) {
+      if (this.nroequipo.includes('Compresor', 0) || this.nroequipo.includes('Shaker', 0) || this.nroequipo == 'Extractor polvo') {
         this.proxrevision = tresMeses;
       } else if (this.nroequipo.includes('Envasadora', 0) || this.nroequipo.includes('Tapadora', 0) || this.nroequipo == 'Enfriador agua' ||
         this.nroequipo.includes('Dispenser', 0)) {
         this.proxrevision = seisMeses;
-      } else if (this.nroequipo == 'Paletizadora' || this.nroequipo == 'Flejadora' || this.nroequipo == 'Extractor polvo' || this.nroequipo == 'Destilador'
+      } else if (this.nroequipo == 'Paletizadora' || this.nroequipo == 'Flejadora' || this.nroequipo == 'Destilador'
         || this.nroequipo.includes('Termotanque', 0)) {
         this.proxrevision = unAnio;
       }

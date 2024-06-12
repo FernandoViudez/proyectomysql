@@ -431,11 +431,11 @@
     <div *ngIf="equipo == 'VAR'" class="col-12 text-center">
         <div class="mt-5 alert alert-success boldText">
             <h1>Recuerda</h1>
-            <p *ngIf="nroequipo.includes('Compresor') || nroequipo.includes('Shaker')">
+            <p *ngIf="nroequipo.includes('Compresor') || nroequipo.includes('Shaker') || nroequipo.includes('Extractor')">
                 El proximo mantenimiento se programara PARA DENTRO DE 3 MESES</p>
             <p *ngIf="nroequipo.includes('Envasadora') || nroequipo.includes('Tapadora') || nroequipo.includes('Dispenser') || nroequipo.includes('Enfriador') ">
                 El proximo mantenimiento se programara PARA DENTRO DE 6 MESES</p>
-            <p *ngIf="nroequipo.includes('Destilador') || nroequipo.includes('Termotanque') || nroequipo.includes('Extractor') || nroequipo.includes('Flejadora')
+            <p *ngIf="nroequipo.includes('Destilador') || nroequipo.includes('Termotanque') || nroequipo.includes('Flejadora')
              || nroequipo.includes('Paletizadora')">
                 El proximo mantenimiento se programara PARA DENTRO DE 12 MESES</p>
             <h1></h1>
