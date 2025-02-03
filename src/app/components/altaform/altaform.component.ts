@@ -33,6 +33,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
   resi: number;
   pig: number;
   pvc: number;
+  voc: number;
   pr: number;
   solv: number;
   orden: number;
@@ -51,6 +52,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
   usuario: string;
   id: number;
   info3: number;      // lo agrego para grabar el dato calculado como PVC en prodterm
+  info2: number;      // lo agrego para grabar el dato calculado como VOC en prodterm
 
   constructor(private service: FormService,
     private route: Router,
@@ -220,7 +222,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       return alertify.error("¡ NO HA CARGADO NINGUN RENGLON PARA LAS FORMULAS !")
     }
 
-    function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario, solv, info3) {
+    function finalizar(sumaTot, service, tintoformoalt, idprod, pe, ppp, ppv, resi, pig, pr, array, usuario, solv, info2, info3) {
       return new Promise((resolve, reject) => {
         Swal.fire({
           title: "¡¡ ATENCION !!",
@@ -241,7 +243,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
             })
             Swal.showLoading()
             service.finalizar(tintoformoalt, idprod, pe, ppp, ppv, resi,
-              pig, pr, array, usuario, solv, info3).subscribe((data: any) => {
+              pig, pr, array, usuario, solv, info2, info3).subscribe((data: any) => {
                 Swal.close()
                 Swal.fire({
                   title: "GENIAL",
@@ -259,7 +261,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
 
     if (this.tintoformoalt == "T") {
       let response = finalizar(0, this.service, this.tintoformoalt, this.idprod, this.pe, this.ppp, this.ppv,
-        this.resi, this.pig, this.pr, this.array, this.usuario, this.solv, this.info3);
+        this.resi, this.pig, this.pr, this.array, this.usuario, this.solv, this.info2, this.info3);
       response.then(data => {
         this.resetear();
         this.resetear1();
@@ -268,7 +270,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       })
     } else if (this.sumaTot) {
       let response = finalizar(this.sumaTot, this.service, this.tintoformoalt, this.idprod, this.pe, this.ppp, this.ppv,
-        this.resi, this.pig, this.pr, this.array, this.usuario, this.solv, this.info3);
+        this.resi, this.pig, this.pr, this.array, this.usuario, this.solv, this.info2, this.info3);
       response.then(data => {
         this.resetear();
         this.resetear1();
@@ -290,6 +292,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
       this.resi = 0;
       this.solv = 0;
       this.pvc = 0;
+      this.voc = 0;
       return
     }
 
@@ -303,6 +306,8 @@ export class AltaformComponent implements OnInit, OnDestroy {
       this.solv = data.tsol / this.sumaTot * 100;
       this.pvc = data.pvc;
       this.info3 = data.pvc;
+      this.voc = data.ttvoc;
+      this.info2 = data.ttvoc;
     })
 
   }
@@ -464,6 +469,7 @@ export class AltaformComponent implements OnInit, OnDestroy {
     this.array = [];
     this.usuario = null;
     this.pvc = null;
+    this.voc = null;
     document?.getElementById("idp")?.removeAttribute("disabled");
     document?.getElementById("TFA")?.removeAttribute("disabled");
 

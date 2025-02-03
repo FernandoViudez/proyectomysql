@@ -31,6 +31,8 @@ export class ListformComponent implements OnInit {
   pigmento = 0;
   solvente = 0;
   precio = 0;
+  info3 = 0;  // para traer el dato del PVC
+  info2 = 0   // para traer el dato del VOC
   ultimamodificacion: string;
   formaconjunto: string;
   relaciondemezcla: string;
@@ -47,6 +49,8 @@ export class ListformComponent implements OnInit {
   arrayBusqueda = [];
   user_role: string;
   stock: number;
+  pvc: number;
+  voc: number;
 
   constructor(private service: FormService, private route: Router,
     private readonly genericService: GenericService,
@@ -73,6 +77,7 @@ export class ListformComponent implements OnInit {
       this.pigmento = 0;
       this.solvente = 0;
       this.precio = 0;
+      this.info3 = 0;
       if (data.message) {
         this.array = []
         return;
@@ -99,6 +104,8 @@ export class ListformComponent implements OnInit {
         this.viscosidaduk = datos.viscosidaduk;
         this.molienda = datos.molienda;
         this.brillo = datos.brillo;
+        this.pvc = datos.info3;
+        this.voc = datos.info2;
       }
       this.array = data.response;
     }, (err) => {
@@ -150,6 +157,8 @@ export class ListformComponent implements OnInit {
     this.pigmento = null;
     this.solvente = null;
     this.precio = null;
+    this.pvc = null;
+    this.voc = null;
     this.ultimamodificacion = null;
     this.formaconjunto = null;
     this.relaciondemezcla = null;

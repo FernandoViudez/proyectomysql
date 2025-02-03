@@ -32,6 +32,7 @@ export class ListprodComponent implements OnInit {
   solvente = 0;
   precio = 0;
   info3 = 0;
+  info2 = 0;
   renglones = 100;  // pongo como default 100 lineas, pero si quieren imprimir todas que lo cambien a mano
 
   descripcion: string;
@@ -69,6 +70,7 @@ export class ListprodComponent implements OnInit {
     this.precio = null;
     this.modifico = null;
     this.info3 = null;
+    this.info2 = null;
     this.renglones = 100;
   }
 
@@ -94,6 +96,7 @@ export class ListprodComponent implements OnInit {
       this.molienda = 0;
       this.brillo = 0;
       this.info3 = 0;
+      this.info2 = 0;
       if (data.message) {
         this.array = []
         return;
@@ -114,6 +117,7 @@ export class ListprodComponent implements OnInit {
         this.brillo = datos.brillo;
         this.modifico = datos.modifico;
         this.info3 = datos.info3;
+        this.info2 = datos.info2;
       }
       this.array = data.response;
     }, (err) => {
@@ -137,6 +141,7 @@ export class ListprodComponent implements OnInit {
         this.brillo = data.br;
         this.precio = data.pr;
         this.info3 = data.dpvc;
+        this.info2 = data.voc;
       }, (err) => {
         console.log(err);
       })

@@ -53,7 +53,7 @@
           </h6>
         </div>
       </div>
-      <div class="col-2">
+      <div class="col-1">
         <div class="m-auto ml-2">
           <h6 style="font-size: 14px;" id="ppp"><b>Sólidos PPP: </b><span class="badge"
               style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solidosppp | numeralPipe}}</span></h6>
@@ -65,13 +65,13 @@
               style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solidosppv | numeralPipe}}</span></h6>
         </div>
       </div>
-      <div class="col-2">
+      <div class="col-1">
         <div class="m-auto ml-2">
           <h6 style="font-size: 14px;" id="resi"><b>% Resina: </b><span class="badge"
               style="font-size: 18px; background-color: rgb(190, 171, 131);">{{resina | numeralPipe}}</span></h6>
         </div>
       </div>
-      <div class="col-2">
+      <div class="col-1">
         <div class="m-auto ml-2">
           <h6 style="font-size: 14px;" id="pig"><b>% Pigmento: </b><span class="badge"
               style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pigmento | numeralPipe}}</span></h6>
@@ -81,6 +81,18 @@
         <div class="m-auto ml-2">
           <h6 style="font-size: 14px;" id="pr"><b>% Solvente: </b><span class="badge"
               style="font-size: 18px; background-color: rgb(190, 171, 131);">{{solvente | numeralPipe}}</span></h6>
+        </div>
+      </div>
+      <div class="col-1">
+        <div class="m-auto ml-2">
+          <h6 style="font-size: 14px;" id="pr"><b>PVC: </b><span class="badge"
+              style="font-size: 18px; background-color: rgb(190, 171, 131);">{{pvc | numeralPipe}}</span></h6>
+        </div>
+      </div>
+      <div class="col-1">
+        <div class="m-auto ml-2">
+          <h6 style="font-size: 14px;" id="pr"><b>VOC: </b><span class="badge"
+              style="font-size: 18px; background-color: rgb(190, 171, 131);">{{voc | numeralPipe}}</span></h6>
         </div>
       </div>
 
@@ -378,6 +390,8 @@
     <tr>
       <td>Solidos p.p.P. : {{solidosppp }} %</td>
       <td>Solidos p.p.V. : {{solidosppv}} %</td>
+      <td>PVC : {{pvc}} %</td>
+      <td>V.O.C. : {{voc}} g/lt</td>
     </tr>
     <tr>
       <td>Contenido resina : {{resina}} %</td>
