@@ -130,27 +130,35 @@
         <div class="row">
             <div class="col-2">
                 <label>Peso Específico</label>
-                <input type="text" disabled [(ngModel)]="pesoespecifico" class="form-control boldText">
+                <input type="text" disabled [(ngModel)]="pesoespecifico" class="form-control boldText text-center">
             </div>
             <div class="col-2">
                 <label>Sólidos P.P.P.</label>
-                <input type="text" disabled [(ngModel)]="solidosppp" class="form-control boldText">
+                <input type="text" disabled [(ngModel)]="solidosppp" class="form-control boldText text-center">
             </div>
             <div class="col-2">
                 <label>Sólidos P.P.V.</label>
-                <input type="text" disabled [(ngModel)]="solidosppv" class="form-control boldText">
+                <input type="text" disabled [(ngModel)]="solidosppv" class="form-control boldText text-center">
             </div>
             <div class="col-2">
                 <label>% Resina</label>
-                <input type="text" disabled [(ngModel)]="resina" class="form-control boldText">
+                <input type="text" disabled [(ngModel)]="resina" class="form-control boldText text-center">
             </div>
             <div class="col-2">
                 <label>% Pigmento</label>
-                <input type="text" disabled [(ngModel)]="pigmento" class="form-control boldText">
+                <input type="text" disabled [(ngModel)]="pigmento" class="form-control boldText text-center">
             </div>
             <div class="col-2">
                 <label>% Solvente</label>
-                <input type="text" disabled [(ngModel)]="solvente" class="form-control boldText">
+                <input type="text" disabled [(ngModel)]="solvente" class="form-control boldText text-center">
+            </div>
+            <div class="col-2 mt-2">
+                <label>V.O.C. (en gr/Lt.)</label>
+                <input type="text" disabled [(ngModel)]="info2" class="form-control boldText text-center">
+            </div>
+            <div class="col-2 mt-2">
+                <label>PVC</label>
+                <input type="text" disabled [(ngModel)]="info3" class="form-control boldText text-center">
             </div>
         </div>
     </div>
@@ -180,14 +188,6 @@
             <div class="col-2">
                 <label>Información 1</label>
                 <input type="text" [(ngModel)]="info1" class="form-control boldText">
-            </div>
-            <div class="col-2">
-                <label>Información 2</label>
-                <input type="text" [(ngModel)]="info2" class="form-control boldText">
-            </div>
-            <div class="col-2">
-                <label>PVC</label>
-                <input type="text" disabled [(ngModel)]="info3" class="form-control boldText">
             </div>
             <div *ngIf="user_role == 'ADMIN_ROL'" class="col-2">
                 <label>Costo por Kg o Lt segun la unidad de medida</label>

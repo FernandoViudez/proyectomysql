@@ -141,7 +141,7 @@ export class ListprodComponent implements OnInit {
         this.brillo = data.br;
         this.precio = data.pr;
         this.info3 = data.dpvc;
-        this.info2 = data.voc;
+        this.info2 = data.dvoc;
       }, (err) => {
         console.log(err);
       })
@@ -168,6 +168,8 @@ export class ListprodComponent implements OnInit {
         "resina",
         "pigmento",
         "precio",
+        "info3",
+        "info2",
         "ultimocalculo",
     ])
       .subscribe((data: onExcelDTO) => {

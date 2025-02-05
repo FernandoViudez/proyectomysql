@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { EnvService } from 'src/app/services/env.service';
 import { Router } from '@angular/router';
 import { obtenerPath } from 'src/app/_utils/generarBackPath';
+
 declare let alertify: any;
 
 @Component({
@@ -38,7 +39,7 @@ export class AltaprodComponent implements OnInit {
   precio: number;
   ultimamodificacion: Date;
   info1: string;
-  info2: string;
+  info2 = 0;
   info3 = 0;                  // lo uso para grabar el dato que se calcula como PVC
   descripForma: string;
   arraypt = [];
@@ -115,7 +116,7 @@ export class AltaprodComponent implements OnInit {
             this.precio = datos.precio;
             this.ultimamodificacion = datos.ultimamodificacion;
             this.info1 = datos.info1;
-            this.info2 = datos.info2;
+            this.info2 = Math.round(datos.info2);
             this.info3 = datos.info3;
             this.stock = datos.stock;
             if (this.id >= 70000) {
@@ -168,7 +169,7 @@ export class AltaprodComponent implements OnInit {
               this.precio = datos.precio;
               this.ultimamodificacion = datos.ultimamodificacion;
               this.info1 = datos.info1;
-              this.info2 = datos.info2;
+              this.info2 = Math.round(datos.info2);
               this.info3 = datos.info3;
               this.stock = datos.stock;
               if (this.id >= 70000) {
@@ -269,7 +270,7 @@ export class AltaprodComponent implements OnInit {
     this.molienda = this.molienda ? this.molienda.toUpperCase() : this.molienda;
     this.brillo = this.brillo ? this.brillo.toUpperCase() : this.brillo;
     this.info1 = this.info1 ? this.info1.toUpperCase() : this.info1;
-    this.info2 = this.info2 ? this.info2.toUpperCase() : this.info2;
+    // this.info2 = this.info2 ? this.info2.toUpperCase() : this.info2;
     // this.info3 = this.info3 ? this.info3.toUpperCase() : this.info3;
 
     Swal.showLoading()
@@ -349,7 +350,7 @@ export class AltaprodComponent implements OnInit {
     this.precio = datos;
     this.ultimamodificacion = datos;
     this.info1 = datos;
-    this.info2 = datos;
+    this.info2 = 0;
     this.info3 = 0;
     this.stock = datos;
     this.editar = false;
