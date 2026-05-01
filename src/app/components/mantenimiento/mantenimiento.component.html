@@ -73,6 +73,7 @@
                     <option value="Zaranda 3">Zaranda Nro.3</option>
                     <option value="Zaranda 4">Zaranda Nro.4</option>
                     <option value="Zaranda 5">Zaranda Nro.5</option>
+                    <option value="Zaranda 6">Zaranda Nro.6</option>
                 </select>
             </div>
         </div>
@@ -88,6 +89,7 @@
                     <option value="Apilador a bateria 8">Nro.8 - Apilador a bateria</option>
                     <option value="Apilador a bateria 9">Nro.9 - Apilador a bateria</option>
                     <option value="Apilador a bateria 10">Nro.10 - Apilador a bateria</option>
+                    <option value="Tijera elevadora 1">Nro.11 - Tijera elevadora 1</option>
                 </select>
             </div>
         </div>
@@ -128,8 +130,8 @@
                     <option value="Bascula dispersora 12">FAB 049 - Bascula Dispersora 12</option>
                     <option value="Bascula dispersora 13">FAB 015 - Bascula Dispersora 13</option>
                     <option value="Bascula dispersora 14">FAB 056 - Bascula Dispersora 14</option>
-                    <option>**</option>
-                    <option value="Balanza carro FAB 029">FAB 029 - Balanza carro (Giorgi)</option>
+                    <option disabled></option>
+                    <option value="Balanza carro FAB 029">FAB 029 - Balanza carro (Datos)</option>
                     <option value="Balanza carro FAB 030">FAB 030 - Balanza carro (Cortez)</option>
                     <option value="Balanza carro FAB 031">FAB 031 - Balanza carro ()</option>
                     <option value="Balanza carro FAB 032">FAB 032 - Balanza carro (Gorosito)</option>
@@ -137,14 +139,14 @@
                     <option value="Balanza carro FAB 034">FAB 034 - Balanza carro (Estamatti)</option>
                     <option value="Balanza carro FAB 045">FAB 045 - Balanza carro (Guevara)</option>
                     <option value="Balanza carro FAB 046">FAB 046 - Balanza carro (Ugarte)</option>
-                    <option value="Balanza carro FAB 047">FAB 047 - Balanza carro (Caliva)</option>
+                    <option value="Balanza carro FAB 047">FAB 047 - Balanza carro (Vera)</option>
                     <option value="Balanza carro FAB 048">FAB 048 - Balanza carro ()</option>
-                    <option>**</option>
+                    <option disabled></option>
                     <option value="Balanza tinturado FAB 038">FAB 038 - Balanza tinturado</option>
                     <option value="Balanza tinturado FAB 039">FAB 039 - Balanza tinturado</option>
                     <option value="Balanza tinturado FAB 041">FAB 041 - Balanza tinturado</option>
                     <option value="Balanza tinturado FAB 052">FAB 052 - Balanza tinturado</option>
-                    <option>**</option>
+                    <option disabled></option>
                     <option value="Bascula tambores FAB 011">FAB 011 - Bascula tambores</option>
                     <option value="Balanza cuna FAB 044">FAB 044 - Balanza cuna tambores</option>
                     <option value="Balanza MP FAB 051">FAB 051 - Bascula Materias primas</option>
@@ -218,7 +220,7 @@
             <div>Engrase</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="engrase" id="engrase">
-                    <option></option>
+                    <option disabled></option>
                     <option *ngIf="equipo != 'MOL' && equipo != 'ELE' && equipo != 'ZOR'" value="Alamites/rodamientos">
                         Alamites /
                         correderas y/o rodamientos</option>
@@ -233,7 +235,7 @@
             <div>Aceite</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="lubricacion" id="lubricacion">
-                    <option></option>
+                    <option disabled></option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ZOR' && equipo != 'ELE'" value="Aceite">Nivel aceite
                     </option>
                     <option *ngIf="equipo != 'VAR'" value="Aceite piston">Nivel aceite piston hidraulico</option>
@@ -263,17 +265,18 @@
             <div>Accesorios</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="accesorios" id="accesorios">
-                    <option></option>
+                    <option disabled></option>
                     <option *ngIf="equipo == 'DIS' || equipo == 'MOL'">Cambio pinzas puesta a tierra</option>
                     <option *ngIf="equipo == 'ELE'">Cambio eslinga</option>
                     <option *ngIf="equipo == 'ELE'">Reparacion cadena</option>
+                    <option *ngIf="equipo == 'ELE'">Agregado agua bateria</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'MOL' && equipo != 'ELE' && equipo != 'ZAR'"
                         value="Filtro">Cambio filtro aire</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'MOL' && equipo != 'ELE' && equipo != 'ZAR'"
                         value="Filtro">Cambio rodamientos / engranajes</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'MOL' && equipo != 'ELE' && equipo != 'ZAR'"
                         value="Filtro">Cambio / reparacion bomba alimentacion</option>
-                    <option>***</option>
+                    <option disabled>***</option>
                     <option *ngIf="equipo == 'VAR'" value="Engrase pistones">Engrase de pistones</option>
                     <option *ngIf="equipo == 'VAR'" value="Vaciado bolsas">Vaciado bolsas receptoras de polvo</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE' && equipo != 'ZAR'" value="Bomba">Verificacion
@@ -296,11 +299,11 @@
             <div>Conexiones</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="conexiones" id="conexiones">
-                    <option></option>
+                    <option disabled></option>
                     <option>Reparacion conexion electrica</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE' && equipo != 'ZAR'">Reparacion conexion aire
                     </option>
-                    <option>***</option>
+                    <option disabled>***</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE' && equipo != 'MOL' && equipo != 'ZAR'"
                         value="Aire">Verificacion conexion aire</option>
                     <option *ngIf="equipo != 'MOL'" value="Electrica">Verificacion conexion electrica</option>
@@ -314,7 +317,7 @@
             <div>Tableros / botonera</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="tableros" id="tableros">
-                    <option></option>
+                    <option disabled></option>
                     <option value="Ok">En perfecto estado</option>
                     <option value="Reparado">Reparado</option>
                 </select>
@@ -324,11 +327,11 @@
             <div>Llaves de corte</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="cortes" id="cortes">
-                    <option></option>
+                    <option disabled></option>
                     <option>Cambio llave esferica</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'MOL'" value="valvulas">Cambio valvula</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'MOL'" value="valvulas">Cambio retenes</option>
-                    <option>***</option>
+                    <option disabled>***</option>
                     <option value="LLaves">Verificacion cierre llaves esfericas</option>
                     <option *ngIf="equipo == 'VAR'" value="Corte tolva">Verificacion corte automatico</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'MOL'" value="valvulas">Verificacion valvulas y retenes
@@ -340,7 +343,7 @@
             <div>Mangueras</div>
             <div class="input-group">
                 <select class="mt-2 custom-select boldText" [(ngModel)]="mangueras" id="mangueras">
-                    <option></option>
+                    <option disabled></option>
                     <option *ngIf="equipo != 'MOL' && equipo != 'ELE'" value="Flexibles">Cambio flexibles</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'MOL'" value="Mangueras">Cambio mangueras hidraulicas
                     </option>
@@ -348,7 +351,7 @@
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Cambio mangueras aire</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Cambio mangueras
                         liq.refrigerante</option>
-                    <option>***</option>
+                    <option disabled>***</option>
                     <option *ngIf="equipo != 'MOL' && equipo != 'ELE'" value="Flexibles">Verificacion flexibles</option>
                     <option *ngIf="equipo != 'DIS' && equipo != 'ELE'" value="Mangueras">Verificacion mangueras
                         (aire/agua/liq.refrigerante)</option>
@@ -402,8 +405,10 @@
     <div *ngIf="equipo == 'ELE'" class="col-12 text-center">
         <div class="mt-5 alert alert-success boldText">
             <h1>Recuerda</h1>
-            <p *ngIf="!nroequipo.includes('electrico')">
+            <p *ngIf="nroequipo.includes('Apilador')">
                 El proximo mantenimiento se programara PARA DENTRO DE 1 MES</p>
+            <p *ngIf="nroequipo.includes('Tijera elevadora')">
+                El proximo mantenimiento se programara PARA DENTRO DE 2 MESES</p>
             <p *ngIf="nroequipo.includes('electrico')">
                 El proximo mantenimiento se programara PARA DENTRO DE 3 MESES</p>
         </div>
@@ -431,9 +436,11 @@
     <div *ngIf="equipo == 'VAR'" class="col-12 text-center">
         <div class="mt-5 alert alert-success boldText">
             <h1>Recuerda</h1>
-            <p *ngIf="nroequipo.includes('Compresor') || nroequipo.includes('Shaker') || nroequipo.includes('Extractor')">
+            <p
+                *ngIf="nroequipo.includes('Compresor') || nroequipo.includes('Shaker') || nroequipo.includes('Extractor')">
                 El proximo mantenimiento se programara PARA DENTRO DE 3 MESES</p>
-            <p *ngIf="nroequipo.includes('Envasadora') || nroequipo.includes('Tapadora') || nroequipo.includes('Dispenser') || nroequipo.includes('Enfriador') ">
+            <p
+                *ngIf="nroequipo.includes('Envasadora') || nroequipo.includes('Tapadora') || nroequipo.includes('Dispenser') || nroequipo.includes('Enfriador') ">
                 El proximo mantenimiento se programara PARA DENTRO DE 6 MESES</p>
             <p *ngIf="nroequipo.includes('Destilador') || nroequipo.includes('Termotanque') || nroequipo.includes('Flejadora')
              || nroequipo.includes('Paletizadora')">

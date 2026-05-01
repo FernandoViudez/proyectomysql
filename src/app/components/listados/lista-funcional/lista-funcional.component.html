@@ -13,20 +13,20 @@
             <div class="input-group">
                 <select (change)="isValid" class="custom-select boldText ml-2" [(ngModel)]="operacion"
                     id="inputGroupSelect01">
-                    <option></option>
+                    <option disabled></option>
                     <option value="RANGO">Listado de Materias Primas por rango</option>
                     <option value="MINIMO">Stock bajo mínimo de Materias Primas</option>
                     <option value="RANGOMOVD">Compras de Materias Primas por rango de fechas</option>
                     <option value="RANGOMOV">Movimientos de Materias Primas por rango de fechas</option>
                     <option value="MPENFORMULAS">Búsqueda de Materias Primas en Fórmulas</option>
-                    <option>---------------------------------------------------------------------------------------------</option>
+                    <option disabled>---------------------------------------------------------------------------------------------</option>
                     <option *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" value="DETPROD">Detalle de
                         producción por rango de fechas</option>
                     <option *ngIf="user_role == 'ADMIN_ROL' || user_role == 'LABORATORIO'" value="DETLOTEPROD">Detalle
                         de producción por rango de lotes</option>
-                    <option>---------------------------------------------------------------------------------------------</option>
+                    <option disabled>---------------------------------------------------------------------------------------------</option>
                     <option value="RANGOFECHAS">Estadística de producción por rango de fechas</option>
-                    <option></option>
+                    <option disabled></option>
                 </select>
             </div>
         </div>
@@ -90,7 +90,7 @@
 
         <table *ngIf="propiedades" class="table table-dark mt-3">
             <tr>
-                <th *ngFor="let propiedad of propiedades.th">{{propiedad}}</th>
+                <th *ngFor="let propiedad of propiedades.th" class="centrado">{{propiedad}}</th>
             </tr>
             <tr *ngFor="let item of items">
                 <td [ngClass]="{

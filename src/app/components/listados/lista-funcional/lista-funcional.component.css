@@ -45,3 +45,9 @@
     color: white;
     font-size: 17px;
 }
+
+/* Estilo para centrar el contenido del th */
+.centrado {
+  text-align: center;
+  vertical-align: middle;
+}

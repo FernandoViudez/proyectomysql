@@ -42,7 +42,7 @@
                         <option value="Dispersora 6  600 Lt">Nro.6 - 600 Lt (20 HP)</option>
                         <option value="Dispersora 7 1000 Lt">Nro.7 - 1000 Lt (40 HP)</option>
                         <option value="Dispersora 8 2000 Lt">Nro.8 - 2000 Lt (40 HP)</option>
-                        <option value="Dispersora 9 2000 Lt">Nro.9 - 2000 Lt (5 HP)</option>
+                        <option value="Dispersora 9 100 Lt">Nro.9 - 100 Lt (5 HP)</option>
                         <option value="Dispersora 10  600 Lt">Nro.10 - 1500 Lt (40 HP)</option>
                         <option value="Dispersora 11 2000 Lt">Nro.11 - 600 Lt (20 HP)</option>
                         <option value="Dispersora 12 2500 Lt">Nro.12 - 2500 Lt (60 HP)</option>
@@ -78,6 +78,7 @@
                         <option value="Zaranda 3">Zaranda Nro.3</option>
                         <option value="Zaranda 4">Zaranda Nro.4</option>
                         <option value="Zaranda 5">Zaranda Nro.5</option>
+                        <option value="Zaranda 6">Zaranda Nro.6</option>
                     </select>
                 </div>
             </div>
@@ -92,6 +93,7 @@
                         <option value="Apilador a bateria 8">Nro.8 - Apilador a bateria</option>
                         <option value="Apilador a bateria 9">Nro.9 - Apilador a bateria</option>
                         <option value="Apilador a bateria 10">Nro.10 - Apilador a bateria</option>
+                        <option value="Tijera elevadora 1">Nro.11 - Tijera elevadora</option>
                     </select>
                 </div>
             </div>
@@ -130,8 +132,8 @@
                         <option value="Bascula dispersora 12">FAB 049 - Bascula Dispersora 12</option>
                         <option value="Bascula dispersora 13">FAB 015 - Bascula Dispersora 13</option>
                         <option value="Bascula dispersora 14">FAB 056 - Bascula Dispersora 14</option>
-                        <option>**</option>
-                        <option value="Balanza carro FAB 029">FAB 029 - Balanza carro (Giorgi)</option>
+                        <option disabled>**</option>
+                        <option value="Balanza carro FAB 029">FAB 029 - Balanza carro (Datos)</option>
                         <option value="Balanza carro FAB 030">FAB 030 - Balanza carro (Cortez)</option>
                         <option value="Balanza carro FAB 031">FAB 031 - Balanza carro ()</option>
                         <option value="Balanza carro FAB 032">FAB 032 - Balanza carro (Gorosito)</option>
@@ -139,14 +141,14 @@
                         <option value="Balanza carro FAB 034">FAB 034 - Balanza carro (Estamatti)</option>
                         <option value="Balanza carro FAB 045">FAB 045 - Balanza carro (Guevara)</option>
                         <option value="Balanza carro FAB 046">FAB 046 - Balanza carro (Ugarte)</option>
-                        <option value="Balanza carro FAB 047">FAB 047 - Balanza carro (Caliva)</option>
+                        <option value="Balanza carro FAB 047">FAB 047 - Balanza carro (Vera)</option>
                         <option value="Balanza carro FAB 048">FAB 048 - Balanza carro ()</option>
-                        <option>**</option>
+                        <option disabled>**</option>
                         <option value="Balanza tinturado FAB 038">FAB 038 - Balanza tinturado</option>
                         <option value="Balanza tinturado FAB 039">FAB 039 - Balanza tinturado</option>
                         <option value="Balanza tinturado FAB 041">FAB 041 - Balanza tinturado</option>
                         <option value="Balanza tinturado FAB 052">FAB 052 - Balanza tinturado</option>
-                        <option>**</option>
+                        <option disabled>**</option>
                         <option value="Bascula tambores FAB 011">FAB 011 - Bascula tambores</option>
                         <option value="Balanza cuna FAB 044">FAB 044 - Balanza cuna tambores</option>
                         <option value="Balanza MP FAB 051">FAB 051 - Bascula Materias primas</option>
@@ -327,7 +329,7 @@
         </table>
     </div>
 
-    <div *ngIf="proMan == 1">                                               <!-- este es para que puedan realizar los mantenimientos -->
+    <div *ngIf="proMan == 1"> <!-- este es para que puedan realizar los mantenimientos -->
         <table class="table" style="font-size: medium;">
             <thead>
                 <tr class="text-white text-center" *ngIf="arregloMantenimiento.length > 0">

@@ -403,11 +403,13 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Propiedades que se muestran en formulas
+  // Propiedades para listado de MP que aparecen en distintas formulas
   asignarPropiedadesDeMpEnFormulas() {
     this.propiedades = {
       th: [
         "ID",
+        "ORDEN",
+        "TFA",
         "DESCRIPCION",
         "COLOR",
         "CODMP",
@@ -415,14 +417,15 @@ export class ListaFuncionalComponent implements OnInit, OnDestroy {
       ],
       tb: [
         "idprod",
+        "orden",
+        "tintoformoalt",
         "descripcion",
         "color",
         "codmp",
         "cantidad",
-      ]
-
-    }
-  }
+      ]  
+    } 
+  } 
 
   onPrint() {
     window.print();
