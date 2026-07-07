@@ -26,9 +26,9 @@ export class VerificacionComponent implements OnInit {
   // ok(boolean) (Sending the verification, we validate the data sent by the user,
   // and we determinate the ok field seeing the repsonse)
 
-  constructor(private genericService: GenericService) { }
+  constructor(private genericService: GenericService) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   traerDescripcion() {
     //tiene que traerlo de la base de datos materia prima
@@ -43,7 +43,7 @@ export class VerificacionComponent implements OnInit {
   }
 
   traerLote() {
-    this.loteError = false;   // ← Resetear el error primero
+    this.loteError = false; // ← Resetear el error primero
 
     this.genericService.traerLote(this.lote).subscribe(
       (data: any) => {
@@ -51,45 +51,47 @@ export class VerificacionComponent implements OnInit {
 
         if (this.descripcionLote != this.descripcion) {
           alertify.error("LOTE ERRONEO O EQUIVOCADO");
-          this.loteError = true;        // ← Activar resaltado
+          this.loteError = true; // ← Activar resaltado
         } else {
-          this.loteError = false;       // ← Todo correcto
+          this.loteError = false; // ← Todo correcto
         }
       },
       (err) => {
         alertify.error("LOTE ERRONEO O EQUIVOCADO");
-        this.descripcionLote = null;    // Limpiar descripción
-        this.loteError = true;          // ← Activar resaltado
-      }
+        this.descripcionLote = null; // Limpiar descripción
+        this.loteError = true; // ← Activar resaltado
+      },
     );
   }
 
   traerPartida() {
     //tiene que traerlo de la base de datos calidad PT
     this.bloqueado = false;
-    this.genericService.traerPartida(this.partida, this.codigomp).subscribe(
-      (data: any) => {
-        if (data?.response?.length) {
-          this.descripcionPartida = data.response[0].numeroPartida;
-          if (data.response[0].aprobado) {
-            alertify.error("La partida ESTA FINALIZADA - Verificar numero");
-            this.partidaok = false;
-          } else if (!data.materiaPrimaMatchea) {
-            this.bloqueado = true;
-            this.partidaok = false;
+    this.genericService
+      .traerPartida(this.partida, this.codigomp, this.operario)
+      .subscribe(
+        (data: any) => {
+          if (data?.response?.length) {
+            this.descripcionPartida = data.response[0].numeroPartida;
+            if (data.response[0].aprobado) {
+              alertify.error("La partida ESTA FINALIZADA - Verificar numero");
+              this.partidaok = false;
+            } else if (!data.materiaPrimaMatchea) {
+              this.bloqueado = true;
+              this.partidaok = false;
+            } else {
+              this.partidaok = true;
+            }
           } else {
-            this.partidaok = true;
+            alertify.error("No se encontró la partida solicitada.");
+            this.partidaok = false;
           }
-        } else {
-          alertify.error("No se encontró la partida solicitada.");
+        },
+        (err) => {
+          alertify.error("PARTIDA INEXISTENTE - Verificar numero");
           this.partidaok = false;
-        }
-      },
-      (err) => {
-        alertify.error("PARTIDA INEXISTENTE - Verificar numero");
-        this.partidaok = false;
-      },
-    );
+        },
+      );
   }
 
   enviarData() {
@@ -134,7 +136,7 @@ export class VerificacionComponent implements OnInit {
             timerProgressBar: true,
             onBeforeOpen: () => {
               Swal.showLoading();
-              timerInterval = setInterval(() => { }, 100);
+              timerInterval = setInterval(() => {}, 100);
             },
             onClose: () => {
               clearInterval(timerInterval);

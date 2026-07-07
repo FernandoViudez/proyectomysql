@@ -44,10 +44,12 @@ export class GenericService {
     return this.http.get(`${this.url}traerLote/${lote}`);
   }
 
-  traerPartida(numeroPartida: number, codigomp: number) {
-    return this.http.get(
-      `${this.url}traerPartida/${numeroPartida}?codmp=${codigomp}`,
-    );
+  traerPartida(numeroPartida: number, codigomp: number, operario?: string) {
+    let url = `${this.url}traerPartida/${numeroPartida}?codmp=${codigomp}`;
+    if (operario) {
+      url += `&operario=${encodeURIComponent(operario)}`;
+    }
+    return this.http.get(url);
   }
 
   listadoVerificacion(
