@@ -21,13 +21,14 @@ export class VerificacionComponent implements OnInit {
   public aprobado: string;
   public partidaok = false; // para que no se pueda poner partidas terminadas
   public bloqueado = false; // se activa cuando el backend devuelve proasoc en traerPartida
+  public loteError: boolean = false;
 
   // ok(boolean) (Sending the verification, we validate the data sent by the user,
   // and we determinate the ok field seeing the repsonse)
 
-  constructor(private genericService: GenericService) {}
+  constructor(private genericService: GenericService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   traerDescripcion() {
     //tiene que traerlo de la base de datos materia prima
@@ -42,14 +43,24 @@ export class VerificacionComponent implements OnInit {
   }
 
   traerLote() {
-    //tiene que traerlo de la base de datos materia prima
+    this.loteError = false;   // ← Resetear el error primero
+
     this.genericService.traerLote(this.lote).subscribe(
       (data: any) => {
         this.descripcionLote = data.response[0].descripcion;
+
+        if (this.descripcionLote != this.descripcion) {
+          alertify.error("LOTE ERRONEO O EQUIVOCADO");
+          this.loteError = true;        // ← Activar resaltado
+        } else {
+          this.loteError = false;       // ← Todo correcto
+        }
       },
       (err) => {
         alertify.error("LOTE ERRONEO O EQUIVOCADO");
-      },
+        this.descripcionLote = null;    // Limpiar descripción
+        this.loteError = true;          // ← Activar resaltado
+      }
     );
   }
 
@@ -123,7 +134,7 @@ export class VerificacionComponent implements OnInit {
             timerProgressBar: true,
             onBeforeOpen: () => {
               Swal.showLoading();
-              timerInterval = setInterval(() => {}, 100);
+              timerInterval = setInterval(() => { }, 100);
             },
             onClose: () => {
               clearInterval(timerInterval);
@@ -152,5 +163,6 @@ export class VerificacionComponent implements OnInit {
     this.descripcionPartida = null;
     this.partidaok = false;
     this.bloqueado = false;
+    this.loteError = false;
   }
 }
